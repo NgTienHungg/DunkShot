@@ -2,47 +2,60 @@
 
 public class Mechanic : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject ball;
-
-    [SerializeField]
-    private GameObject hoop;
+    [SerializeField] private GameObject ball;
+    [SerializeField] private GameObject hoop;
 
     private Rigidbody2D ballRigidBody;
 
-    private Vector3 pivotPos; // vị trí click chuột đầu tiên
-    private Vector3 mouseOffset; 
+    public Vector3 pivotPosition, touchPosition;
+    public float originalAngle;
 
-    private bool isDragging = false;
+    private bool isAiming;
 
     private void Awake()
     {
         ballRigidBody = ball.GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetMouseButtonDown(0) && !isDragging)
-        {
-            Debug.Log("dragging");
-            isDragging = true;
-            ballRigidBody.bodyType = RigidbodyType2D.Static;
-            mouseOffset = ball.transform.localPosition - Util.GetMouseWorldPosition();
-        }
-
-        if (Input.GetMouseButtonUp(0) && isDragging)
-        {
-            Debug.Log("realse");
-            isDragging = false;
-            ballRigidBody.bodyType = RigidbodyType2D.Dynamic;
-        }
+        this.isAiming = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (isDragging)
-        {
-            ball.transform.localPosition = Util.GetMouseWorldPosition() + mouseOffset;
-        }
+        if (Input.GetMouseButtonDown(0) && !isAiming)
+            StartAiming();
+
+        if (isAiming)
+            Aiming();
+
+        if (Input.GetMouseButtonUp(0) && isAiming)
+            Shot();
+    }
+
+    private void StartAiming()
+    {
+        this.isAiming = true;
+
+        pivotPosition = hoop.transform.position;
+        touchPosition = Util.GetMouseWorldPosition();
+        originalAngle = Util.CalculateAngleDeg(pivotPosition, touchPosition);
+    }
+
+    private void Aiming()
+    {
+        Vector3 mousePosition = Util.GetMouseWorldPosition();
+        float currentAngle = Util.CalculateAngleDeg(pivotPosition, mousePosition);
+        float deltaAngle = currentAngle - originalAngle;
+
+        Debug.Log("Current angle: " + currentAngle + " - Delta angle: " + deltaAngle);
+        hoop.transform.eulerAngles = new Vector3(0f, 0f, deltaAngle);
+    }
+
+    private void Shot()
+    {
+        isAiming = false;
+        ballRigidBody.bodyType = RigidbodyType2D.Dynamic;
     }
 }

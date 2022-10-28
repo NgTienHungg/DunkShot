@@ -171,20 +171,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8798219964249596288, guid: 169d1b9fd4249854c978cd4dc85e2c8a, type: 3}
   m_PrefabInstance: {fileID: 8798219964847093661}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &411999574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411999572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc71765a9181e6c4e912f7fa94ce5878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 0}
-  net: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +484,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 994455690}
   hoop: {fileID: 411999572}
+  pivotPosition: {x: 0, y: 0, z: 0}
+  touchPosition: {x: 0, y: 0, z: 0}
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!4 &2092772734
 Transform:
   m_ObjectHideFlags: 0
@@ -584,13 +573,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 593828603518244734, guid: 169d1b9fd4249854c978cd4dc85e2c8a, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 3608d64ab446d7a4199f0a1120197069, type: 2}
-    - target: {fileID: 8798219963249854430, guid: 169d1b9fd4249854c978cd4dc85e2c8a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.04
+    - target: {fileID: 8798219963249854431, guid: 169d1b9fd4249854c978cd4dc85e2c8a, type: 3}
+      propertyPath: m_TagString
+      value: NetHoop
       objectReference: {fileID: 0}
     - target: {fileID: 8798219964249596288, guid: 169d1b9fd4249854c978cd4dc85e2c8a, type: 3}
       propertyPath: m_Name

@@ -12,4 +12,13 @@ public class BallController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("NetHoop"))
+        {
+            Debug.Log("On net");
+            rigidBody.bodyType = RigidbodyType2D.Static;
+        }
+    }
 }
