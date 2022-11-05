@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - NetHoop
+  - Net
+  - Ball
   layers:
   - Default
   - TransparentFX

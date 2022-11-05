@@ -29,7 +29,7 @@ public class Util
     /// <summary>
     /// Tính góc giữa vector AB với trục Oy
     /// </summary>
-    public static float CalculateAngleDeg(Vector3 A, Vector3 B)
+    public static float AngleWithOy(Vector3 A, Vector3 B)
     {
         float dx = B.x - A.x;
         float dy = B.y - A.y;

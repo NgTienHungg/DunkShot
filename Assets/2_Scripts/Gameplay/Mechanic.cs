@@ -2,20 +2,17 @@
 
 public class Mechanic : MonoBehaviour
 {
-    [SerializeField] private GameObject ball;
-    [SerializeField] private GameObject hoop;
+    [SerializeField] private Ball ball;
+    [SerializeField] private Hoop hoop;
+    [SerializeField] private Trajectory trajectory;
 
-    private Rigidbody2D ballRigidBody;
-
-    public Vector3 pivotPosition, touchPosition;
-    public float originalAngle;
+    [SerializeField] private float netMaxElongation = 1.85f; // độ giãn tối đa của lưới
+    [SerializeField] private float pushForce, maxDistance;
 
     private bool isAiming;
-
-    private void Awake()
-    {
-        ballRigidBody = ball.GetComponent<Rigidbody2D>();
-    }
+    public Vector3 pivot, startPoint, endPoint;
+    public Vector3 direction, force;
+    public float distance;
 
     private void Start()
     {
@@ -27,35 +24,52 @@ public class Mechanic : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isAiming)
             StartAiming();
 
-        if (isAiming)
-            Aiming();
-
         if (Input.GetMouseButtonUp(0) && isAiming)
             Shot();
+
+        if (isAiming)
+            Aiming();
     }
 
     private void StartAiming()
     {
-        this.isAiming = true;
+        pivot = hoop.transform.position;
+        startPoint = Util.GetMouseWorldPosition();
 
-        pivotPosition = hoop.transform.position;
-        touchPosition = Util.GetMouseWorldPosition();
-        originalAngle = Util.CalculateAngleDeg(pivotPosition, touchPosition);
+        ball.Stop();
+        trajectory.Show();
+
+        this.isAiming = true;
     }
 
     private void Aiming()
     {
-        Vector3 mousePosition = Util.GetMouseWorldPosition();
-        float currentAngle = Util.CalculateAngleDeg(pivotPosition, mousePosition);
-        float deltaAngle = currentAngle - originalAngle;
+        endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        distance = Mathf.Min(maxDistance, Vector3.Distance(startPoint, endPoint));
+        direction = (startPoint - endPoint).normalized;
+        force = direction * distance * pushForce;
 
-        Debug.Log("Current angle: " + currentAngle + " - Delta angle: " + deltaAngle);
-        hoop.transform.eulerAngles = new Vector3(0f, 0f, deltaAngle);
+        // trajectory
+        trajectory.UpdateDots(ball.transform.position, force);
+        Debug.DrawLine(startPoint, endPoint, Color.red);
+
+        // calculate angle of hoop
+        float aimingAngle = Vector3.Angle(force, Vector3.up);
+        float sign = endPoint.x > startPoint.x ? 1 : -1;
+        hoop.transform.eulerAngles = new Vector3(0f, 0f, sign * aimingAngle);
+
+        // calculate net scale
+        float dy = Mathf.Abs(startPoint.y - endPoint.y);
+        float netScaleY = Mathf.Min(netMaxElongation, Mathf.Max(1f, 1f + dy / 5f));
+        hoop.Net.transform.localScale = new Vector3(1f, netScaleY, 1f);
     }
 
     private void Shot()
     {
         isAiming = false;
-        ballRigidBody.bodyType = RigidbodyType2D.Dynamic;
+
+        trajectory.Hide();
+        ball.Push(force);
+        hoop.Net.Elastic();
     }
 }
