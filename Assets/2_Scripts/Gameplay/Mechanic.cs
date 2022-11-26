@@ -1,45 +1,90 @@
 ﻿using UnityEngine;
+using Cinemachine;
 
 public class Mechanic : MonoBehaviour
 {
-    [SerializeField] private Ball ball;
-    [SerializeField] private Hoop hoop;
+    #region Singleton
+    public static Mechanic Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(gameObject);
+        else
+            Instance = this;
+    }
+    #endregion
+
+    [HideInInspector] public Ball ball;
+    [HideInInspector] public Basket hoop;
+
     [SerializeField] private Trajectory trajectory;
+    [SerializeField] private BasketSpawner basketSpawner;
+    [SerializeField] private CinemachineVirtualCamera virtualCam;
 
     [SerializeField] private float netMaxElongation = 1.85f; // độ giãn tối đa của lưới
-    [SerializeField] private float pushForce, maxDistance;
+    [SerializeField] private float pushForce, minForce;
+    [SerializeField] private float maxDistance;
 
-    private bool isAiming;
-    public Vector3 pivot, startPoint, endPoint;
-    public Vector3 direction, force;
-    public float distance;
+    private bool active;
+    private bool isAiming; // to rotate hoop
+    private bool canShoot; // show or hide trajectory and push ball
+
+    private Vector3 startPoint, endPoint;
+    private Vector3 direction, force;
+    private float distance;
+
+    private void OnEnable()
+    {
+        GameEvent.BallInHoop += ActiveMechanic;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.BallInHoop -= ActiveMechanic;
+    }
 
     private void Start()
     {
-        this.isAiming = false;
+        SpawnBall();
+        active = false;
+        isAiming = false;
+        canShoot = false;
+    }
+
+    private void SpawnBall()
+    {
+        Debug.Log("Spawn ball");
+        Vector3 pos = basketSpawner.GetCurrentBasketPos();
+        ball = ObjectPooler.Instance.Spawn(ObjectTag.Ball).GetComponent<Ball>();
+        ball.transform.position = new Vector3(pos.x, pos.y + 1f);
+        virtualCam.Follow = ball.transform;
     }
 
     private void Update()
     {
+        if (!active)
+            return;
+
         if (Input.GetMouseButtonDown(0) && !isAiming)
             StartAiming();
 
         if (Input.GetMouseButtonUp(0) && isAiming)
-            Shot();
+            Shoot();
 
         if (isAiming)
             Aiming();
     }
 
+    private void ActiveMechanic()
+    {
+        active = true;
+    }
+
     private void StartAiming()
     {
-        pivot = hoop.transform.position;
+        isAiming = true;
         startPoint = Util.GetMouseWorldPosition();
-
-        ball.Stop();
-        trajectory.Show();
-
-        this.isAiming = true;
     }
 
     private void Aiming()
@@ -48,28 +93,53 @@ public class Mechanic : MonoBehaviour
         distance = Mathf.Min(maxDistance, Vector3.Distance(startPoint, endPoint));
         direction = (startPoint - endPoint).normalized;
         force = direction * distance * pushForce;
-
-        // trajectory
-        trajectory.UpdateDots(ball.transform.position, force);
-        Debug.DrawLine(startPoint, endPoint, Color.red);
+        canShoot = force.magnitude >= minForce;
 
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(force, Vector3.up);
         float sign = endPoint.x > startPoint.x ? 1 : -1;
-        hoop.transform.eulerAngles = new Vector3(0f, 0f, sign * aimingAngle);
+        hoop.Rotate(sign * aimingAngle);
 
         // calculate net scale
-        float dy = Mathf.Abs(startPoint.y - endPoint.y);
-        float netScaleY = Mathf.Min(netMaxElongation, Mathf.Max(1f, 1f + dy / 5f));
-        hoop.Net.transform.localScale = new Vector3(1f, netScaleY, 1f);
+        float netScaleY = Mathf.Min(netMaxElongation, Mathf.Max(1f, 1f + distance / 5f));
+        hoop.ScaleNet(netScaleY);
+
+        // trajectory
+        if (canShoot)
+        {
+            if (!trajectory.IsShowing())
+                trajectory.Show();
+
+            trajectory.Simulate(ObjectPooler.Instance.GetPrefab(ObjectTag.Ball), ball.transform.position, force);
+        }
+        else
+        {
+            if (trajectory.IsShowing())
+                trajectory.Hide();
+        }
+        Debug.DrawLine(startPoint, endPoint, Color.red);
     }
 
-    private void Shot()
+    private void Shoot()
     {
         isAiming = false;
-
         trajectory.Hide();
-        ball.Push(force);
-        hoop.Net.Elastic();
+
+        if (canShoot)
+        {
+            ball.Push(force);
+            hoop.ShootBall();
+            active = false;
+        }
+        else
+        {
+            hoop.CancelShoot();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        ball.Renew();
+        ObjectPooler.Instance.Recall(ball.gameObject);
     }
 }

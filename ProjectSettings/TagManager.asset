@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Net
   - Ball
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
@@ -46,9 +47,9 @@ TagManager:
   - name: Background
     uniqueID: 974936659
     locked: 0
-  - name: Ball_Hoop
+  - name: Basketball
     uniqueID: 304030493
     locked: 0
-  - name: Forground
+  - name: Foreground
     uniqueID: 965435867
     locked: 0

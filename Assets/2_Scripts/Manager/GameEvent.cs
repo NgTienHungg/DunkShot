@@ -4,6 +4,9 @@ public static class GameEvent
 
     public delegate void GameplayEvent();
     public static GameplayEvent PrepareBall;
-    public static GameplayEvent ShotBall;
+    public static GameplayEvent ShootBall;
+    public static GameplayEvent BallInHoop;
+
+    public static GameplayEvent GetScore;
 
 }

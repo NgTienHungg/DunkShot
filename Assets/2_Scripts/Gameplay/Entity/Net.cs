@@ -3,45 +3,37 @@ using UnityEngine;
 
 public class Net : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private Vector3 bottomPoint;
-    private Ball ball;
-
-    //private float distanceWithBot = 
-
-    private void Start()
+    public void Renew()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        bottomPoint = transform.GetChild(0).position;
+        transform.localScale = Vector3.one;
     }
 
-    private void Update()
+    public void OnShootBall()
     {
-        //if (ball == null)
-        //    return;
-
-        //float netHeight = spriteRenderer.bounds.size.y * transform.localScale.y;
-        //bottomPoint = transform.position - new Vector3(0f, netHeight);
-
-        //ball.transform.position = bottomPoint + new Vector3(0f, distanceWithBottom);
-        //ball.GetRigidbody().angularDrag = 0f;
-        float angle = Mathf.Abs(360 - transform.eulerAngles.z) * Mathf.Deg2Rad;
-        float huyen = spriteRenderer.bounds.size.y;
-        float height = huyen * Mathf.Cos(angle);
-
-        Debug.Log("Net height: " + huyen);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ball"))
+        transform.DOScaleY(0.7f, 0.06f).SetEase(Ease.InSine).OnComplete(() =>
         {
-            ball = collision.gameObject.GetComponent<Ball>();
-        }
+            transform.DOScaleY(1f, 0.12f).SetEase(Ease.OutCirc);
+        });
     }
 
-    public void Elastic()
+    public void OnCancelShoot()
     {
-        transform.DOScaleY(1f, 0.12f).SetEase(Ease.OutQuint);
+        transform.DOScaleY(1f, 0.1f).SetEase(Ease.OutQuint);
+    }
+
+    public void OnReceiveBall()
+    {
+        transform.DOScaleY(1.2f, 0.05f).SetEase(Ease.InOutCubic).OnComplete(() =>
+        {
+            transform.DOScaleY(1f, 0.05f).SetEase(Ease.InQuint);
+        });
+    }
+
+    public void OnCollisionWithBall()
+    {
+        transform.DOScaleY(0.9f, 0.06f).SetEase(Ease.OutQuint).OnComplete(() =>
+        {
+            transform.DOScaleY(1f, 0.06f).SetEase(Ease.OutCirc);
+        });
     }
 }
