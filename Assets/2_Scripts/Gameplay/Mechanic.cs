@@ -1,26 +1,10 @@
 ﻿using UnityEngine;
-using Cinemachine;
 
 public class Mechanic : MonoBehaviour
 {
-    #region Singleton
-    public static Mechanic Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(gameObject);
-        else
-            Instance = this;
-    }
-    #endregion
-
-    [HideInInspector] public Ball ball;
-    [HideInInspector] public Basket hoop;
-
+    private Ball ball;
+    private Basket basket;
     [SerializeField] private Trajectory trajectory;
-    [SerializeField] private BasketSpawner basketSpawner;
-    [SerializeField] private CinemachineVirtualCamera virtualCam;
 
     [SerializeField] private float netMaxElongation = 1.85f; // độ giãn tối đa của lưới
     [SerializeField] private float pushForce, minForce;
@@ -36,29 +20,19 @@ public class Mechanic : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvent.BallInHoop += ActiveMechanic;
+        GameEvent.BasketReceiveBall += ActiveMechanic;
     }
 
     private void OnDisable()
     {
-        GameEvent.BallInHoop -= ActiveMechanic;
+        GameEvent.BasketReceiveBall -= ActiveMechanic;
     }
 
     private void Start()
     {
-        SpawnBall();
         active = false;
         isAiming = false;
         canShoot = false;
-    }
-
-    private void SpawnBall()
-    {
-        Debug.Log("Spawn ball");
-        Vector3 pos = basketSpawner.GetCurrentBasketPos();
-        ball = ObjectPooler.Instance.Spawn(ObjectTag.Ball).GetComponent<Ball>();
-        ball.transform.position = new Vector3(pos.x, pos.y + 1f);
-        virtualCam.Follow = ball.transform;
     }
 
     private void Update()
@@ -81,6 +55,16 @@ public class Mechanic : MonoBehaviour
         active = true;
     }
 
+    public void SetBall(Ball ball)
+    {
+        this.ball = ball;
+    }
+
+    public void SetBasket(Basket basket)
+    {
+        this.basket = basket;
+    }
+
     private void StartAiming()
     {
         isAiming = true;
@@ -98,11 +82,11 @@ public class Mechanic : MonoBehaviour
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(force, Vector3.up);
         float sign = endPoint.x > startPoint.x ? 1 : -1;
-        hoop.Rotate(sign * aimingAngle);
+        basket.Rotate(sign * aimingAngle);
 
         // calculate net scale
         float netScaleY = Mathf.Min(netMaxElongation, Mathf.Max(1f, 1f + distance / 5f));
-        hoop.ScaleNet(netScaleY);
+        basket.ScaleNet(netScaleY);
 
         // trajectory
         if (canShoot)
@@ -128,18 +112,12 @@ public class Mechanic : MonoBehaviour
         if (canShoot)
         {
             ball.Push(force);
-            hoop.ShootBall();
+            basket.ShootBall();
             active = false;
         }
         else
         {
-            hoop.CancelShoot();
+            basket.CancelShoot();
         }
-    }
-
-    private void OnDestroy()
-    {
-        ball.Renew();
-        ObjectPooler.Instance.Recall(ball.gameObject);
     }
 }

@@ -16,6 +16,7 @@ public class Ball : MonoBehaviour
 
     public void Renew()
     {
+        transform.localScale = Vector3.one;
         transform.rotation = Quaternion.identity;
         rigidBody.simulated = true;
     }
@@ -33,7 +34,7 @@ public class Ball : MonoBehaviour
     public void Push(Vector2 force)
     {
         rigidBody.simulated = true;
-        rigidBody.angularVelocity = 600f;
+        rigidBody.angularVelocity = 1000f;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
         GameEvent.ShootBall?.Invoke();
     }

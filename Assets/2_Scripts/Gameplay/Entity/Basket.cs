@@ -5,13 +5,15 @@ using System.Collections;
 public class Basket : MonoBehaviour
 {
     [SerializeField] private Net net;
-    [SerializeField] private CheckPoint checkPoint;
+    [SerializeField] private BasketPoint point;
 
     public void Renew()
     {
+        transform.localScale = Vector3.one;
         transform.rotation = Quaternion.identity;
+
         net.Renew();
-        checkPoint.Renew();
+        point.Renew();
     }
 
     public void Rotate(float angle)
@@ -24,11 +26,26 @@ public class Basket : MonoBehaviour
         net.transform.localScale = new Vector3(1f, scaleY, 1f);
     }
 
+    public void Appear()
+    {
+        transform.DOScale(Vector3.zero, 0f);
+        transform.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack);
+    }
+
+    public void Disappear()
+    {
+        transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
+        {
+            Renew();
+            ObjectPooler.Instance.Recall(gameObject);
+        });
+    }
+
     public void ReceiveBall()
     {
+        Controller.Instance.mechanic.SetBasket(this);
         transform.DORotate(Vector3.zero, 0.2f);
-        checkPoint.Edge.enabled = false;
-        Mechanic.Instance.hoop = this;
+        point.SetActiveCollider(false);
         net.OnReceiveBall();
     }
 
@@ -42,11 +59,16 @@ public class Basket : MonoBehaviour
     {
         float waitTime = 0.1f;
         yield return new WaitForSecondsRealtime(waitTime);
-        checkPoint.Edge.enabled = true;
+        point.SetActiveCollider(true);
     }
 
     public void CancelShoot()
     {
         net.OnCancelShoot();
+    }
+
+    public void SetHasPoint(bool hasPoint)
+    {
+        point.SetHasPoint(hasPoint);
     }
 }

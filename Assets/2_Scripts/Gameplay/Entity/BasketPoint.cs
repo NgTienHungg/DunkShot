@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class CheckPoint : MonoBehaviour
+public class BasketPoint : MonoBehaviour
 {
     [SerializeField] private Basket basket;
     [SerializeField] private EdgeCollider2D edgeCollider;
 
-    private bool hasScore;
-
-    public EdgeCollider2D Edge
-    {
-        get { return edgeCollider; }
-    }
+    public bool hasPoint;
 
     private void Start()
     {
@@ -19,8 +14,18 @@ public class CheckPoint : MonoBehaviour
 
     public void Renew()
     {
-        this.hasScore = true;
-        Edge.enabled = true;
+        SetHasPoint(true);
+        SetActiveCollider(true);
+    }
+
+    public void SetHasPoint(bool hasPoint)
+    {
+        this.hasPoint = hasPoint;
+    }
+
+    public void SetActiveCollider(bool status)
+    {
+        edgeCollider.enabled = status;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,12 +35,12 @@ public class CheckPoint : MonoBehaviour
             basket.ReceiveBall();
             collision.gameObject.GetComponent<Ball>().Stop(basket.transform);
 
-            GameEvent.BallInHoop?.Invoke();
+            GameEvent.BasketReceiveBall?.Invoke();
 
-            if (this.hasScore)
+            if (this.hasPoint)
             {
                 GameEvent.GetScore?.Invoke();
-                this.hasScore = false;
+                this.hasPoint = false;
             }
         }
     }
