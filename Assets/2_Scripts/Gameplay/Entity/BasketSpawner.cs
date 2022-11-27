@@ -40,7 +40,7 @@ public class BasketSpawner : MonoBehaviour
     private IEnumerator PrepareFirstBasket()
     {
         yield return new WaitForEndOfFrame();
-        currentBasket.SetHasPoint(false); // the first basket has no point
+        currentBasket.Point.SetHasPoint(false); // the first basket has no point
     }
 
     private void SpawnNextBasket()

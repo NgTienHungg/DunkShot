@@ -6,11 +6,10 @@ public class Mechanic : MonoBehaviour
     private Basket basket;
     [SerializeField] private Trajectory trajectory;
 
-    [SerializeField] private float netMaxElongation = 1.85f; // độ giãn tối đa của lưới
     [SerializeField] private float pushForce, minForce;
     [SerializeField] private float maxDistance;
 
-    private bool active;
+    private bool active; // receive Input event
     private bool isAiming; // to rotate hoop
     private bool canShoot; // show or hide trajectory and push ball
 
@@ -77,7 +76,6 @@ public class Mechanic : MonoBehaviour
         distance = Mathf.Min(maxDistance, Vector3.Distance(startPoint, endPoint));
         direction = (startPoint - endPoint).normalized;
         force = direction * distance * pushForce;
-        canShoot = force.magnitude >= minForce;
 
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(force, Vector3.up);
@@ -85,21 +83,18 @@ public class Mechanic : MonoBehaviour
         basket.Rotate(sign * aimingAngle);
 
         // calculate net scale
-        float netScaleY = Mathf.Min(netMaxElongation, Mathf.Max(1f, 1f + distance / 5f));
-        basket.ScaleNet(netScaleY);
+        basket.Net.ScaleY(distance);
 
         // trajectory
+        canShoot = force.magnitude >= minForce;
         if (canShoot)
         {
-            if (!trajectory.IsShowing())
-                trajectory.Show();
-
-            trajectory.Simulate(ObjectPooler.Instance.GetPrefab(ObjectTag.Ball), ball.transform.position, force);
+            trajectory.Show();
+            trajectory.Simulate(ball.transform.position, force);
         }
         else
         {
-            if (trajectory.IsShowing())
-                trajectory.Hide();
+            trajectory.Hide();
         }
         Debug.DrawLine(startPoint, endPoint, Color.red);
     }

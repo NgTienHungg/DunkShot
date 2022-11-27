@@ -39,6 +39,7 @@ public class ObjectPooler : MonoBehaviour
             if (pool.objectTag == tag)
             {
                 prefab = pool.prefab;
+                break;
             }
         }
         return prefab;

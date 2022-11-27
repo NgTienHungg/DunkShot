@@ -4,8 +4,11 @@ using System.Collections;
 
 public class Basket : MonoBehaviour
 {
-    [SerializeField] private Net net;
+    [SerializeField] private BasketNet net;
     [SerializeField] private BasketPoint point;
+
+    public BasketNet Net { get { return net; } }
+    public BasketPoint Point { get { return point; } }
 
     public void Renew()
     {
@@ -19,11 +22,6 @@ public class Basket : MonoBehaviour
     public void Rotate(float angle)
     {
         transform.eulerAngles = new Vector3(0f, 0f, angle);
-    }
-
-    public void ScaleNet(float scaleY)
-    {
-        net.transform.localScale = new Vector3(1f, scaleY, 1f);
     }
 
     public void Appear()
@@ -65,10 +63,5 @@ public class Basket : MonoBehaviour
     public void CancelShoot()
     {
         net.OnCancelShoot();
-    }
-
-    public void SetHasPoint(bool hasPoint)
-    {
-        point.SetHasPoint(hasPoint);
     }
 }

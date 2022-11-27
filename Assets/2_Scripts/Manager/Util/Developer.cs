@@ -3,5 +3,4 @@ using UnityEditor;
 
 public class Developer
 {
-
 }

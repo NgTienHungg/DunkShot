@@ -6,7 +6,5 @@ public static class GameEvent
     public static GameplayEvent PrepareBall;
     public static GameplayEvent ShootBall;
     public static GameplayEvent BasketReceiveBall;
-
     public static GameplayEvent GetScore;
-
 }

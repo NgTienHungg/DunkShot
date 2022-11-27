@@ -30,11 +30,11 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp-firstpass
+    - Cinemachine
     - MoreMountains.NiceVibrations.Haptics
     - MoreMountains.NiceVibrations.Demos
     - MoreMountains.NiceVibrations
     - Assembly-CSharp
-    - Cinemachine
     - PsdPlugin
     - MoreMountains.NiceVibrations.Editor
     showAdvancedSettings: 0
