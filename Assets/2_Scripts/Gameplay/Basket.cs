@@ -5,9 +5,11 @@ using System.Collections;
 public class Basket : MonoBehaviour
 {
     [SerializeField] private BasketNet net;
+    [SerializeField] private BasketHoop hoop;
     [SerializeField] private BasketPoint point;
 
     public BasketNet Net { get { return net; } }
+    public BasketHoop Hoop { get { return hoop; } }
     public BasketPoint Point { get { return point; } }
 
     public static void Recall(Basket basket)
@@ -22,6 +24,7 @@ public class Basket : MonoBehaviour
         transform.rotation = Quaternion.identity;
 
         net.Renew();
+        hoop.Renew();
         point.Renew();
     }
 
@@ -49,8 +52,8 @@ public class Basket : MonoBehaviour
     {
         Controller.Instance.mechanic.SetBasket(this);
         transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
-        point.SetActiveCollider(false);
         net.OnReceiveBall();
+        point.SetActiveCollider(false);
     }
 
     public void ShootBall()

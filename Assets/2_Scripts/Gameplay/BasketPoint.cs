@@ -35,7 +35,8 @@ public class BasketPoint : MonoBehaviour
             if (this.hasPoint)
             {
                 Observer.GetScore?.Invoke();
-                this.hasPoint = false;
+                basket.Hoop.OnGetScore();
+                basket.Point.SetHasPoint(false);
             }
         }
     }
