@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BasketSpawner : MonoBehaviour
 {
-    public Basket currentBasket, nextBasket;
+    private Basket currentBasket, nextBasket;
 
+    [Header("Set up")]
+    [SerializeField] private Vector2 firstBasketPos;
+    [SerializeField] private Vector2 secondBasketPos;
+
+    [Header("Spawn")]
     [SerializeField] private Vector2 rangeSpawnPosX;
     [SerializeField] private Vector2 rangeSpawnDistanceY;
     [SerializeField] private Vector2 rangeSpawnAngleZ;
@@ -13,34 +17,26 @@ public class BasketSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvent.GetScore += ChangeTargetBasket;
+        Observer.GetScore += ChangeTargetBasket;
     }
 
     private void OnDisable()
     {
-        GameEvent.GetScore -= ChangeTargetBasket;
+        Observer.GetScore -= ChangeTargetBasket;
     }
 
     private void Start()
     {
-        Debug.Log("start spawner");
+        Debug.Log("Start <- BaskketSpawner");
 
         currentBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
-        currentBasket.transform.position = new Vector3(-2f, -1f);
-
-        spawnInLeft = false;
-        SpawnNextBasket();
-
-        // trong frame hiện tại: tất cả các hàm Start chưa được gọi xong
-        // nếu set HasPoint luôn thì lúc sau lại bị Renew lại
-        // => chờ hết frame này mới set
-        StartCoroutine(PrepareFirstBasket());
-    }
-
-    private IEnumerator PrepareFirstBasket()
-    {
-        yield return new WaitForEndOfFrame();
+        currentBasket.transform.position = firstBasketPos;
         currentBasket.Point.SetHasPoint(false); // the first basket has no point
+
+        nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
+        nextBasket.transform.position = secondBasketPos;
+
+        spawnInLeft = true;
     }
 
     private void SpawnNextBasket()
@@ -67,7 +63,7 @@ public class BasketSpawner : MonoBehaviour
 
     private void ChangeTargetBasket()
     {
-        Debug.Log("change basket");
+        Debug.Log("Change basket");
 
         currentBasket.Disappear();
         currentBasket = nextBasket;
@@ -83,10 +79,7 @@ public class BasketSpawner : MonoBehaviour
 
     private void OnDestroy()
     {
-        currentBasket.Renew();
-        ObjectPooler.Instance.Recall(currentBasket.gameObject);
-
-        nextBasket.Renew();
-        ObjectPooler.Instance.Recall(nextBasket.gameObject);
+        Basket.Recall(currentBasket);
+        Basket.Recall(nextBasket);
     }
 }

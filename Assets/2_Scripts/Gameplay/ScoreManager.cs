@@ -4,25 +4,36 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI uiText;
-    private int score = 0;
+
+    public int Score;
+
+    #region Singleton
+    public static ScoreManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+        Score = 0;
+    }
+    #endregion
 
     private void OnEnable()
     {
-        GameEvent.GetScore += AddScore;
+        Observer.GetScore += AddScore;
     }
 
     private void OnDisable()
     {
-        GameEvent.GetScore -= AddScore;
+        Observer.GetScore -= AddScore;
     }
 
     private void Update()
     {
-        uiText.text = score.ToString();
+        uiText.text = Score.ToString();
     }
 
     private void AddScore()
     {
-        score++;
+        Score++;
     }
 }

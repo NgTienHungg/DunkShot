@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
+using Cinemachine;
 
 public class Mechanic : MonoBehaviour
 {
     private Ball ball;
     private Basket basket;
+
     [SerializeField] private Trajectory trajectory;
+    [SerializeField] private CinemachineVirtualCamera cinemachine;
 
     [SerializeField] private float pushForce, minForce;
     [SerializeField] private float maxDistance;
 
-    private bool active; // receive Input event
-    private bool isAiming; // to rotate hoop
-    private bool canShoot; // show or hide trajectory and push ball
+    private bool isAiming;
+    private bool canAim, canShoot;
 
     private Vector3 startPoint, endPoint;
     private Vector3 direction, force;
@@ -19,49 +21,67 @@ public class Mechanic : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvent.BasketReceiveBall += ActiveMechanic;
+        Observer.BasketReceiveBall += SetCanAim;
     }
 
     private void OnDisable()
     {
-        GameEvent.BasketReceiveBall -= ActiveMechanic;
+        Observer.BasketReceiveBall -= SetCanAim;
     }
 
-    private void Start()
+    public void PrepareBall()
     {
-        active = false;
+        if (ball != null)
+            Ball.Recall(ball);
+
+        ball = ObjectPooler.Instance.Spawn(ObjectTag.Ball).GetComponent<Ball>();
+        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 1.5f);
+        cinemachine.Follow = ball.transform;
+
+        canAim = false;
         isAiming = false;
         canShoot = false;
     }
 
     private void Update()
     {
-        if (!active)
+        if (!Controller.Instance.IsPlaying)
             return;
 
-        if (Input.GetMouseButtonDown(0) && !isAiming)
-            StartAiming();
 
-        if (Input.GetMouseButtonUp(0) && isAiming)
-            Shoot();
+        if (Controller.Instance.IsPlaying && ball.transform.position.y < basket.transform.position.y - 5f)
+        {
+            Debug.Log("Update Mechanic");
+            Observer.BallDead?.Invoke();
+            cinemachine.Follow = null;
+        }
 
-        if (isAiming)
-            Aiming();
+        if (canAim)
+        {
+            if (Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject() && !isAiming)
+                StartAiming();
+
+            if (Input.GetMouseButtonUp(0) && isAiming)
+                Shoot();
+
+            if (isAiming)
+                Aiming();
+        }
     }
 
-    private void ActiveMechanic()
+    private void SetCanAim()
     {
-        active = true;
-    }
-
-    public void SetBall(Ball ball)
-    {
-        this.ball = ball;
+        canAim = true;
     }
 
     public void SetBasket(Basket basket)
     {
         this.basket = basket;
+    }
+
+    public Ball GetBall()
+    {
+        return ball;
     }
 
     private void StartAiming()
@@ -85,8 +105,9 @@ public class Mechanic : MonoBehaviour
         // calculate net scale
         basket.Net.ScaleY(distance);
 
-        // trajectory
         canShoot = force.magnitude >= minForce;
+
+        // trajectory
         if (canShoot)
         {
             trajectory.Show();
@@ -108,7 +129,7 @@ public class Mechanic : MonoBehaviour
         {
             ball.Push(force);
             basket.ShootBall();
-            active = false;
+            canAim = false;
         }
         else
         {

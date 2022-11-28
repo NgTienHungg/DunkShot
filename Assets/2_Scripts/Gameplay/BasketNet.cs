@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BasketNet : MonoBehaviour
 {
-    [SerializeField] private float maxScaleY; // độ giãn tối đa của lưới
+    [SerializeField] private float maxScaleY;
 
     public void Renew()
     {

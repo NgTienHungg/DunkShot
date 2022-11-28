@@ -107,4 +107,16 @@ public class ObjectPooler : MonoBehaviour
         obj.transform.parent = transform;
         obj.SetActive(false);
     }
+
+    public void RecallAll()
+    {
+        Debug.Log("Object Pooler recall all");
+        foreach (var pool in pools)
+        {
+            foreach (var obj in pool.listObject)
+            {
+                Recall(obj);
+            }
+        }
+    }
 }

@@ -5,12 +5,7 @@ public class BasketPoint : MonoBehaviour
     [SerializeField] private Basket basket;
     [SerializeField] private EdgeCollider2D edgeCollider;
 
-    public bool hasPoint;
-
-    private void Start()
-    {
-        Renew();
-    }
+    private bool hasPoint = true;
 
     public void Renew()
     {
@@ -35,11 +30,11 @@ public class BasketPoint : MonoBehaviour
             basket.ReceiveBall();
             collision.gameObject.GetComponent<Ball>().Stop(basket.transform);
 
-            GameEvent.BasketReceiveBall?.Invoke();
+            Observer.BasketReceiveBall?.Invoke();
 
             if (this.hasPoint)
             {
-                GameEvent.GetScore?.Invoke();
+                Observer.GetScore?.Invoke();
                 this.hasPoint = false;
             }
         }

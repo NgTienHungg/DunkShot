@@ -8,6 +8,12 @@ public class Ball : MonoBehaviour
 
     private Vector3 posInBasket = new Vector3(0f, -0.5f);
 
+    public static void Recall(Ball ball)
+    {
+        ball.Renew();
+        ObjectPooler.Instance.Recall(ball.gameObject);
+    }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -34,8 +40,7 @@ public class Ball : MonoBehaviour
     public void Push(Vector2 force)
     {
         rigidBody.simulated = true;
-        rigidBody.angularVelocity = 1000f;
+        rigidBody.angularVelocity = 500f;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
-        GameEvent.ShootBall?.Invoke();
     }
 }

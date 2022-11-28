@@ -29,14 +29,6 @@ public class Trajectory : MonoBehaviour
         Hide();
     }
 
-    private void OnDestroy()
-    {
-        foreach (var dot in dots)
-        {
-            ObjectPooler.Instance.Recall(dot.gameObject);
-        }
-    }
-
     private void CreateSimulationScene()
     {
         // scene
@@ -110,5 +102,13 @@ public class Trajectory : MonoBehaviour
     public void Hide()
     {
         dotParent.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var dot in dots)
+        {
+            ObjectPooler.Instance.Recall(dot.gameObject);
+        }
     }
 }
