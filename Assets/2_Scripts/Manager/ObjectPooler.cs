@@ -125,6 +125,16 @@ public class ObjectPooler : MonoBehaviour
 
     public void Recall(GameObject obj)
     {
+        MonoBehaviour instance = obj.GetComponent<MonoBehaviour>();
+        if (instance is Ball)
+        {
+            (instance as Ball).Renew();
+        }
+        else if (instance is Basket)
+        {
+            (instance as Basket).Renew();
+        }
+
         obj.transform.parent = transform;
         obj.SetActive(false);
     }
@@ -134,6 +144,9 @@ public class ObjectPooler : MonoBehaviour
         Debug.Log("Object Pooler recall all");
         foreach (var pool in pools)
         {
+            if (pool.objectTag == ObjectTag.TrajectoryDot)
+                return;
+
             foreach (var obj in pool.listObject)
             {
                 Recall(obj);

@@ -11,26 +11,39 @@ public class BasketHoop : MonoBehaviour
 
     [Header("Power ring")]
     [SerializeField] private SpriteRenderer powerRing;
+    [SerializeField] private float normalFactor, perfectFactor;
+    private Vector2 startScale;
 
-    private float normalScale = 1.5f;
-    private float perfectScale = 2f;
+    private void Start()
+    {
+        startScale = transform.localScale;
+        Renew();
+    }
 
     public void Renew()
     {
         frontHoop.color = activeColor;
         backHoop.color = activeColor;
+
+        powerRing.gameObject.SetActive(false);
+        powerRing.transform.localScale = startScale;
     }
 
     public void OnGetScore()
     {
-        frontHoop.DOColor(inactiveColor, 0.3f).SetEase(Ease.OutExpo);
-        backHoop.DOColor(inactiveColor, 0.3f).SetEase(Ease.OutExpo);
+        frontHoop.color = inactiveColor;
+        backHoop.color = inactiveColor;
 
         powerRing.gameObject.SetActive(true);
-        powerRing.transform.DOScale(normalScale, 0.4f);
+
+        if (ScoreManager.Instance.IsPerfect)
+            powerRing.transform.DOScale(startScale * perfectFactor, 0.25f).SetEase(Ease.OutCirc);
+        else
+            powerRing.transform.DOScale(startScale * normalFactor, 0.25f).SetEase(Ease.OutCirc);
+
         powerRing.DOFade(0f, 0.5f).OnComplete(() =>
         {
-            powerRing.transform.localScale = Vector3.one;
+            powerRing.transform.localScale = startScale;
             powerRing.DOFade(1f, 0f);
             powerRing.gameObject.SetActive(false);
         });

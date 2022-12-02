@@ -2,12 +2,7 @@ using UnityEngine;
 
 public abstract class UIGame : MonoBehaviour
 {
-    protected CanvasGroup canvasGroup;
-
-    protected void Awake()
-    {
-        canvasGroup = GetComponent<CanvasGroup>();
-    }
+    [SerializeField] protected CanvasGroup canvasGroup;
 
     public abstract void Enable();
 

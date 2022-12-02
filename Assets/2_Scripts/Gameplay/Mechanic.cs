@@ -21,18 +21,29 @@ public class Mechanic : MonoBehaviour
 
     private void OnEnable()
     {
-        Observer.BasketReceiveBall += SetCanAim;
+        Observer.BallInBasket += SetCanAim;
     }
 
     private void OnDisable()
     {
-        Observer.BasketReceiveBall -= SetCanAim;
+        Observer.BallInBasket -= SetCanAim;
     }
 
-    public void PrepareBall()
+    public void Renew()
     {
+        cinemachine.transform.position = Vector3.zero;
+        Camera.main.transform.position = Vector3.zero;
+        Debug.Log(cinemachine.Follow);
+
+        FollowNewBall();
+    }
+
+    public void FollowNewBall()
+    {
+        basket = Controller.Instance.BasketSpawner.GetCurrentBasket();
+
         if (ball != null)
-            Ball.Recall(ball);
+            ObjectPooler.Instance.Recall(ball.gameObject);
 
         ball = ObjectPooler.Instance.Spawn(ObjectTag.Ball).GetComponent<Ball>();
         ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 1.5f);
@@ -48,10 +59,8 @@ public class Mechanic : MonoBehaviour
         if (!Controller.Instance.IsPlaying)
             return;
 
-
-        if (Controller.Instance.IsPlaying && ball.transform.position.y < basket.transform.position.y - 5f)
+        if (Controller.Instance.IsPlaying && ball.transform.position.y < basket.transform.position.y - 4f)
         {
-            Debug.Log("Update Mechanic");
             Observer.BallDead?.Invoke();
             cinemachine.Follow = null;
         }

@@ -1,25 +1,32 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
-    #region Singleton
     public static Controller Instance { get; private set; }
+    public Mechanic Mechanic { get; private set; }
+    public BasketSpawner BasketSpawner { get; private set; }
+    public bool IsPlaying { get; private set; }
+    public bool HasSecondChance { get; private set; }
+
+    private void Renew()
+    {
+        ScoreManager.Instance.Renew();
+
+        BasketSpawner.Renew();
+        Mechanic.Renew();
+
+        this.IsPlaying = false;
+        this.HasSecondChance = true;
+    }
 
     private void Awake()
     {
         Instance = this;
+        Mechanic = FindObjectOfType<Mechanic>();
+        BasketSpawner = FindObjectOfType<BasketSpawner>();
     }
-    #endregion
-
-    public Mechanic mechanic;
-    public BasketSpawner basketSpawner;
-
-    //[HideInInspector]
-    public bool IsPlaying;
-    private bool hasSecondChance;
 
     private void OnEnable()
     {
@@ -33,22 +40,15 @@ public class Controller : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start in controller");
-
-        mechanic.SetBasket(basketSpawner.GetCurrentBasket());
-        mechanic.PrepareBall();
-
-        this.IsPlaying = false;
-        this.hasSecondChance = true;
+        Renew();
     }
 
     private void Update()
     {
         if (UIManager.Instance.state == GameState.MainMenu && Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject())
         {
-            Debug.Log("Update control");
-            IsPlaying = true;
             UIManager.Instance.OnStartPlay();
+            this.IsPlaying = true;
         }
     }
 
@@ -60,8 +60,8 @@ public class Controller : MonoBehaviour
 
     private void Restart()
     {
-        mechanic.PrepareBall();
-        basketSpawner.GetCurrentBasket().transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutExpo);
+        Mechanic.FollowNewBall();
+        BasketSpawner.PreparePlay();
         IsPlaying = true;
     }
 
@@ -71,24 +71,57 @@ public class Controller : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
-        Ball.Recall(mechanic.GetBall());
+        ObjectPooler.Instance.Recall(Mechanic.GetBall().gameObject);
 
         // restart
-        if (ScoreManager.Instance.Score == 0 || hasSecondChance)
-        {
-            hasSecondChance = false;
+        if (ScoreManager.Instance.Score == 0)
             Restart();
-        }
+        else if (ScoreManager.Instance.Score > 10 && HasSecondChance)
+            Continue();
         else
-        {
-            UIManager.Instance.OnGameOver();
-        }
+            GameOver();
     }
 
-    public void Reload()
+    public void Continue()
     {
-        DOTween.KillAll();
-        ObjectPooler.Instance.RecallAll();
-        SceneManager.LoadScene(0);
+        UIManager.Instance.OnContinue();
+    }
+
+    public void SecondChance()
+    {
+        Restart();
+        HasSecondChance = false;
+        UIManager.Instance.OnSecondChance();
+    }
+
+    public void GameOver()
+    {
+        UIManager.Instance.OnGameOver();
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+
+        IsPlaying = false;
+
+        UIManager.Instance.OnPause();
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+
+        IsPlaying = true;
+
+        UIManager.Instance.OnResume();
+    }
+
+    public void RenewScene()
+    {
+        //Time.timeScale = 1f;
+        //DOTween.KillAll();
+        //ObjectPooler.Instance.RecallAll();
+        this.Renew();
     }
 }

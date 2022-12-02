@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class BasketSpawner : MonoBehaviour
 {
@@ -15,20 +16,8 @@ public class BasketSpawner : MonoBehaviour
     private float posX, disY, angleZ;
     private bool spawnInLeft;
 
-    private void OnEnable()
+    public void Renew()
     {
-        Observer.GetScore += ChangeTargetBasket;
-    }
-
-    private void OnDisable()
-    {
-        Observer.GetScore -= ChangeTargetBasket;
-    }
-
-    private void Start()
-    {
-        Debug.Log("Start <- BaskketSpawner");
-
         currentBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
         currentBasket.transform.position = firstBasketPos;
         currentBasket.Point.SetHasPoint(false); // the first basket has no point
@@ -37,6 +26,16 @@ public class BasketSpawner : MonoBehaviour
         nextBasket.transform.position = secondBasketPos;
 
         spawnInLeft = true;
+    }
+
+    private void OnEnable()
+    {
+        Observer.GetScore += ChangeTargetBasket;
+    }
+
+    private void OnDisable()
+    {
+        Observer.GetScore -= ChangeTargetBasket;
     }
 
     private void SpawnNextBasket()
@@ -77,9 +76,8 @@ public class BasketSpawner : MonoBehaviour
         return currentBasket;
     }
 
-    private void OnDestroy()
+    public void PreparePlay()
     {
-        Basket.Recall(currentBasket);
-        Basket.Recall(nextBasket);
+        currentBasket.transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutExpo);
     }
 }

@@ -46,14 +46,18 @@ public class Trajectory : MonoBehaviour
         foreach (Transform obj in obstacleParent)
         {
             GameObject simulationObj = Instantiate(obj.gameObject, obj.position, obj.rotation);
+            simulationObj.gameObject.tag = "Untagged";
+
             simulationObj.GetComponent<SpriteRenderer>().enabled = false;
             SceneManager.MoveGameObjectToScene(simulationObj, simulationScene);
             listObstacle.Add(simulationObj);
         }
     }
 
-    private void PrepareDots()
+    public void PrepareDots()
     {
+        Debug.Log("prepare dot");
+
         dots = new Transform[numberOfDots];
         simulationBallPos = new Vector3[maxIterations];
 
@@ -85,13 +89,14 @@ public class Trajectory : MonoBehaviour
         // trajectory simulation
         for (var i = 0; i < maxIterations; i++)
         {
-            physicsScene.Simulate(Time.fixedDeltaTime);
+            //physicsScene.Simulate(Time.fixedDeltaTime);
+            physicsScene.Simulate(0.01f);
             simulationBallPos[i] = simulationBall.transform.position;
         }
 
         // draw trajectory
         for (int i = 0; i < numberOfDots; i++)
-            dots[i].position = simulationBallPos[i * 3];
+            dots[i].position = simulationBallPos[5 + i * 5];
     }
 
     public void Show()
@@ -102,13 +107,5 @@ public class Trajectory : MonoBehaviour
     public void Hide()
     {
         dotParent.SetActive(false);
-    }
-
-    private void OnDestroy()
-    {
-        foreach (var dot in dots)
-        {
-            ObjectPooler.Instance.Recall(dot.gameObject);
-        }
     }
 }

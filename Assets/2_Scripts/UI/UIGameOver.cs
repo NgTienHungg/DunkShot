@@ -1,34 +1,69 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIGameOver : UIGame
 {
-    [SerializeField] private Button videoButton;
+    [SerializeField] private RectTransform newBallButton, videoButton;
+    [SerializeField] private RectTransform rateButton, restartButton, setttingsButton;
 
     private void OnEnable()
     {
-        canvasGroup.alpha = 0f;
-        videoButton.transform.localScale = Vector3.zero;
+        newBallButton.localScale = Vector3.zero;
+
+        videoButton.localScale = Vector3.zero;
+        videoButton.transform.DOKill();
+
+        rateButton.localScale = Vector3.zero;
+
+        restartButton.localScale = Vector3.zero;
+
+        setttingsButton.localScale = Vector3.zero;
     }
 
     public override void Enable()
     {
-        canvasGroup.DOFade(1f, 0.3f);
+        newBallButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint);
 
-        videoButton.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
+        videoButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).OnComplete(() =>
         {
-            videoButton.transform.DOScale(Vector3.one * 0.85f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            videoButton.DOScale(0.85f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
+
+        rateButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).SetDelay(0.2f);
+
+        restartButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).SetDelay(0.35f);
+
+        setttingsButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).SetDelay(0.50f);
     }
 
     public override void Disable()
     {
+        gameObject.SetActive(false);
     }
 
-    private void OnDestroy()
+    public void OnNewBallButton()
     {
-        canvasGroup.DOKill();
-        videoButton.DOKill();
+        // audio
+    }
+
+    public void OnVideoAdsButton()
+    {
+        // audio
+    }
+
+    public void OnRateButton()
+    {
+        // audio
+    }
+
+    public void OnRestartButton()
+    {
+        // audio
+        UIManager.Instance.OnBackHome();
+    }
+
+    public void OnSettingsButton()
+    {
+        // audio
     }
 }

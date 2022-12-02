@@ -12,12 +12,6 @@ public class Basket : MonoBehaviour
     public BasketHoop Hoop { get { return hoop; } }
     public BasketPoint Point { get { return point; } }
 
-    public static void Recall(Basket basket)
-    {
-        basket.Renew();
-        ObjectPooler.Instance.Recall(basket.gameObject);
-    }
-
     public void Renew()
     {
         transform.localScale = Vector3.one;
@@ -50,7 +44,7 @@ public class Basket : MonoBehaviour
 
     public void ReceiveBall()
     {
-        Controller.Instance.mechanic.SetBasket(this);
+        Controller.Instance.Mechanic.SetBasket(this);
         transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
         net.OnReceiveBall();
         point.SetActiveCollider(false);

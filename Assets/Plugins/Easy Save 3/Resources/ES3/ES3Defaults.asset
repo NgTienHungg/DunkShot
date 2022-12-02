@@ -35,8 +35,12 @@ MonoBehaviour:
     - MoreMountains.NiceVibrations.Demos
     - MoreMountains.NiceVibrations
     - Assembly-CSharp
+    - Sirenix.OdinInspector.CompatibilityLayer
     - PsdPlugin
+    - Sirenix.OdinInspector.CompatibilityLayer.Editor
+    - Sirenix.OdinValidator
     - MoreMountains.NiceVibrations.Editor
+    - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

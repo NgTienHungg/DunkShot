@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BasketPoint : MonoBehaviour
 {
@@ -27,17 +27,19 @@ public class BasketPoint : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            basket.ReceiveBall();
-            collision.gameObject.GetComponent<Ball>().Stop(basket.transform);
+            // phát ra sự kiện để xử lý điểm trước
+            // sau đó mới phát sự kiện BallInBasket để clear các điểm nhận được trong lượt này tại ScoreManager
 
-            Observer.BasketReceiveBall?.Invoke();
-
-            if (this.hasPoint)
+            if (hasPoint)
             {
                 Observer.GetScore?.Invoke();
                 basket.Hoop.OnGetScore();
                 basket.Point.SetHasPoint(false);
             }
+
+            basket.ReceiveBall();
+            collision.gameObject.GetComponent<Ball>().Stop(basket.transform);
+            Observer.BallInBasket?.Invoke();
         }
     }
 }

@@ -6,13 +6,7 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rigidBody;
     private CircleCollider2D circleCollider;
 
-    private Vector3 posInBasket = new Vector3(0f, -0.5f);
-
-    public static void Recall(Ball ball)
-    {
-        ball.Renew();
-        ObjectPooler.Instance.Recall(ball.gameObject);
-    }
+    private Vector3 posInBasket = new Vector3(0f, -0.45f);
 
     private void Awake()
     {
@@ -42,5 +36,19 @@ public class Ball : MonoBehaviour
         rigidBody.simulated = true;
         rigidBody.angularVelocity = 500f;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("collide obstacle");
+            Observer.BallCollideObstacle?.Invoke();
+        }
+        else if (collision.gameObject.CompareTag("Hoop"))
+        {
+            Debug.Log("collide hoop");
+            Observer.BallCollideHoop?.Invoke();
+        }
     }
 }
