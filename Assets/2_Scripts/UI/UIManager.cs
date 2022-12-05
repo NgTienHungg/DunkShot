@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,8 +46,6 @@ public class UIManager : MonoBehaviour
         gameOverControl.SetActive(false);
         uiContinue.gameObject.SetActive(false);
         uiGameOver.gameObject.SetActive(false);
-
-        flashImage.color = new Color(1f, 1f, 1f, 0f);
 
         state = GameState.MainMenu;
     }
@@ -128,7 +127,7 @@ public class UIManager : MonoBehaviour
     public void OnBackHome()
     {
         ObjectPooler.Instance.RecallAll();
-        Controller.Instance.RenewScene();
+        //Time.timeScale = 1f;
 
         flashImage.DOFade(targetAlpha, fadeDuration).SetUpdate(true).OnComplete(() =>
         {
@@ -141,7 +140,9 @@ public class UIManager : MonoBehaviour
 
             // renew scene
             Time.timeScale = 1f;
-            DOTween.KillAll();
+            //DOTween.KillAll();
+            Controller.Instance.Renew();
+
             state = GameState.MainMenu;
 
             flashImage.DOFade(0f, fadeDuration).SetUpdate(true);

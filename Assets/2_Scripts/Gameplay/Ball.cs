@@ -5,13 +5,13 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private CircleCollider2D circleCollider;
-
-    private Vector3 posInBasket = new Vector3(0f, -0.45f);
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Renew()
@@ -21,10 +21,16 @@ public class Ball : MonoBehaviour
         rigidBody.simulated = true;
     }
 
+    public void Appear()
+    {
+        spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+        spriteRenderer.DOFade(1f, 0.3f);
+    }
+
     public void Stop(Transform hoop)
     {
         transform.parent = hoop;
-        transform.DOLocalMove(posInBasket, 0.15f);
+        transform.rotation = Quaternion.identity;
 
         rigidBody.simulated = false;
         rigidBody.angularVelocity = 0f;
@@ -33,8 +39,9 @@ public class Ball : MonoBehaviour
 
     public void Push(Vector2 force)
     {
+        transform.parent = null;
         rigidBody.simulated = true;
-        rigidBody.angularVelocity = 500f;
+        rigidBody.angularVelocity = force.magnitude * 30f; // max = 750f
         rigidBody.AddForce(force, ForceMode2D.Impulse);
     }
 

@@ -39,7 +39,7 @@ public class UIContinue : UIGame
     {
         clock.DOScale(1f, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
-            ball.DORotate(new Vector3(0f, 0f, 20f), 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            ball.DORotate(Vector3.forward * 20f, 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
 
         videoAdsButton.DOScale(1f, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>

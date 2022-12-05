@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Cinemachine;
 
 public class Mechanic : MonoBehaviour
 {
@@ -7,7 +6,6 @@ public class Mechanic : MonoBehaviour
     private Basket basket;
 
     [SerializeField] private Trajectory trajectory;
-    [SerializeField] private CinemachineVirtualCamera cinemachine;
 
     [SerializeField] private float pushForce, minForce;
     [SerializeField] private float maxDistance;
@@ -31,23 +29,16 @@ public class Mechanic : MonoBehaviour
 
     public void Renew()
     {
-        cinemachine.transform.position = Vector3.zero;
-        Camera.main.transform.position = Vector3.zero;
-        Debug.Log(cinemachine.Follow);
-
-        FollowNewBall();
-    }
-
-    public void FollowNewBall()
-    {
         basket = Controller.Instance.BasketSpawner.GetCurrentBasket();
 
         if (ball != null)
             ObjectPooler.Instance.Recall(ball.gameObject);
 
         ball = ObjectPooler.Instance.Spawn(ObjectTag.Ball).GetComponent<Ball>();
-        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 1.5f);
-        cinemachine.Follow = ball.transform;
+        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 3f);
+        ball.Appear();
+
+        CameraController.Instance.FollowBall(ball.transform);
 
         canAim = false;
         isAiming = false;
@@ -61,8 +52,8 @@ public class Mechanic : MonoBehaviour
 
         if (Controller.Instance.IsPlaying && ball.transform.position.y < basket.transform.position.y - 4f)
         {
+            CameraController.Instance.UnfollowBall();
             Observer.BallDead?.Invoke();
-            cinemachine.Follow = null;
         }
 
         if (canAim)

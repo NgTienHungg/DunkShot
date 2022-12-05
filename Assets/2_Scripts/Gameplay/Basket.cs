@@ -37,16 +37,15 @@ public class Basket : MonoBehaviour
     {
         transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
         {
-            Renew();
             ObjectPooler.Instance.Recall(gameObject);
         });
     }
 
-    public void ReceiveBall()
+    public void ReceiveBall(Ball ball)
     {
         Controller.Instance.Mechanic.SetBasket(this);
         transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
-        net.OnReceiveBall();
+        net.OnReceiveBall(ball);
         point.SetActiveCollider(false);
     }
 

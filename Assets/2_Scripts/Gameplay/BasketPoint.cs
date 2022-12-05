@@ -37,7 +37,7 @@ public class BasketPoint : MonoBehaviour
                 basket.Point.SetHasPoint(false);
             }
 
-            basket.ReceiveBall();
+            basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
             collision.gameObject.GetComponent<Ball>().Stop(basket.transform);
             Observer.BallInBasket?.Invoke();
         }

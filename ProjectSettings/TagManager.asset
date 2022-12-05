@@ -55,6 +55,6 @@ TagManager:
   - name: Foreground
     uniqueID: 965435867
     locked: 0
-  - name: Canvas
+  - name: UI
     uniqueID: 1414310025
     locked: 0

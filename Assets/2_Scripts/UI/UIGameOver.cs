@@ -22,18 +22,18 @@ public class UIGameOver : UIGame
 
     public override void Enable()
     {
-        newBallButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint);
+        newBallButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint);
 
-        videoButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).OnComplete(() =>
+        videoButton.DOScale(1.15f, 0.4f).SetEase(Ease.OutQuint).OnComplete(() =>
         {
-            videoButton.DOScale(0.85f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            videoButton.DOScale(1f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
 
-        rateButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).SetDelay(0.2f);
+        rateButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.15f);
 
-        restartButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).SetDelay(0.35f);
+        restartButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.25f);
 
-        setttingsButton.DOScale(1f, 0.5f).SetEase(Ease.OutQuint).SetDelay(0.50f);
+        setttingsButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.35f);
     }
 
     public override void Disable()

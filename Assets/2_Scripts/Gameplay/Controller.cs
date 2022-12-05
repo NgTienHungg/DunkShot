@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 using System.Collections;
 
 public class Controller : MonoBehaviour
@@ -10,9 +9,10 @@ public class Controller : MonoBehaviour
     public bool IsPlaying { get; private set; }
     public bool HasSecondChance { get; private set; }
 
-    private void Renew()
+    public void Renew()
     {
         ScoreManager.Instance.Renew();
+        CameraController.Instance.Renew();
 
         BasketSpawner.Renew();
         Mechanic.Renew();
@@ -60,7 +60,7 @@ public class Controller : MonoBehaviour
 
     private void Restart()
     {
-        Mechanic.FollowNewBall();
+        Mechanic.Renew();
         BasketSpawner.PreparePlay();
         IsPlaying = true;
     }
@@ -115,13 +115,5 @@ public class Controller : MonoBehaviour
         IsPlaying = true;
 
         UIManager.Instance.OnResume();
-    }
-
-    public void RenewScene()
-    {
-        //Time.timeScale = 1f;
-        //DOTween.KillAll();
-        //ObjectPooler.Instance.RecallAll();
-        this.Renew();
     }
 }
