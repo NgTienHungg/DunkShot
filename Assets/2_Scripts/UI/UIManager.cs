@@ -127,6 +127,7 @@ public class UIManager : MonoBehaviour
     public void OnBackHome()
     {
         ObjectPooler.Instance.RecallAll();
+        //CameraController.Instance.MakeNewCine();
         //Time.timeScale = 1f;
 
         flashImage.DOFade(targetAlpha, fadeDuration).SetUpdate(true).OnComplete(() =>

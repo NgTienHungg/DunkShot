@@ -2,13 +2,14 @@
 
 public class Mechanic : MonoBehaviour
 {
+    [SerializeField] private float pushForce, minForce;
+    [SerializeField] private float maxDistance;
+
     private Ball ball;
     private Basket basket;
 
-    [SerializeField] private Trajectory trajectory;
-
-    [SerializeField] private float pushForce, minForce;
-    [SerializeField] private float maxDistance;
+    [SerializeField]
+    private Trajectory trajectory;
 
     private bool isAiming;
     private bool canAim, canShoot;
@@ -35,10 +36,10 @@ public class Mechanic : MonoBehaviour
             ObjectPooler.Instance.Recall(ball.gameObject);
 
         ball = ObjectPooler.Instance.Spawn(ObjectTag.Ball).GetComponent<Ball>();
-        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 3f);
+        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 2f);
         ball.Appear();
 
-        CameraController.Instance.FollowBall(ball.transform);
+        CameraController.Instance.FollowBall();
 
         canAim = false;
         isAiming = false;
@@ -110,12 +111,12 @@ public class Mechanic : MonoBehaviour
         // trajectory
         if (canShoot)
         {
-            trajectory.Show();
+            trajectory.ShowTrajectory();
             trajectory.Simulate(ball.transform.position, force);
         }
         else
         {
-            trajectory.Hide();
+            trajectory.HideTrajectory();
         }
         Debug.DrawLine(startPoint, endPoint, Color.red);
     }
@@ -123,7 +124,7 @@ public class Mechanic : MonoBehaviour
     private void Shoot()
     {
         isAiming = false;
-        trajectory.Hide();
+        trajectory.HideTrajectory();
 
         if (canShoot)
         {

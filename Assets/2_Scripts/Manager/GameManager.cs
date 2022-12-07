@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -19,6 +17,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        Application.targetFrameRate = 150;
+        Application.targetFrameRate = 120;
     }
 }

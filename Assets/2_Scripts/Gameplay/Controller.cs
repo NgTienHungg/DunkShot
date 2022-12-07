@@ -1,5 +1,7 @@
 using UnityEngine;
+using DG.Tweening;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
@@ -69,7 +71,7 @@ public class Controller : MonoBehaviour
     {
         this.IsPlaying = false;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
 
         ObjectPooler.Instance.Recall(Mechanic.GetBall().gameObject);
 
@@ -116,4 +118,12 @@ public class Controller : MonoBehaviour
 
         UIManager.Instance.OnResume();
     }
+
+    //public void Reload()
+    //{
+    //    DOTween.KillAll();
+    //    ObjectPooler.Instance.RecallAll();
+    //    Time.timeScale = 1f;
+    //    SceneManager.LoadScene(0);
+    //}
 }

@@ -8,4 +8,7 @@ public static class Observer
     public static GameEvent BallCollideHoop;
     public static GameEvent GetScore;
     public static GameEvent BallDead;
+
+    public static GameEvent BallSmoke;
+    public static GameEvent BallFlame;
 }

@@ -30,9 +30,9 @@ public class BasketHoop : MonoBehaviour
         powerRing.gameObject.SetActive(true);
 
         if (ScoreManager.Instance.IsPerfect)
-            powerRing.transform.DOScale(perfectScale, 0.2f).SetEase(Ease.OutCirc);
+            powerRing.transform.DOScale(perfectScale, 0.4f).SetEase(Ease.OutCubic);
         else
-            powerRing.transform.DOScale(normalScale, 0.2f).SetEase(Ease.OutCirc);
+            powerRing.transform.DOScale(normalScale, 0.4f).SetEase(Ease.OutCubic);
 
         powerRing.DOFade(0f, 0.5f).OnComplete(() =>
         {

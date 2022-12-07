@@ -25,8 +25,9 @@ public class Trajectory : MonoBehaviour
     private void Start()
     {
         CreateSimulationScene();
+        CreateSimulationBall();
         PrepareDots();
-        Hide();
+        HideTrajectory();
     }
 
     private void CreateSimulationScene()
@@ -34,12 +35,6 @@ public class Trajectory : MonoBehaviour
         // scene
         simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics2D));
         physicsScene = simulationScene.GetPhysicsScene2D();
-
-        // ball
-        simulationBall = Instantiate(ballPrefab);
-        simulationBall.GetComponent<SpriteRenderer>().enabled = false;
-        ballRigidBody = simulationBall.GetComponent<Rigidbody2D>();
-        SceneManager.MoveGameObjectToScene(simulationBall, simulationScene);
 
         // obstacles
         listObstacle = new List<GameObject>();
@@ -52,6 +47,19 @@ public class Trajectory : MonoBehaviour
             SceneManager.MoveGameObjectToScene(simulationObj, simulationScene);
             listObstacle.Add(simulationObj);
         }
+    }
+
+    private void CreateSimulationBall()
+    {
+        simulationBall = Instantiate(ballPrefab);
+        simulationBall.GetComponent<SpriteRenderer>().enabled = false;
+        ballRigidBody = simulationBall.GetComponent<Rigidbody2D>();
+
+        // remove all particle
+        foreach (Transform child in simulationBall.transform)
+            Destroy(child.gameObject);
+
+        SceneManager.MoveGameObjectToScene(simulationBall, simulationScene);
     }
 
     public void PrepareDots()
@@ -99,12 +107,12 @@ public class Trajectory : MonoBehaviour
             dots[i].position = simulationBallPos[5 + i * 5];
     }
 
-    public void Show()
+    public void ShowTrajectory()
     {
         dotParent.SetActive(true);
     }
 
-    public void Hide()
+    public void HideTrajectory()
     {
         dotParent.SetActive(false);
     }

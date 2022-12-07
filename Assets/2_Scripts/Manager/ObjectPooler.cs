@@ -144,6 +144,7 @@ public class ObjectPooler : MonoBehaviour
         Debug.Log("Object Pooler recall all");
         foreach (var pool in pools)
         {
+            // vì không làm reload scene nên không c?n thu h?i TrajectoryDot
             if (pool.objectTag == ObjectTag.TrajectoryDot)
                 return;
 

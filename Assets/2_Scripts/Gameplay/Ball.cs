@@ -7,11 +7,14 @@ public class Ball : MonoBehaviour
     private CircleCollider2D circleCollider;
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private BallTail tail;
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Renew();
     }
 
     public void Renew()
@@ -19,6 +22,7 @@ public class Ball : MonoBehaviour
         transform.localScale = Vector3.one;
         transform.rotation = Quaternion.identity;
         rigidBody.simulated = true;
+        tail.Renew();
     }
 
     public void Appear()
@@ -56,6 +60,7 @@ public class Ball : MonoBehaviour
         {
             Debug.Log("collide hoop");
             Observer.BallCollideHoop?.Invoke();
+            tail.Renew();
         }
     }
 }

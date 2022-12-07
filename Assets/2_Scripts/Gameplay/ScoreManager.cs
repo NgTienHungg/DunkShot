@@ -64,11 +64,15 @@ public class ScoreManager : MonoBehaviour
 
     private void AddScore()
     {
-        // calculate score add
+        // handle perfect
         if (IsPerfect) Perfect++;
+        if (Perfect == 2) Observer.BallSmoke?.Invoke();
+        else if (Perfect == 3) Observer.BallFlame?.Invoke();
+
+        // calculate score add
         int scoreAdd = (Bounce == 0) ? (Perfect + 1) : (Perfect + 1) * 2;
         scoreAdd = Mathf.Min(scoreAdd, 20);
-        Debug.Log(" => Perfect: " + IsPerfect + " --- Bounce x" + Bounce + " --- Combo x" + Perfect + " --- Add: " + scoreAdd);
+        Debug.Log(" => Perfect x" + Perfect + " --- Bounce x" + Bounce + " --- Combo x" + Perfect + " --- Add: " + scoreAdd);
 
         // notify
         Vector3 worldPos = Controller.Instance.BasketSpawner.GetCurrentBasket().transform.position;
