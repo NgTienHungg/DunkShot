@@ -29,11 +29,11 @@ public class UIGameOver : UIGame
             videoButton.DOScale(1f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
 
-        rateButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.15f);
+        rateButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.1f);
 
-        restartButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.25f);
+        restartButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.2f);
 
-        setttingsButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.35f);
+        setttingsButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.3f);
     }
 
     public override void Disable()

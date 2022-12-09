@@ -37,17 +37,17 @@ public class UIContinue : UIGame
 
     public override void Enable()
     {
-        clock.DOScale(1f, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
+        clock.DOScale(1f, 0.25f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             ball.DORotate(Vector3.forward * 20f, 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
 
-        videoAdsButton.DOScale(1f, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
+        videoAdsButton.DOScale(1f, 0.25f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             videoAdsButton.DOScale(1.1f, 0.6f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
 
-        continueButton.DOScale(1f, 0.3f).SetEase(Ease.OutBack).SetDelay(2f);
+        continueButton.DOScale(1f, 0.25f).SetEase(Ease.OutBack).SetDelay(2f);
     }
 
     public override void Disable()

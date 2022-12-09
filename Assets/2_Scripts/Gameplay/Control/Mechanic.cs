@@ -36,7 +36,7 @@ public class Mechanic : MonoBehaviour
             ObjectPooler.Instance.Recall(ball.gameObject);
 
         ball = ObjectPooler.Instance.Spawn(ObjectTag.Ball).GetComponent<Ball>();
-        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 2f);
+        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 2.5f);
         ball.Appear();
 
         CameraController.Instance.FollowBall();
