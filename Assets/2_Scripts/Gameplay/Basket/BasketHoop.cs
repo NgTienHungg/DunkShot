@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class BasketHoop : MonoBehaviour
 {
-    [Header("Hoop")]
-    [SerializeField] private SpriteRenderer frontHoop;
-    [SerializeField] private SpriteRenderer backHoop;
+    [Header("Sprite")]
+    [SerializeField] private SpriteRenderer activeFrontSprite;
+    [SerializeField] private SpriteRenderer activeBackSprite;
+
+    [Header("Color")]
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
 
@@ -15,8 +17,8 @@ public class BasketHoop : MonoBehaviour
 
     public void Renew()
     {
-        frontHoop.color = activeColor;
-        backHoop.color = activeColor;
+        activeFrontSprite.color = activeColor;
+        activeBackSprite.color = activeColor;
 
         powerRing.gameObject.SetActive(false);
         powerRing.transform.localScale = startScale;
@@ -24,8 +26,8 @@ public class BasketHoop : MonoBehaviour
 
     public void OnGetScore()
     {
-        frontHoop.color = inactiveColor;
-        backHoop.color = inactiveColor;
+        activeFrontSprite.color = inactiveColor;
+        activeBackSprite.color = inactiveColor;
 
         powerRing.gameObject.SetActive(true);
 

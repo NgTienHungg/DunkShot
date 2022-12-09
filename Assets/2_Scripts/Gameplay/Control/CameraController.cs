@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
 
     public void FollowBall()
     {
-        Debug.Log("cinemachine follow ball");
         cinemachine.Follow = Controller.Instance.Mechanic.GetBall().transform;
     }
 

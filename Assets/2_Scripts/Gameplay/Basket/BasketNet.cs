@@ -62,9 +62,9 @@ public class BasketNet : MonoBehaviour
         this.ball = ball;
         hasBall = true;
 
-        transform.DOScaleY(1.2f, 0.05f).SetEase(Ease.InOutCubic).OnComplete(() =>
+        transform.DOScaleY(1.2f, 0.08f).SetEase(Ease.OutExpo).OnComplete(() =>
         {
-            transform.DOScaleY(1f, 0.05f).SetEase(Ease.InQuint);
+            transform.DOScaleY(1f, 0.06f).SetEase(Ease.InExpo);
         });
     }
 

@@ -1,7 +1,5 @@
 using UnityEngine;
-using DG.Tweening;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
@@ -13,8 +11,9 @@ public class Controller : MonoBehaviour
 
     public void Renew()
     {
-        ScoreManager.Instance.Renew();
         CameraController.Instance.Renew();
+        BackgroundManager.Instance.Renew();
+        ScoreManager.Instance.Renew();
 
         BasketSpawner.Renew();
         Mechanic.Renew();
@@ -71,7 +70,7 @@ public class Controller : MonoBehaviour
     {
         this.IsPlaying = false;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.25f);
 
         ObjectPooler.Instance.Recall(Mechanic.GetBall().gameObject);
 
