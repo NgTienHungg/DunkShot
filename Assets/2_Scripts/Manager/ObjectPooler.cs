@@ -4,10 +4,16 @@ using System.Collections.Generic;
 
 public enum ObjectTag
 {
-    Ball = 0,
+    Ball,
     Basket,
+    Obstacle,
     TrajectoryDot,
-    Star
+    Star,
+
+    BesideBar,
+    TopBar,
+    HorizontalBar,
+    RotationBar
 }
 
 [Serializable]
@@ -126,6 +132,7 @@ public class ObjectPooler : MonoBehaviour
     public void Recall(GameObject obj)
     {
         MonoBehaviour instance = obj.GetComponent<MonoBehaviour>();
+
         if (instance is Ball)
         {
             (instance as Ball).Renew();
@@ -133,6 +140,10 @@ public class ObjectPooler : MonoBehaviour
         else if (instance is Basket)
         {
             (instance as Basket).Renew();
+        }
+        else if (instance is Obstacle)
+        {
+            (instance as Obstacle).Renew();
         }
 
         obj.transform.parent = transform;

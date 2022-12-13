@@ -4,35 +4,36 @@ using UnityEngine;
 public class BasketNet : MonoBehaviour
 {
     [Header("Drag basket")]
-    [SerializeField] private float maxScaleY = 1.85f;
+    [SerializeField] private float maxScaleY;
 
     [Header("Anchor Ball")]
     [SerializeField] private Transform anchor;
     [SerializeField] private Transform bottom;
-    private Vector3 distance;
 
-    private Ball ball;
-    private bool hasBall;
+    private Ball _ball;
+    private bool _hasBall;
+    private Vector3 _distance;
 
-    private void Start()
-    {
-        distance = anchor.localPosition - bottom.localPosition;
-    }
-
-    private void Update()
-    {
-        if (hasBall)
-        {
-            anchor.localPosition = bottom.localPosition + distance  / transform.localScale.y;
-            ball.transform.position = anchor.position;
-        }
-    }
 
     public void Renew()
     {
         transform.localScale = Vector3.one;
-        ball = null;
-        hasBall = false;
+        _ball = null;
+        _hasBall = false;
+    }
+
+    private void Start()
+    {
+        _distance = anchor.localPosition - bottom.localPosition;
+    }
+
+    private void LateUpdate()
+    {
+        if (_hasBall)
+        {
+            anchor.localPosition = bottom.localPosition + _distance  / transform.localScale.y;
+            _ball.transform.position = anchor.position;
+        }
     }
 
     public void ScaleY(float distance)
@@ -43,8 +44,8 @@ public class BasketNet : MonoBehaviour
 
     public void OnShootBall()
     {
-        ball = null;
-        hasBall = false;
+        _ball = null;
+        _hasBall = false;
 
         transform.DOScaleY(0.7f, 0.06f).SetEase(Ease.InSine).OnComplete(() =>
         {
@@ -59,8 +60,8 @@ public class BasketNet : MonoBehaviour
 
     public void OnReceiveBall(Ball ball)
     {
-        this.ball = ball;
-        hasBall = true;
+        _ball = ball;
+        _hasBall = true;
 
         transform.DOScaleY(1.2f, 0.08f).SetEase(Ease.OutExpo).OnComplete(() =>
         {

@@ -75,7 +75,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log(" => Perfect x" + Perfect + " --- Bounce x" + Bounce + " --- Combo x" + Perfect + " --- Add: " + scoreAdd);
 
         // notify
-        Vector3 worldPos = Controller.Instance.BasketSpawner.GetCurrentBasket().transform.position;
+        Vector3 worldPos = Controller.Instance.BasketSpawner.CurrentBasket.transform.position;
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
         scoreNotification.GetComponent<RectTransform>().position = screenPos + new Vector3(0f, 65f);
         scoreNotification.Show(Perfect, Bounce, scoreAdd);

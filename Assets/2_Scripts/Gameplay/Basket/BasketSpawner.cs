@@ -3,30 +3,21 @@ using UnityEngine;
 
 public class BasketSpawner : MonoBehaviour
 {
-    private Basket currentBasket, nextBasket;
-
-    [Header("Set up")]
+    [Header("Prepare")]
     [SerializeField] private Vector2 firstBasketPos;
     [SerializeField] private Vector2 secondBasketPos;
 
-    [Header("Spawn")]
-    [SerializeField] private Vector2 rangeSpawnPosX;
-    [SerializeField] private Vector2 rangeSpawnDistanceY;
-    [SerializeField] private Vector2 rangeSpawnAngleZ;
-    private float posX, disY, angleZ;
-    private bool spawnInLeft;
+    [Header("Range spawn")]
+    [SerializeField] private Vector2 rangePositionX;
+    [SerializeField] private Vector2 rangeDistanceY;
+    [SerializeField] private Vector2 rangeAngleZ;
 
-    public void Renew()
-    {
-        currentBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
-        currentBasket.transform.position = firstBasketPos;
-        currentBasket.Point.SetHasPoint(false); // the first basket has no point
+    public Basket CurrentBasket { get { return _currentBasket; } }
 
-        nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
-        nextBasket.transform.position = secondBasketPos;
+    private Basket _currentBasket, _nextBasket;
 
-        spawnInLeft = true;
-    }
+    private bool _spawnInLeft;
+
 
     private void OnEnable()
     {
@@ -38,46 +29,59 @@ public class BasketSpawner : MonoBehaviour
         Observer.GetScore -= ChangeTargetBasket;
     }
 
+
+    public void Renew()
+    {
+        _currentBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
+        _currentBasket.transform.position = firstBasketPos;
+        _currentBasket.Point.SetHasPoint(false); // the first basket has no point
+
+        _nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
+        _nextBasket.transform.position = secondBasketPos;
+
+        _spawnInLeft = true;
+    }
+
+
     private void SpawnNextBasket()
     {
-        nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
+        _nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
 
-        if (!spawnInLeft)
+        float positionX, distanceY, angleZ;
+
+        if (!_spawnInLeft)
         {
-            posX = Random.Range(rangeSpawnPosX.x, rangeSpawnPosX.y);
-            disY = Random.Range(rangeSpawnDistanceY.x, rangeSpawnDistanceY.y);
-            angleZ = Random.Range(rangeSpawnAngleZ.x, rangeSpawnAngleZ.y);
+            positionX = Random.Range(rangePositionX.x, rangePositionX.y);
+            distanceY = Random.Range(rangeDistanceY.x, rangeDistanceY.y);
+            angleZ = Random.Range(rangeAngleZ.x, rangeAngleZ.y);
         }
         else
         {
-            posX = Random.Range(-rangeSpawnPosX.y, -rangeSpawnPosX.x);
-            disY = Random.Range(rangeSpawnDistanceY.x, rangeSpawnDistanceY.y);
-            angleZ = Random.Range(-rangeSpawnAngleZ.y, -rangeSpawnAngleZ.x);
+            positionX = Random.Range(-rangePositionX.y, -rangePositionX.x);
+            distanceY = Random.Range(rangeDistanceY.x, rangeDistanceY.y);
+            angleZ = Random.Range(-rangeAngleZ.y, -rangeAngleZ.x);
         }
-        spawnInLeft = !spawnInLeft;
 
-        nextBasket.transform.position = new Vector3(posX, currentBasket.transform.position.y + disY);
-        nextBasket.transform.eulerAngles = new Vector3(0f, 0f, angleZ);
+        _nextBasket.transform.position = new Vector3(positionX, _currentBasket.transform.position.y + distanceY);
+        _nextBasket.transform.eulerAngles = new Vector3(0f, 0f, angleZ);
+
+        // swap side to spawn
+        _spawnInLeft = !_spawnInLeft;
     }
 
     private void ChangeTargetBasket()
     {
-        Debug.Log("Change basket");
-
-        currentBasket.Disappear();
-        currentBasket = nextBasket;
+        _currentBasket.Disappear();
+        _currentBasket = _nextBasket;
 
         SpawnNextBasket();
-        nextBasket.Appear();
-    }
+        _nextBasket.Appear();
 
-    public Basket GetCurrentBasket()
-    {
-        return currentBasket;
+        ObstacleSpawner.Instance.Spawn(_nextBasket);
     }
 
     public void PreparePlay()
     {
-        currentBasket.transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutExpo);
+        _currentBasket.transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutExpo);
     }
 }

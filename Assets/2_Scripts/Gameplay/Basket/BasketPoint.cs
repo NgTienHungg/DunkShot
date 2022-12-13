@@ -2,10 +2,17 @@
 
 public class BasketPoint : MonoBehaviour
 {
-    [SerializeField] private Basket basket;
-    [SerializeField] private EdgeCollider2D edgeCollider;
+    private Basket _basket;
 
-    private bool hasPoint = true;
+    private EdgeCollider2D _collider;
+
+    private bool _hasPoint = true;
+
+    private void Awake()
+    {
+        _basket = GetComponentInParent<Basket>();
+        _collider = GetComponent<EdgeCollider2D>();
+    }
 
     public void Renew()
     {
@@ -15,12 +22,12 @@ public class BasketPoint : MonoBehaviour
 
     public void SetHasPoint(bool hasPoint)
     {
-        this.hasPoint = hasPoint;
+        _hasPoint = hasPoint;
     }
 
     public void SetActiveCollider(bool status)
     {
-        edgeCollider.enabled = status;
+        _collider.enabled = status;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,15 +37,13 @@ public class BasketPoint : MonoBehaviour
             // phát ra sự kiện để xử lý điểm trước
             // sau đó mới phát sự kiện BallInBasket để clear các điểm nhận được trong lượt này tại ScoreManager
 
-            if (hasPoint)
+            if (_hasPoint)
             {
-                Observer.GetScore?.Invoke();
-                basket.Hoop.OnGetScore();
-                basket.Point.SetHasPoint(false);
+                _basket.ReceivePoint();
             }
 
-            basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
-            collision.gameObject.GetComponent<Ball>().Stop(basket.transform);
+            _basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
+
             Observer.BallInBasket?.Invoke();
         }
     }

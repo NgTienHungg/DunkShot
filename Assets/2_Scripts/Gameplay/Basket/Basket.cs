@@ -1,69 +1,90 @@
 using UnityEngine;
 using DG.Tweening;
-using System.Collections;
 
 public class Basket : MonoBehaviour
 {
-    [SerializeField] private BasketNet net;
-    [SerializeField] private BasketHoop hoop;
-    [SerializeField] private BasketPoint point;
+    public BasketNet Net { get { return _net; } }
+    public BasketHoop Hoop { get { return _hoop; } }
+    public BasketPoint Point { get { return _point; } }
+    public BasketObstacle Obstacle { get { return _obstacle; } }
 
-    public BasketNet Net { get { return net; } }
-    public BasketHoop Hoop { get { return hoop; } }
-    public BasketPoint Point { get { return point; } }
+    private BasketNet _net;
+    private BasketHoop _hoop;
+    private BasketPoint _point;
+    private BasketObstacle _obstacle;
+
+
+    private void Awake()
+    {
+        _net = GetComponentInChildren<BasketNet>();
+        _hoop = GetComponentInChildren<BasketHoop>();
+        _point = GetComponentInChildren<BasketPoint>();
+        _obstacle = GetComponent<BasketObstacle>();
+    }
 
     public void Renew()
     {
         transform.localScale = Vector3.one;
         transform.rotation = Quaternion.identity;
 
-        net.Renew();
-        hoop.Renew();
-        point.Renew();
+        _net.Renew();
+        _hoop.Renew();
+        _point.Renew();
+        _obstacle.Renew();
     }
 
-    public void Rotate(float angle)
-    {
-        transform.eulerAngles = new Vector3(0f, 0f, angle);
-    }
 
+    #region Animation
     public void Appear()
     {
-        transform.DOScale(Vector3.zero, 0f);
-        transform.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack);
+        transform.localScale = Vector3.zero;
+        transform.DOScale(1f, 0.4f).SetEase(Ease.OutBack);
     }
 
     public void Disappear()
     {
-        transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
+        transform.DOScale(0f, 0.3f).SetEase(Ease.InCubic).OnComplete(() =>
         {
             ObjectPooler.Instance.Recall(gameObject);
         });
+    }
+    #endregion
+
+
+    #region Shoot Ball
+    public void ReceivePoint()
+    {
+        Observer.GetScore?.Invoke();
+
+        _hoop.OnGetScore();
+        _point.SetHasPoint(false);
+        _obstacle.Free();
     }
 
     public void ReceiveBall(Ball ball)
     {
         Controller.Instance.Mechanic.SetBasket(this);
+        ball.Stop(transform);
+
         transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
-        net.OnReceiveBall(ball);
-        point.SetActiveCollider(false);
+        _net.OnReceiveBall(ball);
+        _point.SetActiveCollider(false);
     }
 
     public void ShootBall()
     {
-        StartCoroutine(WaitToEnableCheckPoint());
-        net.OnShootBall();
-    }
+        // wait 0.1f to enable collider (check event ball in basket)
+        transform.DOScale(1f, 0.1f).SetUpdate(true).OnComplete(() =>
+        {
+            _point.SetActiveCollider(true);
+        });
 
-    private IEnumerator WaitToEnableCheckPoint()
-    {
-        float waitTime = 0.1f;
-        yield return new WaitForSecondsRealtime(waitTime);
-        point.SetActiveCollider(true);
+        _net.OnShootBall();
     }
 
     public void CancelShoot()
     {
-        net.OnCancelShoot();
+        _net.OnCancelShoot();
     }
+    #endregion
 }

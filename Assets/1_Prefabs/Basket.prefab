@@ -125,8 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac4f1f64be021f4cb3fc8f767c1fe0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basket: {fileID: 411999574}
-  edgeCollider: {fileID: 8765312712425178508}
 --- !u!1 &3867040432936036683
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8798219964249596291}
   - component: {fileID: 411999574}
+  - component: {fileID: 687420728625481851}
   m_Layer: 0
   m_Name: Basket
   m_TagString: Untagged
@@ -692,9 +691,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc71765a9181e6c4e912f7fa94ce5878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  net: {fileID: 8330180588596874057}
-  hoop: {fileID: 6933935382829285846}
-  point: {fileID: 9064027864347911567}
+--- !u!114 &687420728625481851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8798219964249596288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f57e4564c24f28498e9d0794822e142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9170181570096400997
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca19c616e6de35408b6be67179bc6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteSmoke: {fileID: 8538723062812659734}
-  blackSmoke: {fileID: 5168081511736691206}
-  flame: {fileID: 3892818849549334269}
+  _whiteSmoke: {fileID: 8538723062812659734}
+  _blackSmoke: {fileID: 5168081511736691206}
+  _specialTail: {fileID: 3892818849549334269}
 --- !u!1 &4718552343611825748
 GameObject:
   m_ObjectHideFlags: 0
@@ -9846,7 +9846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b588b6e96032b48a697922551ee98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tail: {fileID: 6085303659205627112}
 --- !u!1 &8318085952844519850
 GameObject:
   m_ObjectHideFlags: 0
@@ -9859,7 +9858,7 @@ GameObject:
   - component: {fileID: 3892818849549334269}
   - component: {fileID: 4618037152347355821}
   m_Layer: 0
-  m_Name: Flame
+  m_Name: SpecialTail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

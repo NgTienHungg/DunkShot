@@ -30,7 +30,7 @@ public class Mechanic : MonoBehaviour
 
     public void Renew()
     {
-        basket = Controller.Instance.BasketSpawner.GetCurrentBasket();
+        basket = Controller.Instance.BasketSpawner.CurrentBasket;
 
         if (ball != null)
             ObjectPooler.Instance.Recall(ball.gameObject);
@@ -101,7 +101,7 @@ public class Mechanic : MonoBehaviour
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(force, Vector3.up);
         float sign = endPoint.x > startPoint.x ? 1 : -1;
-        basket.Rotate(sign * aimingAngle);
+        basket.transform.eulerAngles = new Vector3(0f, 0f, sign * aimingAngle);
 
         // calculate net scale
         basket.Net.ScaleY(distance);

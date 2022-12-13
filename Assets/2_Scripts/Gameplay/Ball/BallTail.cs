@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class BallTail : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem whiteSmoke;
-    [SerializeField] private ParticleSystem blackSmoke, flame;
+    [SerializeField] private ParticleSystem _whiteSmoke;
+    [SerializeField] private ParticleSystem _blackSmoke;
+    [SerializeField] private ParticleSystem _specialTail;
 
     public void Renew()
     {
-        whiteSmoke.Stop();
-        blackSmoke.Stop();
-        flame.Stop();
+        _whiteSmoke.Stop();
+        _blackSmoke.Stop();
+        _specialTail.Stop();
     }
 
     private void OnEnable()
@@ -26,13 +27,13 @@ public class BallTail : MonoBehaviour
 
     private void Smoking()
     {
-        whiteSmoke.Play();
+        _whiteSmoke.Play();
     }
 
     private void Flaming()
     {
-        whiteSmoke.Stop();
-        blackSmoke.Play();
-        flame.Play();
+        _whiteSmoke.Stop();
+        _blackSmoke.Play();
+        _specialTail.Play();
     }
 }

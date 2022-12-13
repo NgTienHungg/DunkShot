@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private Rigidbody2D rigidBody;
-    private CircleCollider2D circleCollider;
-    private SpriteRenderer spriteRenderer;
-
-    [SerializeField] private BallTail tail;
+    private Rigidbody2D _rigidbody;
+    private CircleCollider2D _collider;
+    private SpriteRenderer _renderer;
+    private BallTail _tail;
 
     private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-        circleCollider = GetComponent<CircleCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<CircleCollider2D>();
+        _renderer = GetComponent<SpriteRenderer>();
+        _tail = GetComponentInChildren<BallTail>();
+
         Renew();
     }
 
@@ -21,14 +22,15 @@ public class Ball : MonoBehaviour
     {
         transform.localScale = Vector3.one;
         transform.rotation = Quaternion.identity;
-        rigidBody.simulated = true;
-        tail.Renew();
+
+        _rigidbody.simulated = true;
+        _tail.Renew();
     }
 
     public void Appear()
     {
-        spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
-        spriteRenderer.DOFade(1f, 0.3f);
+        _renderer.color = new Color(1f, 1f, 1f, 0f);
+        _renderer.DOFade(1f, 0.3f);
     }
 
     public void Stop(Transform hoop)
@@ -36,17 +38,17 @@ public class Ball : MonoBehaviour
         transform.parent = hoop;
         transform.rotation = Quaternion.identity;
 
-        rigidBody.simulated = false;
-        rigidBody.angularVelocity = 0f;
-        rigidBody.velocity = Vector2.zero;
+        _rigidbody.simulated = false;
+        _rigidbody.angularVelocity = 0f;
+        _rigidbody.velocity = Vector2.zero;
     }
 
     public void Push(Vector2 force)
     {
         transform.parent = null;
-        rigidBody.simulated = true;
-        rigidBody.angularVelocity = force.magnitude * 30f; // max = 750f
-        rigidBody.AddForce(force, ForceMode2D.Impulse);
+        _rigidbody.simulated = true;
+        _rigidbody.angularVelocity = force.magnitude * 30f; // max = 750f
+        _rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,7 +62,7 @@ public class Ball : MonoBehaviour
         {
             Debug.Log("collide hoop");
             Observer.BallCollideHoop?.Invoke();
-            tail.Renew();
+            _tail.Renew();
         }
     }
 }
