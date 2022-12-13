@@ -8,21 +8,24 @@ public class BasketPoint : MonoBehaviour
 
     private bool _hasPoint = true;
 
+    public bool HasPoint
+    {
+        get { return _hasPoint; }
+        set { _hasPoint = value; }
+    }
+
+
     private void Awake()
     {
         _basket = GetComponentInParent<Basket>();
         _collider = GetComponent<EdgeCollider2D>();
+        _collider.isTrigger = true;
     }
 
     public void Renew()
     {
-        SetHasPoint(true);
+        _hasPoint = true;
         SetActiveCollider(true);
-    }
-
-    public void SetHasPoint(bool hasPoint)
-    {
-        _hasPoint = hasPoint;
     }
 
     public void SetActiveCollider(bool status)
@@ -39,11 +42,12 @@ public class BasketPoint : MonoBehaviour
 
             if (_hasPoint)
             {
-                _basket.ReceivePoint();
+                _hasPoint = false;
+                _basket.GetScore();
+                Observer.GetScore?.Invoke();
             }
 
             _basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
-
             Observer.BallInBasket?.Invoke();
         }
     }

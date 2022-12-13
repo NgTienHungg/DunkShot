@@ -85,7 +85,7 @@ public class ObstacleSpawner : MonoBehaviour
         Obstacle obstacle = ObjectPooler.Instance.Spawn(ObjectTag.RotationBar).GetComponent<Obstacle>();
 
         float x = Random.Range(3.5f, 4.2f);
-        float y = Random.Range(-1f, -0.2f);
+        float y = Random.Range(-0.5f, -0.2f);
         float dir = _inTheRight ? -1 : 1;
 
         obstacle.transform.position = _basket.transform.position + new Vector3(dir * x, y);

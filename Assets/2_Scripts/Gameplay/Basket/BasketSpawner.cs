@@ -34,7 +34,7 @@ public class BasketSpawner : MonoBehaviour
     {
         _currentBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
         _currentBasket.transform.position = firstBasketPos;
-        _currentBasket.Point.SetHasPoint(false); // the first basket has no point
+        _currentBasket.Point.HasPoint = false; // the first basket has no point
 
         _nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
         _nextBasket.transform.position = secondBasketPos;

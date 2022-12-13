@@ -52,21 +52,18 @@ public class Basket : MonoBehaviour
 
 
     #region Shoot Ball
-    public void ReceivePoint()
+    public void GetScore()
     {
-        Observer.GetScore?.Invoke();
-
-        _hoop.OnGetScore();
-        _point.SetHasPoint(false);
+        _hoop.Scale();
         _obstacle.Free();
     }
 
     public void ReceiveBall(Ball ball)
     {
         Controller.Instance.Mechanic.SetBasket(this);
+        transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
         ball.Stop(transform);
 
-        transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
         _net.OnReceiveBall(ball);
         _point.SetActiveCollider(false);
     }

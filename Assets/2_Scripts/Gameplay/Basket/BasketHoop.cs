@@ -13,7 +13,9 @@ public class BasketHoop : MonoBehaviour
 
     [Header("Power ring")]
     [SerializeField] private SpriteRenderer powerRing;
-    [SerializeField] private Vector2 startScale, normalScale, perfectScale;
+    [SerializeField] private Vector2 startScale;
+    [SerializeField] private Vector2 normalScale;
+    [SerializeField] private Vector2 perfectScale;
 
     public void Renew()
     {
@@ -24,7 +26,7 @@ public class BasketHoop : MonoBehaviour
         powerRing.transform.localScale = startScale;
     }
 
-    public void OnGetScore()
+    public void Scale()
     {
         activeFrontSprite.color = inactiveColor;
         activeBackSprite.color = inactiveColor;
