@@ -20,14 +20,16 @@ public class ObstacleSpawner : MonoBehaviour
 
         int score = ScoreManager.Instance.Score;
 
-        if (score < 10)
-            SpawnShield(ObjectTag.QuarterSheild);
-        else if (score < 20)
-            SpawnShield(ObjectTag.HalfSheild);
-        else if (score < 30)
-            SpawnShield(ObjectTag.SymmetricalShield);
-        else
-            SpawnShield(ObjectTag.ThreeQuartersShield);
+        //if (score < 10)
+        //    SpawnShield(ObjectTag.QuarterSheild);
+        //else if (score < 20)
+        //    SpawnShield(ObjectTag.HalfSheild);
+        //else if (score < 30)
+        //    SpawnShield(ObjectTag.SymmetricalShield);
+        //else
+        //    SpawnShield(ObjectTag.ThreeQuartersShield);
+
+        SpawnSingleBesideBackboard();
     }
 
     private void SpawnBesideBar()
@@ -100,5 +102,43 @@ public class ObstacleSpawner : MonoBehaviour
         obstacle.Appear();
 
         _basket.Obstacle.Add(obstacle);
+    }
+
+    private void SpawnTopBackboard()
+    {
+        Obstacle obstacle = ObjectPooler.Instance.Spawn(ObjectTag.Backboard).GetComponent<Obstacle>();
+
+        float y = Random.Range(2.2f, 2.8f);
+
+        obstacle.transform.position = _basket.transform.position + new Vector3(0, y);
+        obstacle.Appear();
+
+        _basket.Obstacle.Add(obstacle);
+        _basket.transform.rotation = Quaternion.identity;
+    }
+
+    private void SpawnSingleBesideBackboard()
+    {
+        Obstacle obstacle = ObjectPooler.Instance.Spawn(ObjectTag.Backboard).GetComponent<Obstacle>();
+
+        float x = Random.Range(1.85f, 2.1f);
+        float dir = _inTheRight ? -1 : 1;
+
+        obstacle.transform.position = _basket.transform.position + new Vector3(dir * x, 0f);
+        obstacle.Appear();
+
+        _basket.Obstacle.Add(obstacle);
+        _basket.transform.rotation = Quaternion.identity;
+    }
+
+    private void SpawnTwoBesideBackboard()
+    {
+        Obstacle obstacle = ObjectPooler.Instance.Spawn(ObjectTag.TwoBesideBackboard).GetComponent<Obstacle>();
+
+        obstacle.transform.position = _basket.transform.position;
+        obstacle.Appear();
+
+        _basket.Obstacle.Add(obstacle);
+        _basket.transform.rotation = Quaternion.identity;
     }
 }

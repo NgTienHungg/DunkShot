@@ -15,4 +15,7 @@ public enum ObjectTag
     HalfSheild,
     SymmetricalShield,
     QuarterSheild,
+
+    Backboard,
+    TwoBesideBackboard
 }
