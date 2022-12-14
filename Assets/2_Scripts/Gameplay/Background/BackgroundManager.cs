@@ -25,7 +25,6 @@ public class BackgroundManager : MonoBehaviour
         clouds.Renew();
         stars.Renew();
 
-        // ??t ? ?ây vì n?u setActive of cho darkMode thì s? không set up ???c vào scroll bg c?a DarkMode
         if (SaveManager.Instance.GetInt("OnLightMode") == 1)
             OnLightMode();
         else

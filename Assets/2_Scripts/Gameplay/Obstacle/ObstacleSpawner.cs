@@ -18,24 +18,16 @@ public class ObstacleSpawner : MonoBehaviour
         _basket = basket;
         _inTheRight = basket.transform.position.x > 0f;
 
-        if (Mathf.Abs(basket.transform.position.x) >= 2.5f)
-        {
-            int rnd = Random.Range(0, 2);
+        int score = ScoreManager.Instance.Score;
 
-            if (rnd == 1)
-                SpawnRotateBar();
-            else
-                SpawnHorizontalBar();
-        }
+        if (score < 10)
+            SpawnShield(ObjectTag.QuarterSheild);
+        else if (score < 20)
+            SpawnShield(ObjectTag.HalfSheild);
+        else if (score < 30)
+            SpawnShield(ObjectTag.SymmetricalShield);
         else
-        {
-            int rnd = Random.Range(0, 2);
-
-            if (rnd == 1)
-                SpawnTopBar();
-            else
-                SpawnBesideBar();
-        }
+            SpawnShield(ObjectTag.ThreeQuartersShield);
     }
 
     private void SpawnBesideBar()
@@ -86,13 +78,27 @@ public class ObstacleSpawner : MonoBehaviour
 
         float x = Random.Range(3.5f, 4.2f);
         float y = Random.Range(-0.5f, -0.2f);
+        float duration = Random.Range(2.6f, 3f);
         float dir = _inTheRight ? -1 : 1;
 
         obstacle.transform.position = _basket.transform.position + new Vector3(dir * x, y);
-        obstacle.transform.DORotate(Vector3.forward * 360, 2.6f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
         obstacle.Appear();
 
         _basket.Obstacle.Add(obstacle);
         _basket.transform.rotation = Quaternion.identity;
+    }
+
+    private void SpawnShield(ObjectTag obstacleTag)
+    {
+        Obstacle obstacle = ObjectPooler.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
+
+        float duration = Random.Range(2.8f, 4f);
+
+        obstacle.transform.position = _basket.transform.position;
+        obstacle.transform.DORotate(Vector3.forward * 360f, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        obstacle.Appear();
+
+        _basket.Obstacle.Add(obstacle);
     }
 }

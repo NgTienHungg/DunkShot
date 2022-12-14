@@ -25,6 +25,7 @@ public class Obstacle : MonoBehaviour
 
     public void Disappear()
     {
+        transform.DOKill(); // kill anim rotate
         transform.DOScale(0f, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
         {
             ObjectPooler.Instance.Recall(gameObject);

@@ -1,32 +1,5 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
-
-public enum ObjectTag
-{
-    Ball,
-    Basket,
-    Obstacle,
-    TrajectoryDot,
-    Star,
-
-    BesideBar,
-    TopBar,
-    HorizontalBar,
-    RotationBar
-}
-
-[Serializable]
-public class Pool
-{
-    public GameObject prefab;
-    public ObjectTag objectTag;
-    public int poolSize;
-    public bool expandable;
-
-    [HideInInspector]
-    public List<GameObject> listObject;
-}
 
 public class ObjectPooler : MonoBehaviour
 {
