@@ -2769,7 +2769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 968815473}
@@ -2791,9 +2791,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -6806,7 +6806,6 @@ Transform:
   - {fileID: 2092772734}
   - {fileID: 1643769525}
   - {fileID: 13775436}
-  - {fileID: 2141267729}
   - {fileID: 1536083163}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -7106,9 +7105,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2141267729}
   m_Father: {fileID: 1426239571}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1536083164
 MonoBehaviour:
@@ -7540,8 +7540,9 @@ MonoBehaviour:
   ballPrefab: {fileID: 5553947817953817661, guid: cfa65e4ed624e4040a5cdd8cb784b122, type: 3}
   obstacleParent: {fileID: 1190302473}
   maxIterations: 100
-  dotParent: {fileID: 970738973}
-  numberOfDots: 10
+  _dotPrefab: {fileID: 2944838394916727101, guid: cc6dcaf0dafd02641a059d12cceacc76, type: 3}
+  _dotParent: {fileID: 970738974}
+  _dotCount: 10
 --- !u!1 &1660883742
 GameObject:
   m_ObjectHideFlags: 0
@@ -7716,58 +7717,58 @@ MonoBehaviour:
     poolSize: 3
     expandable: 1
     listObject: []
-  - prefab: {fileID: 2944838394916727101, guid: cc6dcaf0dafd02641a059d12cceacc76, type: 3}
+  - prefab: {fileID: 3783878253226658740, guid: 8eda6c34faa530a4cb52cca084c246dd, type: 3}
     objectTag: 3
-    poolSize: 10
+    poolSize: 0
     expandable: 1
     listObject: []
   - prefab: {fileID: 1747664907553664887, guid: 634f76b0606f6ba45a7e09254685a2b9, type: 3}
-    objectTag: 5
+    objectTag: 4
     poolSize: 0
     expandable: 1
     listObject: []
   - prefab: {fileID: 9082328371586976642, guid: 93664015f5476e346bb736c1cef8e406, type: 3}
-    objectTag: 6
+    objectTag: 5
     poolSize: 0
     expandable: 1
     listObject: []
   - prefab: {fileID: 3440151888280524760, guid: 2bff40080975a9847918ae33d590ec2d, type: 3}
-    objectTag: 7
+    objectTag: 6
     poolSize: 0
     expandable: 1
     listObject: []
   - prefab: {fileID: 4702288807786251160, guid: 1f77af7c0c4b8d249883a85c173065a4, type: 3}
+    objectTag: 7
+    poolSize: 0
+    expandable: 1
+    listObject: []
+  - prefab: {fileID: 1747664907553664887, guid: e95d77ac191afcd478ddefb893782267, type: 3}
     objectTag: 8
     poolSize: 0
     expandable: 1
     listObject: []
-  - prefab: {fileID: 1747664907553664887, guid: 42fca944f2a563c499dd1d5b5a28b561, type: 3}
-    objectTag: 12
-    poolSize: 0
-    expandable: 1
-    listObject: []
   - prefab: {fileID: 1747664907553664887, guid: 3ea2c4ae3f60fa347b8e2cdbf4f8e055, type: 3}
-    objectTag: 10
-    poolSize: 0
-    expandable: 1
-    listObject: []
-  - prefab: {fileID: 1747664907553664887, guid: ad01a522a28357248842becf6ba45e44, type: 3}
-    objectTag: 11
-    poolSize: 0
-    expandable: 1
-    listObject: []
-  - prefab: {fileID: 1747664907553664887, guid: 217fd4d9c69ae9b4994bb6f93344fbe3, type: 3}
     objectTag: 9
     poolSize: 0
     expandable: 1
     listObject: []
+  - prefab: {fileID: 1747664907553664887, guid: ad01a522a28357248842becf6ba45e44, type: 3}
+    objectTag: 10
+    poolSize: 0
+    expandable: 1
+    listObject: []
+  - prefab: {fileID: 1747664907553664887, guid: 42fca944f2a563c499dd1d5b5a28b561, type: 3}
+    objectTag: 11
+    poolSize: 0
+    expandable: 1
+    listObject: []
   - prefab: {fileID: 1747664907553664887, guid: 2db8c85ce84b0e14f88afb95f8341f8f, type: 3}
-    objectTag: 13
+    objectTag: 12
     poolSize: 0
     expandable: 1
     listObject: []
   - prefab: {fileID: 1747664907553664887, guid: e06b069ef628821489dac682eb06a71a, type: 3}
-    objectTag: 14
+    objectTag: 13
     poolSize: 0
     expandable: 1
     listObject: []
@@ -9875,11 +9876,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141267727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1426239571}
-  m_RootOrder: 4
+  m_Father: {fileID: 1536083163}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2147390959
 GameObject:
@@ -10120,6 +10121,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 519420032}
     m_Modifications:
+    - target: {fileID: 6514183925239479184, guid: 05e2b84ffc920814d8c5a8a5e8038771, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6514183926284231590, guid: 05e2b84ffc920814d8c5a8a5e8038771, type: 3}
       propertyPath: m_RootOrder
       value: 0

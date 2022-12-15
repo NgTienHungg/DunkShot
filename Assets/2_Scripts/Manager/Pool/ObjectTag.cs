@@ -2,9 +2,8 @@ public enum ObjectTag
 {
     Ball,
     Basket,
-    Obstacle,
-    TrajectoryDot,
     Star,
+    BasketTrajectory,
 
     BesideBar,
     TopBar,
@@ -17,5 +16,5 @@ public enum ObjectTag
     QuarterSheild,
 
     Backboard,
-    TwoBesideBackboard
+    BesideBackboard,
 }

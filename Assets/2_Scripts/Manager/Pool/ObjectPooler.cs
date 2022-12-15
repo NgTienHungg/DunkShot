@@ -5,7 +5,7 @@ public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler Instance { get; private set; }
 
-    public Pool[] pools;
+    [SerializeField] private Pool[] pools;
 
     private void Awake()
     {
@@ -31,25 +31,11 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject GetPrefab(ObjectTag tag)
-    {
-        GameObject prefab = null;
-        foreach (Pool pool in pools)
-        {
-            if (pool.objectTag == tag)
-            {
-                prefab = pool.prefab;
-                break;
-            }
-        }
-        return prefab;
-    }
-
     private GameObject CreateGameObject(GameObject prefab)
     {
-        GameObject obj = Instantiate(prefab, transform);
-        obj.SetActive(false);
-        return obj;
+        GameObject go = Instantiate(prefab, transform);
+        go.SetActive(false);
+        return go;
     }
 
     public GameObject Spawn(ObjectTag tag)
@@ -70,10 +56,10 @@ public class ObjectPooler : MonoBehaviour
                 // expand pool
                 if (pool.expandable)
                 {
-                    GameObject obj = CreateGameObject(pool.prefab);
-                    pool.listObject.Add(obj);
-                    obj.SetActive(true);
-                    return obj;
+                    GameObject go = CreateGameObject(pool.prefab);
+                    pool.listObject.Add(go);
+                    go.SetActive(true);
+                    return go;
                 }
                 else
                 {
@@ -85,21 +71,6 @@ public class ObjectPooler : MonoBehaviour
 
         Debug.LogWarning("The pool with tag " + tag + " is not exist!");
         return null;
-    }
-
-    public GameObject Spawn(ObjectTag tag, Transform parent)
-    {
-        GameObject obj = Spawn(tag);
-        obj.transform.parent = parent;
-        return obj;
-    }
-
-    public GameObject Spawn(ObjectTag tag, Vector3 position, Quaternion rotation)
-    {
-        GameObject obj = Spawn(tag);
-        obj.transform.position = position;
-        obj.transform.rotation = rotation;
-        return obj;
     }
 
     public void Recall(GameObject obj)
@@ -125,13 +96,10 @@ public class ObjectPooler : MonoBehaviour
 
     public void RecallAll()
     {
-        Debug.Log("Object Pooler recall all");
+        Debug.Log("ObjectPooler recall all!");
+
         foreach (var pool in pools)
         {
-            // vì không làm reload scene nên không c?n thu h?i TrajectoryDot
-            if (pool.objectTag == ObjectTag.TrajectoryDot)
-                return;
-
             foreach (var obj in pool.listObject)
             {
                 Recall(obj);

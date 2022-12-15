@@ -133,7 +133,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnTwoBesideBackboard()
     {
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(ObjectTag.TwoBesideBackboard).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPooler.Instance.Spawn(ObjectTag.BesideBackboard).GetComponent<Obstacle>();
 
         obstacle.transform.position = _basket.transform.position;
         obstacle.Appear();

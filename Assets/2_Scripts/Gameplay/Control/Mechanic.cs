@@ -111,12 +111,12 @@ public class Mechanic : MonoBehaviour
         // trajectory
         if (canShoot)
         {
-            trajectory.ShowTrajectory();
+            trajectory.Show();
             trajectory.Simulate(ball.transform.position, force);
         }
         else
         {
-            trajectory.HideTrajectory();
+            trajectory.Hide();
         }
         Debug.DrawLine(startPoint, endPoint, Color.red);
     }
@@ -124,7 +124,7 @@ public class Mechanic : MonoBehaviour
     private void Shoot()
     {
         isAiming = false;
-        trajectory.HideTrajectory();
+        trajectory.Hide();
 
         if (canShoot)
         {

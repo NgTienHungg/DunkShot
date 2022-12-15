@@ -653,6 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8798219964249596291}
   - component: {fileID: 411999574}
+  - component: {fileID: 1681306710053070806}
   - component: {fileID: 687420728625481851}
   m_Layer: 0
   m_Name: Basket
@@ -691,6 +692,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc71765a9181e6c4e912f7fa94ce5878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1681306710053070806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8798219964249596288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3487708f47a67c249803f2d0b8b6eeee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeMoving: 1.8
 --- !u!114 &687420728625481851
 MonoBehaviour:
   m_ObjectHideFlags: 0

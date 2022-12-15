@@ -76,8 +76,9 @@ public class BasketSpawner : MonoBehaviour
 
         SpawnNextBasket();
         _nextBasket.Appear();
+        _nextBasket.Movement.Move();
 
-        ObstacleSpawner.Instance.Spawn(_nextBasket);
+        //ObstacleSpawner.Instance.Spawn(_nextBasket);
     }
 
     public void PreparePlay()

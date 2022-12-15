@@ -18,16 +18,17 @@ public class Trajectory : MonoBehaviour
     private Rigidbody2D ballRigidBody;
 
     [Header("Trajectory")]
-    [SerializeField] private GameObject dotParent;
-    [SerializeField] private int numberOfDots;
-    private Transform[] dots;
+    [SerializeField] private GameObject _dotPrefab;
+    [SerializeField] private Transform _dotParent;
+    [SerializeField] private int _dotCount;
+    private Transform[] _dots;
 
     private void Start()
     {
         CreateSimulationScene();
         CreateSimulationBall();
         PrepareDots();
-        HideTrajectory();
+        Hide();
     }
 
     private void CreateSimulationScene()
@@ -64,19 +65,17 @@ public class Trajectory : MonoBehaviour
 
     public void PrepareDots()
     {
-        Debug.Log("prepare dot");
-
-        dots = new Transform[numberOfDots];
+        _dots = new Transform[_dotCount];
         simulationBallPos = new Vector3[maxIterations];
 
         float currentScale = 1f;
         float scaleFactor = 0.05f;
         float minScale = 0.5f;
 
-        for (int i = 0; i < numberOfDots; i++)
+        for (int i = 0; i < _dotCount; i++)
         {
-            dots[i] = ObjectPooler.Instance.Spawn(ObjectTag.TrajectoryDot, dotParent.transform).transform;
-            dots[i].localScale = Vector3.one * currentScale;
+            _dots[i] = Instantiate(_dotPrefab, _dotParent).transform;
+            _dots[i].localScale = Vector3.one * currentScale;
 
             if (currentScale > minScale)
                 currentScale -= scaleFactor;
@@ -103,17 +102,17 @@ public class Trajectory : MonoBehaviour
         }
 
         // draw trajectory
-        for (int i = 0; i < numberOfDots; i++)
-            dots[i].position = simulationBallPos[5 + i * 5];
+        for (int i = 0; i < _dotCount; i++)
+            _dots[i].position = simulationBallPos[5 + i * 5];
     }
 
-    public void ShowTrajectory()
+    public void Show()
     {
-        dotParent.SetActive(true);
+        _dotParent.gameObject.SetActive(true);
     }
 
-    public void HideTrajectory()
+    public void Hide()
     {
-        dotParent.SetActive(false);
+        _dotParent.gameObject.SetActive(false);
     }
 }

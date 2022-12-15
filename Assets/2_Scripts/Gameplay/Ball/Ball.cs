@@ -47,7 +47,7 @@ public class Ball : MonoBehaviour
     {
         transform.parent = null;
         _rigidbody.simulated = true;
-        _rigidbody.angularVelocity = force.magnitude * 30f; // max = 750f
+        _rigidbody.angularVelocity = force.magnitude * 20f; // max = 750f
         _rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 
