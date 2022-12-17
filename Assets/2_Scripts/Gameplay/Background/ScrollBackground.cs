@@ -45,7 +45,7 @@ public class ScrollBackground : MonoBehaviour
     {
         // set lại vị trí cho các image
         for (int i = 0; i < _listImage.Length; i++)
-            _listImage[i].position = Vector3.up * i * _imageDistance;
+            _listImage[i].position = _imageDistance * i * Vector3.up;
 
         _visibleImg = 0;
         camPos = mainCam.transform.position;

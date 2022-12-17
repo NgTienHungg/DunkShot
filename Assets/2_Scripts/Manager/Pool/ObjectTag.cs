@@ -1,6 +1,6 @@
 public enum ObjectTag
 {
-    Ball,
+    Ball = 0,
     Basket,
     Star,
     BasketTrajectory,

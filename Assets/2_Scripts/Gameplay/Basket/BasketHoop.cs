@@ -4,45 +4,52 @@ using UnityEngine;
 public class BasketHoop : MonoBehaviour
 {
     [Header("Sprite")]
-    [SerializeField] private SpriteRenderer activeFrontSprite;
-    [SerializeField] private SpriteRenderer activeBackSprite;
+    [SerializeField] private SpriteRenderer _frontSprite;
+    [SerializeField] private SpriteRenderer _backSprite;
 
     [Header("Color")]
-    [SerializeField] private Color activeColor;
-    [SerializeField] private Color inactiveColor;
+    [SerializeField] private Color _activeColor;
+    [SerializeField] private Color _inactiveColor;
 
-    [Header("Power ring")]
-    [SerializeField] private SpriteRenderer powerRing;
-    [SerializeField] private Vector2 startScale;
-    [SerializeField] private Vector2 normalScale;
-    [SerializeField] private Vector2 perfectScale;
+    [Header("Get score")]
+    [SerializeField] private SpriteRenderer _scoreEff;
+    [SerializeField] private Vector2 _normalScale;
+    [SerializeField] private Vector2 _perfectScale;
+
+    private void Awake()
+    {
+        Renew();
+    }
 
     public void Renew()
     {
-        activeFrontSprite.color = activeColor;
-        activeBackSprite.color = activeColor;
+        _frontSprite.color = _activeColor;
+        _backSprite.color = _activeColor;
 
-        powerRing.gameObject.SetActive(false);
-        powerRing.transform.localScale = startScale;
+        _scoreEff.transform.localScale = Vector3.one;
+        _scoreEff.gameObject.SetActive(false);
     }
 
     public void Scale()
     {
-        activeFrontSprite.color = inactiveColor;
-        activeBackSprite.color = inactiveColor;
+        _frontSprite.color = _inactiveColor;
+        _backSprite.color = _inactiveColor;
 
-        powerRing.gameObject.SetActive(true);
-
-        if (ScoreManager.Instance.IsPerfect)
-            powerRing.transform.DOScale(perfectScale, 0.4f).SetEase(Ease.OutCubic);
-        else
-            powerRing.transform.DOScale(normalScale, 0.4f).SetEase(Ease.OutCubic);
-
-        powerRing.DOFade(0f, 0.5f).OnComplete(() =>
+        _scoreEff.gameObject.SetActive(true);
+        _scoreEff.DOFade(1f, 0f).OnComplete(() =>
         {
-            powerRing.transform.localScale = startScale;
-            powerRing.DOFade(1f, 0f);
-            powerRing.gameObject.SetActive(false);
+            // fade
+            _scoreEff.DOFade(0f, 0.8f).OnComplete(() =>
+            {
+                _scoreEff.transform.localScale = Vector3.one;
+                _scoreEff.gameObject.SetActive(false);
+            });
+
+            // scale
+            if (ScoreManager.Instance.IsPerfect)
+                _scoreEff.transform.DOScale(_perfectScale, 0.5f).SetEase(Ease.OutCubic);
+            else
+                _scoreEff.transform.DOScale(_normalScale, 0.5f).SetEase(Ease.OutCubic);
         });
     }
 }

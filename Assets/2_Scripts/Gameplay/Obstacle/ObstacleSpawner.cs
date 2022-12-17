@@ -18,18 +18,37 @@ public class ObstacleSpawner : MonoBehaviour
         _basket = basket;
         _inTheRight = basket.transform.position.x > 0f;
 
-        int score = ScoreManager.Instance.Score;
+        int id = Random.Range(1, 10);
 
-        //if (score < 10)
-        //    SpawnShield(ObjectTag.QuarterSheild);
-        //else if (score < 20)
-        //    SpawnShield(ObjectTag.HalfSheild);
-        //else if (score < 30)
-        //    SpawnShield(ObjectTag.SymmetricalShield);
-        //else
-        //    SpawnShield(ObjectTag.ThreeQuartersShield);
-
-        SpawnSingleBesideBackboard();
+        switch (id)
+        {
+            case 1:
+                SpawnBesideBar();
+                break;
+            case 2:
+                SpawnTopBar();
+                break;
+            case 3:
+                SpawnHorizontalBar();
+                break;
+            case 4:
+                SpawnRotateBar();
+                break;
+            case 5:
+                SpawnShield();
+                break;
+            case 6:
+                SpawnTopBackboard();
+                break;
+            case 7:
+                SpawnSingleBesideBackboard();
+                break;
+            case 8:
+                SpawnTwoBesideBackboard();
+                break;
+            default:
+                break;
+        }
     }
 
     private void SpawnBesideBar()
@@ -91,8 +110,16 @@ public class ObstacleSpawner : MonoBehaviour
         _basket.transform.rotation = Quaternion.identity;
     }
 
-    private void SpawnShield(ObjectTag obstacleTag)
+    private void SpawnShield()
     {
+        // random shield
+        ObjectTag obstacleTag = ObjectTag.QuarterSheild;
+        int random = Random.Range(0, 4);
+        if (random == 0) obstacleTag = ObjectTag.QuarterSheild;
+        else if (random == 1) obstacleTag = ObjectTag.SymmetricalShield;
+        else if (random == 2) obstacleTag = ObjectTag.HalfSheild;
+        else if (random == 3) obstacleTag = ObjectTag.ThreeQuartersShield;
+
         Obstacle obstacle = ObjectPooler.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
 
         float duration = Random.Range(2.8f, 4f);
@@ -135,6 +162,11 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Obstacle obstacle = ObjectPooler.Instance.Spawn(ObjectTag.BesideBackboard).GetComponent<Obstacle>();
 
+        float x = Random.Range(2f, 2.2f);
+        float y = _basket.transform.position.y;
+        float dir = _inTheRight ? 1 : -1;
+
+        _basket.transform.position = new Vector3(dir * x, y);
         obstacle.transform.position = _basket.transform.position;
         obstacle.Appear();
 

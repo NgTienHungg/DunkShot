@@ -14,7 +14,6 @@ public class BasketPoint : MonoBehaviour
         set { _hasPoint = value; }
     }
 
-
     private void Awake()
     {
         _basket = GetComponentInParent<Basket>();

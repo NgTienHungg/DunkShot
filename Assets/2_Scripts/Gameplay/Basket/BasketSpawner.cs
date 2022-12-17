@@ -76,10 +76,17 @@ public class BasketSpawner : MonoBehaviour
 
         SpawnNextBasket();
         _nextBasket.Appear();
-        _nextBasket.Movement.Move();
 
-        //ObstacleSpawner.Instance.Spawn(_nextBasket);
-    }
+        int rnd = Random.Range(0, 100);
+        if (rnd <= 50)
+        {
+            ObstacleSpawner.Instance.Spawn(_nextBasket);
+        }
+        else if (rnd <= 70)
+        {
+            _nextBasket.Movement.Move();
+        }
+    }    
 
     public void PreparePlay()
     {
