@@ -6,7 +6,7 @@ public class UIGameOver : UIGame
     [SerializeField] private RectTransform newBallButton, videoButton;
     [SerializeField] private RectTransform rateButton, restartButton, setttingsButton;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         newBallButton.localScale = Vector3.zero;
 
@@ -41,6 +41,10 @@ public class UIGameOver : UIGame
         gameObject.SetActive(false);
     }
 
+    public override void DisableImmediately()
+    {
+    }
+
     public void OnNewBallButton()
     {
         // audio
@@ -66,4 +70,6 @@ public class UIGameOver : UIGame
     {
         // audio
     }
+
+
 }

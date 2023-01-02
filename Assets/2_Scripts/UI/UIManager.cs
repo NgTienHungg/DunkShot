@@ -2,18 +2,9 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GameState
-{
-    MainMenu,
-    GamePlay,
-    Paused,
-    Continue,
-    GameOver,
-    Settings,
-}
-
 public class UIManager : MonoBehaviour
 {
+    [Header("UI Game States")]
     [SerializeField] private UIMainMenu uiMainMenu;
     [SerializeField] private UIGamePlay uiGamePlay;
     [SerializeField] private UIPaused uiPaused;
@@ -24,19 +15,27 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIContinue uiContinue;
     [SerializeField] private UIGameOver uiGameOver;
 
+    [Header("Customize & Challenge")]
+    [SerializeField] private UICustomizeManager _uiCustomize;
+
     [Header("Flash")]
     [SerializeField] private Image flashImage;
     [SerializeField] private float targetAlpha;
     [SerializeField] private float fadeDuration;
 
-    public static UIManager Instance { get; private set; }
+    private static UIManager _instance;
+    public static UIManager Instance { get => _instance; }
 
-    [HideInInspector] public GameState state;
+    private GameState _state;
+    public GameState State { get => _state; }
 
     private void Awake()
     {
-        Instance = this;
+        _instance = this;
+    }
 
+    private void Start()
+    {
         uiMainMenu.gameObject.SetActive(true);
         uiGamePlay.gameObject.SetActive(false);
         uiPaused.gameObject.SetActive(false);
@@ -46,7 +45,9 @@ public class UIManager : MonoBehaviour
         uiContinue.gameObject.SetActive(false);
         uiGameOver.gameObject.SetActive(false);
 
-        state = GameState.MainMenu;
+        _uiCustomize.gameObject.SetActive(false);
+
+        _state = GameState.MainMenu;
     }
 
     public void OnStartPlay()
@@ -56,7 +57,7 @@ public class UIManager : MonoBehaviour
         uiGamePlay.gameObject.SetActive(true);
         uiGamePlay.Enable();
 
-        state = GameState.GamePlay;
+        _state = GameState.GamePlay;
     }
 
     public void OnContinue()
@@ -68,7 +69,7 @@ public class UIManager : MonoBehaviour
 
         uiGameOver.Disable();
 
-        state = GameState.Continue;
+        _state = GameState.Continue;
     }
 
     public void OnSecondChance()
@@ -80,7 +81,7 @@ public class UIManager : MonoBehaviour
         uiGamePlay.gameObject.SetActive(true);
         uiGamePlay.Enable();
 
-        state = GameState.GamePlay;
+        _state = GameState.GamePlay;
     }
 
     public void OnGameOver()
@@ -94,7 +95,7 @@ public class UIManager : MonoBehaviour
         uiGameOver.gameObject.SetActive(true);
         uiGameOver.Enable();
 
-        state = GameState.GameOver;
+        _state = GameState.GameOver;
     }
 
     public void OnPause()
@@ -102,14 +103,14 @@ public class UIManager : MonoBehaviour
         uiPaused.gameObject.SetActive(true);
         uiPaused.Enable();
 
-        state = GameState.Paused;
+        _state = GameState.Paused;
     }
 
     public void OnResume()
     {
         uiPaused.Disable();
 
-        state = GameState.GamePlay;
+        _state = GameState.GamePlay;
     }
 
     public void OnSettings()
@@ -130,8 +131,8 @@ public class UIManager : MonoBehaviour
 
         flashImage.DOFade(targetAlpha, fadeDuration).SetUpdate(true).OnComplete(() =>
         {
-            uiPaused.DisableImmediate();
-            uiGamePlay.DisableImmediate();
+            uiPaused.DisableImmediately();
+            uiGamePlay.DisableImmediately();
             gameOverControl.SetActive(false);
 
             uiMainMenu.gameObject.SetActive(true);
@@ -140,9 +141,20 @@ public class UIManager : MonoBehaviour
             // renew scene
             Time.timeScale = 1f;
             Controller.Instance.Renew();
-            state = GameState.MainMenu;
+            _state = GameState.MainMenu;
 
             flashImage.DOFade(0f, fadeDuration).SetUpdate(true);
         });
+    }
+
+    public void OpenCustomize()
+    {
+        Debug.Log("open customize from manager");
+        _uiCustomize.Enable();
+    }
+
+    public void CloseCustomize()
+    {
+        _uiCustomize.Disable();
     }
 }

@@ -12,12 +12,10 @@ public class BasketSpawner : MonoBehaviour
     [SerializeField] private Vector2 rangeDistanceY;
     [SerializeField] private Vector2 rangeAngleZ;
 
-    public Basket CurrentBasket { get { return _currentBasket; } }
-
     private Basket _currentBasket, _nextBasket;
+    public Basket CurrentBasket { get => _currentBasket; }
 
     private bool _spawnInLeft;
-
 
     private void OnEnable()
     {
@@ -29,23 +27,21 @@ public class BasketSpawner : MonoBehaviour
         Observer.GetScore -= ChangeTargetBasket;
     }
 
-
     public void Renew()
     {
-        _currentBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
+        _currentBasket = ObjectPooler.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
         _currentBasket.transform.position = firstBasketPos;
         _currentBasket.Point.HasPoint = false; // the first basket has no point
 
-        _nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
+        _nextBasket = ObjectPooler.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
         _nextBasket.transform.position = secondBasketPos;
 
         _spawnInLeft = true;
     }
 
-
     private void SpawnNextBasket()
     {
-        _nextBasket = ObjectPooler.Instance.Spawn(ObjectTag.Basket).GetComponent<Basket>();
+        _nextBasket = ObjectPooler.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
 
         float positionX, distanceY, angleZ;
 
@@ -86,7 +82,7 @@ public class BasketSpawner : MonoBehaviour
         {
             _nextBasket.Movement.Move();
         }
-    }    
+    }
 
     public void PreparePlay()
     {

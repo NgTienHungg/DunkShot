@@ -1,5 +1,5 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIContinue : UIGame
@@ -26,7 +26,7 @@ public class UIContinue : UIGame
         }
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         clock.localScale = Vector3.zero;
         videoAdsButton.localScale = Vector3.zero;
@@ -53,6 +53,10 @@ public class UIContinue : UIGame
     public override void Disable()
     {
         gameObject.SetActive(false);
+    }
+
+    public override void DisableImmediately()
+    {
     }
 
     public void OnClickVideoAdButton()

@@ -3,67 +3,69 @@ using System.Collections.Generic;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler Instance { get; private set; }
+    private static ObjectPooler _instance;
+    public static ObjectPooler Instance { get => _instance; }
 
-    [SerializeField] private Pool[] pools;
+    [SerializeField] private Pool[] Pools;
 
     private void Awake()
     {
-        if (Instance != null)
+        if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
             return;
         }
         else
         {
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
-        foreach (var pool in pools)
+        foreach (var pool in Pools)
         {
-            pool.listObject = new List<GameObject>();
+            pool.ListObject = new List<GameObject>();
 
-            for (int i = 0; i < pool.poolSize; i++)
+            for (int i = 0; i < pool.Size; i++)
             {
-                pool.listObject.Add(CreateGameObject(pool.prefab));
+                pool.ListObject.Add(CreateGameObject(pool.Prefab));
             }
         }
     }
 
     private GameObject CreateGameObject(GameObject prefab)
     {
-        GameObject go = Instantiate(prefab, transform);
-        go.SetActive(false);
-        return go;
+        GameObject obj = Instantiate(prefab);
+        obj.transform.parent = transform;
+        obj.SetActive(false);
+        return obj;
     }
 
-    public GameObject Spawn(ObjectTag tag)
+    public GameObject Spawn(string tag)
     {
-        foreach (Pool pool in pools)
+        foreach (var pool in Pools)
         {
-            if (pool.objectTag == tag)
+            if (pool.Prefab.name == tag)
             {
-                foreach (GameObject go in pool.listObject)
+                foreach (var obj in pool.ListObject)
                 {
-                    if (!go.activeInHierarchy)
+                    if (!obj.activeInHierarchy)
                     {
-                        go.SetActive(true);
-                        return go;
+                        obj.SetActive(true);
+                        return obj;
                     }
                 }
 
                 // expand pool
-                if (pool.expandable)
+                if (pool.Expandable)
                 {
-                    GameObject go = CreateGameObject(pool.prefab);
-                    pool.listObject.Add(go);
-                    go.SetActive(true);
-                    return go;
+                    GameObject obj = CreateGameObject(pool.Prefab);
+                    pool.ListObject.Add(obj);
+                    obj.SetActive(true);
+                    return obj;
                 }
                 else
                 {
-                    Debug.LogWarning("The pool with tag " + tag + " is not expandable, can't spawn more game object!");
+                    Debug.LogWarning("The pool with tag " + tag + " is not expandable!");
                     return null;
                 }
             }
@@ -98,9 +100,9 @@ public class ObjectPooler : MonoBehaviour
     {
         Debug.Log("ObjectPooler recall all!");
 
-        foreach (var pool in pools)
+        foreach (var pool in Pools)
         {
-            foreach (var obj in pool.listObject)
+            foreach (var obj in pool.ListObject)
             {
                 Recall(obj);
             }

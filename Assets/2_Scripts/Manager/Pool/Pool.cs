@@ -5,11 +5,14 @@ using System.Collections.Generic;
 [Serializable]
 public class Pool
 {
-    public GameObject prefab;
-    public ObjectTag objectTag;
-    public int poolSize;
-    public bool expandable = true;
+    public GameObject Prefab;
+
+    //public string Tag;
+
+    public int Size;
+
+    public bool Expandable = true;
 
     [HideInInspector]
-    public List<GameObject> listObject;
+    public List<GameObject> ListObject;
 }

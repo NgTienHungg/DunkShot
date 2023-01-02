@@ -25,7 +25,7 @@ public class BackgroundManager : MonoBehaviour
         clouds.Renew();
         stars.Renew();
 
-        if (SaveManager.Instance.GetInt("OnLightMode") == 1)
+        if (SaveSystem.Instance.GetInt("OnLightMode") == 1)
             OnLightMode();
         else
             OnDarkMode();

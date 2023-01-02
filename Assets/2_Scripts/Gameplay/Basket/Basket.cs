@@ -3,19 +3,20 @@ using DG.Tweening;
 
 public class Basket : MonoBehaviour
 {
-    public BasketNet Net { get { return _net; } }
-    public BasketHoop Hoop { get { return _hoop; } }
-    public BasketPoint Point { get { return _point; } }
-    public BasketMovement Movement { get { return _movement; } }
-    public BasketObstacle Obstacle { get { return _obstacle; } }
-
     private BasketNet _net;
+    public BasketNet Net { get => _net; }
+
     private BasketHoop _hoop;
+    public BasketHoop Hoop { get => _hoop; }
+
     private BasketPoint _point;
+    public BasketPoint Point { get => _point; }
 
     private BasketMovement _movement;
-    private BasketObstacle _obstacle;
+    public BasketMovement Movement { get => _movement; }
 
+    private BasketObstacle _obstacle;
+    public BasketObstacle Obstacle { get => _obstacle; }
 
     private void Awake()
     {

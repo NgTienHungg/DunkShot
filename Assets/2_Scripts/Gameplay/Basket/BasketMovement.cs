@@ -16,7 +16,7 @@ public class BasketMovement : MonoBehaviour
 
     public void Move()
     {
-        _trajectory = ObjectPooler.Instance.Spawn(ObjectTag.BasketTrajectory).GetComponent<BasketTrajectory>();
+        _trajectory = ObjectPooler.Instance.Spawn(PoolTag.BASKET_TRAJECTORY).GetComponent<BasketTrajectory>();
         _trajectory.transform.position = new Vector3(Mathf.Sign(transform.position.x) * 2.15f, transform.position.y);
         _trajectory.Appear();
 

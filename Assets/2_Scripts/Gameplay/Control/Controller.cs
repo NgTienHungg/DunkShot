@@ -46,7 +46,7 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.Instance.state == GameState.MainMenu && Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject())
+        if (UIManager.Instance.State == GameState.MainMenu && Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject())
         {
             UIManager.Instance.OnStartPlay();
             this.IsPlaying = true;

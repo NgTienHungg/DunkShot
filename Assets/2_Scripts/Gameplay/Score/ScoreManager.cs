@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private UIScore uiScore;
-
-    [SerializeField] private UIScoreNotify notify;
-
     public static ScoreManager Instance { get; private set; }
     public int Score { get; private set; }
     public int Bounce { get; private set; }
     public int Perfect { get; private set; }
     public bool IsPerfect { get; private set; }
 
+    [SerializeField] private UIScore _uiScore;
+
+    [SerializeField] private UIScoreNotify _notify;
 
     private void Awake()
     {
@@ -26,8 +25,8 @@ public class ScoreManager : MonoBehaviour
         Perfect = 0;
         IsPerfect = true;
 
-        uiScore.Renew();
-        notify.Renew();
+        _uiScore.Renew();
+        _notify.Renew();
     }
 
     private void OnEnable()
@@ -77,8 +76,8 @@ public class ScoreManager : MonoBehaviour
         Score += scoreAdd;
 
         // notify
-        uiScore.Change();
-        notify.Show(Perfect, Bounce, scoreAdd);
+        _uiScore.Change();
+        _notify.Show(Perfect, Bounce, scoreAdd);
     }
 
     private void ClearPerfectAndBounce()

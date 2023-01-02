@@ -5,9 +5,9 @@ public class ScrollBackground : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float speedFactor;
 
-    private Transform[] _listImage;
+    private Transform[] _images;
     private float _imageDistance;
-    private int _visibleImg;
+    private int _visibleImage;
 
     private Transform mainCam;
     private Vector3 camPos, targetPos;
@@ -18,9 +18,9 @@ public class ScrollBackground : MonoBehaviour
         mainCam = Camera.main.transform;
         _imageDistance = mainCam.GetComponent<Camera>().orthographicSize * 2f;
 
-        _listImage = new Transform[transform.childCount];
-        for (int i = 0; i < _listImage.Length; i++)
-            _listImage[i] = transform.GetChild(i);
+        _images = new Transform[transform.childCount];
+        for (int i = 0; i < _images.Length; i++)
+            _images[i] = transform.GetChild(i);
     }
 
     private void FixedUpdate()
@@ -28,26 +28,26 @@ public class ScrollBackground : MonoBehaviour
         distance = (mainCam.position.y - camPos.y) / Time.fixedDeltaTime;
         camPos = mainCam.position;
 
-        foreach (var img in _listImage)
+        foreach (var img in _images)
         {
             targetPos = img.position - new Vector3(0f, distance * speedFactor);
             img.position = Vector3.Lerp(img.position, targetPos, Time.fixedDeltaTime);
         }
 
-        if (_listImage[1 - _visibleImg].position.y <= mainCam.transform.position.y)
+        if (_images[1 - _visibleImage].position.y <= mainCam.transform.position.y)
         {
-            _listImage[_visibleImg].transform.position = _listImage[1 - _visibleImg].transform.position + new Vector3(0f, _imageDistance);
-            _visibleImg = 1 - _visibleImg;
+            _images[_visibleImage].transform.position = _images[1 - _visibleImage].transform.position + new Vector3(0f, _imageDistance);
+            _visibleImage = 1 - _visibleImage;
         }
     }
 
     public void Renew()
     {
         // set lại vị trí cho các image
-        for (int i = 0; i < _listImage.Length; i++)
-            _listImage[i].position = _imageDistance * i * Vector3.up;
+        for (int i = 0; i < _images.Length; i++)
+            _images[i].position = _imageDistance * i * Vector3.up;
 
-        _visibleImg = 0;
+        _visibleImage = 0;
         camPos = mainCam.transform.position;
     }
 }

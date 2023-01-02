@@ -5,7 +5,7 @@ public class UISettings : UIGame
 {
     [SerializeField] private RectTransform adsButton;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         adsButton.transform.DOKill();
     }
@@ -18,6 +18,10 @@ public class UISettings : UIGame
     public override void Disable()
     {
         gameObject.SetActive(false);
+    }
+
+    public override void DisableImmediately()
+    {
     }
 
     public void OnBackButton()

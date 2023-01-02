@@ -2,10 +2,10 @@ using DG.Tweening;
 
 public class UIGamePlay : UIGame
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        canvasGroup.interactable = true;
-        canvasGroup.alpha = 1f;
+        _canvasGroup.interactable = true;
+        _canvasGroup.alpha = 1f;
     }
 
     public override void Enable()
@@ -14,17 +14,17 @@ public class UIGamePlay : UIGame
 
     public override void Disable()
     {
-        canvasGroup.interactable = false;
-        canvasGroup.DOFade(0f, 0.6f).OnComplete(() =>
+        _canvasGroup.interactable = false;
+        _canvasGroup.DOFade(0f, 0.6f).OnComplete(() =>
         {
             gameObject.SetActive(false);
         });
     }
 
-    public void DisableImmediate()
+    public override void DisableImmediately()
     {
-        canvasGroup.interactable = false;
-        canvasGroup.alpha = 0f;
+        _canvasGroup.interactable = false;
+        _canvasGroup.alpha = 0f;
         gameObject.SetActive(false);
     }
 

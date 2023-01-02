@@ -2,7 +2,7 @@ using DG.Tweening;
 
 public class UIMainMenu : UIGame
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
     }
 
@@ -12,11 +12,26 @@ public class UIMainMenu : UIGame
 
     public override void Disable()
     {
-        canvasGroup.DOFade(0f, 0.5f).SetEase(Ease.OutCubic).OnComplete(() =>
+        _canvasGroup.DOFade(0f, 0.5f).SetEase(Ease.OutCubic).OnComplete(() =>
         {
-            canvasGroup.alpha = 1f;
+            _canvasGroup.alpha = 1f;
             gameObject.SetActive(false);
         });
+    }
+
+    public override void DisableImmediately()
+    {
+    }
+
+    public void OnCustomizeButton()
+    {
+        // audio
+        UIManager.Instance.OpenCustomize();
+    }
+
+    public void OnChallengesButton()
+    {
+        // audio
     }
 
     public void OnSettingsButton()
@@ -36,16 +51,6 @@ public class UIMainMenu : UIGame
     }
 
     public void OnGiftButton()
-    {
-        // audio
-    }
-
-    public void OnCustomizeButton()
-    {
-        // audio
-    }
-
-    public void OnChallengesButton()
     {
         // audio
     }
