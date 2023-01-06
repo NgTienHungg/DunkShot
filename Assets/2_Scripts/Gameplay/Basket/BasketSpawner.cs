@@ -29,11 +29,11 @@ public class BasketSpawner : MonoBehaviour
 
     public void Renew()
     {
-        _currentBasket = ObjectPooler.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
+        _currentBasket = ObjectPool.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
         _currentBasket.transform.position = firstBasketPos;
         _currentBasket.Point.HasPoint = false; // the first basket has no point
 
-        _nextBasket = ObjectPooler.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
+        _nextBasket = ObjectPool.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
         _nextBasket.transform.position = secondBasketPos;
 
         _spawnInLeft = true;
@@ -41,7 +41,7 @@ public class BasketSpawner : MonoBehaviour
 
     private void SpawnNextBasket()
     {
-        _nextBasket = ObjectPooler.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
+        _nextBasket = ObjectPool.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
 
         float positionX, distanceY, angleZ;
 

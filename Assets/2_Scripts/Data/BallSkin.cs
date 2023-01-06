@@ -15,12 +15,12 @@ public class BallSkin : MonoBehaviour
     {
         _data = data;
         _name = data.Type.ToString() + id.ToString("00"); // EX: _name = TradingBall01
-        _unlocked = SaveSystem.Instance.GetInt("Unlocked" + _name) == 1 ? true : false;
+        _unlocked = SaveSystem.GetInt("Unlocked" + _name) == 1 ? true : false;
     }
 
     public void Unlock()
     {
-        SaveSystem.Instance.SetInt("Unlocked" + name, 1);
+        SaveSystem.SetInt("Unlocked" + name, 1);
         _unlocked = true;
     }
 }

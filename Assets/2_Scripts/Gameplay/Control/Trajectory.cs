@@ -53,12 +53,12 @@ public class Trajectory : MonoBehaviour
     private void CreateSimulationBall()
     {
         simulationBall = Instantiate(ballPrefab);
-        simulationBall.GetComponent<SpriteRenderer>().enabled = false;
-        ballRigidBody = simulationBall.GetComponent<Rigidbody2D>();
 
-        // remove all particle
-        foreach (Transform child in simulationBall.transform)
-            Destroy(child.gameObject);
+        simulationBall.GetComponent<SpriteRenderer>().enabled = false;
+        simulationBall.GetComponent<Ball>().enabled = false;
+        simulationBall.GetComponentInChildren<BallTail>().enabled = false;
+
+        ballRigidBody = simulationBall.GetComponent<Rigidbody2D>();
 
         SceneManager.MoveGameObjectToScene(simulationBall, simulationScene);
     }

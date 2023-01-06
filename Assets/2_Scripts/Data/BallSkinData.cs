@@ -14,17 +14,21 @@ public enum SkinType
 [CreateAssetMenu(menuName = "Data/BallSkin")]
 public class BallSkinData : ScriptableObject
 {
-    [PreviewField(80), HideLabel]
-    [HorizontalGroup("Split", 80)]
+    [Header("Ball")]
+    [PreviewField(80)]
     public Sprite Sprite;
 
     [TextArea]
-    [VerticalGroup("Split/Right")]
     public string Description;
 
-    [VerticalGroup("Split/Right"), LabelWidth(50)]
     public SkinType Type;
 
     [ShowIf("Type", SkinType.TradingBall)]
     public int Price;
+
+    [Header("Tail")]
+    [PreviewField(80)]
+    public Sprite TailSprite;
+
+    public Gradient TailColor;
 }

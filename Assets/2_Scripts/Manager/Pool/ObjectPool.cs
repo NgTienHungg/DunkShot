@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPool : MonoBehaviour
 {
-    private static ObjectPooler _instance;
-    public static ObjectPooler Instance { get => _instance; }
+    private static ObjectPool _instance;
+    public static ObjectPool Instance { get => _instance; }
 
     [SerializeField] private Pool[] Pools;
 

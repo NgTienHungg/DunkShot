@@ -72,7 +72,7 @@ public class Controller : MonoBehaviour
 
         yield return new WaitForSeconds(0.25f);
 
-        ObjectPooler.Instance.Recall(Mechanic.GetBall().gameObject);
+        ObjectPool.Instance.Recall(Mechanic.GetBall().gameObject);
 
         // restart
         if (ScoreManager.Instance.Score == 0)

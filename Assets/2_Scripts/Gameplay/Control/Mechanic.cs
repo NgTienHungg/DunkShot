@@ -33,9 +33,9 @@ public class Mechanic : MonoBehaviour
         basket = Controller.Instance.BasketSpawner.CurrentBasket;
 
         if (ball != null)
-            ObjectPooler.Instance.Recall(ball.gameObject);
+            ObjectPool.Instance.Recall(ball.gameObject);
 
-        ball = ObjectPooler.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
+        ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
         ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 2.5f);
         ball.Appear();
 

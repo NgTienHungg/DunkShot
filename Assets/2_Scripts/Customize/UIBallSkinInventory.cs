@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class UIBallSkinInventory : MonoBehaviour
 {
@@ -13,15 +14,19 @@ public class UIBallSkinInventory : MonoBehaviour
     [SerializeField] private Transform _secretBallContent;
     [SerializeField] private Transform _fortuneBallContent;
 
+    private List<UIBallSkin> _listBallSkin;
+
     private void Awake()
     {
+        _listBallSkin = new List<UIBallSkin>();
+
         foreach (BallSkin skin in DataManager.Instance.BallSkins)
         {
-            CreateUIBallSkin(skin);
+            _listBallSkin.Add(CreateUIBallSkin(skin));
         }
     }
 
-    private void CreateUIBallSkin(BallSkin ballSkin)
+    private UIBallSkin CreateUIBallSkin(BallSkin ballSkin)
     {
         UIBallSkin uiBallSkin = null;
 
@@ -49,5 +54,27 @@ public class UIBallSkinInventory : MonoBehaviour
 
         uiBallSkin.gameObject.name = ballSkin.Name;
         uiBallSkin.SetSkin(ballSkin);
+        uiBallSkin.Renew();
+
+        return uiBallSkin;
+    }
+
+    private void OnEnable()
+    {
+        Observer.ChangeBallSkin += ReloadInventory;
+    }
+
+    private void OnDisable()
+    {
+        Observer.ChangeBallSkin -= ReloadInventory;
+    }
+
+    private void ReloadInventory()
+    {
+        Debug.Log("reload ball skin");
+        foreach (var uiBallSkin in _listBallSkin)
+        {
+            uiBallSkin.Renew();
+        }
     }
 }

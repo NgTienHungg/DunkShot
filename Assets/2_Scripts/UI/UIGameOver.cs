@@ -14,9 +14,7 @@ public class UIGameOver : UIGame
         videoButton.transform.DOKill();
 
         rateButton.localScale = Vector3.zero;
-
         restartButton.localScale = Vector3.zero;
-
         setttingsButton.localScale = Vector3.zero;
     }
 
@@ -30,9 +28,7 @@ public class UIGameOver : UIGame
         });
 
         rateButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.1f);
-
         restartButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.2f);
-
         setttingsButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.3f);
     }
 
@@ -43,6 +39,7 @@ public class UIGameOver : UIGame
 
     public override void DisableImmediately()
     {
+        gameObject.SetActive(false);
     }
 
     public void OnNewBallButton()
@@ -70,6 +67,4 @@ public class UIGameOver : UIGame
     {
         // audio
     }
-
-
 }

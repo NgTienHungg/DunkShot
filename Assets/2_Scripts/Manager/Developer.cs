@@ -1,11 +1,11 @@
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 public class Developer
 {
-    //[MenuItem("Developer/Clear PlayerPrefs")]
+    [MenuItem("Developer/Clear PlayerPrefs")]
     public static void Clear()
     {
-        UnityEngine.PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
     }
 }

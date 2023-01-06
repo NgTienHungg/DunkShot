@@ -36,4 +36,13 @@ public class BallTail : MonoBehaviour
         _blackSmoke.Play();
         _specialTail.Play();
     }
+
+    public void LoadSkin()
+    {
+        // load special tail
+        _specialTail.textureSheetAnimation.SetSprite(0, DataManager.Instance.BallSkinInUse.Data.TailSprite);
+
+        var color = _specialTail.colorOverLifetime;
+        color.color = DataManager.Instance.BallSkinInUse.Data.TailColor;
+    }
 }

@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(string soundName)
     {
-        if (SaveSystem.Instance.GetInt(SaveKey.ON_SOUND) == 0)
+        if (SaveSystem.GetInt(SaveKey.ON_SOUND) == 0)
         {
             return;
         }
@@ -51,7 +51,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayVibrate()
     {
-        if (SaveSystem.Instance.GetInt(SaveKey.ON_VIBRATE) == 1)
+        if (SaveSystem.GetInt(SaveKey.ON_VIBRATE) == 1)
         {
             Handheld.Vibrate();
         }

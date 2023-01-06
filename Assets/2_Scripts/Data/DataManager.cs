@@ -34,6 +34,8 @@ public class DataManager : MonoBehaviour
 
         LoadBallSkinData();
         LoadThemeData();
+
+        InitGame();
     }
 
     private void LoadBallSkinData()
@@ -51,11 +53,34 @@ public class DataManager : MonoBehaviour
             _ballSkins[i].SetData(_ballSkinDataSet[i], i);
             _ballSkins[i].gameObject.name = _ballSkins[i].Name;
         }
-
-        _ballSkins[0].Unlock();
     }
 
     private void LoadThemeData()
     {
+    }
+
+    private void InitGame()
+    {
+        if (!_ballSkins[0].Unlocked)
+        {
+            _ballSkins[0].Unlock();
+            SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, _ballSkins[0].Name);
+        }
+    }
+
+    public BallSkin BallSkinInUse
+    {
+        get
+        {
+            string currentSkinName = SaveSystem.GetString(SaveKey.BALL_SKIN_IN_USE);
+            foreach (var ballSkin in _ballSkins)
+            {
+                if (ballSkin.Name == currentSkinName)
+                {
+                    return ballSkin;
+                }
+            }
+            return null;
+        }
     }
 }

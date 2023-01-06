@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BackgroundManager : MonoBehaviour
 {
-    public static BackgroundManager Instance { get; private set; }
+    private static BackgroundManager _instance;
+    public static BackgroundManager Instance { get => _instance; }
 
     [Header("Background")]
     [SerializeField] private GameObject darkMode;
@@ -14,10 +15,10 @@ public class BackgroundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (_instance == null)
+            _instance = this;
         else
-            Destroy(Instance.gameObject);
+            Destroy(gameObject);
     }
 
     public void Renew()
@@ -25,7 +26,7 @@ public class BackgroundManager : MonoBehaviour
         clouds.Renew();
         stars.Renew();
 
-        if (SaveSystem.Instance.GetInt("OnLightMode") == 1)
+        if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
             OnLightMode();
         else
             OnDarkMode();

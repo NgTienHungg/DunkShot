@@ -15,7 +15,19 @@ public class Ball : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         _tail = GetComponentInChildren<BallTail>();
 
+        LoadSkin();
         Renew();
+    }
+
+    private void OnEnable()
+    {
+        Observer.ChangeBallSkin += LoadSkin;
+    }
+
+    public void LoadSkin()
+    {
+        _renderer.sprite = DataManager.Instance.BallSkinInUse.Data.Sprite;
+        _tail.LoadSkin();
     }
 
     public void Renew()
@@ -55,12 +67,10 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("collide obstacle");
             Observer.BallCollideObstacle?.Invoke();
         }
         else if (collision.gameObject.CompareTag("Hoop"))
         {
-            Debug.Log("collide hoop");
             Observer.BallCollideHoop?.Invoke();
             _tail.Renew();
         }

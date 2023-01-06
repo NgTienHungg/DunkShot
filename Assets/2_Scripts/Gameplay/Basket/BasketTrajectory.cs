@@ -56,7 +56,7 @@ public class BasketTrajectory : MonoBehaviour
 
         transform.DOScale(1f, 0.3f).OnComplete(() =>
         {
-            ObjectPooler.Instance.Recall(gameObject);
+            ObjectPool.Instance.Recall(gameObject);
         });
     }
 

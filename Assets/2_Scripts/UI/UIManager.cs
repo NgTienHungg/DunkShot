@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
 
     public void OnBackHome()
     {
-        ObjectPooler.Instance.RecallAll();
+        ObjectPool.Instance.RecallAll();
         DOTween.KillAll();
 
         flashImage.DOFade(targetAlpha, fadeDuration).SetUpdate(true).OnComplete(() =>
@@ -149,7 +149,6 @@ public class UIManager : MonoBehaviour
 
     public void OpenCustomize()
     {
-        Debug.Log("open customize from manager");
         _uiCustomize.Enable();
     }
 

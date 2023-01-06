@@ -11,4 +11,6 @@ public static class Observer
 
     public static GameEvent BallSmoke;
     public static GameEvent BallFlame;
+
+    public static GameEvent ChangeBallSkin;
 }

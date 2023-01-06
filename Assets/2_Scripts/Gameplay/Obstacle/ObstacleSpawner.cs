@@ -53,7 +53,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnBesideBar()
     {
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(PoolTag.BAR_4).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_4).GetComponent<Obstacle>();
 
         float x = Random.Range(1.35f, 1.55f);
         float y = Random.Range(0.6f, 0.85f);
@@ -68,7 +68,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnTopBar()
     {
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(PoolTag.BAR_3).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_3).GetComponent<Obstacle>();
 
         float y = Random.Range(2.4f, 3f);
 
@@ -81,7 +81,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnHorizontalBar()
     {
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(PoolTag.BAR_1).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_1).GetComponent<Obstacle>();
 
         float x = Random.Range(3f, 4f);
         float dir = _inTheRight ? -1 : 1;
@@ -95,7 +95,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnRotateBar()
     {
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
         float x = Random.Range(3.2f, 3.5f);
         float y = Random.Range(-0.5f, -0.2f);
@@ -114,7 +114,8 @@ public class ObstacleSpawner : MonoBehaviour
     {
         // random shield
         string obstacleTag = "Shield" + Random.Range(1, 5);
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
+        Debug.Log("SPAWN " + obstacleTag);
+        Obstacle obstacle = ObjectPool.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
 
         float duration = Random.Range(2.8f, 4f);
 
@@ -127,7 +128,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnTopBackboard()
     {
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(PoolTag.BACK_BOARD).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BACK_BOARD).GetComponent<Obstacle>();
 
         float y = Random.Range(2.6f, 3f);
 
@@ -140,7 +141,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnSingleBesideBackboard()
     {
-        Obstacle obstacle = ObjectPooler.Instance.Spawn(PoolTag.BACK_BOARD).GetComponent<Obstacle>();
+        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BACK_BOARD).GetComponent<Obstacle>();
 
         float x = Random.Range(1.85f, 2.1f);
         float dir = _inTheRight ? -1 : 1;
