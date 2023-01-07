@@ -18,17 +18,22 @@ public class BallSkinData : ScriptableObject
     [PreviewField(80)]
     public Sprite Sprite;
 
-    [TextArea]
-    public string Description;
-
-    public SkinType Type;
-
-    [ShowIf("Type", SkinType.TradingBall)]
-    public int Price;
-
     [Header("Tail")]
     [PreviewField(80)]
     public Sprite TailSprite;
 
     public Gradient TailColor;
+
+    [Space(20)]
+    public SkinType Type;
+
+    [ShowIf("Type", SkinType.TradingBall)]
+    public int Price;
+
+    [ShowIf("Type", SkinType.VideoBall)]
+    public int NumberOfVideos;
+
+    [TextArea]
+    [ShowIf("Type", SkinType.MissionBall)]
+    public string Description;
 }

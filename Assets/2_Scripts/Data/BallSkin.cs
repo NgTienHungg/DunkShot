@@ -2,25 +2,43 @@ using UnityEngine;
 
 public class BallSkin : MonoBehaviour
 {
-    private BallSkinData _data;
-    public BallSkinData Data { get => _data; }
+    public BallSkinData Data { get; private set; }
 
-    private string _name;
-    public string Name { get => _name; }
+    public string Name { get; private set; }
 
-    private bool _unlocked;
-    public bool Unlocked { get => _unlocked; }
+    public bool Unlocked { get; private set; }
+
+    public int VideoWatched { get; private set; }
+
+    // Key save
+    private static readonly string UNLOCKED = "Unlocked";
+    private static readonly string VIDEO_WATCHED = "VideoWatched";
 
     public void SetData(BallSkinData data, int id)
     {
-        _data = data;
-        _name = data.Type.ToString() + id.ToString("00"); // EX: _name = TradingBall01
-        _unlocked = SaveSystem.GetInt("Unlocked" + _name) == 1 ? true : false;
+        Data = data;
+        Name = data.Type.ToString() + id.ToString("00"); // EX: _name = TradingBall01
+
+        Unlocked = SaveSystem.GetInt(UNLOCKED + Name) == 1 ? true : false;
+
+        if (Data.Type == SkinType.VideoBall)
+        {
+            VideoWatched = SaveSystem.GetInt(VIDEO_WATCHED + Name);
+        }
     }
 
     public void Unlock()
     {
-        SaveSystem.SetInt("Unlocked" + name, 1);
-        _unlocked = true;
+        SaveSystem.SetInt(UNLOCKED + name, 1);
+        Unlocked = true;
+    }
+
+    public void WatchVideo()
+    {
+        if (VideoWatched == Data.NumberOfVideos)
+            return;
+
+        VideoWatched++;
+        SaveSystem.SetInt(VIDEO_WATCHED + Name, VideoWatched);
     }
 }

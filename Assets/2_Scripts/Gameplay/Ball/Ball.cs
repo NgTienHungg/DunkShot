@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class Ball : MonoBehaviour
 {
@@ -39,6 +40,12 @@ public class Ball : MonoBehaviour
         _tail.Renew();
     }
 
+    [Button("FLame")]
+    public void Flame()
+    {
+        _tail.Flaming();
+    }
+
     public void Appear()
     {
         _renderer.color = new Color(1f, 1f, 1f, 0f);
@@ -59,7 +66,7 @@ public class Ball : MonoBehaviour
     {
         transform.parent = null;
         _rigidbody.simulated = true;
-        _rigidbody.angularVelocity = force.magnitude * 20f; // max = 750f
+        _rigidbody.angularVelocity = force.magnitude * 35f; // max = 750f
         _rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 

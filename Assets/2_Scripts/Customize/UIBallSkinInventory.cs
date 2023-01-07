@@ -3,15 +3,28 @@ using System.Collections.Generic;
 
 public class UIBallSkinInventory : MonoBehaviour
 {
-    [Header("Prefab")]
-    [SerializeField] private GameObject _prefab;
-
-    [Header("Contents")]
+    [Header("Trading Ball")]
+    [SerializeField] private GameObject _uiTradingBallSkinPrefab;
     [SerializeField] private Transform _tradingBallContent;
+
+    [Header("Video Ball")]
+    [SerializeField] private GameObject _uiVideoBallSkinPrefab;
     [SerializeField] private Transform _videoBallContent;
+
+    [Header("Mission Ball")]
+    [SerializeField] private GameObject _uiMisisonBallSkinPrefab;
     [SerializeField] private Transform _missionBallContent;
+
+    [Header("Challenge Ball")]
+    [SerializeField] private GameObject _uiChallengeBallSkinPrefab;
     [SerializeField] private Transform _challengeBallContent;
+
+    [Header("Secret Ball")]
+    [SerializeField] private GameObject _uiSecretBallSkinPrefab;
     [SerializeField] private Transform _secretBallContent;
+
+    [Header("Fortune Ball")]
+    [SerializeField] private GameObject _uiFortuneBallSkinPrefab;
     [SerializeField] private Transform _fortuneBallContent;
 
     private List<UIBallSkin> _listBallSkin;
@@ -33,22 +46,22 @@ public class UIBallSkinInventory : MonoBehaviour
         switch (ballSkin.Data.Type)
         {
             case SkinType.TradingBall:
-                uiBallSkin = Instantiate(_prefab, _tradingBallContent).GetComponent<UIBallSkin>();
+                uiBallSkin = Instantiate(_uiTradingBallSkinPrefab, _tradingBallContent).GetComponent<UIBallSkin>();
                 break;
             case SkinType.VideoBall:
-                uiBallSkin = Instantiate(_prefab, _tradingBallContent).GetComponent<UIBallSkin>();
+                uiBallSkin = Instantiate(_uiVideoBallSkinPrefab, _videoBallContent).GetComponent<UIBallSkin>();
                 break;
             case SkinType.MissionBall:
-                uiBallSkin = Instantiate(_prefab, _tradingBallContent).GetComponent<UIBallSkin>();
+                uiBallSkin = Instantiate(_uiMisisonBallSkinPrefab, _missionBallContent).GetComponent<UIBallSkin>();
                 break;
             case SkinType.ChallengeBall:
-                uiBallSkin = Instantiate(_prefab, _tradingBallContent).GetComponent<UIBallSkin>();
+                uiBallSkin = Instantiate(_uiChallengeBallSkinPrefab, _challengeBallContent).GetComponent<UIBallSkin>();
                 break;
             case SkinType.SecretBall:
-                uiBallSkin = Instantiate(_prefab, _tradingBallContent).GetComponent<UIBallSkin>();
+                uiBallSkin = Instantiate(_uiSecretBallSkinPrefab, _secretBallContent).GetComponent<UIBallSkin>();
                 break;
             case SkinType.FortuneBall:
-                uiBallSkin = Instantiate(_prefab, _tradingBallContent).GetComponent<UIBallSkin>();
+                uiBallSkin = Instantiate(_uiFortuneBallSkinPrefab, _fortuneBallContent).GetComponent<UIBallSkin>();
                 break;
         }
 
@@ -71,7 +84,6 @@ public class UIBallSkinInventory : MonoBehaviour
 
     private void ReloadInventory()
     {
-        Debug.Log("reload ball skin");
         foreach (var uiBallSkin in _listBallSkin)
         {
             uiBallSkin.Renew();

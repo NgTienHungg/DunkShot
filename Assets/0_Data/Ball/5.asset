@@ -19,8 +19,8 @@ MonoBehaviour:
   TailSprite: {fileID: 21300000, guid: b2d395ad2ccc020478b1ea8b0c9317fd, type: 3}
   TailColor:
     serializedVersion: 2
-    key0: {r: 0.89986145, g: 1, b: 0, a: 1}
-    key1: {r: 0, g: 1, b: 0.89589477, a: 1}
+    key0: {r: 1, g: 0.8888321, b: 0, a: 1}
+    key1: {r: 0, g: 1, b: 0.0575552, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

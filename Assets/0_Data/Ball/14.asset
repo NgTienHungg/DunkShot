@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
-  m_Name: 9
+  m_Name: 14
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 3e03844030d486f47957fc6eb9283696, type: 3}
-  Description: Bong am duong
-  Type: 0
-  Price: 100
-  TailSprite: {fileID: 21300000, guid: 75c057800ad886c4e8757e13da0da6d8, type: 3}
+  Sprite: {fileID: 21300000, guid: 9d4333f4cff8704408899dc557758573, type: 3}
+  TailSprite: {fileID: 21300000, guid: 9aedebe9e39d88f4ba29630423965235, type: 3}
   TailColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -46,3 +43,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  Type: 1
+  Price: 100
+  NumberOfVideos: 8
+  Description: 

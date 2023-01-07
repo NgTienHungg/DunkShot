@@ -11,7 +11,7 @@ public class ScrollBackground : MonoBehaviour
 
     private Transform mainCam;
     private Vector3 camPos, targetPos;
-    private float distance;
+    private float velocity;
 
     private void Awake()
     {
@@ -25,12 +25,12 @@ public class ScrollBackground : MonoBehaviour
 
     private void FixedUpdate()
     {
-        distance = (mainCam.position.y - camPos.y) / Time.fixedDeltaTime;
+        velocity = (mainCam.position.y - camPos.y) / Time.fixedDeltaTime;
         camPos = mainCam.position;
 
         foreach (var img in _images)
         {
-            targetPos = img.position - new Vector3(0f, distance * speedFactor);
+            targetPos = img.position - new Vector3(0f, velocity * speedFactor);
             img.position = Vector3.Lerp(img.position, targetPos, Time.fixedDeltaTime);
         }
 

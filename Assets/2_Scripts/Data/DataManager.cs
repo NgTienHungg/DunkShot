@@ -10,49 +10,45 @@ public class DataManager : MonoBehaviour
     [SerializeField] private BallSkinData[] _ballSkinDataSet;
     [SerializeField] private ThemeData[] _themeDataSet;
 
-    private static DataManager _instance;
-    public static DataManager Instance { get => _instance; }
-
-    private BallSkin[] _ballSkins;
-    public BallSkin[] BallSkins { get => _ballSkins; }
-
-    private Theme[] _themes;
-    public Theme[] Themes { get => _themes; }
+    public static DataManager Instance { get; private set; }
+    public BallSkin[] BallSkins { get; private set; }
+    public Theme[] Themes { get; private set; }
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         else
         {
-            _instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
         LoadBallSkinData();
         LoadThemeData();
-
         InitGame();
     }
 
     private void LoadBallSkinData()
     {
-        _ballSkins = new BallSkin[_ballSkinDataSet.Length];
+        BallSkins = new BallSkin[_ballSkinDataSet.Length];
 
         // create a temporary gameobject
         GameObject newObj = new GameObject();
         newObj.AddComponent<BallSkin>();
 
         // instantiate all skin in holder, and set data
-        for (int i = 0; i < _ballSkins.Length; i++)
+        for (int i = 0; i < BallSkins.Length; i++)
         {
-            _ballSkins[i] = Instantiate(newObj, _ballSkinHolder).GetComponent<BallSkin>();
-            _ballSkins[i].SetData(_ballSkinDataSet[i], i);
-            _ballSkins[i].gameObject.name = _ballSkins[i].Name;
+            BallSkins[i] = Instantiate(newObj, _ballSkinHolder).GetComponent<BallSkin>();
+            BallSkins[i].SetData(_ballSkinDataSet[i], i);
+            BallSkins[i].gameObject.name = BallSkins[i].Name;
         }
+
+        Destroy(newObj);
     }
 
     private void LoadThemeData()
@@ -61,10 +57,10 @@ public class DataManager : MonoBehaviour
 
     private void InitGame()
     {
-        if (!_ballSkins[0].Unlocked)
+        if (!BallSkins[0].Unlocked)
         {
-            _ballSkins[0].Unlock();
-            SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, _ballSkins[0].Name);
+            BallSkins[0].Unlock();
+            SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, BallSkins[0].Name);
         }
     }
 
@@ -73,7 +69,7 @@ public class DataManager : MonoBehaviour
         get
         {
             string currentSkinName = SaveSystem.GetString(SaveKey.BALL_SKIN_IN_USE);
-            foreach (var ballSkin in _ballSkins)
+            foreach (var ballSkin in BallSkins)
             {
                 if (ballSkin.Name == currentSkinName)
                 {

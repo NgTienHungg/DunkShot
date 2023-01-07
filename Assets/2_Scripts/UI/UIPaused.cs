@@ -43,6 +43,7 @@ public class UIPaused : UIGame
     public void OnCustomizeButton()
     {
         // audio
+        UIManager.Instance.OpenCustomize();
     }
 
     public void OnLeaderboardButton()

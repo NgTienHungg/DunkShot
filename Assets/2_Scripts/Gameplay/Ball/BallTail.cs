@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BallTail : MonoBehaviour
@@ -27,10 +28,11 @@ public class BallTail : MonoBehaviour
 
     private void Smoking()
     {
-        _whiteSmoke.Play();
+        //_whiteSmoke.Play();
     }
 
-    private void Flaming()
+    // private 
+    public void Flaming()
     {
         _whiteSmoke.Stop();
         _blackSmoke.Play();
