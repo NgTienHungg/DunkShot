@@ -56,11 +56,17 @@ public class UITradingBallSkin : UIBallSkin
                 return;
             }
 
-            Debug.Log("BUY SKIN");
+            Buy();
             Unlock();
         }
 
         Select();
+    }
+
+    private void Buy()
+    {
+        Debug.Log("BUY SKIN");
+        SaveSystem.SetInt(SaveKey.STAR, SaveSystem.GetInt(SaveKey.STAR) - _skin.Data.Price);
     }
 
     protected override void Unlock()

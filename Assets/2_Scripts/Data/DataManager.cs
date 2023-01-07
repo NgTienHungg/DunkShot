@@ -53,6 +53,7 @@ public class DataManager : MonoBehaviour
 
     private void LoadThemeData()
     {
+        Themes = new Theme[_themeDataSet.Length];
     }
 
     private void InitGame()
@@ -68,12 +69,28 @@ public class DataManager : MonoBehaviour
     {
         get
         {
-            string currentSkinName = SaveSystem.GetString(SaveKey.BALL_SKIN_IN_USE);
+            string skinName = SaveSystem.GetString(SaveKey.BALL_SKIN_IN_USE);
             foreach (var ballSkin in BallSkins)
             {
-                if (ballSkin.Name == currentSkinName)
+                if (ballSkin.Name == skinName)
                 {
                     return ballSkin;
+                }
+            }
+            return null;
+        }
+    }
+
+    public Theme ThemeInUse
+    {
+        get
+        {
+            string skinName = SaveSystem.GetString(SaveKey.THEME_IN_USE);
+            foreach (var theme in Themes)
+            {
+                if (theme.Name == skinName)
+                {
+                    return theme;
                 }
             }
             return null;

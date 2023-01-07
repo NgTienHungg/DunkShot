@@ -8,4 +8,10 @@ public class Developer
     {
         PlayerPrefs.DeleteAll();
     }
+
+    [MenuItem("Developer/Add star")]
+    public static void AddStar()
+    {
+        SaveSystem.SetInt(SaveKey.STAR, 999);
+    }
 }

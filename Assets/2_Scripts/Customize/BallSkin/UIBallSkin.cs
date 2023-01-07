@@ -18,7 +18,7 @@ public class UIBallSkin : MonoBehaviour
         if (_isSelecting)
         {
             _selected.gameObject.SetActive(true);
-            _ball.transform.DOScale(0.96f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+            _ball.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
         }
         else
         {
