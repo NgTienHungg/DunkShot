@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -33,7 +34,16 @@ public class BallSkinData : ScriptableObject
     [ShowIf("Type", SkinType.VideoBall)]
     public int NumberOfVideos;
 
-    [TextArea]
     [ShowIf("Type", SkinType.MissionBall)]
+    public Mission Mision;
+}
+
+[Serializable]
+public class Mission
+{
+
+
     public string Description;
+
+    public int Target;
 }

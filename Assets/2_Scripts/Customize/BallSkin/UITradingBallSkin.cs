@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UITradingBallSkin : UIBallSkin
 {
     [Header("Trading")]
-    [SerializeField] private Image _tag;
+    [SerializeField] private Image _tagImage;
     [SerializeField] private TextMeshProUGUI _price;
 
     [Header("Tag Sprites")]
@@ -17,42 +17,25 @@ public class UITradingBallSkin : UIBallSkin
     {
         base.SetSkin(skin);
 
-        if (_skin.Unlocked)
-        {
-            _ball.gameObject.SetActive(true);
-            _locked.gameObject.SetActive(false);
-            _tag.gameObject.SetActive(false);
-        }
-        else
-        {
-            _ball.gameObject.SetActive(false);
-            _locked.gameObject.SetActive(true);
-            _tag.gameObject.SetActive(true);
-        }
-
         if (_skin.Data.Price == 100)
-            _tag.sprite = _normalTagSprite;
+            _tagImage.sprite = _normalTagSprite;
         else
-            _tag.sprite = _mediumTagSprite;
+            _tagImage.sprite = _mediumTagSprite;
 
         _price.text = _skin.Data.Price.ToString();
     }
 
-    public void OnClick()
+    public override void OnClick()
     {
-        // audio
+        base.OnClick();
 
-        if (_isSelecting)
-        {
-            UIManager.Instance.CloseCustomize();
-            return;
-        }
+        if (_isSelecting) return;
 
         if (!_skin.Unlocked)
         {
             if (SaveSystem.GetInt(SaveKey.STAR) < _skin.Data.Price)
             {
-                Debug.Log("NOT ENOUGH");
+                Debug.LogWarning("NOT ENOUGH");
                 return;
             }
 
@@ -65,7 +48,6 @@ public class UITradingBallSkin : UIBallSkin
 
     private void Buy()
     {
-        Debug.Log("BUY SKIN");
         SaveSystem.SetInt(SaveKey.STAR, SaveSystem.GetInt(SaveKey.STAR) - _skin.Data.Price);
     }
 
@@ -73,9 +55,9 @@ public class UITradingBallSkin : UIBallSkin
     {
         base.Unlock();
 
-        _tag.transform.DOScale(0f, 0.3f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
+        _tagImage.transform.DOScale(0f, 0.3f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
         {
-            _tag.gameObject.SetActive(false);
+            _tagImage.gameObject.SetActive(false);
         });
     }
 }

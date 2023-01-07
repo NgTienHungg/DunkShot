@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class UIVideoBallSkin : UIBallSkin
 {
     [Header("Video")]
-    [SerializeField] private GameObject _tag;
     [SerializeField] private Image _progress;
     [SerializeField] private TextMeshProUGUI _remain;
 
@@ -14,33 +13,15 @@ public class UIVideoBallSkin : UIBallSkin
     {
         base.SetSkin(skin);
 
-        if (_skin.Unlocked)
-        {
-            _ball.gameObject.SetActive(true);
-            _locked.gameObject.SetActive(false);
-            _tag.SetActive(false);
-        }
-        else
-        {
-            _ball.gameObject.SetActive(false);
-            _locked.gameObject.SetActive(true);
-            _tag.SetActive(true);
-        }
-
-        // set tag
         _progress.fillAmount = 1f * _skin.VideoWatched / _skin.Data.NumberOfVideos;
         _remain.text = (_skin.Data.NumberOfVideos - _skin.VideoWatched).ToString();
     }
 
-    public void OnClick()
+    public override void OnClick()
     {
-        // audio
+        base.OnClick();
 
-        if (_isSelecting)
-        {
-            UIManager.Instance.CloseCustomize();
-            return;
-        }
+        if (_isSelecting) return;
 
         if (_skin.VideoWatched < _skin.Data.NumberOfVideos)
             WatchVideo();
@@ -50,8 +31,6 @@ public class UIVideoBallSkin : UIBallSkin
 
     private void WatchVideo()
     {
-        Debug.Log("WATCH VIDEO");
-
         _skin.WatchVideo();
 
         _progress.DOFillAmount(1f * _skin.VideoWatched / _skin.Data.NumberOfVideos, 0.8f).SetEase(Ease.OutSine).SetUpdate(true);

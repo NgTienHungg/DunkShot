@@ -7,9 +7,22 @@ public class UIBallSkin : MonoBehaviour
     [SerializeField] protected Image _ball;
     [SerializeField] protected Image _selected;
     [SerializeField] protected Image _locked;
+    [SerializeField] protected GameObject _tag;
 
     protected BallSkin _skin;
     protected bool _isSelecting;
+
+    /// <summary>
+    /// default lock skin
+    /// </summary>
+    protected virtual void Awake()
+    {
+
+        _ball.gameObject.SetActive(false);
+        _selected.gameObject.SetActive(false);
+        _locked.gameObject.SetActive(true);
+        _tag.SetActive(true);
+    }
 
     public virtual void Renew()
     {
@@ -32,6 +45,13 @@ public class UIBallSkin : MonoBehaviour
     {
         _skin = skin;
         _ball.sprite = _skin.Data.Sprite;
+
+        if (_skin.Unlocked)
+        {
+            _ball.gameObject.SetActive(true);
+            _locked.gameObject.SetActive(false);
+            _tag.SetActive(false);
+        }
     }
 
     protected virtual void Select()
@@ -50,5 +70,16 @@ public class UIBallSkin : MonoBehaviour
         {
             _locked.gameObject.SetActive(false);
         });
+    }
+
+    public virtual void OnClick()
+    {
+        // audio
+
+        if (_isSelecting)
+        {
+            // exit customize
+            UIManager.Instance.CloseCustomize();
+        }
     }
 }
