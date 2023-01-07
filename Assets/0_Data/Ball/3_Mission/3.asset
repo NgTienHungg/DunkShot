@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: e837c955980a25e468f040c36e1a7314, type: 3}
-  TailSprite: {fileID: 0}
+  TailSprite: {fileID: 21300000, guid: 137f8d21e7122d14eb96055278ee82d0, type: 3}
   TailColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}

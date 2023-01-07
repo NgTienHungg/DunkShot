@@ -3,13 +3,13 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIVideoBallSkin : UIBallSkin
+public class UIVideoSkin : UISkin
 {
     [Header("Video")]
     [SerializeField] private Image _progress;
     [SerializeField] private TextMeshProUGUI _remain;
 
-    public override void SetSkin(BallSkin skin)
+    public override void SetSkin(Skin skin)
     {
         base.SetSkin(skin);
 

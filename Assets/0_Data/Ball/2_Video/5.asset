@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 5
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: b81f65b67e36aaf448a3ca693da2d8e0, type: 3}
-  TailSprite: {fileID: 21300000, guid: c225af577b7076b4f8930af4fd386b0c, type: 3}
+  TailSprite: {fileID: 21300000, guid: b2d395ad2ccc020478b1ea8b0c9317fd, type: 3}
   TailColor:
     serializedVersion: 2
     key0: {r: 0.8571446, g: 1, b: 0, a: 1}
@@ -46,4 +46,6 @@ MonoBehaviour:
   Type: 1
   Price: 100
   NumberOfVideos: 8
-  Description: 
+  Mision:
+    Description: 
+    Target: 0

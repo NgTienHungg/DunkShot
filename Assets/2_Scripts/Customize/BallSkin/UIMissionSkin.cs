@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMissionBallSkin : UIBallSkin
+public class UIMissionSkin : UISkin
 {
     [Header("Mission")]
     [SerializeField] private Image _progress;
@@ -13,7 +13,7 @@ public class UIMissionBallSkin : UIBallSkin
         _ball.gameObject.SetActive(true);
     }
 
-    public override void SetSkin(BallSkin skin)
+    public override void SetSkin(Skin skin)
     {
         base.SetSkin(skin);
 

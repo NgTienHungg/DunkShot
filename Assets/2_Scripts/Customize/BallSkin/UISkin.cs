@@ -2,22 +2,21 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIBallSkin : MonoBehaviour
+public class UISkin : MonoBehaviour
 {
     [SerializeField] protected Image _ball;
     [SerializeField] protected Image _selected;
     [SerializeField] protected Image _locked;
     [SerializeField] protected GameObject _tag;
 
-    protected BallSkin _skin;
+    protected Skin _skin;
     protected bool _isSelecting;
 
     /// <summary>
-    /// default lock skin
+    /// default: lock skin
     /// </summary>
     protected virtual void Awake()
     {
-
         _ball.gameObject.SetActive(false);
         _selected.gameObject.SetActive(false);
         _locked.gameObject.SetActive(true);
@@ -41,7 +40,7 @@ public class UIBallSkin : MonoBehaviour
         }
     }
 
-    public virtual void SetSkin(BallSkin skin)
+    public virtual void SetSkin(Skin skin)
     {
         _skin = skin;
         _ball.sprite = _skin.Data.Sprite;

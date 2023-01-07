@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BallTail : MonoBehaviour
@@ -28,7 +27,7 @@ public class BallTail : MonoBehaviour
 
     private void Smoking()
     {
-        //_whiteSmoke.Play();
+        _whiteSmoke.Play();
     }
 
     // private 
@@ -42,9 +41,9 @@ public class BallTail : MonoBehaviour
     public void LoadSkin()
     {
         // load special tail
-        _specialTail.textureSheetAnimation.SetSprite(0, DataManager.Instance.BallSkinInUse.Data.TailSprite);
+        _specialTail.textureSheetAnimation.SetSprite(0, DataManager.Instance.BallSkinInUse.Data.Tail.Sprite);
 
         var color = _specialTail.colorOverLifetime;
-        color.color = DataManager.Instance.BallSkinInUse.Data.TailColor;
+        color.color = DataManager.Instance.BallSkinInUse.Data.Tail.Color;
     }
 }

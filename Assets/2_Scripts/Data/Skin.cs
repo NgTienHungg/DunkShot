@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BallSkin : MonoBehaviour
+public class Skin : MonoBehaviour
 {
-    public BallSkinData Data { get; private set; }
+    public SkinData Data { get; private set; }
     public int ID { get; private set; }
     public string Name { get; private set; }
     public bool Unlocked { get; private set; }
@@ -14,7 +14,7 @@ public class BallSkin : MonoBehaviour
     private static readonly string VIDEO_WATCHED = "VideoWatched";
     private static readonly string MISSION_PROGRESS = "MissionProgress";
 
-    public void SetData(BallSkinData data, int id)
+    public void SetData(SkinData data)
     {
         Data = data;
         ID = int.Parse(data.name);
@@ -22,10 +22,10 @@ public class BallSkin : MonoBehaviour
 
         Unlocked = SaveSystem.GetInt(UNLOCKED + Name) == 1 ? true : false;
 
-        if (Data.Type == SkinType.VideoBall)
+        if (Data.Type == SkinType.Video)
             VideoWatched = SaveSystem.GetInt(VIDEO_WATCHED + Name);
         
-        if (Data.Type == SkinType.MissionBall)
+        if (Data.Type == SkinType.Mission)
             MissionProgress = SaveSystem.GetInt(MISSION_PROGRESS + Name);
     }
 

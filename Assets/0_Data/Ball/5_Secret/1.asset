@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: f2ba4a563b55bd245ad03e64ca16b42b, type: 3}
-  TailSprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 76d49551ad7cc8c499c3887f46cca802, type: 3}
+  TailSprite: {fileID: 21300000, guid: 12a0a50880ffc184aaaaf1e5a17fba2e, type: 3}
   TailColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}

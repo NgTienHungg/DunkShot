@@ -3,9 +3,9 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITradingBallSkin : UIBallSkin
+public class UINormalSkin : UISkin
 {
-    [Header("Trading")]
+    [Header("Normal")]
     [SerializeField] private Image _tagImage;
     [SerializeField] private TextMeshProUGUI _price;
 
@@ -13,7 +13,7 @@ public class UITradingBallSkin : UIBallSkin
     [SerializeField] private Sprite _normalTagSprite;
     [SerializeField] private Sprite _mediumTagSprite;
 
-    public override void SetSkin(BallSkin skin)
+    public override void SetSkin(Skin skin)
     {
         base.SetSkin(skin);
 

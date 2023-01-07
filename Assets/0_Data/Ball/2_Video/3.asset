@@ -46,4 +46,6 @@ MonoBehaviour:
   Type: 1
   Price: 100
   NumberOfVideos: 8
-  Description: 
+  Mision:
+    Description: 
+    Target: 0

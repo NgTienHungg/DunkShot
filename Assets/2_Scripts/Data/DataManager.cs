@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    [Header("Holder")]
-    [SerializeField] private Transform _ballSkinHolder;
-    [SerializeField] private Transform _themeHolder;
-
     [Header("Data")]
-    [SerializeField] private BallSkinData[] _ballSkinDataSet;
+    [SerializeField] private SkinData[] _skinDataSet;
     [SerializeField] private ThemeData[] _themeDataSet;
 
+    private Transform _skinHolder;
+    private Transform _themeHolder;
+
     public static DataManager Instance { get; private set; }
-    public BallSkin[] BallSkins { get; private set; }
+    public Skin[] Skins { get; private set; }
     public Theme[] Themes { get; private set; }
 
     private void Awake()
@@ -27,25 +26,31 @@ public class DataManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        LoadBallSkinData();
+        _skinHolder = transform.GetChild(0);
+        _themeHolder = transform.GetChild(1);
+
+        LoadSkinData();
         LoadThemeData();
         InitGame();
     }
 
-    private void LoadBallSkinData()
+    /// <summary>
+    /// create a temporary object and add component skin.
+    /// instantiate all skin of data set to skin holder.
+    /// final destroy temporary object.
+    /// </summary>
+    private void LoadSkinData()
     {
-        BallSkins = new BallSkin[_ballSkinDataSet.Length];
+        Skins = new Skin[_skinDataSet.Length];
 
-        // create a temporary gameobject
         GameObject newObj = new GameObject();
-        newObj.AddComponent<BallSkin>();
+        newObj.AddComponent<Skin>();
 
-        // instantiate all skin in holder, and set data
-        for (int i = 0; i < BallSkins.Length; i++)
+        for (int i = 0; i < Skins.Length; i++)
         {
-            BallSkins[i] = Instantiate(newObj, _ballSkinHolder).GetComponent<BallSkin>();
-            BallSkins[i].SetData(_ballSkinDataSet[i], i);
-            BallSkins[i].gameObject.name = BallSkins[i].Name;
+            Skins[i] = Instantiate(newObj, _skinHolder).GetComponent<Skin>();
+            Skins[i].SetData(_skinDataSet[i]);
+            Skins[i].gameObject.name = Skins[i].Name;
         }
 
         Destroy(newObj);
@@ -54,23 +59,35 @@ public class DataManager : MonoBehaviour
     private void LoadThemeData()
     {
         Themes = new Theme[_themeDataSet.Length];
+
+        GameObject newObj = new GameObject();
+        newObj.AddComponent<Theme>();
+
+        for (int i = 0; i < Themes.Length; i++)
+        {
+            Themes[i] = Instantiate(newObj, _themeHolder).GetComponent<Theme>();
+            Themes[i].SetData(_themeDataSet[i]);
+            Themes[i].gameObject.name = Themes[i].Name;
+        }
+
+        Destroy(newObj);
     }
 
     private void InitGame()
     {
-        if (!BallSkins[0].Unlocked)
+        if (!Skins[0].Unlocked)
         {
-            BallSkins[0].Unlock();
-            SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, BallSkins[0].Name);
+            Skins[0].Unlock();
+            SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, Skins[0].Name);
         }
     }
 
-    public BallSkin BallSkinInUse
+    public Skin BallSkinInUse
     {
         get
         {
             string skinName = SaveSystem.GetString(SaveKey.BALL_SKIN_IN_USE);
-            foreach (var ballSkin in BallSkins)
+            foreach (var ballSkin in Skins)
             {
                 if (ballSkin.Name == skinName)
                 {
