@@ -13,6 +13,7 @@ public static class Observer
     public static GameEvent BallFlame;
 
     public static GameEvent ChangeSkin;
+    public static GameEvent ChangeTheme;
 
     public delegate void SkinEvent(Skin skin);
     public static SkinEvent ShowPopup;

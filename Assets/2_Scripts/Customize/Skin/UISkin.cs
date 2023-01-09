@@ -25,7 +25,7 @@ public class UISkin : MonoBehaviour
 
     public virtual void Renew()
     {
-        _isSelecting = (_skin.Name == SaveSystem.GetString(SaveKey.BALL_SKIN_IN_USE));
+        _isSelecting = (_skin.Key == SaveSystem.GetString(SaveKey.SKIN_IN_USE));
 
         if (_isSelecting)
         {
@@ -59,7 +59,7 @@ public class UISkin : MonoBehaviour
 
     protected virtual void Select()
     {
-        SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, _skin.Name);
+        _skin.Select();
         Observer.ChangeSkin?.Invoke();
     }
 
@@ -84,12 +84,8 @@ public class UISkin : MonoBehaviour
         }
 
         if (_isSelecting)
-        {
             UIManager.Instance.CloseCustomize();
-        }
         else
-        {
             Select();
-        }
     }
 }

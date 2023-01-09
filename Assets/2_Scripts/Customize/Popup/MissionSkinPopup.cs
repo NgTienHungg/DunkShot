@@ -20,6 +20,5 @@ public class MissionSkinPopup : SkinPopup
 
     public void OnTryButton()
     {
-
     }
 }

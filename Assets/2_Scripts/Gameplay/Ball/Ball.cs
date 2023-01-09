@@ -27,7 +27,7 @@ public class Ball : MonoBehaviour
 
     public void LoadSkin()
     {
-        _renderer.sprite = DataManager.Instance.BallSkinInUse.Data.Sprite;
+        _renderer.sprite = DataManager.Instance.SkinInUse.Data.Sprite;
         _tail.LoadSkin();
     }
 

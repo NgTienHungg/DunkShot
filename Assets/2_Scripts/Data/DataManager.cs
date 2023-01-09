@@ -50,7 +50,7 @@ public class DataManager : MonoBehaviour
         {
             Skins[i] = Instantiate(newObj, _skinHolder).GetComponent<Skin>();
             Skins[i].SetData(_skinDataSet[i]);
-            Skins[i].gameObject.name = Skins[i].Name;
+            Skins[i].gameObject.name = Skins[i].Key;
         }
 
         Destroy(newObj);
@@ -66,8 +66,8 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < Themes.Length; i++)
         {
             Themes[i] = Instantiate(newObj, _themeHolder).GetComponent<Theme>();
-            Themes[i].SetData(_themeDataSet[i]);
-            Themes[i].gameObject.name = Themes[i].Name;
+            Themes[i].SetData(_themeDataSet[i], i);
+            Themes[i].gameObject.name = Themes[i].Key;
         }
 
         Destroy(newObj);
@@ -78,22 +78,32 @@ public class DataManager : MonoBehaviour
         if (!Skins[0].Unlocked)
         {
             Skins[0].Unlock();
-            SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, Skins[0].Name);
+            Skins[0].Select();
+            //SaveSystem.SetString(SaveKey.SKIN_IN_USE, Skins[0].Key);
+        }
+
+        if (!Themes[0].Unlocked)
+        {
+            Themes[0].Unlock();
+            Themes[0].Select();
+            //SaveSystem.SetString(SaveKey.THEME_IN_USE, Themes[0].Key);
         }
     }
 
-    public Skin BallSkinInUse
+    public Skin SkinInUse
     {
         get
         {
-            string skinName = SaveSystem.GetString(SaveKey.BALL_SKIN_IN_USE);
-            foreach (var ballSkin in Skins)
+            string key = SaveSystem.GetString(SaveKey.SKIN_IN_USE);
+            Debug.Log("skin key: " + key);
+            foreach (var skin in Skins)
             {
-                if (ballSkin.Name == skinName)
+                if (skin.Key == key)
                 {
-                    return ballSkin;
+                    return skin;
                 }
             }
+            Debug.LogWarning("INVALID");
             return null;
         }
     }
@@ -102,14 +112,15 @@ public class DataManager : MonoBehaviour
     {
         get
         {
-            string skinName = SaveSystem.GetString(SaveKey.THEME_IN_USE);
+            string key = SaveSystem.GetString(SaveKey.THEME_IN_USE);
             foreach (var theme in Themes)
             {
-                if (theme.Name == skinName)
+                if (theme.Key == key)
                 {
                     return theme;
                 }
             }
+            Debug.LogWarning("INVALID");
             return null;
         }
     }

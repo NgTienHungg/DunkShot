@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67ac0ca3627a2545b8cfe5abb9bb7f4, type: 3}
+  m_Name: 1_Cloudy
+  m_EditorClassIdentifier: 
+  Name: Cloudy
+  ThemeCell: {fileID: 21300000, guid: 39079942079d7b744b8f33aa9e684ce6, type: 3}
+  BackHoop: {fileID: 21300000, guid: eba24db5888fb984a858076283739b1d, type: 3}
+  FrontHoop: {fileID: 21300000, guid: e2e7f8e3b53543841973d86b76bd0fa6, type: 3}
+  HoopColor: {r: 1, g: 1, b: 1, a: 0}
+  Price: 50
+  Type: 0

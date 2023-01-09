@@ -21,8 +21,23 @@ public class SaveSystem : MonoBehaviour
         if (!PlayerPrefs.HasKey(SaveKey.STAR))
             PlayerPrefs.SetInt(SaveKey.STAR, 999);
 
-        if (!PlayerPrefs.HasKey(SaveKey.BALL_SKIN_IN_USE))
-            PlayerPrefs.SetString(SaveKey.BALL_SKIN_IN_USE, "TradingBall00");
+        //if (!PlayerPrefs.HasKey(SaveKey.SKIN_IN_USE))
+        //{
+        //    DataManager.Instance.Skins[0].Unlock();
+        //    DataManager.Instance.Skins[0].Select();
+        //}
+
+        //if (!PlayerPrefs.HasKey(SaveKey.THEME_IN_USE))
+        //{
+        //    DataManager.Instance.Themes[0].Unlock();
+        //    DataManager.Instance.Themes[0].Select();
+        //}
+
+        //if (!PlayerPrefs.HasKey(SaveKey.SKIN_IN_USE))
+        //        PlayerPrefs.SetString(SaveKey.SKIN_IN_USE, "TradingBall00");
+
+        //if (!PlayerPrefs.HasKey(SaveKey.THEME_IN_USE))
+        //    PlayerPrefs.SetString(SaveKey.THEME_IN_USE, "Theme00");
     }
 
     public static int GetInt(string key)
