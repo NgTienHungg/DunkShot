@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class UICustomizeManager : UIGame
+public class CustomizeManager : UIGame
 {
     protected override void OnEnable()
     {
@@ -24,5 +22,20 @@ public class UICustomizeManager : UIGame
     {
         // audio
         UIManager.Instance.CloseCustomize();
+    }
+
+    public void OnVideoButton()
+    {
+        // audio
+    }
+
+    public void OnSkinButton()
+    {
+        // audio
+    }
+
+    public void OnThemeButton()
+    {
+        // audio
     }
 }

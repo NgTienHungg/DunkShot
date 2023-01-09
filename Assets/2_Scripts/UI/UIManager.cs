@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIGameOver uiGameOver;
 
     [Header("Customize & Challenge")]
-    [SerializeField] private UICustomizeManager _uiCustomize;
+    [SerializeField] private CustomizeManager _uiCustomize;
 
     [Header("Flash")]
     [SerializeField] private Image flashImage;

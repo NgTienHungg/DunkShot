@@ -17,8 +17,8 @@ public class Skin : MonoBehaviour
     public void SetData(SkinData data)
     {
         Data = data;
-        ID = int.Parse(data.name);
-        Name = Data.Type.ToString() + ID.ToString("00"); // EX: _name = TradingBall01
+        ID = int.Parse(data.name); // ex: ID = 1
+        Name = Data.Type.ToString() + ID.ToString("00"); // ex: Name = TradingBall01
 
         Unlocked = SaveSystem.GetInt(UNLOCKED + Name) == 1 ? true : false;
 

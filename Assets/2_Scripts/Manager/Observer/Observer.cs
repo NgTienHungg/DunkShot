@@ -12,5 +12,8 @@ public static class Observer
     public static GameEvent BallSmoke;
     public static GameEvent BallFlame;
 
-    public static GameEvent ChangeBallSkin;
+    public static GameEvent ChangeSkin;
+
+    public delegate void SkinEvent(Skin skin);
+    public static SkinEvent ShowPopup;
 }

@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
 
     private void OnEnable()
     {
-        Observer.ChangeBallSkin += LoadSkin;
+        Observer.ChangeSkin += LoadSkin;
     }
 
     public void LoadSkin()
@@ -66,7 +66,7 @@ public class Ball : MonoBehaviour
     {
         transform.parent = null;
         _rigidbody.simulated = true;
-        _rigidbody.angularVelocity = force.magnitude * 35f; // max = 750f
+        _rigidbody.angularVelocity = force.magnitude * Random.Range(25f, 35f);
         _rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 

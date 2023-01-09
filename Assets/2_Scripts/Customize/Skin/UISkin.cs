@@ -30,6 +30,10 @@ public class UISkin : MonoBehaviour
         if (_isSelecting)
         {
             _selected.gameObject.SetActive(true);
+            _selected.transform.DOScale(0.8f, 0f).SetUpdate(true).OnComplete(() =>
+            {
+                _selected.transform.DOScale(1f, 0.3f).SetEase(Ease.OutCubic).SetUpdate(true);
+            });
             _ball.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
         }
         else
@@ -56,7 +60,7 @@ public class UISkin : MonoBehaviour
     protected virtual void Select()
     {
         SaveSystem.SetString(SaveKey.BALL_SKIN_IN_USE, _skin.Name);
-        Observer.ChangeBallSkin?.Invoke();
+        Observer.ChangeSkin?.Invoke();
     }
 
     protected virtual void Unlock()
@@ -73,12 +77,19 @@ public class UISkin : MonoBehaviour
 
     public virtual void OnClick()
     {
-        // audio
+        if (!_skin.Unlocked)
+        {
+            Observer.ShowPopup?.Invoke(_skin);
+            return;
+        }
 
         if (_isSelecting)
         {
-            // exit customize
             UIManager.Instance.CloseCustomize();
+        }
+        else
+        {
+            Select();
         }
     }
 }

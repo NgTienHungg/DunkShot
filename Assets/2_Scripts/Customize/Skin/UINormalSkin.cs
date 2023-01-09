@@ -27,15 +27,18 @@ public class UINormalSkin : UISkin
 
     public override void OnClick()
     {
-        base.OnClick();
-
-        if (_isSelecting) return;
+        if (_isSelecting)
+        {
+            UIManager.Instance.CloseCustomize();
+            return;
+        }
 
         if (!_skin.Unlocked)
         {
             if (SaveSystem.GetInt(SaveKey.STAR) < _skin.Data.Price)
             {
                 Debug.LogWarning("NOT ENOUGH");
+                Observer.ShowPopup?.Invoke(_skin);
                 return;
             }
 

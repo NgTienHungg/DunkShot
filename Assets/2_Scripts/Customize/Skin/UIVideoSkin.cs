@@ -19,9 +19,11 @@ public class UIVideoSkin : UISkin
 
     public override void OnClick()
     {
-        base.OnClick();
-
-        if (_isSelecting) return;
+        if (_isSelecting)
+        {
+            UIManager.Instance.CloseCustomize();
+            return;
+        }
 
         if (_skin.VideoWatched < _skin.Data.NumberOfVideos)
             WatchVideo();
@@ -32,7 +34,7 @@ public class UIVideoSkin : UISkin
     private void WatchVideo()
     {
         _skin.WatchVideo();
-
+        _remain.text = (_skin.Data.NumberOfVideos - _skin.VideoWatched).ToString();
         _progress.DOFillAmount(1f * _skin.VideoWatched / _skin.Data.NumberOfVideos, 0.8f).SetEase(Ease.OutSine).SetUpdate(true);
 
         if (_skin.VideoWatched == _skin.Data.NumberOfVideos)

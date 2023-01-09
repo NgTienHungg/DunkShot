@@ -39,7 +39,7 @@ public class BasketHoop : MonoBehaviour
         _scoreEff.DOFade(1f, 0f).OnComplete(() =>
         {
             // fade
-            _scoreEff.DOFade(0f, 0.5f).OnComplete(() =>
+            _scoreEff.DOFade(0f, 0.4f).OnComplete(() =>
             {
                 _scoreEff.transform.localScale = Vector3.one;
                 _scoreEff.gameObject.SetActive(false);
@@ -47,9 +47,9 @@ public class BasketHoop : MonoBehaviour
 
             // scale
             if (ScoreManager.Instance.IsPerfect)
-                _scoreEff.transform.DOScale(_perfectScale, 0.4f).SetEase(Ease.OutCubic);
+                _scoreEff.transform.DOScale(_perfectScale, 0.35f).SetEase(Ease.OutCubic);
             else
-                _scoreEff.transform.DOScale(_normalScale, 0.4f).SetEase(Ease.OutCubic);
+                _scoreEff.transform.DOScale(_normalScale, 0.35f).SetEase(Ease.OutCubic);
         });
     }
 }

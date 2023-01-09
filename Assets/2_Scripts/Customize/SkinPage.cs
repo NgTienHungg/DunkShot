@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class UISkinPage : MonoBehaviour
+public class SkinPage : MonoBehaviour
 {
     [Header("Normal")]
     [SerializeField] private GameObject _uiNormalSkinPrefab;
@@ -74,15 +74,15 @@ public class UISkinPage : MonoBehaviour
 
     private void OnEnable()
     {
-        Observer.ChangeBallSkin += ReloadInventory;
+        Observer.ChangeSkin += ReloadPage;
     }
 
     private void OnDisable()
     {
-        Observer.ChangeBallSkin -= ReloadInventory;
+        Observer.ChangeSkin -= ReloadPage;
     }
 
-    private void ReloadInventory()
+    private void ReloadPage()
     {
         foreach (var uiSkin in _listUiSkin)
         {

@@ -31,6 +31,9 @@ public class SkinData : ScriptableObject
 
     [ShowIf("Type", SkinType.Mission)]
     public MissionData Mision;
+
+    [ShowIf("Type", SkinType.Secret)]
+    public SecretData Secret;
 }
 
 [Serializable]
@@ -48,4 +51,10 @@ public class MissionData
     public string Description;
 
     public int Target;
+}
+
+[Serializable]
+public class SecretData
+{
+    public string Description;
 }
