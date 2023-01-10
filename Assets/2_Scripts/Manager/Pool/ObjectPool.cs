@@ -3,21 +3,20 @@ using System.Collections.Generic;
 
 public class ObjectPool : MonoBehaviour
 {
-    private static ObjectPool _instance;
-    public static ObjectPool Instance { get => _instance; }
+    public static ObjectPool Instance { get; private set; }
 
     [SerializeField] private Pool[] Pools;
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         else
         {
-            _instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
