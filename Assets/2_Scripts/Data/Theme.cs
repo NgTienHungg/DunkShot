@@ -17,12 +17,18 @@ public class Theme : MonoBehaviour
         Key = KEY + index.ToString("00"); // ex: Theme01
 
         Unlocked = SaveSystem.GetInt(UNLOCKED + Key) == 1 ? true : false;
+
+        if (Data.Type == ThemeType.Season && !Unlocked)
+        {
+            Unlock();
+        }
     }
 
     public void Unlock()
     {
-        SaveSystem.SetInt(UNLOCKED + Key, 1);
         Unlocked = true;
+        SaveSystem.SetInt(UNLOCKED + Key, 1);
+        Observer.OnUnlockTheme?.Invoke();
     }
 
     public void Select()

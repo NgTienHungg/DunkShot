@@ -22,12 +22,16 @@ MonoBehaviour:
   Background:
     LightBG: {fileID: 21300000, guid: 2aa84c2c5891bc2469c8ed47694d40f3, type: 3}
     DarkBG: {fileID: 21300000, guid: c88624b26173cb54abbcdea352ae0541, type: 3}
+    LightStaticBG: {fileID: 0}
+    DarkStaticBG: {fileID: 0}
     LightWall: {fileID: 0}
     DarkWall: {fileID: 0}
-    WallSpeedFactor: 0
-    StaticLightWall: {fileID: 0}
-    StaticDarkWall: {fileID: 0}
-    StaticWallSpeedFactor: 0
+    WallSpeed: 0
+    LightForeground: {fileID: 0}
+    DarkForeground: {fileID: 0}
+    ForegroundSpeed: 0
+    LightDecor: {fileID: 0}
+    DarkDecor: {fileID: 0}
   Obstacle:
     Bars:
     - {fileID: 21300000, guid: 3e4884a981ff19344b221975435d8137, type: 3}
@@ -43,5 +47,5 @@ MonoBehaviour:
   ScoreColor: {r: 0, g: 0, b: 0, a: 0}
   ButtonColor: {r: 0, g: 0, b: 0, a: 0}
   TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
-  Price: 0
+  Price: 9999
   Type: 0

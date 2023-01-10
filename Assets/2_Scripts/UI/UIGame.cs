@@ -11,15 +11,28 @@ public enum GameState
     Customize,
 }
 
-public abstract class UIGame : MonoBehaviour
+[RequireComponent(typeof(CanvasGroup))]
+public class UIGame : MonoBehaviour
 {
-    [SerializeField] protected CanvasGroup _canvasGroup;
+    protected CanvasGroup _canvasGroup;
 
-    protected abstract void OnEnable();
+    protected virtual void Awake()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+    }
 
-    public abstract void Enable();
+    public virtual void Enable()
+    {
+        gameObject.SetActive(true);
+    }
 
-    public abstract void Disable();
+    public virtual void Disable()
+    {
+        gameObject.SetActive(false);
+    }
 
-    public abstract void DisableImmediately();
+    public virtual void DisableImmediately()
+    {
+        gameObject.SetActive(false);
+    }
 }

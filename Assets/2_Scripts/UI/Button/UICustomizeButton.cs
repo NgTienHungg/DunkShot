@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CustomizeButton : MonoBehaviour
+public class UICustomizeButton : MonoBehaviour
 {
     [SerializeField] private Image _progress;
 
@@ -9,14 +9,20 @@ public class CustomizeButton : MonoBehaviour
 
     private void Awake()
     {
-        _totalSkin = DataManager.Instance.Skins.Length;
+        _totalSkin = DataManager.Instance.Skins.Length + DataManager.Instance.Themes.Length;
 
         Reload();
 
         Observer.OnUnlockSkin += OnUnlockSkin;
+        Observer.OnUnlockTheme += OnUnlockTheme;
     }
 
-    private void OnUnlockSkin(Skin skin)
+    private void OnUnlockSkin()
+    {
+        Reload();
+    }
+
+    private void OnUnlockTheme()
     {
         Reload();
     }
@@ -28,6 +34,14 @@ public class CustomizeButton : MonoBehaviour
         foreach (var skin in DataManager.Instance.Skins)
         {
             if (skin.Unlocked)
+            {
+                _count++;
+            }
+        }
+
+        foreach (var theme in DataManager.Instance.Themes)
+        {
+            if (theme.Unlocked)
             {
                 _count++;
             }

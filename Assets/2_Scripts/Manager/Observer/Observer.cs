@@ -18,11 +18,12 @@ public static class Observer
     public static GameEvent OnChangeSkin;
     public static GameEvent OnChangeTheme;
 
+    public static GameEvent OnUnlockSkin;
+    public static GameEvent OnUnlockTheme;
+
     public delegate void SkinEvent(Skin skin);
     public static SkinEvent OnShowSkinPopup;
-    public static SkinEvent OnUnlockSkin;
 
     public delegate void ThemeEvent(Theme theme);
     public static ThemeEvent OnShowThemePopup;
-    
 }

@@ -3526,7 +3526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc803229531059e4a832adb432ae2229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 285635733}
 --- !u!225 &285635733
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4811,7 +4810,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 420239049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693501669}
+        m_TargetAssemblyTypeName: ChallengeManager, Assembly-CSharp
+        m_MethodName: OnBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &420239049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4860,8 +4871,8 @@ GameObject:
   m_Component:
   - component: {fileID: 427663341}
   - component: {fileID: 427663343}
-  - component: {fileID: 427663342}
   - component: {fileID: 427663344}
+  - component: {fileID: 427663342}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -4891,27 +4902,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &427663342
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427663340}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!222 &427663343
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427663340}
-  m_CullTransparentMesh: 1
---- !u!114 &427663344
+--- !u!114 &427663342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4923,7 +4914,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f04ad7893ebc634b9798e1afbdf8ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 427663342}
+--- !u!222 &427663343
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427663340}
+  m_CullTransparentMesh: 1
+--- !u!225 &427663344
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427663340}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &435924730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5690,7 +5700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d259eb90aeb064a9dc4bc381383123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 505904745}
   clock: {fileID: 155806571}
   ball: {fileID: 1667997557}
   videoAdsButton: {fileID: 670219482}
@@ -7350,6 +7359,7 @@ GameObject:
   - component: {fileID: 693501668}
   - component: {fileID: 693501667}
   - component: {fileID: 693501666}
+  - component: {fileID: 693501669}
   m_Layer: 5
   m_Name: CHALLENGE
   m_TagString: Untagged
@@ -7429,6 +7439,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693501664}
   m_CullTransparentMesh: 1
+--- !u!114 &693501669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693501664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8e1256b4b632445a6010be6d787039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &693764509
 GameObject:
   m_ObjectHideFlags: 0
@@ -7962,6 +7984,7 @@ GameObject:
   - component: {fileID: 744568043}
   - component: {fileID: 744568042}
   - component: {fileID: 744568041}
+  - component: {fileID: 744568044}
   m_Layer: 5
   m_Name: Challenges
   m_TagString: Untagged
@@ -8035,7 +8058,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 427663344}
+      - m_Target: {fileID: 427663342}
         m_TargetAssemblyTypeName: UIMainMenu, Assembly-CSharp
         m_MethodName: OnChallengesButton
         m_Mode: 1
@@ -8085,6 +8108,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744568039}
   m_CullTransparentMesh: 1
+--- !u!114 &744568044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744568039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7651c9b63274acc4887678b9c5e048b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progress: {fileID: 328249533}
 --- !u!1 &754068494
 GameObject:
   m_ObjectHideFlags: 0
@@ -8907,7 +8943,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 427663344}
+      - m_Target: {fileID: 427663342}
         m_TargetAssemblyTypeName: UIMainMenu, Assembly-CSharp
         m_MethodName: OnLeaderboardButton
         m_Mode: 1
@@ -9890,7 +9926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6a375c60d8a6548a0e7894a18c1cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 881660728}
   _skinPage: {fileID: 105096183}
   _themePage: {fileID: 1928691009}
   _skinButton: {fileID: 63910088}
@@ -10261,7 +10296,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 427663344}
+      - m_Target: {fileID: 427663342}
         m_TargetAssemblyTypeName: UIMainMenu, Assembly-CSharp
         m_MethodName: OnSettingsButton
         m_Mode: 1
@@ -10494,11 +10529,11 @@ RectTransform:
   m_Father: {fileID: 1776196614}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 400, y: 250}
-  m_Pivot: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -550}
+  m_SizeDelta: {x: 350, y: 200}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &938979491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10546,8 +10581,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 260
-  m_fontSizeBase: 260
+  m_fontSize: 250
+  m_fontSizeBase: 250
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10704,7 +10739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3938c33120d55234ca97f17367f12747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 943339341}
 --- !u!225 &943339341
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11206,7 +11240,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 427663344}
+      - m_Target: {fileID: 427663342}
         m_TargetAssemblyTypeName: UIMainMenu, Assembly-CSharp
         m_MethodName: OnCustomizeButton
         m_Mode: 1
@@ -13589,7 +13623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7416fbab46d6804fbecf3e05818564e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 1239625817}
   newBallButton: {fileID: 216620256}
   videoButton: {fileID: 1978572061}
   rateButton: {fileID: 891497583}
@@ -15100,7 +15133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6e6757bbcb98b4589ae1390afafb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 1378126079}
   adsButton: {fileID: 1613758482}
 --- !u!225 &1378126079
 CanvasGroup:
@@ -18136,6 +18168,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7245c6ffae18bfc4db42bea1cb145ac3, type: 2}
   - {fileID: 11400000, guid: bcddba3b17ca9c64db933f9ff41b027d, type: 2}
   - {fileID: 11400000, guid: 88d8107741b6ba04c81f261e19b675ba, type: 2}
+  - {fileID: 11400000, guid: cc47018b88e2a924da8cdcf568e282b8, type: 2}
 --- !u!4 &1681953206
 Transform:
   m_ObjectHideFlags: 0
@@ -18239,7 +18272,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 427663344}
+      - m_Target: {fileID: 427663342}
         m_TargetAssemblyTypeName: UIMainMenu, Assembly-CSharp
         m_MethodName: OnGiftButton
         m_Mode: 1
@@ -21510,7 +21543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a415c991d55784293cec66795e7902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiMainMenu: {fileID: 427663344}
+  uiMainMenu: {fileID: 427663342}
   uiGamePlay: {fileID: 285635732}
   uiPaused: {fileID: 943339340}
   uiSettings: {fileID: 1378126078}
@@ -21518,6 +21551,7 @@ MonoBehaviour:
   uiContinue: {fileID: 505904744}
   uiGameOver: {fileID: 1239625816}
   _uiCustomize: {fileID: 881660727}
+  _uiChallenge: {fileID: 693501669}
   flashImage: {fileID: 1301450600}
   targetAlpha: 0.8
   fadeDuration: 0.15
@@ -22198,7 +22232,7 @@ GameObject:
   - component: {fileID: 2019537903}
   - component: {fileID: 2019537902}
   m_Layer: 5
-  m_Name: NewBall
+  m_Name: NewBallChallenge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

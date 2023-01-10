@@ -2,14 +2,10 @@ using DG.Tweening;
 
 public class UIGamePlay : UIGame
 {
-    protected override void OnEnable()
+    private void OnEnable()
     {
         _canvasGroup.interactable = true;
         _canvasGroup.alpha = 1f;
-    }
-
-    public override void Enable()
-    {
     }
 
     public override void Disable()
@@ -30,7 +26,6 @@ public class UIGamePlay : UIGame
 
     public void OnPauseButton()
     {
-        // audio
         Controller.Instance.Pause();
     }
 }

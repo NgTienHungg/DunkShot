@@ -6,7 +6,7 @@ public class UIGameOver : UIGame
     [SerializeField] private RectTransform newBallButton, videoButton;
     [SerializeField] private RectTransform rateButton, restartButton, setttingsButton;
 
-    protected override void OnEnable()
+    private void OnEnable()
     {
         newBallButton.localScale = Vector3.zero;
 
@@ -20,6 +20,8 @@ public class UIGameOver : UIGame
 
     public override void Enable()
     {
+        base.Enable();
+
         newBallButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint);
 
         videoButton.DOScale(1.15f, 0.4f).SetEase(Ease.OutQuint).OnComplete(() =>
@@ -32,39 +34,24 @@ public class UIGameOver : UIGame
         setttingsButton.DOScale(1f, 0.4f).SetEase(Ease.OutQuint).SetDelay(0.3f);
     }
 
-    public override void Disable()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public override void DisableImmediately()
-    {
-        gameObject.SetActive(false);
-    }
-
     public void OnNewBallButton()
     {
-        // audio
     }
 
     public void OnVideoAdsButton()
     {
-        // audio
     }
 
     public void OnRateButton()
     {
-        // audio
     }
 
     public void OnRestartButton()
     {
-        // audio
         UIManager.Instance.OnBackHome();
     }
 
     public void OnSettingsButton()
     {
-        // audio
     }
 }

@@ -7,24 +7,9 @@ public class CustomizeManager : UIGame
     [SerializeField] private Button _skinButton, _themeButton;
     [SerializeField] private Color _activeButtonColor, _deactiveButtonColor;
 
-    protected override void OnEnable()
+    private void OnEnable()
     {
         ActiveSkinPage();
-    }
-
-    public override void Enable()
-    {
-        gameObject.SetActive(true);
-    }
-
-    public override void Disable()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public override void DisableImmediately()
-    {
-        gameObject.SetActive(false);
     }
 
     private void ActiveSkinPage()

@@ -14,19 +14,7 @@ public class UIContinue : UIGame
     [SerializeField] private float waitTime;
     private float timeRemaining;
 
-    private void Update()
-    {
-        timeRemaining -= Time.deltaTime;
-        orangeRing.fillAmount = timeRemaining / waitTime;
-
-        if (timeRemaining <= 0)
-        {
-            Controller.Instance.GameOver();
-            timeRemaining = waitTime;
-        }
-    }
-
-    protected override void OnEnable()
+    private void OnEnable()
     {
         clock.localScale = Vector3.zero;
         videoAdsButton.localScale = Vector3.zero;
@@ -37,6 +25,8 @@ public class UIContinue : UIGame
 
     public override void Enable()
     {
+        base.Enable();
+
         clock.DOScale(1f, 0.25f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             ball.DORotate(Vector3.forward * 20f, 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
@@ -50,24 +40,25 @@ public class UIContinue : UIGame
         continueButton.DOScale(1f, 0.25f).SetEase(Ease.OutBack).SetDelay(2f);
     }
 
-    public override void Disable()
+    private void Update()
     {
-        gameObject.SetActive(false);
-    }
+        timeRemaining -= Time.deltaTime;
+        orangeRing.fillAmount = timeRemaining / waitTime;
 
-    public override void DisableImmediately()
-    {
+        if (timeRemaining <= 0)
+        {
+            Controller.Instance.GameOver();
+            timeRemaining = waitTime;
+        }
     }
 
     public void OnClickVideoAdButton()
     {
-        //audio
         Controller.Instance.SecondChance();
     }
 
     public void OnClickContinueButton()
     {
-        // audio
         Controller.Instance.GameOver();
     }
 }

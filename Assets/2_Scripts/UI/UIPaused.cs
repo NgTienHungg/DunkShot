@@ -2,14 +2,10 @@ using DG.Tweening;
 
 public class UIPaused : UIGame
 {
-    protected override void OnEnable()
+    private void OnEnable()
     {
         _canvasGroup.interactable = true;
         _canvasGroup.alpha = 1f;
-    }
-
-    public override void Enable()
-    {
     }
 
     public override void Disable()
@@ -30,29 +26,25 @@ public class UIPaused : UIGame
 
     public void OnSettingsButton()
     {
-        // audio
         UIManager.Instance.OnSettings();
     }
 
     public void OnMainMenuButton()
     {
-        // audio
         UIManager.Instance.OnBackHome();
     }
 
     public void OnCustomizeButton()
     {
-        // audio
         UIManager.Instance.OpenCustomize();
     }
 
     public void OnLeaderboardButton()
     {
-        // audio
     }
+
     public void OnResumeButton()
     {
-        // audio
         Controller.Instance.Resume();
     }
 }

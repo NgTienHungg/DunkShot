@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Customize & Challenge")]
     [SerializeField] private CustomizeManager _uiCustomize;
+    [SerializeField] private ChallengeManager _uiChallenge;
 
     [Header("Flash")]
     [SerializeField] private Image flashImage;
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour
         uiGameOver.gameObject.SetActive(false);
 
         _uiCustomize.gameObject.SetActive(false);
+        _uiChallenge.gameObject.SetActive(false);
 
         _state = GameState.MainMenu;
     }
@@ -135,7 +137,6 @@ public class UIManager : MonoBehaviour
             uiGamePlay.DisableImmediately();
             gameOverControl.SetActive(false);
 
-            uiMainMenu.gameObject.SetActive(true);
             uiMainMenu.Enable();
 
             // renew scene
@@ -145,6 +146,17 @@ public class UIManager : MonoBehaviour
 
             flashImage.DOFade(0f, fadeDuration).SetUpdate(true);
         });
+
+        //uiPaused.DisableImmediately();
+        //uiGamePlay.DisableImmediately();
+        //gameOverControl.SetActive(false);
+
+        //uiMainMenu.Enable();
+
+        //// renew scene
+        //Time.timeScale = 1f;
+        //Controller.Instance.Renew();
+        //_state = GameState.MainMenu;
     }
 
     public void OpenCustomize()
@@ -155,5 +167,15 @@ public class UIManager : MonoBehaviour
     public void CloseCustomize()
     {
         _uiCustomize.Disable();
+    }
+
+    public void OpenChallenge()
+    {
+        _uiChallenge.Enable();
+    }
+
+    public void CloseChallenge()
+    {
+        _uiChallenge.Disable();
     }
 }
