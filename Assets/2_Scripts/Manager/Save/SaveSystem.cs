@@ -4,10 +4,10 @@ public class SaveSystem : MonoBehaviour
 {
     private void Awake()
     {
-        LoadConfigGame();
+        InitConfig();
     }
 
-    private void LoadConfigGame()
+    private void InitConfig()
     {
         if (!PlayerPrefs.HasKey(SaveKey.ON_SOUND))
             PlayerPrefs.SetInt(SaveKey.ON_SOUND, 1);
@@ -17,12 +17,6 @@ public class SaveSystem : MonoBehaviour
 
         if (!PlayerPrefs.HasKey(SaveKey.ON_LIGHT_MODE))
             PlayerPrefs.SetInt(SaveKey.ON_LIGHT_MODE, 1);
-
-        if (!PlayerPrefs.HasKey(SaveKey.STAR))
-            PlayerPrefs.SetInt(SaveKey.STAR, 999);
-
-        if (!PlayerPrefs.HasKey(SaveKey.TOKEN))
-            PlayerPrefs.SetInt(SaveKey.TOKEN, 999);
     }
 
     public static int GetInt(string key)

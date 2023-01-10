@@ -81,8 +81,12 @@ public class UISkin : MonoBehaviour
         }
 
         if (_isSelecting)
+        {
             UIManager.Instance.CloseCustomize();
+        }
         else
+        {
             Select();
+        }
     }
 }

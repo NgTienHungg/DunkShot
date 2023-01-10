@@ -60,7 +60,7 @@ public class UITheme : MonoBehaviour
 
         if (!_theme.Unlocked)
         {
-            if (SaveSystem.GetInt(SaveKey.TOKEN) < _theme.Data.Price)
+            if (!MoneyManager.Instance.CanBuyByToken(_theme.Data.Price))
             {
                 Debug.Log("NOT ENOUGH");
                 Observer.OnShowThemePopup?.Invoke(_theme);
@@ -73,7 +73,7 @@ public class UITheme : MonoBehaviour
 
     private void Unlock()
     {
-        SaveSystem.SetInt(SaveKey.TOKEN, SaveSystem.GetInt(SaveKey.TOKEN) - _theme.Data.Price);
+        MoneyManager.Instance.BuyByToken(_theme.Data.Price);
 
         _theme.Unlock();
 

@@ -35,7 +35,7 @@ public class UINormalSkin : UISkin
 
         if (!_skin.Unlocked)
         {
-            if (SaveSystem.GetInt(SaveKey.STAR) < _skin.Data.Price)
+            if (!MoneyManager.Instance.CanBuyByStar(_skin.Data.Price))
             {
                 Debug.LogWarning("NOT ENOUGH");
                 Observer.OnShowSkinPopup?.Invoke(_skin);
@@ -48,7 +48,7 @@ public class UINormalSkin : UISkin
 
     protected override void Unlock()
     {
-        SaveSystem.SetInt(SaveKey.STAR, SaveSystem.GetInt(SaveKey.STAR) - _skin.Data.Price);
+        MoneyManager.Instance.BuyByStar(_skin.Data.Price);
 
         base.Unlock();
 

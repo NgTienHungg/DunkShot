@@ -21,6 +21,8 @@ public class CustomizeManager : UIGame
         _themePage.SetActive(false);
         _themeButton.interactable = true;
         _themeButton.GetComponent<Image>().color = _deactiveButtonColor;
+
+        MoneyManager.Instance.ShowUIStar();
     }
 
     private void ActiveThemePage()
@@ -32,6 +34,8 @@ public class CustomizeManager : UIGame
         _themePage.SetActive(true);
         _themeButton.interactable = false;
         _themeButton.GetComponent<Image>().color = _activeButtonColor;
+
+        MoneyManager.Instance.ShowUIToken();
     }
 
     public void OnBackButton()
@@ -42,6 +46,13 @@ public class CustomizeManager : UIGame
     public void OnVideoButton()
     {
         Debug.Log("ADS");
+        MoneyManager.Instance.AddStar(25);
+    }
+
+    public void OnSpinButton()
+    {
+        Debug.Log("SPIN");
+        MoneyManager.Instance.AddToken(25);
     }
 
     public void OnSkinButton()

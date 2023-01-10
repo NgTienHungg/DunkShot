@@ -47,5 +47,5 @@ MonoBehaviour:
   ScoreColor: {r: 0, g: 0, b: 0, a: 0}
   ButtonColor: {r: 0, g: 0, b: 0, a: 0}
   TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
-  Price: 9999
+  Price: 999
   Type: 0

@@ -9,7 +9,6 @@ public class ScoreManager : MonoBehaviour
     public bool IsPerfect { get; private set; }
 
     [SerializeField] private UIScore _uiScore;
-
     [SerializeField] private UIScoreNotify _notify;
 
     private void Awake()

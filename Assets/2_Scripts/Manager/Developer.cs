@@ -9,9 +9,15 @@ public class Developer
         PlayerPrefs.DeleteAll();
     }
 
-    [MenuItem("Developer/Add star")]
+    [MenuItem("Developer/Add 100 star")]
     public static void AddStar()
     {
-        SaveSystem.SetInt(SaveKey.STAR, 999);
+        MoneyManager.Instance.AddStar(100);
+    }
+
+    [MenuItem("Developer/Add 100 token")]
+    public static void AddToken()
+    {
+        MoneyManager.Instance.AddToken(100);
     }
 }
