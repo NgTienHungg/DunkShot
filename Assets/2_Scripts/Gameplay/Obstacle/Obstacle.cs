@@ -28,7 +28,7 @@ public class Obstacle : MonoBehaviour
 
         LoadTheme();
 
-        Observer.ChangeTheme += LoadTheme;
+        Observer.OnChangeTheme += LoadTheme;
     }
 
     private void LoadTheme()

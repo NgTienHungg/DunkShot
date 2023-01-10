@@ -15,13 +15,14 @@ public static class Observer
     public static GameEvent OnLightMode;
     public static GameEvent OnDarkMode;
 
-    public static GameEvent ChangeSkin;
-    public static GameEvent ChangeTheme;
+    public static GameEvent OnChangeSkin;
+    public static GameEvent OnChangeTheme;
 
     public delegate void SkinEvent(Skin skin);
-    public static SkinEvent ShowSkinPopup;
+    public static SkinEvent OnShowSkinPopup;
+    public static SkinEvent OnUnlockSkin;
 
     public delegate void ThemeEvent(Theme theme);
-    public static ThemeEvent ShowThemePopup;
+    public static ThemeEvent OnShowThemePopup;
     
 }

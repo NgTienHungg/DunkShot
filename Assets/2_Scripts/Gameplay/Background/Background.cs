@@ -19,7 +19,7 @@ public class Background : MonoBehaviour
 
         LoadTheme();
 
-        Observer.ChangeTheme += LoadTheme;
+        Observer.OnChangeTheme += LoadTheme;
         Observer.OnLightMode += OnLightMode;
         Observer.OnDarkMode += OnDarkMode;
     }

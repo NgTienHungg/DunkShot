@@ -75,12 +75,12 @@ public class SkinPage : MonoBehaviour
     {
         ReloadPage();
 
-        Observer.ChangeSkin += ReloadPage;
+        Observer.OnChangeSkin += ReloadPage;
     }
 
     private void OnDisable()
     {
-        Observer.ChangeSkin -= ReloadPage;
+        Observer.OnChangeSkin -= ReloadPage;
     }
 
     private void ReloadPage()

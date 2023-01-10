@@ -33,7 +33,7 @@ public class ParallaxScrollBG : MonoBehaviour
 
         LoadTheme();
 
-        Observer.ChangeTheme += LoadTheme;
+        Observer.OnChangeTheme += LoadTheme;
         Observer.OnLightMode += LightMode;
         Observer.OnDarkMode += DarkMode;
     }

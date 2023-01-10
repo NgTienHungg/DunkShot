@@ -16,7 +16,7 @@ public class SaveSystem : MonoBehaviour
             PlayerPrefs.SetInt(SaveKey.ON_VIBRATE, 1);
 
         if (!PlayerPrefs.HasKey(SaveKey.ON_LIGHT_MODE))
-            PlayerPrefs.SetInt(SaveKey.ON_LIGHT_MODE, 0);
+            PlayerPrefs.SetInt(SaveKey.ON_LIGHT_MODE, 1);
 
         if (!PlayerPrefs.HasKey(SaveKey.STAR))
             PlayerPrefs.SetInt(SaveKey.STAR, 999);

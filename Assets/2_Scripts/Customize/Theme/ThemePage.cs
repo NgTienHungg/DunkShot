@@ -45,12 +45,12 @@ public class ThemePage : MonoBehaviour
     {
         ReloadPage();
 
-        Observer.ChangeTheme += ReloadPage;
+        Observer.OnChangeTheme += ReloadPage;
     }
 
     private void OnDisable()
     {
-        Observer.ChangeTheme -= ReloadPage;
+        Observer.OnChangeTheme -= ReloadPage;
     }
 
     private void ReloadPage()

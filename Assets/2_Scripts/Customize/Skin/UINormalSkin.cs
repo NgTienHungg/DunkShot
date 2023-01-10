@@ -38,7 +38,7 @@ public class UINormalSkin : UISkin
             if (SaveSystem.GetInt(SaveKey.STAR) < _skin.Data.Price)
             {
                 Debug.LogWarning("NOT ENOUGH");
-                Observer.ShowSkinPopup?.Invoke(_skin);
+                Observer.OnShowSkinPopup?.Invoke(_skin);
                 return;
             }
             Unlock();

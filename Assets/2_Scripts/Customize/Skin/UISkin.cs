@@ -57,7 +57,7 @@ public class UISkin : MonoBehaviour
     {
         _skin.Select();
 
-        Observer.ChangeSkin?.Invoke();
+        Observer.OnChangeSkin?.Invoke();
     }
 
     protected virtual void Unlock()
@@ -76,7 +76,7 @@ public class UISkin : MonoBehaviour
     {
         if (!_skin.Unlocked)
         {
-            Observer.ShowSkinPopup?.Invoke(_skin);
+            Observer.OnShowSkinPopup?.Invoke(_skin);
             return;
         }
 

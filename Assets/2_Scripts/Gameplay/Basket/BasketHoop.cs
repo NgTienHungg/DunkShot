@@ -21,7 +21,7 @@ public class BasketHoop : MonoBehaviour
         LoadTheme();
         Renew();
 
-        Observer.ChangeTheme += LoadTheme;
+        Observer.OnChangeTheme += LoadTheme;
     }
 
     private void LoadTheme()

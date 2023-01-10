@@ -19,7 +19,7 @@ public class Ball : MonoBehaviour
         LoadSkin();
         Renew();
 
-        Observer.ChangeSkin += LoadSkin;
+        Observer.OnChangeSkin += LoadSkin;
     }
 
     public void LoadSkin()

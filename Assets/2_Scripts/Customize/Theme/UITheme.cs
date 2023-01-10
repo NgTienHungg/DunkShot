@@ -63,7 +63,7 @@ public class UITheme : MonoBehaviour
             if (SaveSystem.GetInt(SaveKey.TOKEN) < _theme.Data.Price)
             {
                 Debug.Log("NOT ENOUGH");
-                Observer.ShowThemePopup?.Invoke(_theme);
+                Observer.OnShowThemePopup?.Invoke(_theme);
                 return;
             }
             Unlock();
@@ -84,6 +84,6 @@ public class UITheme : MonoBehaviour
     {
         _theme.Select();
 
-        Observer.ChangeTheme?.Invoke();
+        Observer.OnChangeTheme?.Invoke();
     }
 }

@@ -30,8 +30,9 @@ public class Skin : MonoBehaviour
 
     public void Unlock()
     {
-        SaveSystem.SetInt(UNLOCKED + Key, 1);
         Unlocked = true;
+        SaveSystem.SetInt(UNLOCKED + Key, 1);
+        Observer.OnUnlockSkin?.Invoke(this);
     }
 
     public void Select()
