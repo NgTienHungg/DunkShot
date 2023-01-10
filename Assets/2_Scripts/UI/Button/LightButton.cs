@@ -13,11 +13,11 @@ public class LightButton : MonoBehaviour
 
         if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
         {
-            TurnOff();
+            TurnOn();
         }
         else
         {
-            TurnOn();
+            TurnOff();
         }
     }
 
@@ -35,15 +35,15 @@ public class LightButton : MonoBehaviour
         }
     }
 
-    private void TurnOff()
-    {
-        SaveSystem.SetInt(SaveKey.ON_LIGHT_MODE, 0);
-        _image.sprite = _lightOnSprite;
-    }
-
     private void TurnOn()
     {
         SaveSystem.SetInt(SaveKey.ON_LIGHT_MODE, 1);
+        _image.sprite = _lightOnSprite;
+    }
+
+    private void TurnOff()
+    {
+        SaveSystem.SetInt(SaveKey.ON_LIGHT_MODE, 0);
         _image.sprite = _lightOffSprite;
     }
 }

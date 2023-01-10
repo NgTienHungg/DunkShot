@@ -53,5 +53,6 @@ public class Background : MonoBehaviour
     public void Renew()
     {
         _wall.Renew();
+        _foreground.Renew();
     }
 }
