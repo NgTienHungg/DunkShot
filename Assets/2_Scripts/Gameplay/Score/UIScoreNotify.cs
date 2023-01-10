@@ -99,7 +99,7 @@ public class UIScoreNotify : MonoBehaviour
         {
             _uiScoreAdd.DOFade(1f, 0.3f);
             _uiScoreAdd.rectTransform.localPosition = Vector3.zero;
-            _uiScoreAdd.rectTransform.DOLocalMoveY(60f, 1.3f).SetEase(Ease.OutQuad);
+            _uiScoreAdd.rectTransform.DOLocalMoveY(60f, 1.2f).SetEase(Ease.OutQuad);
             _uiScoreAdd.DOFade(0f, 0.3f).SetDelay(1f);
         });
     }

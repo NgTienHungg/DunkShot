@@ -14,8 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lunch
   ThemeCell: {fileID: 21300000, guid: c2a923a3bbdf3da4fb64765f8a316c06, type: 3}
-  BackHoop: {fileID: 0}
-  FrontHoop: {fileID: 0}
-  HoopColor: {r: 1, g: 1, b: 1, a: 0}
+  Hoop:
+    ActiveBack: {fileID: 21300000, guid: e34af9c160dbfe04aa6691f947fcad63, type: 3}
+    ActiveFront: {fileID: 21300000, guid: 1e22d231404e8724b8c2d650344ba788, type: 3}
+    InactiveBack: {fileID: 21300000, guid: eae118ff4ab14204890da5c7877453bf, type: 3}
+    InactiveFront: {fileID: 21300000, guid: 6a5c43d046bcd6843ba1ec93547696b0, type: 3}
+  Background:
+    LightBG: {fileID: 21300000, guid: 8ef1514e14a657c419e3ba52c6c0de97, type: 3}
+    DarkBG: {fileID: 21300000, guid: 6c3e606e5253e604390356bd32594cc3, type: 3}
+    LightStaticBG: {fileID: 0}
+    DarkStaticBG: {fileID: 0}
+    LightWall: {fileID: 21300000, guid: 0b4377453b326864bb6c0ad55219f139, type: 3}
+    DarkWall: {fileID: 21300000, guid: 0be678dc243c4f1458a353429190ecc2, type: 3}
+    WallSpeed: 0.7
+    LightForeground: {fileID: 0}
+    DarkForeground: {fileID: 0}
+    ForegroundSpeed: 0
+    LightDecor: {fileID: 0}
+    DarkDecor: {fileID: 0}
+  Obstacle:
+    Bars:
+    - {fileID: 21300000, guid: 5df4da99212b1ca46bb2a634123f331f, type: 3}
+    - {fileID: 21300000, guid: 7b74ee0057e1b614b8acde1b54e37a2b, type: 3}
+    - {fileID: 21300000, guid: c72d3324237fd0b4fa11954b0ccecf10, type: 3}
+    - {fileID: 21300000, guid: 51427f17c3f7fac45909378596b35b31, type: 3}
+    Shields:
+    - {fileID: 21300000, guid: a17b954dc7288e54c88ba526dac9c4a8, type: 3}
+    - {fileID: 21300000, guid: 7796f410da3dfa9429067982dc207deb, type: 3}
+    - {fileID: 21300000, guid: f6591956b73accb499c3acf5b986afc6, type: 3}
+    - {fileID: 21300000, guid: 25ede603c9374484ea3703408d666b52, type: 3}
+    Backboard: {fileID: 21300000, guid: 86229c36accb4f443b98318a1ab7d729, type: 3}
+  ScoreColor: {r: 0, g: 0, b: 0, a: 0}
+  ButtonColor: {r: 0, g: 0, b: 0, a: 0}
+  TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
   Price: 150
   Type: 0

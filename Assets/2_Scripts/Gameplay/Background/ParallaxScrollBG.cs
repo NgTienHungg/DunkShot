@@ -3,7 +3,7 @@
 public enum BGType
 {
     Wall,
-    Static
+    Foreground
 }
 
 public class ParallaxScrollBG : MonoBehaviour
@@ -54,20 +54,20 @@ public class ParallaxScrollBG : MonoBehaviour
     {
         if (_type == BGType.Wall)
         {
-            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.WallSpeedFactor;
+            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.WallSpeed;
 
             foreach (var img in _images)
             {
                 img.sprite = DataManager.Instance.ThemeInUse.Data.Background.LightWall;
             }
         }
-        else if (_type == BGType.Static)
+        else if (_type == BGType.Foreground)
         {
-            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.StaticWallSpeedFactor;
+            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.ForegroundSpeed;
 
             foreach (var img in _images)
             {
-                img.sprite = DataManager.Instance.ThemeInUse.Data.Background.StaticLightWall;
+                img.sprite = DataManager.Instance.ThemeInUse.Data.Background.LightForeground;
             }
         }
     }
@@ -76,20 +76,20 @@ public class ParallaxScrollBG : MonoBehaviour
     {
         if (_type == BGType.Wall)
         {
-            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.WallSpeedFactor;
+            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.WallSpeed;
 
             foreach (var img in _images)
             {
                 img.sprite = DataManager.Instance.ThemeInUse.Data.Background.DarkWall;
             }
         }
-        else if (_type == BGType.Static)
+        else if (_type == BGType.Foreground)
         {
-            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.StaticWallSpeedFactor;
+            _speedFactor = DataManager.Instance.ThemeInUse.Data.Background.ForegroundSpeed;
 
             foreach (var img in _images)
             {
-                img.sprite = DataManager.Instance.ThemeInUse.Data.Background.StaticDarkWall;
+                img.sprite = DataManager.Instance.ThemeInUse.Data.Background.DarkForeground;
             }
         }
     }

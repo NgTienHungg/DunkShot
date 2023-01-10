@@ -4,9 +4,11 @@ public class Background : MonoBehaviour
 {
     public static Background Instance { get; private set; }
 
-    [SerializeField] private SpriteRenderer _BG;
-    [SerializeField] private ParallaxScrollBG _wallBG;
-    [SerializeField] private ParallaxScrollBG _staticWallBG;
+    [SerializeField] private SpriteRenderer _background;
+    [SerializeField] private SpriteRenderer _static;
+    [SerializeField] private ParallaxScrollBG _wall;
+    [SerializeField] private ParallaxScrollBG _foreground;
+    [SerializeField] private SpriteRenderer _decor;
 
     private void Awake()
     {
@@ -36,16 +38,20 @@ public class Background : MonoBehaviour
 
     private void OnLightMode()
     {
-        _BG.sprite = DataManager.Instance.ThemeInUse.Data.Background.LightBG;
+        _background.sprite = DataManager.Instance.ThemeInUse.Data.Background.LightBG;
+        _static.sprite = DataManager.Instance.ThemeInUse.Data.Background.LightStaticBG;
+        _decor.sprite = DataManager.Instance.ThemeInUse.Data.Background.LightDecor;
     }
 
     private void OnDarkMode()
     {
-        _BG.sprite = DataManager.Instance.ThemeInUse.Data.Background.DarkBG;
+        _background.sprite = DataManager.Instance.ThemeInUse.Data.Background.DarkBG;
+        _static.sprite = DataManager.Instance.ThemeInUse.Data.Background.DarkStaticBG;
+        _decor.sprite = DataManager.Instance.ThemeInUse.Data.Background.DarkDecor;
     }
 
     public void Renew()
     {
-        _wallBG.Renew();
+        _wall.Renew();
     }
 }

@@ -40,17 +40,31 @@ public class HoopData
 [Serializable]
 public class BackgroundData
 {
-    public Sprite LightBG, DarkBG;
+    [Header("Background")]
+    public Sprite LightBG;
+    public Sprite DarkBG;
 
-    public Sprite LightWall, DarkWall;
+    [Header("Static")]
+    public Sprite LightStaticBG;
+    public Sprite DarkStaticBG;
+
+    [Header("Wall")]
+    public Sprite LightWall;
+    public Sprite DarkWall;
 
     [Range(0f, 1f)]
-    public float WallSpeedFactor;
+    public float WallSpeed;
 
-    public Sprite StaticLightWall, StaticDarkWall;
+    [Header("Foreground")]
+    public Sprite LightForeground;
+    public Sprite DarkForeground;
 
     [Range(0f, 1f)]
-    public float StaticWallSpeedFactor;
+    public float ForegroundSpeed;
+
+    [Header("Decor")]
+    public Sprite LightDecor;
+    public Sprite DarkDecor;
 }
 
 [Serializable]

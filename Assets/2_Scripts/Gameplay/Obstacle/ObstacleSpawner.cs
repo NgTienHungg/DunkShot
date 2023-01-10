@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public static ObstacleSpawner Instance;
+    public static ObstacleSpawner Instance { get; private set; }
 
     private Basket _basket;
     private bool _inTheRight;
@@ -43,9 +43,6 @@ public class ObstacleSpawner : MonoBehaviour
             case 7:
                 SpawnSingleBesideBackboard();
                 break;
-            //case 8:
-            //    SpawnTwoBesideBackboard();
-            //    break;
             default:
                 break;
         }
@@ -152,20 +149,4 @@ public class ObstacleSpawner : MonoBehaviour
         _basket.Obstacle.Add(obstacle);
         _basket.transform.rotation = Quaternion.identity;
     }
-
-    //private void SpawnTwoBesideBackboard()
-    //{
-    //    Obstacle obstacle = ObjectPooler.Instance.Spawn(PoolTag.BesideBackboard).GetComponent<Obstacle>();
-
-    //    float x = Random.Range(2f, 2.2f);
-    //    float y = _basket.transform.position.y;
-    //    float dir = _inTheRight ? 1 : -1;
-
-    //    _basket.transform.position = new Vector3(dir * x, y);
-    //    obstacle.transform.position = _basket.transform.position;
-    //    obstacle.Appear();
-
-    //    _basket.Obstacle.Add(obstacle);
-    //    _basket.transform.rotation = Quaternion.identity;
-    //}
 }

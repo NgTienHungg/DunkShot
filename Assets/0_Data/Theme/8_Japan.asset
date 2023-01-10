@@ -14,8 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Japan
   ThemeCell: {fileID: 21300000, guid: 2f49c8596be58fd4187aa0799031c1a0, type: 3}
-  BackHoop: {fileID: 0}
-  FrontHoop: {fileID: 0}
-  HoopColor: {r: 1, g: 1, b: 1, a: 0}
+  Hoop:
+    ActiveBack: {fileID: 21300000, guid: 85d99cc19ae618142ae86f51cf0099b6, type: 3}
+    ActiveFront: {fileID: 21300000, guid: 96782c343491ce742803b7649196211a, type: 3}
+    InactiveBack: {fileID: 21300000, guid: 9a138cf6c6f158a40b8ac53be7480155, type: 3}
+    InactiveFront: {fileID: 21300000, guid: 9d43ecf78e720e743a64f00ef9206666, type: 3}
+  Background:
+    LightBG: {fileID: 21300000, guid: 7a2446e6cdce5cd44b3fda906edce820, type: 3}
+    DarkBG: {fileID: 21300000, guid: afe7e3ccd6e8629439f9ad1ad9758586, type: 3}
+    LightStaticBG: {fileID: 21300000, guid: fe9ef3c374a87a14f9380df10c06c8f2, type: 3}
+    DarkStaticBG: {fileID: 21300000, guid: fe9ef3c374a87a14f9380df10c06c8f2, type: 3}
+    LightWall: {fileID: 21300000, guid: 867331138f7264a429f380837bd140f3, type: 3}
+    DarkWall: {fileID: 21300000, guid: 867331138f7264a429f380837bd140f3, type: 3}
+    WallSpeed: 0.3
+    LightForeground: {fileID: 21300000, guid: 39e327bd8fb5271499c7ed50869fe3aa, type: 3}
+    DarkForeground: {fileID: 21300000, guid: 21785098a619ef044951a07801f675c3, type: 3}
+    ForegroundSpeed: 0.6
+    LightDecor: {fileID: 21300000, guid: e237c2855d11d244eb76b3c44a5c5b7e, type: 3}
+    DarkDecor: {fileID: 21300000, guid: 6abe021924310904896a70bb74cfb63c, type: 3}
+  Obstacle:
+    Bars:
+    - {fileID: 21300000, guid: ff9035078d9436646ae8212b79fc582b, type: 3}
+    - {fileID: 21300000, guid: 70fae8396d4dd504587db15393c123d1, type: 3}
+    - {fileID: 21300000, guid: 139ff74121903e84ca2e0cad11e15cc3, type: 3}
+    - {fileID: 21300000, guid: 25ea6ba60f740d54481ed19f66e19bb4, type: 3}
+    Shields:
+    - {fileID: 21300000, guid: d7e5c6be90e7ab14094377e65b28f71c, type: 3}
+    - {fileID: 21300000, guid: 32b9f3e23f5b621408f8204036b78ce5, type: 3}
+    - {fileID: 21300000, guid: ada1b6a6abde2da4e9dcb696448d123e, type: 3}
+    - {fileID: 21300000, guid: 180f59c8e989e38489b1752d629dc067, type: 3}
+    Backboard: {fileID: 21300000, guid: 6ff82cc525650d3439c58004d0c23210, type: 3}
+  ScoreColor: {r: 0, g: 0, b: 0, a: 0}
+  ButtonColor: {r: 0, g: 0, b: 0, a: 0}
+  TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
   Price: 150
   Type: 0

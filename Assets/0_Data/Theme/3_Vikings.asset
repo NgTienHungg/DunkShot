@@ -22,12 +22,16 @@ MonoBehaviour:
   Background:
     LightBG: {fileID: 21300000, guid: da57223f292d5dd49ab5b41a908d72ea, type: 3}
     DarkBG: {fileID: 21300000, guid: 6992edb106c94e44f9de9372ff3ebdf5, type: 3}
+    LightStaticBG: {fileID: 0}
+    DarkStaticBG: {fileID: 0}
     LightWall: {fileID: 21300000, guid: e3f0c14430c757a49b1adfa2fd3c474a, type: 3}
     DarkWall: {fileID: 21300000, guid: e3f0c14430c757a49b1adfa2fd3c474a, type: 3}
-    WallSpeedFactor: 0.7
-    StaticLightWall: {fileID: 0}
-    StaticDarkWall: {fileID: 0}
-    StaticWallSpeedFactor: 0
+    WallSpeed: 0.7
+    LightForeground: {fileID: 0}
+    DarkForeground: {fileID: 0}
+    ForegroundSpeed: 0
+    LightDecor: {fileID: 0}
+    DarkDecor: {fileID: 0}
   Obstacle:
     Bars:
     - {fileID: 21300000, guid: 7d49a10f998a9c24d8c3a326c3086e90, type: 3}

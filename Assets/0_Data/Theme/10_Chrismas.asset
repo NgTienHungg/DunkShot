@@ -14,17 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Christmas
   ThemeCell: {fileID: 21300000, guid: 263684e3c6dff374a93378b30a056fb0, type: 3}
-  ActiveBackHoop: {fileID: 21300000, guid: 2cc7c67faffb5794287f77e7da44d98d, type: 3}
-  ActiveFrontHoop: {fileID: 21300000, guid: eddfbb770aa15d04b81044f5ff27fada, type: 3}
-  InactiveBackHoop: {fileID: 21300000, guid: 2d288a473ea95d8478bd5629203d84bb, type: 3}
-  InactiveFrontHoop: {fileID: 21300000, guid: dd6228b344e6aea498b69d5502cfea48, type: 3}
-  LightBG: {fileID: 0}
-  DarkBG: {fileID: 0}
-  LightWallBG: {fileID: 0}
-  DarkWallBG: {fileID: 0}
-  Bars: []
-  Shields: []
-  Backboard: {fileID: 0}
+  Hoop:
+    ActiveBack: {fileID: 21300000, guid: 2cc7c67faffb5794287f77e7da44d98d, type: 3}
+    ActiveFront: {fileID: 21300000, guid: eddfbb770aa15d04b81044f5ff27fada, type: 3}
+    InactiveBack: {fileID: 21300000, guid: 2d288a473ea95d8478bd5629203d84bb, type: 3}
+    InactiveFront: {fileID: 21300000, guid: dd6228b344e6aea498b69d5502cfea48, type: 3}
+  Background:
+    LightBG: {fileID: 21300000, guid: c88624b26173cb54abbcdea352ae0541, type: 3}
+    DarkBG: {fileID: 21300000, guid: 2aa84c2c5891bc2469c8ed47694d40f3, type: 3}
+    LightStaticBG: {fileID: 0}
+    DarkStaticBG: {fileID: 0}
+    LightWall: {fileID: 21300000, guid: fac00e31384c09b4aae1ddd984ec3827, type: 3}
+    DarkWall: {fileID: 21300000, guid: 180dc55363a5f5a45a1bf5a9a188c4b3, type: 3}
+    WallSpeed: 0.7
+    LightForeground: {fileID: 0}
+    DarkForeground: {fileID: 0}
+    ForegroundSpeed: 0
+    LightDecor: {fileID: 0}
+    DarkDecor: {fileID: 0}
+  Obstacle:
+    Bars:
+    - {fileID: 21300000, guid: ca4d38e1cfe31ad468fd43ff3f6e06c9, type: 3}
+    - {fileID: 21300000, guid: 3386fa01b874c38439a1302948142dd4, type: 3}
+    - {fileID: 21300000, guid: d6c44aa9b53cbdc4688df8caf73c3437, type: 3}
+    - {fileID: 21300000, guid: f66d2c806d089ef47a84cdca80dba2ae, type: 3}
+    Shields:
+    - {fileID: 21300000, guid: b9c2744cda9b7db4aa2c1371a7406193, type: 3}
+    - {fileID: 21300000, guid: 94d1fea72f186a54894696fbaa419161, type: 3}
+    - {fileID: 21300000, guid: 9fd1f20a5d0009c438caf5927258785c, type: 3}
+    - {fileID: 21300000, guid: 4ce9c47eeb172f8419c0aba656e52035, type: 3}
+    Backboard: {fileID: 21300000, guid: b3964ab979cfa4e45b6964c3e3370705, type: 3}
   ScoreColor: {r: 0, g: 0, b: 0, a: 0}
   ButtonColor: {r: 0, g: 0, b: 0, a: 0}
   TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
