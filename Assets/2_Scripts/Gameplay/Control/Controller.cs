@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
     public void Renew()
     {
         CameraController.Instance.Renew();
-        BackgroundManager.Instance.Renew();
+        Background.Instance.Renew();
         ScoreManager.Instance.Renew();
 
         BasketSpawner.Renew();

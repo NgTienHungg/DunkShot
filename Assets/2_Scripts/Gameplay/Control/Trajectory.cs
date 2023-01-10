@@ -96,8 +96,7 @@ public class Trajectory : MonoBehaviour
         // trajectory simulation
         for (var i = 0; i < maxIterations; i++)
         {
-            //physicsScene.Simulate(Time.fixedDeltaTime);
-            physicsScene.Simulate(0.01f);
+            physicsScene.Simulate(Time.fixedDeltaTime); // fixedDeltaTime = 0.01f
             simulationBallPos[i] = simulationBall.transform.position;
         }
 

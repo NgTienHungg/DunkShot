@@ -14,8 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Cloudy
   ThemeCell: {fileID: 21300000, guid: 39079942079d7b744b8f33aa9e684ce6, type: 3}
-  BackHoop: {fileID: 21300000, guid: eba24db5888fb984a858076283739b1d, type: 3}
-  FrontHoop: {fileID: 21300000, guid: e2e7f8e3b53543841973d86b76bd0fa6, type: 3}
-  HoopColor: {r: 1, g: 1, b: 1, a: 0}
+  Hoop:
+    ActiveBack: {fileID: 21300000, guid: eba24db5888fb984a858076283739b1d, type: 3}
+    ActiveFront: {fileID: 21300000, guid: e2e7f8e3b53543841973d86b76bd0fa6, type: 3}
+    InactiveBack: {fileID: 21300000, guid: 5bc4b39ec814c3c43a37baa44d296f9c, type: 3}
+    InactiveFront: {fileID: 21300000, guid: dc8fb027429280b41a5507fc1723e431, type: 3}
+  Background:
+    LightBG: {fileID: 21300000, guid: 7bb861a32491b474f8918a33bf803a55, type: 3}
+    DarkBG: {fileID: 21300000, guid: 97749a7c9d8b7694689faff3ddd26128, type: 3}
+    LightWall: {fileID: 21300000, guid: 473c88034a08c4c469833bfd6f7ac446, type: 3}
+    DarkWall: {fileID: 21300000, guid: 473c88034a08c4c469833bfd6f7ac446, type: 3}
+    WallSpeedFactor: 0.55
+    StaticLightWall: {fileID: 21300000, guid: 9b04c1192a65dd54aa867a1900610ee5, type: 3}
+    StaticDarkWall: {fileID: 21300000, guid: 9b04c1192a65dd54aa867a1900610ee5, type: 3}
+    StaticWallSpeedFactor: 0.3
+  Obstacle:
+    Bars:
+    - {fileID: 21300000, guid: 9a92f30cf0e549d49818b830c9bd040c, type: 3}
+    - {fileID: 21300000, guid: 33506665cca7d4c4499c9762ae41b2dc, type: 3}
+    - {fileID: 21300000, guid: 4466ab3e728dcc242bf3129c9aaaf1df, type: 3}
+    - {fileID: 21300000, guid: fe4485ec96b8def49aa0559adb8e6921, type: 3}
+    Shields:
+    - {fileID: 21300000, guid: d28fce0acdd757940bad486d9fa735ef, type: 3}
+    - {fileID: 21300000, guid: 82a7fdee039bffd49be10ca44d6993cd, type: 3}
+    - {fileID: 21300000, guid: a5d9563071320c241bb6fea491fe311e, type: 3}
+    - {fileID: 21300000, guid: b788cb01837ff1d47bffafe6163669a7, type: 3}
+    Backboard: {fileID: 21300000, guid: ac0b079cde7cfec4f91d46c0303e56f2, type: 3}
+  ScoreColor: {r: 0, g: 0.33333334, b: 1, a: 0.78431374}
+  ButtonColor: {r: 0, g: 0.12614872, b: 0.74509805, a: 1}
+  TrajectoryColor: {r: 0.099430345, g: 0.33665496, b: 0.9245283, a: 1}
   Price: 50
   Type: 0

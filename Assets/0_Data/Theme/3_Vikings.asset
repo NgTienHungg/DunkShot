@@ -14,8 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Vikings
   ThemeCell: {fileID: 21300000, guid: 2c4889aa983c75647a9e8085fd44b330, type: 3}
-  BackHoop: {fileID: 0}
-  FrontHoop: {fileID: 0}
-  HoopColor: {r: 1, g: 1, b: 1, a: 0}
+  Hoop:
+    ActiveBack: {fileID: 21300000, guid: ca6ff66a88f9e7d419ee0df9fa0d13c8, type: 3}
+    ActiveFront: {fileID: 21300000, guid: b0928492ea205eb49a7e90a78fd1f20b, type: 3}
+    InactiveBack: {fileID: 21300000, guid: a7a9eab2d6834c44697232a8f0ec96e4, type: 3}
+    InactiveFront: {fileID: 21300000, guid: 3fdc6df0def22de41864ff94ed43a2f8, type: 3}
+  Background:
+    LightBG: {fileID: 21300000, guid: da57223f292d5dd49ab5b41a908d72ea, type: 3}
+    DarkBG: {fileID: 21300000, guid: 6992edb106c94e44f9de9372ff3ebdf5, type: 3}
+    LightWall: {fileID: 21300000, guid: e3f0c14430c757a49b1adfa2fd3c474a, type: 3}
+    DarkWall: {fileID: 21300000, guid: e3f0c14430c757a49b1adfa2fd3c474a, type: 3}
+    WallSpeedFactor: 0.7
+    StaticLightWall: {fileID: 0}
+    StaticDarkWall: {fileID: 0}
+    StaticWallSpeedFactor: 0
+  Obstacle:
+    Bars:
+    - {fileID: 21300000, guid: 7d49a10f998a9c24d8c3a326c3086e90, type: 3}
+    - {fileID: 21300000, guid: f9f44f0b91051e24ca56e17c28dddac7, type: 3}
+    - {fileID: 21300000, guid: a7b4a8540d1e1584fa3e17b54b155db2, type: 3}
+    - {fileID: 21300000, guid: f1e8a9e5c5d1d0a43b86effd44f33d68, type: 3}
+    Shields:
+    - {fileID: 21300000, guid: 3e2cff638d6da7c48886f94b85f39205, type: 3}
+    - {fileID: 21300000, guid: 73375c8b187359747ac55ab5d870d4d5, type: 3}
+    - {fileID: 21300000, guid: 31b6817cd1f361048adabe9f5fdcd2c8, type: 3}
+    - {fileID: 21300000, guid: 59aa09fd4e363604691afda3ad237ae0, type: 3}
+    Backboard: {fileID: 21300000, guid: f8575efda1f479744bafc8125c759099, type: 3}
+  ScoreColor: {r: 0.8490566, g: 0.5496093, b: 0.07529365, a: 0.972549}
+  ButtonColor: {r: 0.8679245, g: 0.4958401, b: 0.1342826, a: 0.91764706}
+  TrajectoryColor: {r: 0.8773585, g: 0.1966338, b: 0.07780345, a: 0.8745098}
   Price: 50
   Type: 0

@@ -9,7 +9,7 @@ public class CustomizeManager : UIGame
 
     protected override void OnEnable()
     {
-        ActiveThemePage();
+        ActiveSkinPage();
     }
 
     public override void Enable()

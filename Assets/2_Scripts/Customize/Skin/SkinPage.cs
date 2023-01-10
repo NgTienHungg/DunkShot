@@ -67,13 +67,15 @@ public class SkinPage : MonoBehaviour
 
         uiSkin.gameObject.name = skin.Key;
         uiSkin.SetSkin(skin);
-        uiSkin.Renew();
+        //uiSkin.Renew();
 
         return uiSkin;
     }
 
     private void OnEnable()
     {
+        ReloadPage();
+
         Observer.ChangeSkin += ReloadPage;
     }
 

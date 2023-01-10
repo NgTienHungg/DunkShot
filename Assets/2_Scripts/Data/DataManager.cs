@@ -79,14 +79,12 @@ public class DataManager : MonoBehaviour
         {
             Skins[0].Unlock();
             Skins[0].Select();
-            //SaveSystem.SetString(SaveKey.SKIN_IN_USE, Skins[0].Key);
         }
 
         if (!Themes[0].Unlocked)
         {
             Themes[0].Unlock();
             Themes[0].Select();
-            //SaveSystem.SetString(SaveKey.THEME_IN_USE, Themes[0].Key);
         }
     }
 
@@ -95,7 +93,6 @@ public class DataManager : MonoBehaviour
         get
         {
             string key = SaveSystem.GetString(SaveKey.SKIN_IN_USE);
-            Debug.Log("skin key: " + key);
             foreach (var skin in Skins)
             {
                 if (skin.Key == key)

@@ -14,8 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Note Book
   ThemeCell: {fileID: 21300000, guid: 1002dc39230df0e4ba0bf554b113ee37, type: 3}
-  BackHoop: {fileID: 21300000, guid: 31dd61cf50a526249ba89ffe3483b65d, type: 3}
-  FrontHoop: {fileID: 21300000, guid: 4bcfbf7b2fd1aef46bec7ced82f6940e, type: 3}
-  HoopColor: {r: 0, g: 0.60784316, b: 1, a: 1}
+  Hoop:
+    ActiveBack: {fileID: 21300000, guid: fa5222fa5057d2549a66f34ecefb28e0, type: 3}
+    ActiveFront: {fileID: 21300000, guid: fc5d0ce4e998d2541b639f7f24fe2f8d, type: 3}
+    InactiveBack: {fileID: 21300000, guid: ba0a085b85d1e554f9905ab258e42508, type: 3}
+    InactiveFront: {fileID: 21300000, guid: 34714ae304bc78e4ca0fa507ad0357f4, type: 3}
+  Background:
+    LightBG: {fileID: 21300000, guid: 5620a4eb86d157548b5e735ef98fbc0d, type: 3}
+    DarkBG: {fileID: 21300000, guid: 532858d356ef1314692efb4d93730a1c, type: 3}
+    LightWall: {fileID: 21300000, guid: e69a1e2dbaf7892459b6e5ef69bbe1f1, type: 3}
+    DarkWall: {fileID: 21300000, guid: e69a1e2dbaf7892459b6e5ef69bbe1f1, type: 3}
+    WallSpeedFactor: 0.65
+    StaticLightWall: {fileID: 0}
+    StaticDarkWall: {fileID: 0}
+    StaticWallSpeedFactor: 0
+  Obstacle:
+    Bars:
+    - {fileID: 21300000, guid: abbc7ed7f128dd24fa1f738a04bca2f4, type: 3}
+    - {fileID: 21300000, guid: ce39a962f665d63498247c637759818e, type: 3}
+    - {fileID: 21300000, guid: ba1d3172049c89f4f8076866454b0968, type: 3}
+    - {fileID: 21300000, guid: ab9a56f897d6a2b4e9dd6b732495c3a1, type: 3}
+    Shields:
+    - {fileID: 21300000, guid: 353f2f8bf6a8f5f4abaf7a1501cb7e8e, type: 3}
+    - {fileID: 21300000, guid: 7da28574cdf8dc54a87df0e40d70c045, type: 3}
+    - {fileID: 21300000, guid: 97548d20e86379f49bf4b79b4724c451, type: 3}
+    - {fileID: 21300000, guid: e29f370230379e24bbc69e9b469e6f8e, type: 3}
+    Backboard: {fileID: 21300000, guid: 54e3e9eb1fd583b4f845405ea4550103, type: 3}
+  ScoreColor: {r: 0.8773585, g: 0.4033481, b: 0.08608043, a: 0.91764706}
+  ButtonColor: {r: 0.8584906, g: 0.6811501, b: 0.140922, a: 0.8745098}
+  TrajectoryColor: {r: 0.9056604, g: 0.553563, b: 0.08885722, a: 0.98039216}
   Price: 50
   Type: 0

@@ -9,7 +9,7 @@ public class PopupController : MonoBehaviour
 
     private void Awake()
     {
-        Observer.ShowPopup += ShowPopup;
+        Observer.ShowSkinPopup += ShowPopup;
     }
 
     private void Start()

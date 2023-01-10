@@ -14,8 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Jungle
   ThemeCell: {fileID: 21300000, guid: 47a2359e2b615a34cb9cd335f09b67b4, type: 3}
-  BackHoop: {fileID: 0}
-  FrontHoop: {fileID: 0}
-  HoopColor: {r: 1, g: 1, b: 1, a: 0}
+  Hoop:
+    ActiveBack: {fileID: 21300000, guid: 3fc8a3231e12bcd4e8370b3e8287549b, type: 3}
+    ActiveFront: {fileID: 21300000, guid: ea206dcf487c216438c511f24cdb443c, type: 3}
+    InactiveBack: {fileID: 21300000, guid: 304c2353ec2c30940b74a7e9428a44ce, type: 3}
+    InactiveFront: {fileID: 21300000, guid: d93e39489f6d23142a8e170c9bf996ee, type: 3}
+  Background:
+    LightBG: {fileID: 21300000, guid: 8c06b7a2e81208f489f023769dbfcea7, type: 3}
+    DarkBG: {fileID: 21300000, guid: 0855693adab3d56419d27d455d4be5a6, type: 3}
+    LightWall: {fileID: 21300000, guid: 6fe62ed09ec8c7d44922c0109bc71e18, type: 3}
+    DarkWall: {fileID: 21300000, guid: 6fe62ed09ec8c7d44922c0109bc71e18, type: 3}
+    WallSpeedFactor: 0.7
+    StaticLightWall: {fileID: 0}
+    StaticDarkWall: {fileID: 0}
+    StaticWallSpeedFactor: 0
+  Obstacle:
+    Bars:
+    - {fileID: 21300000, guid: 8ffde45559506bc478e97816c0a23852, type: 3}
+    - {fileID: 21300000, guid: 40be3719c6c3ad845a58157449945e16, type: 3}
+    - {fileID: 21300000, guid: 558f1a211f58d14458e358e1c3eb0f1e, type: 3}
+    - {fileID: 21300000, guid: 6636cbdcd87a3244ea696c7bcf467e0b, type: 3}
+    Shields:
+    - {fileID: 21300000, guid: 2c8acb171db1b504abd9974b06ad6e09, type: 3}
+    - {fileID: 21300000, guid: cf230bb172a1a2c4aa37991d11db76f7, type: 3}
+    - {fileID: 21300000, guid: 4dd4601eaabb93b4484ae6b351a2e484, type: 3}
+    - {fileID: 21300000, guid: c2f311dde91edf74295a01bc3aa4e039, type: 3}
+    Backboard: {fileID: 0}
+  ScoreColor: {r: 0.23185539, g: 1, b: 0, a: 0.91764706}
+  ButtonColor: {r: 0.54500073, g: 0.9528302, b: 0.111463115, a: 1}
+  TrajectoryColor: {r: 0.11249932, g: 0.90588236, b: 0.07450979, a: 0.89411765}
   Price: 100
   Type: 0

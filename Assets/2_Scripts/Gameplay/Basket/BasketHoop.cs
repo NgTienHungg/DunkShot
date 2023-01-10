@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class BasketHoop : MonoBehaviour
 {
-    [Header("Sprite")]
-    [SerializeField] private SpriteRenderer _frontSprite;
-    [SerializeField] private SpriteRenderer _backSprite;
+    [Header("Active")]
+    [SerializeField] private SpriteRenderer _activeFrontSprite;
+    [SerializeField] private SpriteRenderer _activeBackSprite;
 
-    [Header("Color")]
-    [SerializeField] private Color _activeColor;
-    [SerializeField] private Color _inactiveColor;
+    [Header("Inactive")]
+    [SerializeField] private SpriteRenderer _inactiveFrontSprite;
+    [SerializeField] private SpriteRenderer _inactiveBackSprite;
 
     [Header("Get score")]
     [SerializeField] private SpriteRenderer _scoreEff;
@@ -18,13 +18,28 @@ public class BasketHoop : MonoBehaviour
 
     private void Awake()
     {
+        LoadTheme();
         Renew();
+
+        Observer.ChangeTheme += LoadTheme;
+    }
+
+    private void LoadTheme()
+    {
+        _activeFrontSprite.sprite = DataManager.Instance.ThemeInUse.Data.Hoop.ActiveFront;
+        _activeBackSprite.sprite = DataManager.Instance.ThemeInUse.Data.Hoop.ActiveBack;
+
+        _inactiveFrontSprite.sprite = DataManager.Instance.ThemeInUse.Data.Hoop.InactiveFront;
+        _inactiveBackSprite.sprite = DataManager.Instance.ThemeInUse.Data.Hoop.InactiveBack;
     }
 
     public void Renew()
     {
-        _frontSprite.color = _activeColor;
-        _backSprite.color = _activeColor;
+        _activeFrontSprite.gameObject.SetActive(true);
+        _activeBackSprite.gameObject.SetActive(true);
+
+        _inactiveFrontSprite.gameObject.SetActive(false);
+        _inactiveBackSprite.gameObject.SetActive(false);
 
         _scoreEff.transform.localScale = Vector3.one;
         _scoreEff.gameObject.SetActive(false);
@@ -32,8 +47,11 @@ public class BasketHoop : MonoBehaviour
 
     public void Scale()
     {
-        _frontSprite.color = _inactiveColor;
-        _backSprite.color = _inactiveColor;
+        _activeFrontSprite.gameObject.SetActive(false);
+        _activeBackSprite.gameObject.SetActive(false);
+
+        _inactiveFrontSprite.gameObject.SetActive(true);
+        _inactiveBackSprite.gameObject.SetActive(true);
 
         _scoreEff.gameObject.SetActive(true);
         _scoreEff.DOFade(1f, 0f).OnComplete(() =>

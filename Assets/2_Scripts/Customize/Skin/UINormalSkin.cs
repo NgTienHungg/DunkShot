@@ -38,24 +38,18 @@ public class UINormalSkin : UISkin
             if (SaveSystem.GetInt(SaveKey.STAR) < _skin.Data.Price)
             {
                 Debug.LogWarning("NOT ENOUGH");
-                Observer.ShowPopup?.Invoke(_skin);
+                Observer.ShowSkinPopup?.Invoke(_skin);
                 return;
             }
-
-            Buy();
             Unlock();
         }
-
         Select();
-    }
-
-    private void Buy()
-    {
-        SaveSystem.SetInt(SaveKey.STAR, SaveSystem.GetInt(SaveKey.STAR) - _skin.Data.Price);
     }
 
     protected override void Unlock()
     {
+        SaveSystem.SetInt(SaveKey.STAR, SaveSystem.GetInt(SaveKey.STAR) - _skin.Data.Price);
+
         base.Unlock();
 
         _tagImage.transform.DOScale(0f, 0.3f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>

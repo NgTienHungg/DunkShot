@@ -12,9 +12,6 @@ public class UISkin : MonoBehaviour
     protected Skin _skin;
     protected bool _isSelecting;
 
-    /// <summary>
-    /// default: lock skin
-    /// </summary>
     protected virtual void Awake()
     {
         _ball.gameObject.SetActive(false);
@@ -25,6 +22,10 @@ public class UISkin : MonoBehaviour
 
     public virtual void Renew()
     {
+        _selected.gameObject.SetActive(false);
+        _ball.transform.DOKill();
+        _ball.transform.localScale = Vector3.one;
+
         _isSelecting = (_skin.Key == SaveSystem.GetString(SaveKey.SKIN_IN_USE));
 
         if (_isSelecting)
@@ -34,13 +35,8 @@ public class UISkin : MonoBehaviour
             {
                 _selected.transform.DOScale(1f, 0.3f).SetEase(Ease.OutCubic).SetUpdate(true);
             });
+
             _ball.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
-        }
-        else
-        {
-            _selected.gameObject.SetActive(false);
-            _ball.transform.DOKill();
-            _ball.transform.localScale = Vector3.one;
         }
     }
 
@@ -60,6 +56,7 @@ public class UISkin : MonoBehaviour
     protected virtual void Select()
     {
         _skin.Select();
+
         Observer.ChangeSkin?.Invoke();
     }
 
@@ -79,7 +76,7 @@ public class UISkin : MonoBehaviour
     {
         if (!_skin.Unlocked)
         {
-            Observer.ShowPopup?.Invoke(_skin);
+            Observer.ShowSkinPopup?.Invoke(_skin);
             return;
         }
 

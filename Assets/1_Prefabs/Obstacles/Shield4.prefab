@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5245029864380678910}
   - component: {fileID: 6695288199908340720}
-  - component: {fileID: 6203774927166903500}
+  - component: {fileID: 300019083052311966}
   - component: {fileID: 824423851360435308}
   m_Layer: 0
   m_Name: Shield4
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 223612763
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c18b0890b8780604d90a45cdc786ce59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf39b62b5a5afed47b59918aa7e4775d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &6203774927166903500
+--- !u!68 &300019083052311966
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,29 +100,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -1.7777742, y: 0.0033269525}
-  - {x: -1.7512841, y: -0.32166606}
-  - {x: -1.6531445, y: -0.67182446}
-  - {x: -1.4872265, y: -0.98826903}
-  - {x: -1.228269, y: -1.2963841}
-  - {x: -0.8851373, y: -1.5475482}
-  - {x: -0.4658928, y: -1.7233233}
-  - {x: -0.0038818344, y: -1.782545}
-  - {x: 0.42669892, y: -1.7302146}
-  - {x: 0.85496974, y: -1.5683697}
-  - {x: 1.1955681, y: -1.3198541}
-  - {x: 1.483509, y: -0.9897182}
-  - {x: 1.6781878, y: -0.6024664}
-  - {x: 1.7671973, y: -0.22511643}
-  - {x: 1.7734119, y: 0.15780559}
-  - {x: 1.7020124, y: 0.52678126}
-  - {x: 1.5695326, y: 0.8451169}
-  - {x: 1.3507892, y: 1.167342}
-  - {x: 1.0438479, y: 1.4450474}
-  - {x: 0.6852866, y: 1.6473978}
-  - {x: 0.32630676, y: 1.7539196}
-  - {x: -0.0046420693, y: 1.7833958}
-  - {x: -0.006405741, y: 1.7833958}
+  - {x: -1.7781333, y: 0.0051241964}
+  - {x: -1.7564492, y: -0.31483614}
+  - {x: -1.6472578, y: -0.6793272}
+  - {x: -1.4473149, y: -1.0414596}
+  - {x: -1.1580844, y: -1.3507708}
+  - {x: -0.7907967, y: -1.5966693}
+  - {x: -0.39919242, y: -1.7455571}
+  - {x: 0.0038000047, y: -1.7750255}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

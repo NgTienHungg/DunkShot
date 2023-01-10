@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 2cd495a0fd4727a4f8e216727b7ecaf5, type: 3}
+  Sprite: {fileID: 21300000, guid: 96f0518256a4751478942301e014af05, type: 3}
   Tail:
     Sprite: {fileID: 0}
     Color:
@@ -50,3 +50,5 @@ MonoBehaviour:
   Mision:
     Description: 
     Target: 0
+  Secret:
+    Description: 

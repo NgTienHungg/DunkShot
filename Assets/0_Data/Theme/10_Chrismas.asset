@@ -14,8 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Christmas
   ThemeCell: {fileID: 21300000, guid: 263684e3c6dff374a93378b30a056fb0, type: 3}
-  BackHoop: {fileID: 0}
-  FrontHoop: {fileID: 0}
-  HoopColor: {r: 1, g: 1, b: 1, a: 0}
+  ActiveBackHoop: {fileID: 21300000, guid: 2cc7c67faffb5794287f77e7da44d98d, type: 3}
+  ActiveFrontHoop: {fileID: 21300000, guid: eddfbb770aa15d04b81044f5ff27fada, type: 3}
+  InactiveBackHoop: {fileID: 21300000, guid: 2d288a473ea95d8478bd5629203d84bb, type: 3}
+  InactiveFrontHoop: {fileID: 21300000, guid: dd6228b344e6aea498b69d5502cfea48, type: 3}
+  LightBG: {fileID: 0}
+  DarkBG: {fileID: 0}
+  LightWallBG: {fileID: 0}
+  DarkWallBG: {fileID: 0}
+  Bars: []
+  Shields: []
+  Backboard: {fileID: 0}
+  ScoreColor: {r: 0, g: 0, b: 0, a: 0}
+  ButtonColor: {r: 0, g: 0, b: 0, a: 0}
+  TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
   Price: 0
   Type: 1

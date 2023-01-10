@@ -14,8 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Classic
   ThemeCell: {fileID: 21300000, guid: 1d74c9883c01c8f4b8e19b37d5c32a2a, type: 3}
-  BackHoop: {fileID: 21300000, guid: 31dd61cf50a526249ba89ffe3483b65d, type: 3}
-  FrontHoop: {fileID: 21300000, guid: 4bcfbf7b2fd1aef46bec7ced82f6940e, type: 3}
-  HoopColor: {r: 1, g: 0.15686275, b: 0, a: 1}
+  ActiveBackHoop: {fileID: 21300000, guid: 1f6a4d220ab30204a8b36df57d1cebbc, type: 3}
+  ActiveFrontHoop: {fileID: 21300000, guid: 8fccfa09527e2dd4eb8842faaa86bab3, type: 3}
+  InactiveBackHoop: {fileID: 21300000, guid: 8e4f83d78df43a0499c2b153ef22e267, type: 3}
+  InactiveFrontHoop: {fileID: 21300000, guid: fa4cb3b1065e4b94395ed4b1e5bab63b, type: 3}
+  LightBG: {fileID: 0}
+  DarkBG: {fileID: 21300000, guid: 2aa84c2c5891bc2469c8ed47694d40f3, type: 3}
+  BGWall: {fileID: 0}
+  Bars:
+  - {fileID: 21300000, guid: 3e4884a981ff19344b221975435d8137, type: 3}
+  - {fileID: 21300000, guid: 981bd470c582acc41a6d56fbbc78b309, type: 3}
+  - {fileID: 21300000, guid: 038545a787904f144905487e74c92adc, type: 3}
+  - {fileID: 21300000, guid: d284f76f546a73247bf2ceece67218c0, type: 3}
+  Shields:
+  - {fileID: 21300000, guid: 353f2f8bf6a8f5f4abaf7a1501cb7e8e, type: 3}
+  - {fileID: 21300000, guid: eaae5b3d48c863840ae2cf817e572ed6, type: 3}
+  - {fileID: 21300000, guid: 44596e7262a64ed4a856a8b3f906ac1a, type: 3}
+  - {fileID: 21300000, guid: cf39b62b5a5afed47b59918aa7e4775d, type: 3}
+  Backboard: {fileID: 21300000, guid: c79eacbb71ded0345b03ee00cb0707e4, type: 3}
+  ScoreColor: {r: 0, g: 0, b: 0, a: 0}
+  ButtonColor: {r: 0, g: 0, b: 0, a: 0}
+  TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
   Price: 0
   Type: 0
