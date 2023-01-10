@@ -67,7 +67,6 @@ public class SkinPage : MonoBehaviour
 
         uiSkin.gameObject.name = skin.Key;
         uiSkin.SetSkin(skin);
-        //uiSkin.Renew();
 
         return uiSkin;
     }

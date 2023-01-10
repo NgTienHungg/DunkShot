@@ -51,25 +51,21 @@ public class CustomizeManager : UIGame
 
     public void OnBackButton()
     {
-        // audio
         UIManager.Instance.CloseCustomize();
     }
 
     public void OnVideoButton()
     {
-        // audio
         Debug.Log("ADS");
     }
 
     public void OnSkinButton()
     {
-        // audio
         ActiveSkinPage();
     }
 
     public void OnThemeButton()
     {
-        // audio
         ActiveThemePage();
     }
 }

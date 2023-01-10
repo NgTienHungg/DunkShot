@@ -38,12 +38,13 @@ public class ThemePage : MonoBehaviour
 
         uiTheme.name = theme.Key;
         uiTheme.SetTheme(theme);
-        uiTheme.Renew();
         return uiTheme;
     }
 
     private void OnEnable()
     {
+        ReloadPage();
+
         Observer.ChangeTheme += ReloadPage;
     }
 

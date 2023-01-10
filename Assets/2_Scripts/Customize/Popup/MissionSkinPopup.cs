@@ -20,5 +20,6 @@ public class MissionSkinPopup : SkinPopup
 
     public void OnTryButton()
     {
+        Debug.Log("TRY");
     }
 }

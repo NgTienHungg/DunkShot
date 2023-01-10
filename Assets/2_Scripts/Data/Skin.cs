@@ -9,7 +9,6 @@ public class Skin : MonoBehaviour
     public int VideoWatched { get; private set; }
     public int MissionProgress { get; private set; }
 
-    // Key save
     private readonly string UNLOCKED = "Unlocked";
     private readonly string VIDEO_WATCHED = "VideoWatched";
     private readonly string MISSION_PROGRESS = "MissionProgress";
