@@ -36,14 +36,18 @@ public class UIGameOver : UIGame
 
     public void OnNewBallButton()
     {
+        CanvasController.Instance.OpenCustomize();
     }
 
     public void OnVideoAdsButton()
     {
+        Debug.Log("VIDEO");
+        MoneyManager.Instance.AddStar(20);
     }
 
     public void OnRateButton()
     {
+        Debug.Log("RATE");
     }
 
     public void OnRestartButton()
@@ -53,5 +57,6 @@ public class UIGameOver : UIGame
 
     public void OnSettingsButton()
     {
+        CanvasController.Instance.OpenSettings();
     }
 }

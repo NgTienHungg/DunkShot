@@ -24,7 +24,7 @@ public class UIMainMenu : UIGame
 
     public void OnSettingsButton()
     {
-        CanvasController.Instance.OnSettings();
+        CanvasController.Instance.OpenSettings();
     }
 
     public void OnLeaderboardButton()

@@ -7,7 +7,7 @@ public class UISettings : UIGame
 
     private void OnEnable()
     {
-        adsButton.transform.DOKill();
+        adsButton.DOKill();
     }
 
     public override void Enable()
@@ -19,10 +19,10 @@ public class UISettings : UIGame
 
     public void OnBackButton()
     {
-        CanvasController.Instance.OnCloseSettings();
+        CanvasController.Instance.CloseSettings();
     }
 
-    public void OnSoundsButton()
+    public void OnSoundButton()
     {
     }
 
@@ -30,31 +30,38 @@ public class UISettings : UIGame
     {
     }
 
-    public void OnNightModeButton()
+    public void OnDarkModeButton()
     {
+        Debug.Log("FACEBOOK");
     }
 
     public void OnRemoveAdsButton()
     {
+        Debug.Log("REMOVE ADS");
     }
 
     public void OnPrivacyInfoButton()
     {
+        Debug.Log("PRIVACY INFO");
     }
 
     public void OnRestorePurchaseButton()
     {
+        Debug.Log("RESTORE PURCHASE");
     }
 
     public void OnAdsButton()
     {
+        Debug.Log("ADS");
     }
 
     public void OnFacebookButton()
     {
+        Debug.Log("FACEBOOK");
     }
 
     public void OnInstagramButton()
     {
+        Debug.Log("INSTAGRAM");
     }
 }

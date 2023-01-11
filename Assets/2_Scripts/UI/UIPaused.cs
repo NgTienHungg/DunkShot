@@ -10,13 +10,13 @@ public class UIPaused : UIGame
         _canvasGroup.interactable = true;
         _canvasGroup.alpha = 1f;
 
+        _resumeButton.DOKill();
         _resumeButton.localScale = Vector3.one;
         _resumeButton.DOScale(0.96f, 1f).SetEase(Ease.InOutQuad).SetUpdate(true).SetLoops(-1, LoopType.Yoyo);
     }
 
     public override void Disable()
     {
-        _resumeButton.DOKill();
         _canvasGroup.interactable = false;
         _canvasGroup.DOFade(0f, 0.6f).OnComplete(() =>
         {
@@ -28,13 +28,12 @@ public class UIPaused : UIGame
     {
         _canvasGroup.interactable = false;
         _canvasGroup.alpha = 0f;
-        _resumeButton.DOKill();
         gameObject.SetActive(false);
     }
 
     public void OnSettingsButton()
     {
-        CanvasController.Instance.OnSettings();
+        CanvasController.Instance.OpenSettings();
     }
 
     public void OnMainMenuButton()

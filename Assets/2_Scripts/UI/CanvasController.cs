@@ -93,16 +93,6 @@ public class CanvasController : MonoBehaviour
         State = GameState.GamePlay;
     }
 
-    public void OnSettings()
-    {
-        _uiSettings.Enable();
-    }
-
-    public void OnCloseSettings()
-    {
-        _uiSettings.Disable();
-    }
-
     public void OnBackHome()
     {
         ObjectPool.Instance.RecallAll();
@@ -129,6 +119,16 @@ public class CanvasController : MonoBehaviour
 
             flashImage.DOFade(0f, fadeDuration);
         });
+    }
+
+    public void OpenSettings()
+    {
+        _uiSettings.Enable();
+    }
+
+    public void CloseSettings()
+    {
+        _uiSettings.Disable();
     }
 
     public void OpenCustomize()
