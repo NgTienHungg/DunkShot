@@ -44,8 +44,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: ada1b6a6abde2da4e9dcb696448d123e, type: 3}
     - {fileID: 21300000, guid: 180f59c8e989e38489b1752d629dc067, type: 3}
     Backboard: {fileID: 21300000, guid: 6ff82cc525650d3439c58004d0c23210, type: 3}
-  ScoreColor: {r: 0, g: 0, b: 0, a: 0}
-  ButtonColor: {r: 0, g: 0, b: 0, a: 0}
-  TrajectoryColor: {r: 0, g: 0, b: 0, a: 0}
+  Color:
+    LightUI: {r: 0.7568628, g: 0.3372549, b: 0.5019608, a: 1}
+    DarkUI: {r: 0.91372555, g: 0.82745105, b: 0.9333334, a: 1}
+    LightScore: {r: 0.8941177, g: 0.6313726, b: 0.7137255, a: 1}
+    DarkScore: {r: 0.7176471, g: 0.627451, b: 0.9803922, a: 1}
+    LightTrajectory: {r: 0.5372549, g: 0.2901961, b: 0.43921572, a: 1}
+    DarkTrajectory: {r: 0.9215687, g: 0.7803922, b: 0.6392157, a: 1}
   Price: 150
   Type: 0

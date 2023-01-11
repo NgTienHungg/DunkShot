@@ -20,8 +20,8 @@ MonoBehaviour:
     InactiveBack: {fileID: 21300000, guid: 8e4f83d78df43a0499c2b153ef22e267, type: 3}
     InactiveFront: {fileID: 21300000, guid: fa4cb3b1065e4b94395ed4b1e5bab63b, type: 3}
   Background:
-    LightBG: {fileID: 21300000, guid: 2aa84c2c5891bc2469c8ed47694d40f3, type: 3}
-    DarkBG: {fileID: 21300000, guid: c88624b26173cb54abbcdea352ae0541, type: 3}
+    LightBG: {fileID: 21300000, guid: c88624b26173cb54abbcdea352ae0541, type: 3}
+    DarkBG: {fileID: 21300000, guid: 2aa84c2c5891bc2469c8ed47694d40f3, type: 3}
     LightStaticBG: {fileID: 0}
     DarkStaticBG: {fileID: 0}
     LightWall: {fileID: 0}
@@ -45,10 +45,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: cf39b62b5a5afed47b59918aa7e4775d, type: 3}
     Backboard: {fileID: 21300000, guid: c79eacbb71ded0345b03ee00cb0707e4, type: 3}
   Color:
-    Button: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
-    LightScore: {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
-    DarkScore: {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
-    LightTrajectory: {r: 1, g: 0.54509807, b: 0, a: 1}
-    DarkTrajectory: {r: 1, g: 0.54509807, b: 0, a: 1}
-  Price: 999
+    LightUI: {r: 0.65882355, g: 0.654902, b: 0.6627451, a: 1}
+    DarkUI: {r: 0.6627451, g: 0.65882355, b: 0.6627451, a: 1}
+    LightScore: {r: 0.7803922, g: 0.77647066, b: 0.7803922, a: 1}
+    DarkScore: {r: 0.7803922, g: 0.77647066, b: 0.7803922, a: 1}
+    LightTrajectory: {r: 0.9803922, g: 0.65882355, b: 0.20784315, a: 1}
+    DarkTrajectory: {r: 0.94117653, g: 0.65882355, b: 0.21568629, a: 1}
+  Price: 0
   Type: 0

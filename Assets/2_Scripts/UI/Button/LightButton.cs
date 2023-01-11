@@ -19,6 +19,24 @@ public class LightButton : MonoBehaviour
         {
             TurnOff();
         }
+
+        RegisterListener();
+    }
+
+    private void RegisterListener()
+    {
+        Observer.OnLightMode += ApplyLightMode;
+        Observer.OnDarkMode += ApplyDarkMode;
+    }
+
+    private void ApplyDarkMode()
+    {
+        _image.sprite = _lightOffSprite;
+    }
+
+    private void ApplyLightMode()
+    {
+        _image.sprite = _lightOnSprite;
     }
 
     public void OnClick()

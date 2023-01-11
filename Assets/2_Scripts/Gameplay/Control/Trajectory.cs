@@ -22,13 +22,23 @@ public class Trajectory : MonoBehaviour
     [SerializeField] private Transform _dotParent;
     [SerializeField] private int _dotCount;
     private Transform[] _dots;
+    private SpriteRenderer[] _dotSpriteRenders;
 
     private void Start()
     {
+        RegisterListener();
         CreateSimulationScene();
         CreateSimulationBall();
         PrepareDots();
+        ApplyTheme();
         Hide();
+    }
+
+    private void RegisterListener()
+    {
+        Observer.OnChangeTheme += ApplyTheme;
+        Observer.OnDarkMode += ApplyDarkMode;
+        Observer.OnLightMode += ApplyLightMode;
     }
 
     private void CreateSimulationScene()
@@ -66,6 +76,8 @@ public class Trajectory : MonoBehaviour
     public void PrepareDots()
     {
         _dots = new Transform[_dotCount];
+        _dotSpriteRenders = new SpriteRenderer[_dotCount];
+
         simulationBallPos = new Vector3[maxIterations];
 
         float currentScale = 1f;
@@ -77,8 +89,12 @@ public class Trajectory : MonoBehaviour
             _dots[i] = Instantiate(_dotPrefab, _dotParent).transform;
             _dots[i].localScale = Vector3.one * currentScale;
 
+            _dotSpriteRenders[i] = _dots[i].GetComponent<SpriteRenderer>();
+
             if (currentScale > minScale)
+            {
                 currentScale -= scaleFactor;
+            }
         }
     }
 
@@ -86,7 +102,9 @@ public class Trajectory : MonoBehaviour
     {
         // Update obstacles position
         for (int i = 0; i < listObstacle.Count; i++)
+        {
             listObstacle[i].transform.position = obstacleParent.GetChild(i).position;
+        }
 
         // shoot ball
         simulationBall.transform.position = firePoint;
@@ -102,7 +120,9 @@ public class Trajectory : MonoBehaviour
 
         // draw trajectory
         for (int i = 0; i < _dotCount; i++)
+        {
             _dots[i].position = simulationBallPos[5 + i * 5];
+        }
     }
 
     public void Show()
@@ -113,5 +133,33 @@ public class Trajectory : MonoBehaviour
     public void Hide()
     {
         _dotParent.gameObject.SetActive(false);
+    }
+
+    private void ApplyTheme()
+    {
+        if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
+        {
+            ApplyLightMode();
+        }
+        else
+        {
+            ApplyDarkMode();
+        }
+    }
+
+    private void ApplyLightMode()
+    {
+        foreach (var spriteRender in _dotSpriteRenders)
+        {
+            spriteRender.color = DataManager.Instance.ThemeInUse.Data.Color.LightTrajectory;
+        }
+    }
+
+    private void ApplyDarkMode()
+    {
+        foreach (var spriteRender in _dotSpriteRenders)
+        {
+            spriteRender.color = DataManager.Instance.ThemeInUse.Data.Color.DarkTrajectory;
+        }
     }
 }
