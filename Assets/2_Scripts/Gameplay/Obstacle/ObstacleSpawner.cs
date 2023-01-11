@@ -111,7 +111,6 @@ public class ObstacleSpawner : MonoBehaviour
     {
         // random shield
         string obstacleTag = "Shield" + Random.Range(1, 5);
-        Debug.Log("SPAWN " + obstacleTag);
         Obstacle obstacle = ObjectPool.Instance.Spawn(obstacleTag).GetComponent<Obstacle>();
 
         float duration = Random.Range(2.8f, 4f);

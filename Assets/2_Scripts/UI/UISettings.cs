@@ -19,7 +19,7 @@ public class UISettings : UIGame
 
     public void OnBackButton()
     {
-        UIManager.Instance.OnCloseSettings();
+        CanvasController.Instance.OnCloseSettings();
     }
 
     public void OnSoundsButton()

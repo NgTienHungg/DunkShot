@@ -67,7 +67,7 @@ public class UIScoreNotify : MonoBehaviour
                 _uiPerfect.DOFade(0.8f, 0f).OnComplete(() =>
                 {
                     _uiPerfect.DOFade(1f, 0.3f);
-                    _uiPerfect.rectTransform.DOLocalMove(targetPos2, 1.3f).SetEase(Ease.OutQuad);
+                    _uiPerfect.rectTransform.DOLocalMove(targetPos2, 1.2f).SetEase(Ease.OutQuad);
                     _uiPerfect.DOFade(0f, 0.3f).SetDelay(1f);
                 });
                 yield return new WaitForSeconds(0.4f);
@@ -77,7 +77,7 @@ public class UIScoreNotify : MonoBehaviour
                 _uiPerfect.DOFade(0.8f, 0f).OnComplete(() =>
                 {
                     _uiPerfect.DOFade(1f, 0.3f);
-                    _uiPerfect.rectTransform.DOLocalMove(targetPos1, 1.3f).SetEase(Ease.OutQuad);
+                    _uiPerfect.rectTransform.DOLocalMove(targetPos1, 1.2f).SetEase(Ease.OutQuad);
                     _uiPerfect.DOFade(0f, 0.3f).SetDelay(1f);
                 });
                 yield return new WaitForSeconds(0.4f);
@@ -89,7 +89,7 @@ public class UIScoreNotify : MonoBehaviour
             _uiBounce.DOFade(0.8f, 0f).OnComplete(() =>
             {
                 _uiBounce.rectTransform.localPosition = startPos1;
-                _uiBounce.rectTransform.DOLocalMove(targetPos1, 1.3f).SetEase(Ease.OutQuad);
+                _uiBounce.rectTransform.DOLocalMove(targetPos1, 1.2f).SetEase(Ease.OutQuad);
                 _uiBounce.DOFade(0f, 0.3f).SetDelay(1f);
             });
             yield return new WaitForSeconds(0.4f);

@@ -4,61 +4,61 @@ using UnityEngine.UI;
 
 public class UIContinue : UIGame
 {
-    [SerializeField] private RectTransform clock;
-    [SerializeField] private RectTransform ball;
-    [SerializeField] private RectTransform videoAdsButton;
-    [SerializeField] private RectTransform continueButton;
+    [SerializeField] private RectTransform _clock;
+    [SerializeField] private RectTransform _ball;
+    [SerializeField] private RectTransform _videoAdsButton;
+    [SerializeField] private RectTransform _continueButton;
 
     [Space(10)]
-    [SerializeField] private Image orangeRing;
-    [SerializeField] private float waitTime;
-    private float timeRemaining;
+    [SerializeField] private Image _orangeRing;
+    private float _waitTime = 8f;
+    private float _timeRemaining;
 
     private void OnEnable()
     {
-        clock.localScale = Vector3.zero;
-        videoAdsButton.localScale = Vector3.zero;
-        continueButton.localScale = Vector3.zero;
+        _clock.localScale = Vector3.zero;
+        _videoAdsButton.localScale = Vector3.zero;
+        _continueButton.localScale = Vector3.zero;
 
-        timeRemaining = waitTime;
+        _timeRemaining = _waitTime;
     }
 
     public override void Enable()
     {
         base.Enable();
 
-        clock.DOScale(1f, 0.25f).SetEase(Ease.OutBack).OnComplete(() =>
+        _clock.DOScale(1f, 0.25f).SetEase(Ease.OutBack).OnComplete(() =>
         {
-            ball.DORotate(Vector3.forward * 20f, 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            _ball.DORotate(Vector3.forward * 20f, 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
 
-        videoAdsButton.DOScale(1f, 0.25f).SetEase(Ease.OutBack).OnComplete(() =>
+        _videoAdsButton.DOScale(1f, 0.25f).SetEase(Ease.OutBack).OnComplete(() =>
         {
-            videoAdsButton.DOScale(1.1f, 0.6f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            _videoAdsButton.DOScale(1.1f, 0.6f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
 
-        continueButton.DOScale(1f, 0.25f).SetEase(Ease.OutBack).SetDelay(2f);
+        _continueButton.DOScale(1f, 0.25f).SetEase(Ease.OutBack).SetDelay(2f);
     }
 
     private void Update()
     {
-        timeRemaining -= Time.deltaTime;
-        orangeRing.fillAmount = timeRemaining / waitTime;
+        _timeRemaining -= Time.deltaTime;
+        _orangeRing.fillAmount = _timeRemaining / _waitTime;
 
-        if (timeRemaining <= 0)
+        if (_timeRemaining <= 0)
         {
-            Controller.Instance.GameOver();
-            timeRemaining = waitTime;
+            CanvasController.Instance.GameOver();
+            _timeRemaining = _waitTime;
         }
     }
 
-    public void OnClickVideoAdButton()
+    public void OnVideoButton()
     {
         Controller.Instance.SecondChance();
     }
 
-    public void OnClickContinueButton()
+    public void OnContinueButton()
     {
-        Controller.Instance.GameOver();
+        CanvasController.Instance.GameOver();
     }
 }

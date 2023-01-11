@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CustomizeManager : UIGame
+public class UICustomizeManager : UIGame
 {
+    [SerializeField] private GameObject _star, _token;
     [SerializeField] private GameObject _skinPage, _themePage;
     [SerializeField] private Button _skinButton, _themeButton;
     [SerializeField] private Color _activeButtonColor, _deactiveButtonColor;
@@ -14,6 +15,9 @@ public class CustomizeManager : UIGame
 
     private void ActiveSkinPage()
     {
+        _star.SetActive(true);
+        _token.SetActive(false);
+
         _skinPage.SetActive(true);
         _skinButton.interactable = false;
         _skinButton.GetComponent<Image>().color = _activeButtonColor;
@@ -21,12 +25,13 @@ public class CustomizeManager : UIGame
         _themePage.SetActive(false);
         _themeButton.interactable = true;
         _themeButton.GetComponent<Image>().color = _deactiveButtonColor;
-
-        MoneyManager.Instance.ShowUIStar();
     }
 
     private void ActiveThemePage()
     {
+        _star.SetActive(false);
+        _token.SetActive(true);
+
         _skinPage.SetActive(false);
         _skinButton.interactable = true;
         _skinButton.GetComponent<Image>().color = _deactiveButtonColor;
@@ -34,13 +39,11 @@ public class CustomizeManager : UIGame
         _themePage.SetActive(true);
         _themeButton.interactable = false;
         _themeButton.GetComponent<Image>().color = _activeButtonColor;
-
-        MoneyManager.Instance.ShowUIToken();
     }
 
     public void OnBackButton()
     {
-        UIManager.Instance.CloseCustomize();
+        CanvasController.Instance.CloseCustomize();
     }
 
     public void OnVideoButton()

@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using System.Collections;
 
-public class FortuneSkinPopup : SkinPopup
+public class PopupFortuneSkin : PopupSkin
 {
     [SerializeField] private Transform _leftLight, _rightLight;
     [SerializeField] private Transform _wheel;

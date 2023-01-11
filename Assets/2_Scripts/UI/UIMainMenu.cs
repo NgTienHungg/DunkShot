@@ -14,17 +14,17 @@ public class UIMainMenu : UIGame
 
     public void OnCustomizeButton()
     {
-        UIManager.Instance.OpenCustomize();
+        CanvasController.Instance.OpenCustomize();
     }
 
     public void OnChallengesButton()
     {
-        UIManager.Instance.OpenChallenge();
+        CanvasController.Instance.OpenChallenge();
     }
 
     public void OnSettingsButton()
     {
-        UIManager.Instance.OnSettings();
+        CanvasController.Instance.OnSettings();
     }
 
     public void OnLeaderboardButton()

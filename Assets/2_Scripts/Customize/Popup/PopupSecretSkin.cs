@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class SecretSkinPopup : SkinPopup
+public class PopupSecretSkin : PopupSkin
 {
     [SerializeField] private TextMeshProUGUI _description;
 

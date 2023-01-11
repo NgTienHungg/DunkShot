@@ -54,7 +54,7 @@ public class UITheme : MonoBehaviour
     {
         if (_isSelecting)
         {
-            UIManager.Instance.CloseCustomize();
+            CanvasController.Instance.CloseCustomize();
             return;
         }
 

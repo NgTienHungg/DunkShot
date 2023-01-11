@@ -29,7 +29,7 @@ public class UINormalSkin : UISkin
     {
         if (_isSelecting)
         {
-            UIManager.Instance.CloseCustomize();
+            CanvasController.Instance.CloseCustomize();
             return;
         }
 

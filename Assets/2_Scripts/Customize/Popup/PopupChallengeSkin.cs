@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ChallengeSkinPopup : SkinPopup
+public class PopupChallengeSkin : PopupSkin
 {
     [SerializeField] private TextMeshProUGUI _description;
 

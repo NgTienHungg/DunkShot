@@ -22,7 +22,7 @@ public class ThemeData : ScriptableObject
 
     public ObstacleData Obstacle;
 
-    public Color ScoreColor, ButtonColor, TrajectoryColor;
+    public ColorData Color;
 
     public int Price;
 
@@ -75,4 +75,14 @@ public class ObstacleData
     public Sprite[] Shields;
 
     public Sprite Backboard;
+}
+
+[Serializable]
+public class ColorData
+{
+    public Color LightUI, DarkUI;
+
+    public Color LightScore, DarkScore;
+
+    public Color LightTrajectory, DarkTrajectory;
 }

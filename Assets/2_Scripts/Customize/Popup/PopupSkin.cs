@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class SkinPopup : MonoBehaviour
+public class PopupSkin : MonoBehaviour
 {
     protected Transform _popup;
     protected Skin _skin;

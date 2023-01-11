@@ -98,6 +98,9 @@ public class Mechanic : MonoBehaviour
         direction = (startPoint - endPoint).normalized;
         force = direction * distance * pushForce;
 
+        if (force.magnitude < 4f) return;
+        Debug.Log(force.magnitude);
+
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(force, Vector3.up);
         float sign = endPoint.x > startPoint.x ? 1 : -1;

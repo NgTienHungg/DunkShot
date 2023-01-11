@@ -46,9 +46,9 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.Instance.State == GameState.MainMenu && Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject())
+        if (CanvasController.Instance.State == GameState.MainMenu && Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject())
         {
-            UIManager.Instance.OnStartPlay();
+            CanvasController.Instance.OnStartPlay();
             this.IsPlaying = true;
         }
     }
@@ -85,19 +85,19 @@ public class Controller : MonoBehaviour
 
     public void Continue()
     {
-        UIManager.Instance.OnContinue();
+        CanvasController.Instance.OnContinue();
     }
 
     public void SecondChance()
     {
         Restart();
         HasSecondChance = false;
-        UIManager.Instance.OnSecondChance();
+        CanvasController.Instance.OnSecondChance();
     }
 
     public void GameOver()
     {
-        UIManager.Instance.OnGameOver();
+        CanvasController.Instance.GameOver();
     }
 
     public void Pause()
@@ -106,7 +106,7 @@ public class Controller : MonoBehaviour
 
         IsPlaying = false;
 
-        UIManager.Instance.OnPause();
+        CanvasController.Instance.OnPause();
     }
 
     public void Resume()
@@ -115,7 +115,7 @@ public class Controller : MonoBehaviour
 
         IsPlaying = true;
 
-        UIManager.Instance.OnResume();
+        CanvasController.Instance.OnResume();
     }
 
     //public void Reload()

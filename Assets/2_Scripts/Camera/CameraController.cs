@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public static CameraController Instance;
+    public static CameraController Instance { get; private set; }
 
+    [SerializeField] private SpriteRenderer bound;
     [SerializeField] private GameObject cinemachinePrefab;
 
     private Camera mainCamera;
@@ -38,5 +39,6 @@ public class CameraController : MonoBehaviour
         cinemachine.transform.parent = transform.parent;
 
         mainCamera.transform.position = startPos;
+        mainCamera.orthographicSize = cinemachine.m_Lens.OrthographicSize = bound.bounds.size.x * Screen.height / Screen.width * 0.5f;
     }
 }

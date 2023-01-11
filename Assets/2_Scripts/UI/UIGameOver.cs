@@ -48,7 +48,7 @@ public class UIGameOver : UIGame
 
     public void OnRestartButton()
     {
-        UIManager.Instance.OnBackHome();
+        CanvasController.Instance.OnBackHome();
     }
 
     public void OnSettingsButton()

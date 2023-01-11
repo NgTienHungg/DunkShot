@@ -9812,7 +9812,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.47
+  m_Radius: 0.48
 --- !u!50 &3122525487354676005
 Rigidbody2D:
   serializedVersion: 4
@@ -9961,7 +9961,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.55
+      scalar: 0.6
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -10130,7 +10130,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10711,7 +10711,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 22
       minScalar: 10
       maxCurve:
         serializedVersion: 2

@@ -8,12 +8,13 @@ public class MoneyManager : MonoBehaviour
     public int Token { get; private set; }
 
     [Header("Star")]
-    [SerializeField] private GameObject _uiStar;
     [SerializeField] private TextMeshProUGUI _starCount;
+    [SerializeField] private TextMeshProUGUI _starCountCustomize;
 
     [Header("Token")]
-    [SerializeField] private GameObject _uiToken;
     [SerializeField] private TextMeshProUGUI _tokenCount;
+    [SerializeField] private TextMeshProUGUI _tokenCountCustomize;
+    [SerializeField] private TextMeshProUGUI _tokenCountChallenge;
 
     private void Awake()
     {
@@ -32,27 +33,21 @@ public class MoneyManager : MonoBehaviour
         Token = SaveSystem.GetInt(SaveKey.TOKEN);
 
         _starCount.text = Star.ToString();
-        _tokenCount.text = Token.ToString();
+        _starCountCustomize.text = Star.ToString();
 
-        ShowUIStar();
+        _tokenCount.text = Token.ToString();
+        _tokenCountCustomize.text = Token.ToString();
+        _tokenCountChallenge.text = Token.ToString();
     }
 
     private void FixedUpdate()
     {
         _starCount.text = Star.ToString();
+        _starCountCustomize.text = Star.ToString();
+
         _tokenCount.text = Token.ToString();
-    }
-
-    public void ShowUIStar()
-    {
-        _uiStar.SetActive(true);
-        _uiToken.SetActive(false);
-    }
-
-    public void ShowUIToken()
-    {
-        _uiStar.SetActive(false);
-        _uiToken.SetActive(true);
+        _tokenCountCustomize.text  = Token.ToString();
+        _tokenCountChallenge.text = Token.ToString();
     }
 
     public bool CanBuyByStar(int price)

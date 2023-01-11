@@ -82,7 +82,7 @@ public class UISkin : MonoBehaviour
 
         if (_isSelecting)
         {
-            UIManager.Instance.CloseCustomize();
+            CanvasController.Instance.CloseCustomize();
         }
         else
         {

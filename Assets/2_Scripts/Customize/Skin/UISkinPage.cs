@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class SkinPage : MonoBehaviour
+public class UISkinPage : MonoBehaviour
 {
     [Header("Normal")]
     [SerializeField] private GameObject _uiNormalSkinPrefab;

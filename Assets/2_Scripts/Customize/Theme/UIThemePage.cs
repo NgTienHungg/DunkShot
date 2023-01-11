@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ThemePage : MonoBehaviour
+public class UIThemePage : MonoBehaviour
 {
     [Header("Normal")]
     [SerializeField] private GameObject _uiThemePrefab;

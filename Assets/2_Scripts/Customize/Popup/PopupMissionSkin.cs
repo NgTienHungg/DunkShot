@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MissionSkinPopup : SkinPopup
+public class PopupMissionSkin : PopupSkin
 {
     [SerializeField] private Image _ball;
     [SerializeField] private TextMeshProUGUI _description;

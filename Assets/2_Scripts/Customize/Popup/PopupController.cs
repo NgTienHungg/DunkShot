@@ -30,15 +30,15 @@ public class PopupController : MonoBehaviour
                 break;
             case SkinType.Mission:
                 _missionSkinPopup.SetActive(true);
-                _missionSkinPopup.GetComponent<MissionSkinPopup>().Show(skin);
+                _missionSkinPopup.GetComponent<PopupMissionSkin>().Show(skin);
                 break;
             case SkinType.Challenge:
                 _challengeSkinPopup.SetActive(true);
-                _challengeSkinPopup.GetComponent<ChallengeSkinPopup>().Show(skin);
+                _challengeSkinPopup.GetComponent<PopupChallengeSkin>().Show(skin);
                 break;
             case SkinType.Secret:
                 _secretSkinPopup.SetActive(true);
-                _secretSkinPopup.GetComponent<SecretSkinPopup>().Show(skin);
+                _secretSkinPopup.GetComponent<PopupSecretSkin>().Show(skin);
                 break;
             case SkinType.Fortune:
                 _fortuneSkinPopup.SetActive(true);
