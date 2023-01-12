@@ -8,6 +8,17 @@ public class UIChallengeSelection : MonoBehaviour
 
     public void OnClick()
     {
+        ChallengeData challenge = _type switch
+        {
+            ChallengeType.NewBall => DataManager.Instance.NewBallChallenge,
+            ChallengeType.Collect => DataManager.Instance.CollectChallenge,
+            ChallengeType.Time => DataManager.Instance.TimeChallenge,
+            ChallengeType.Score => DataManager.Instance.ScoreChallenge,
+            ChallengeType.Bounce => DataManager.Instance.BounceChallenge,
+            ChallengeType.NoAim => DataManager.Instance.NoAimChallenge,
+            _ => throw new System.NotImplementedException(),
+        };
 
+        CanvasController.Instance.UIChallenge.LoadChallenge(challenge);
     }
 }

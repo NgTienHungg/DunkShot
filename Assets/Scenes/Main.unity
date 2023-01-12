@@ -152,8 +152,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2017895211}
   - {fileID: 420239047}
+  - {fileID: 2017895211}
   - {fileID: 1168157742}
   m_Father: {fileID: 545048074}
   m_RootOrder: 0
@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 27761108}
   - component: {fileID: 27761107}
   - component: {fileID: 27761106}
+  - component: {fileID: 27761109}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -486,7 +487,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 27761107}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 27761109}
+        m_TargetAssemblyTypeName: UIChallengeSelection, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &27761107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,6 +538,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27761104}
   m_CullTransparentMesh: 1
+--- !u!114 &27761109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27761104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b3b5811a2a564d8b05e0117862f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progress: {fileID: 1815789167}
+  _type: 2
 --- !u!1 &29078694
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,6 +899,7 @@ GameObject:
   - component: {fileID: 49590766}
   - component: {fileID: 49590765}
   - component: {fileID: 49590764}
+  - component: {fileID: 49590767}
   m_Layer: 5
   m_Name: NoAim
   m_TagString: Untagged
@@ -942,7 +970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 49590765}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 49590767}
+        m_TargetAssemblyTypeName: UIChallengeSelection, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &49590765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,6 +1021,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49590762}
   m_CullTransparentMesh: 1
+--- !u!114 &49590767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49590762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b3b5811a2a564d8b05e0117862f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progress: {fileID: 1443104917}
+  _type: 5
 --- !u!1 &49596397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,7 +3700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &172814793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3668,7 +3722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 900, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &172814794
@@ -3842,7 +3896,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 176703405}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 172814796}
+        m_TargetAssemblyTypeName: PopupPauseChallenge, Assembly-CSharp
+        m_MethodName: OnGiveUpButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &176703405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3999,7 +4065,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196153420
 GameObject:
@@ -7299,7 +7365,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 365325395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 172814796}
+        m_TargetAssemblyTypeName: PopupPauseChallenge, Assembly-CSharp
+        m_MethodName: OnRestartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &365325395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7895,7 +7973,7 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 386425818}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &386425818 stripped
 Transform:
@@ -8308,7 +8386,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9007224}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -8359,9 +8437,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 693501669}
-        m_TargetAssemblyTypeName: ChallengeManager, Assembly-CSharp
-        m_MethodName: OnBackButton
+      - m_Target: {fileID: 2147390964}
+        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
+        m_MethodName: CloseChallenge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10443,7 +10521,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.34
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10467,7 +10545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 968815473}
@@ -10897,8 +10975,9 @@ GameObject:
   - component: {fileID: 539270333}
   - component: {fileID: 539270335}
   - component: {fileID: 539270334}
+  - component: {fileID: 539270336}
   m_Layer: 5
-  m_Name: Popups
+  m_Name: Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10917,8 +10996,8 @@ RectTransform:
   m_Children:
   - {fileID: 2067414623}
   - {fileID: 172814793}
-  m_Father: {fileID: 568382105}
-  m_RootOrder: 1
+  m_Father: {fileID: 693501665}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10963,6 +11042,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539270332}
   m_CullTransparentMesh: 1
+--- !u!114 &539270336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539270332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91361b5a5c0b7dd40b8e3ad37b41baf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _popupPlay: {fileID: 2067414626}
+  _popupPause: {fileID: 172814796}
 --- !u!1 &539825126
 GameObject:
   m_ObjectHideFlags: 0
@@ -10975,6 +11068,7 @@ GameObject:
   - component: {fileID: 539825130}
   - component: {fileID: 539825129}
   - component: {fileID: 539825128}
+  - component: {fileID: 539825131}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -11045,7 +11139,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 539825129}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 539825131}
+        m_TargetAssemblyTypeName: UIChallengeSelection, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &539825129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11084,6 +11190,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539825126}
   m_CullTransparentMesh: 1
+--- !u!114 &539825131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539825126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b3b5811a2a564d8b05e0117862f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progress: {fileID: 1231060459}
+  _type: 3
 --- !u!1 &541497614
 GameObject:
   m_ObjectHideFlags: 0
@@ -11169,6 +11289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545048074}
   - component: {fileID: 545048076}
+  - component: {fileID: 545048075}
   m_Layer: 5
   m_Name: Selection
   m_TagString: Untagged
@@ -11198,6 +11319,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &545048075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545048073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 7482667652216324306, guid: 90bebca50572aad428b5256576113ca0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &545048076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11288,7 +11439,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 546784950}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2067414626}
+        m_TargetAssemblyTypeName: PopupPlayChallenge, Assembly-CSharp
+        m_MethodName: OnPlayButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &546784950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11445,7 +11608,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &568382104
 GameObject:
@@ -11464,7 +11627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &568382105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11477,7 +11640,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 229397122}
-  - {fileID: 539270333}
   m_Father: {fileID: 693501665}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11548,7 +11710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583319673
 GameObject:
@@ -13236,7 +13398,6 @@ GameObject:
   - component: {fileID: 693501668}
   - component: {fileID: 693501666}
   - component: {fileID: 693501669}
-  - component: {fileID: 693501667}
   m_Layer: 5
   m_Name: CHALLENGE
   m_TagString: Untagged
@@ -13257,6 +13418,7 @@ RectTransform:
   m_Children:
   - {fileID: 545048074}
   - {fileID: 568382105}
+  - {fileID: 539270333}
   - {fileID: 803958527}
   m_Father: {fileID: 2147390963}
   m_RootOrder: 3
@@ -13278,36 +13440,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &693501667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693501664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 90bebca50572aad428b5256576113ca0, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &693501668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13328,6 +13460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8e1256b4b632445a6010be6d787039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selection: {fileID: 545048073}
+  _uiChallenge: {fileID: 568382107}
+  _popupControl: {fileID: 539270336}
 --- !u!1 &693764509
 GameObject:
   m_ObjectHideFlags: 0
@@ -14721,7 +14856,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 595.48, y: 220}
+  m_SizeDelta: {x: 600, y: 220}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &765394073
 MonoBehaviour:
@@ -14770,8 +14905,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16110,7 +16245,7 @@ RectTransform:
   - {fileID: 674761491}
   - {fileID: 900521207}
   m_Father: {fileID: 693501665}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -17300,6 +17435,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842012538}
   m_CullTransparentMesh: 1
+--- !u!1 &843549915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843549916}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &843549916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843549915}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847645699
 GameObject:
   m_ObjectHideFlags: 0
@@ -17382,8 +17547,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 285635732}
-        m_TargetAssemblyTypeName: UIGamePlay, Assembly-CSharp
+      - m_Target: {fileID: 568382107}
+        m_TargetAssemblyTypeName: ChallengeController, Assembly-CSharp
         m_MethodName: OnPauseButton
         m_Mode: 1
         m_Arguments:
@@ -21887,6 +22052,7 @@ GameObject:
   - component: {fileID: 1055901826}
   - component: {fileID: 1055901828}
   - component: {fileID: 1055901827}
+  - component: {fileID: 1055901829}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -21951,6 +22117,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055901825}
   m_CullTransparentMesh: 1
+--- !u!114 &1055901829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055901825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1055901827}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2067414626}
+        m_TargetAssemblyTypeName: PopupPlayChallenge, Assembly-CSharp
+        m_MethodName: OnCancelButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1066094795
 GameObject:
   m_ObjectHideFlags: 0
@@ -24719,7 +24941,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1227956791
 MonoBehaviour:
@@ -24971,8 +25193,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1815789166}
-  m_RootOrder: 0
+  m_Father: {fileID: 1846936537}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -25576,6 +25798,7 @@ GameObject:
   - component: {fileID: 1240997149}
   - component: {fileID: 1240997151}
   - component: {fileID: 1240997150}
+  - component: {fileID: 1240997152}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -25640,6 +25863,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240997148}
   m_CullTransparentMesh: 1
+--- !u!114 &1240997152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240997148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1240997150}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 172814796}
+        m_TargetAssemblyTypeName: PopupPauseChallenge, Assembly-CSharp
+        m_MethodName: OnCancelButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1241025841
 GameObject:
   m_ObjectHideFlags: 0
@@ -29406,7 +29685,7 @@ Transform:
   - {fileID: 739288125}
   - {fileID: 54238846}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427483993
 GameObject:
@@ -31377,7 +31656,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1511483236
 MonoBehaviour:
@@ -32397,7 +32676,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604980641
 GameObject:
@@ -33174,6 +33453,7 @@ GameObject:
   - component: {fileID: 1637865281}
   - component: {fileID: 1637865280}
   - component: {fileID: 1637865279}
+  - component: {fileID: 1637865282}
   m_Layer: 5
   m_Name: Collect
   m_TagString: Untagged
@@ -33244,7 +33524,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1637865280}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1637865282}
+        m_TargetAssemblyTypeName: UIChallengeSelection, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1637865280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33283,6 +33575,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1637865277}
   m_CullTransparentMesh: 1
+--- !u!114 &1637865282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637865277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b3b5811a2a564d8b05e0117862f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progress: {fileID: 1750685114}
+  _type: 1
 --- !u!1 &1639233411
 GameObject:
   m_ObjectHideFlags: 0
@@ -33708,7 +34014,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667997556
 GameObject:
@@ -34002,6 +34308,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7245c6ffae18bfc4db42bea1cb145ac3, type: 2}
   - {fileID: 11400000, guid: bcddba3b17ca9c64db933f9ff41b027d, type: 2}
   - {fileID: 11400000, guid: 88d8107741b6ba04c81f261e19b675ba, type: 2}
+  _challengeDataSet:
+  - {fileID: 11400000, guid: c5ae8e558d40b47419f5428470631183, type: 2}
+  - {fileID: 11400000, guid: e57f8e49b8a905a4bbf32f234c128dc6, type: 2}
+  - {fileID: 11400000, guid: f93213c014f86d74db493e095f01c6a8, type: 2}
+  - {fileID: 11400000, guid: 8b4110424ecdbaf42a63c103e9dfb396, type: 2}
+  - {fileID: 11400000, guid: 60f2956a69a48804e8bee5d0dd141a14, type: 2}
+  - {fileID: 11400000, guid: 942926f6b9b5c944fad62a0c3c4e2b5b, type: 2}
+  - {fileID: 11400000, guid: 5d00ad1c46748b644853423940b6e7f2, type: 2}
+  - {fileID: 11400000, guid: b0dcec5b36dca6747af25b07d49128a0, type: 2}
+  - {fileID: 11400000, guid: 5ce947aa16a76e24384833a2e00b3cb4, type: 2}
+  - {fileID: 11400000, guid: 219e8393c800e2d4297daaf2f4c91d0b, type: 2}
+  - {fileID: 11400000, guid: 4f01fa2dab8443740bdba48902bcba25, type: 2}
+  - {fileID: 11400000, guid: ab8a34f3e196ded40a7a97bcb9615859, type: 2}
+  - {fileID: 11400000, guid: f3ef8c35bf1bffa4e83ce5c42c19bf71, type: 2}
+  - {fileID: 11400000, guid: bdc537f4722a53940a4bb0c72fa2024f, type: 2}
+  - {fileID: 11400000, guid: 15113cc5da2f4034a9c83ba1fea438a1, type: 2}
+  - {fileID: 11400000, guid: 3db9b7528d0b65440a6f12947058a3d3, type: 2}
+  - {fileID: 11400000, guid: 8f27cefdb5705f240be5d0ba1514aa1a, type: 2}
+  - {fileID: 11400000, guid: bd105934267b9a94eaaaf9b05794f69b, type: 2}
 --- !u!4 &1681953206
 Transform:
   m_ObjectHideFlags: 0
@@ -35934,7 +36259,7 @@ RectTransform:
   m_Children:
   - {fileID: 938979490}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -36944,8 +37269,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1232821487}
+  m_Children: []
   m_Father: {fileID: 1846936537}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37719,6 +38043,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1815789166}
+  - {fileID: 1232821487}
   m_Father: {fileID: 1874709648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39587,7 +39912,7 @@ MonoBehaviour:
   - {fileID: 943339338}
   - {fileID: 1378126076}
   - {fileID: 881660725}
-  - {fileID: 693501667}
+  - {fileID: 545048075}
   _buttons:
   - {fileID: 1256008708}
   - {fileID: 923695108}
@@ -41033,7 +41358,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9007224}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41295,7 +41620,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2019537903}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2019537905}
+        m_TargetAssemblyTypeName: UIChallengeSelection, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2019537903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41346,7 +41683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26b3b5811a2a564d8b05e0117862f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _progress: {fileID: 0}
+  _progress: {fileID: 1521869900}
   _type: 0
 --- !u!1 &2024001441
 GameObject:
@@ -42057,7 +42394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2067414623
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42078,7 +42415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 900, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2067414624
@@ -42326,6 +42663,7 @@ GameObject:
   - component: {fileID: 2072746916}
   - component: {fileID: 2072746915}
   - component: {fileID: 2072746914}
+  - component: {fileID: 2072746917}
   m_Layer: 5
   m_Name: Bounce
   m_TagString: Untagged
@@ -42396,7 +42734,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2072746915}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2072746917}
+        m_TargetAssemblyTypeName: UIChallengeSelection, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2072746915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42435,6 +42785,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072746912}
   m_CullTransparentMesh: 1
+--- !u!114 &2072746917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072746912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b3b5811a2a564d8b05e0117862f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progress: {fileID: 1419672882}
+  _type: 4
 --- !u!1 &2079613221
 GameObject:
   m_ObjectHideFlags: 0
@@ -44533,7 +44897,7 @@ RectTransform:
   - {fileID: 881660724}
   - {fileID: 693501665}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

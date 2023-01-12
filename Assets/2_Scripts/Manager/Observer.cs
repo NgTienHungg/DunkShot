@@ -27,7 +27,7 @@ public static class Observer
     public delegate void ThemeEvent(Theme theme);
     public static ThemeEvent OnShowThemePopup;
 
-    public delegate void ChallengeEvent(Challenge challenge);
+    public delegate void ChallengeEvent(ChallengeData challenge);
     public static ChallengeEvent OnPlayChallenge;
     public static ChallengeEvent OnPauseChallenge;
 }

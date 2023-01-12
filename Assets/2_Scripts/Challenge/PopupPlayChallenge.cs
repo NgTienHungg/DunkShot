@@ -1,0 +1,100 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PopupPlayChallenge : MonoBehaviour
+{
+    #region ASSET
+    [Header("Banner")]
+    [SerializeField] private Sprite _orangeBanner;
+    [SerializeField] private Sprite _turquoiseBanner;
+    [SerializeField] private Sprite _blueBanner;
+    [SerializeField] private Sprite _greenBanner;
+    [SerializeField] private Sprite _violetBanner;
+    [SerializeField] private Sprite _redBanner;
+
+    [Header("Button")]
+    [SerializeField] private Sprite _orangeButton;
+    [SerializeField] private Sprite _turquoiseButton;
+    [SerializeField] private Sprite _blueButton;
+    [SerializeField] private Sprite _greenButton;
+    [SerializeField] private Sprite _violetButton;
+    [SerializeField] private Sprite _redButton;
+
+    [Header("Reward")]
+    [SerializeField] private Sprite _ballReward;
+    [SerializeField] private Sprite _tokenReward;
+
+    private readonly string _newBallDescription = "Score $ hoops";
+    private readonly string _collectDescription = "Collect all tokens";
+    private readonly string _timeDescription = "Complete in $ seconds";
+    private readonly string _scoreDescription = "Complete with score $";
+    private readonly string _bounceDescription = "Compelte with $ bounces";
+    private readonly string _noAimDescription = "Complete with no aim";
+    #endregion
+
+    [Header("Component")]
+    [SerializeField] private Image _baner;
+    [SerializeField] private Image _reward;
+    [SerializeField] private Image _playButton;
+    [SerializeField] private TextMeshProUGUI _title;
+    [SerializeField] private TextMeshProUGUI _description;
+
+    private ChallengeData _challenge;
+
+    public void Load(ChallengeData challenge)
+    {
+        _challenge = challenge;
+        _title.text = $"CHALLENGE {_challenge.name}";
+
+        switch (_challenge.Type)
+        {
+            case ChallengeType.NewBall:
+                _baner.sprite = _orangeBanner;
+                _reward.sprite = _ballReward;
+                _playButton.sprite = _orangeButton;
+                _description.text = _newBallDescription.Replace("$", _challenge.NumberOfBaskets.ToString());
+                break;
+            case ChallengeType.Collect:
+                _baner.sprite = _turquoiseBanner;
+                _reward.sprite = _tokenReward;
+                _playButton.sprite = _turquoiseButton;
+                _description.text = _collectDescription.Replace("$", _challenge.NumberOfTokens.ToString());
+                break;
+            case ChallengeType.Time:
+                _baner.sprite = _blueBanner;
+                _reward.sprite = _tokenReward;
+                _playButton.sprite = _blueButton;
+                _description.text = _timeDescription.Replace("$", _challenge.Seconds.ToString());
+                break;
+            case ChallengeType.Score:
+                _baner.sprite = _greenBanner;
+                _reward.sprite = _tokenReward;
+                _playButton.sprite = _greenButton;
+                _description.text = _scoreDescription.Replace("$", _challenge.TargetScore.ToString());
+                break;
+            case ChallengeType.Bounce:
+                _baner.sprite = _violetBanner;
+                _reward.sprite = _tokenReward;
+                _playButton.sprite = _violetButton;
+                _description.text = _bounceDescription.Replace("$", _challenge.TargetBounce.ToString());
+                break;
+            case ChallengeType.NoAim:
+                _baner.sprite = _redBanner;
+                _reward.sprite = _tokenReward;
+                _playButton.sprite = _redButton;
+                _description.text = _noAimDescription.Replace("$", _challenge.NumberOfBaskets.ToString());
+                break;
+        }
+    }
+
+    public void OnPlayButton()
+    {
+        CanvasController.Instance.UIChallenge.PlayChallenge();
+    }
+
+    public void OnCancelButton()
+    {
+        CanvasController.Instance.UIChallenge.CloseChallenge();
+    }
+}

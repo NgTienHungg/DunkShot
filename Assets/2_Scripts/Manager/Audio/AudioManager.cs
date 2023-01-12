@@ -3,22 +3,21 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private static AudioManager _instance;
-    public static AudioManager Instance { get => _instance; }
+    public static AudioManager Instance { get; private set; }
 
     [SerializeField] private Audio[] Sounds;
     [SerializeField] private Audio[] Musics;
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         else
         {
-            _instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 

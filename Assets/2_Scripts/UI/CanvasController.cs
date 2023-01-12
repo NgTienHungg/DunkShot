@@ -15,9 +15,12 @@ public class CanvasController : MonoBehaviour
     [SerializeField] private UIContinue _uiContinue;
     [SerializeField] private UIGameOver _uiGameOver;
 
-    [Header("Customize & Challenge")]
+    [Header("Customize")]
     [SerializeField] private UICustomizeManager _uiCustomize;
+
+    [Header("Challenge")]
     [SerializeField] private UIChallengeManager _uiChallenge;
+    public UIChallengeManager UIChallenge { get => _uiChallenge; }
 
     [Header("Flash")]
     [SerializeField] private Image flashImage;
