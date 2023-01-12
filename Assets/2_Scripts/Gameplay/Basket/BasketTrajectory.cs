@@ -10,11 +10,6 @@ public class BasketTrajectory : MonoBehaviour
 
     private Transform[] _dots;
 
-    public void Renew()
-    {
-        transform.localScale = Vector3.one;
-    }
-
     private void Awake()
     {
         PrepareDots();

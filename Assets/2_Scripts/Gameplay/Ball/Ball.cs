@@ -71,10 +71,12 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            Debug.Log("Collide with obstacle");
             Observer.BallCollideObstacle?.Invoke();
         }
         else if (collision.gameObject.CompareTag("Hoop"))
         {
+            Debug.Log("Collide with hoop");
             Observer.BallCollideHoop?.Invoke();
             _tail.Renew();
         }

@@ -4,16 +4,15 @@ using UnityEngine;
 public class BasketNet : MonoBehaviour
 {
     [Header("Drag basket")]
-    [SerializeField] private float maxScaleY;
+    [SerializeField] private float _maxScaleY = 1.85f;
 
     [Header("Anchor Ball")]
-    [SerializeField] private Transform anchor;
-    [SerializeField] private Transform bottom;
+    [SerializeField] private Transform _anchor;
+    [SerializeField] private Transform _bottom;
 
     private Ball _ball;
     private bool _hasBall;
     private Vector3 _distance;
-
 
     public void Renew()
     {
@@ -24,21 +23,21 @@ public class BasketNet : MonoBehaviour
 
     private void Start()
     {
-        _distance = anchor.localPosition - bottom.localPosition;
+        _distance = _anchor.localPosition - _bottom.localPosition;
     }
 
     private void LateUpdate()
     {
         if (_hasBall)
         {
-            anchor.localPosition = bottom.localPosition + _distance  / transform.localScale.y;
-            _ball.transform.position = anchor.position;
+            _anchor.localPosition = _bottom.localPosition + _distance  / transform.localScale.y;
+            _ball.transform.position = _anchor.position;
         }
     }
 
     public void ScaleY(float distance)
     {
-        float scaleY = Mathf.Min(maxScaleY, Mathf.Max(1f, 1f + distance / 6f));
+        float scaleY = Mathf.Min(_maxScaleY, Mathf.Max(1f, 1f + distance / 6f));
         transform.localScale = new Vector3(1f, scaleY);
     }
 

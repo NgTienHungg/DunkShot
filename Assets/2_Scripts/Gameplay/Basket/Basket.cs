@@ -9,6 +9,9 @@ public class Basket : MonoBehaviour
     private BasketHoop _hoop;
     public BasketHoop Hoop { get => _hoop; }
 
+    private BasketEffect _effect;
+    public BasketEffect Effect { get => _effect; }
+
     private BasketPoint _point;
     public BasketPoint Point { get => _point; }
 
@@ -22,6 +25,7 @@ public class Basket : MonoBehaviour
     {
         _net = GetComponentInChildren<BasketNet>();
         _hoop = GetComponentInChildren<BasketHoop>();
+        _effect = GetComponentInChildren<BasketEffect>();
         _point = GetComponentInChildren<BasketPoint>();
 
         _movement = GetComponent<BasketMovement>();
@@ -35,6 +39,7 @@ public class Basket : MonoBehaviour
 
         _net.Renew();
         _hoop.Renew();
+        _effect.Renew();
         _point.Renew();
 
         _movement.Renew();
@@ -62,7 +67,8 @@ public class Basket : MonoBehaviour
     #region Shoot Ball
     public void GetScore()
     {
-        _hoop.Scale();
+        _hoop.Inactive();
+        _effect.Score();
         _movement.Stop();
         _obstacle.Free();
     }

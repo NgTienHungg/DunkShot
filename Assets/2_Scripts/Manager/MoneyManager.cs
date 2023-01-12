@@ -12,7 +12,6 @@ public class MoneyManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _starCountCustomize;
 
     [Header("Token")]
-    [SerializeField] private TextMeshProUGUI _tokenCount;
     [SerializeField] private TextMeshProUGUI _tokenCountCustomize;
     [SerializeField] private TextMeshProUGUI _tokenCountChallenge;
 
@@ -35,7 +34,6 @@ public class MoneyManager : MonoBehaviour
         _starCount.text = Star.ToString();
         _starCountCustomize.text = Star.ToString();
 
-        _tokenCount.text = Token.ToString();
         _tokenCountCustomize.text = Token.ToString();
         _tokenCountChallenge.text = Token.ToString();
     }
@@ -45,7 +43,6 @@ public class MoneyManager : MonoBehaviour
         _starCount.text = Star.ToString();
         _starCountCustomize.text = Star.ToString();
 
-        _tokenCount.text = Token.ToString();
         _tokenCountCustomize.text  = Token.ToString();
         _tokenCountChallenge.text = Token.ToString();
     }

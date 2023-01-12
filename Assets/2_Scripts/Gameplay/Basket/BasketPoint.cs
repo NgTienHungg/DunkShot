@@ -43,6 +43,7 @@ public class BasketPoint : MonoBehaviour
             {
                 _hasPoint = false;
                 _basket.GetScore();
+                Debug.Log("basket getsocre");
                 Observer.GetScore?.Invoke();
             }
 
