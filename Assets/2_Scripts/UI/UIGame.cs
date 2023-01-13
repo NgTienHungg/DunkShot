@@ -1,16 +1,5 @@
 using UnityEngine;
 
-public enum GameState
-{
-    MainMenu,
-    GamePlay,
-    Paused,
-    Continue,
-    GameOver,
-    Settings,
-    Customize,
-}
-
 [RequireComponent(typeof(CanvasGroup))]
 public class UIGame : MonoBehaviour
 {
@@ -31,7 +20,7 @@ public class UIGame : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void DisableImmediately()
+    public virtual void DisableImmediate()
     {
         gameObject.SetActive(false);
     }

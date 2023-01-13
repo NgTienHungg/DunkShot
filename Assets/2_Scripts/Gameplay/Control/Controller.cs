@@ -13,7 +13,7 @@ public class Controller : MonoBehaviour
     {
         CameraController.Instance.Renew();
         Background.Instance.Renew();
-        ScoreManager.Instance.Renew();
+        //ScoreManager.Instance.Renew();
 
         BasketSpawner.Renew();
         Mechanic.Renew();
@@ -32,15 +32,18 @@ public class Controller : MonoBehaviour
     private void OnEnable()
     {
         Observer.BallDead += OnBallDead;
+        Observer.OnPlayChallenge += Renew;
     }
 
     private void OnDisable()
     {
         Observer.BallDead -= OnBallDead;
+        Observer.OnPlayChallenge -= Renew;
     }
 
     private void Start()
     {
+        Observer.RenewScene?.Invoke();
         Renew();
     }
 
@@ -117,12 +120,4 @@ public class Controller : MonoBehaviour
 
         CanvasController.Instance.OnResume();
     }
-
-    //public void Reload()
-    //{
-    //    DOTween.KillAll();
-    //    ObjectPooler.Instance.RecallAll();
-    //    Time.timeScale = 1f;
-    //    SceneManager.LoadScene(0);
-    //}
 }

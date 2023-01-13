@@ -1,35 +1,32 @@
 using UnityEngine;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 
 public class Basket : MonoBehaviour
 {
-    private BasketNet _net;
-    public BasketNet Net { get => _net; }
+    public BasketNet Net { get; private set; }
+    public BasketHoop Hoop { get; private set; }
+    public BasketEffect Effect { get; private set; }
+    public BasketPoint Point { get; private set; }
+    public BasketMovement Movement { get; private set; }
+    public BasketObstacle Obstacle { get; private set; }
 
-    private BasketHoop _hoop;
-    public BasketHoop Hoop { get => _hoop; }
-
-    private BasketEffect _effect;
-    public BasketEffect Effect { get => _effect; }
-
-    private BasketPoint _point;
-    public BasketPoint Point { get => _point; }
-
-    private BasketMovement _movement;
-    public BasketMovement Movement { get => _movement; }
-
-    private BasketObstacle _obstacle;
-    public BasketObstacle Obstacle { get => _obstacle; }
+    [ShowInInspector]
+    public bool IsGolden { get; private set; }
 
     private void Awake()
     {
-        _net = GetComponentInChildren<BasketNet>();
-        _hoop = GetComponentInChildren<BasketHoop>();
-        _effect = GetComponentInChildren<BasketEffect>();
-        _point = GetComponentInChildren<BasketPoint>();
+        LoadComponent();
+    }
 
-        _movement = GetComponent<BasketMovement>();
-        _obstacle = GetComponent<BasketObstacle>();
+    private void LoadComponent()
+    {
+        Net = GetComponentInChildren<BasketNet>();
+        Hoop = GetComponentInChildren<BasketHoop>();
+        Effect = GetComponentInChildren<BasketEffect>();
+        Point = GetComponentInChildren<BasketPoint>();
+        Movement = GetComponent<BasketMovement>();
+        Obstacle = GetComponent<BasketObstacle>();
     }
 
     public void Renew()
@@ -37,17 +34,14 @@ public class Basket : MonoBehaviour
         transform.localScale = Vector3.one;
         transform.rotation = Quaternion.identity;
 
-        _net.Renew();
-        _hoop.Renew();
-        _effect.Renew();
-        _point.Renew();
-
-        _movement.Renew();
-        _obstacle.Renew();
+        Net.Renew();
+        Hoop.Renew();
+        Effect.Renew();
+        Point.Renew();
+        Movement.Renew();
+        Obstacle.Renew();
     }
 
-
-    #region Animation
     public void Appear()
     {
         transform.localScale = Vector3.zero;
@@ -61,16 +55,13 @@ public class Basket : MonoBehaviour
             ObjectPool.Instance.Recall(gameObject);
         });
     }
-    #endregion
 
-
-    #region Shoot Ball
     public void GetScore()
     {
-        _hoop.Inactive();
-        _effect.Score();
-        _movement.Stop();
-        _obstacle.Free();
+        Hoop.Inactive();
+        Effect.Score();
+        Movement.Stop();
+        Obstacle.Free();
     }
 
     public void ReceiveBall(Ball ball)
@@ -79,8 +70,8 @@ public class Basket : MonoBehaviour
         transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
         ball.Stop(transform);
 
-        _net.OnReceiveBall(ball);
-        _point.SetActiveCollider(false);
+        Net.OnReceiveBall(ball);
+        Point.SetActiveCollider(false);
     }
 
     public void ShootBall()
@@ -88,15 +79,24 @@ public class Basket : MonoBehaviour
         // wait 0.1f to enable collider (check event ball in basket)
         transform.DOScale(1f, 0.1f).SetUpdate(true).OnComplete(() =>
         {
-            _point.SetActiveCollider(true);
+            Point.SetActiveCollider(true);
         });
 
-        _net.OnShootBall();
+        Net.OnShootBall();
+
+        if (CanvasController.Instance.Mode == GameMode.Challenge)
+        {
+            transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutExpo);
+        }
     }
 
     public void CancelShoot()
     {
-        _net.OnCancelShoot();
+        Net.OnCancelShoot();
     }
-    #endregion
+
+    public void SetGolden()
+    {
+        IsGolden = true;
+    }
 }

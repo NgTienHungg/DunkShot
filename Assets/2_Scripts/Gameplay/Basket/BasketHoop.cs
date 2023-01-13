@@ -10,16 +10,26 @@ public class BasketHoop : MonoBehaviour
     [SerializeField] private SpriteRenderer _inactiveFrontSprite;
     [SerializeField] private SpriteRenderer _inactiveBackSprite;
 
+    [Header("Gold")]
+    [SerializeField] private GameObject _blikas;
+
     private void Awake()
     {
         LoadTheme();
-        Renew();
         RegisterListener();
     }
 
     private void RegisterListener()
     {
         Observer.OnChangeTheme += LoadTheme;
+    }
+
+    private void OnEnable()
+    {
+        if (transform.parent.GetComponent<Basket>().IsGolden)
+        {
+            _blikas.SetActive(true);
+        }
     }
 
     private void LoadTheme()
@@ -38,10 +48,17 @@ public class BasketHoop : MonoBehaviour
 
         _inactiveFrontSprite.gameObject.SetActive(false);
         _inactiveBackSprite.gameObject.SetActive(false);
+
+        _blikas.SetActive(false);
     }
 
     public void Inactive()
     {
+        if (GetComponentInParent<Basket>().IsGolden)
+        {
+            return;
+        }
+
         _activeFrontSprite.gameObject.SetActive(false);
         _activeBackSprite.gameObject.SetActive(false);
 

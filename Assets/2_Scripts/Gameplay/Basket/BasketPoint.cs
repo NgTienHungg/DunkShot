@@ -39,16 +39,20 @@ public class BasketPoint : MonoBehaviour
             // phát ra sự kiện để xử lý điểm trước
             // sau đó mới phát sự kiện BallInBasket để clear các điểm nhận được trong lượt này tại ScoreManager
 
+            _basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
+
             if (_hasPoint)
             {
                 _hasPoint = false;
                 _basket.GetScore();
-                Debug.Log("basket getsocre");
-                Observer.GetScore?.Invoke();
+
+                if (CanvasController.Instance.Mode == GameMode.Endless)
+                    Observer.BallInBasketHasPoint?.Invoke();
+                else if (CanvasController.Instance.Mode == GameMode.Challenge)
+                    Observer.BallInBasketHasPointInChallenge?.Invoke();
             }
 
-            _basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
-            Observer.BallInBasket?.Invoke();
+            Observer.BallInBasketHasNoPoint?.Invoke();
         }
     }
 }

@@ -17,6 +17,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 120;
     }
 }

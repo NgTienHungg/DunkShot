@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class BasketNet : MonoBehaviour
 {
+    [Header("Sprite")]
+    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Sprite _normalNet;
+    [SerializeField] private Sprite _goldenNet;
+
     [Header("Drag basket")]
     [SerializeField] private float _maxScaleY = 1.85f;
 
@@ -14,23 +19,29 @@ public class BasketNet : MonoBehaviour
     private bool _hasBall;
     private Vector3 _distance;
 
+    private void Awake()
+    {
+        _distance = _anchor.localPosition - _bottom.localPosition;
+    }
+
+    public void OnEnable()
+    {
+        _renderer.sprite = GetComponentInParent<Basket>().IsGolden == true ? _goldenNet : _normalNet;
+    }
+
     public void Renew()
     {
         transform.localScale = Vector3.one;
+        _renderer.sprite = _normalNet;
         _ball = null;
         _hasBall = false;
-    }
-
-    private void Start()
-    {
-        _distance = _anchor.localPosition - _bottom.localPosition;
     }
 
     private void LateUpdate()
     {
         if (_hasBall)
         {
-            _anchor.localPosition = _bottom.localPosition + _distance  / transform.localScale.y;
+            _anchor.localPosition = _bottom.localPosition + _distance / transform.localScale.y;
             _ball.transform.position = _anchor.position;
         }
     }

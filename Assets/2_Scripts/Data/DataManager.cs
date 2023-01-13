@@ -14,6 +14,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get; private set; }
     public Skin[] Skins { get; private set; }
     public Theme[] Themes { get; private set; }
+    public ChallengeData[] ChallengeDataSet { get => _challengeDataSet; }
 
     private void Awake()
     {

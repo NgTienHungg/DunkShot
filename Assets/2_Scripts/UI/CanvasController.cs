@@ -2,6 +2,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameState
+{
+    MainMenu,
+    GamePlay,
+    Paused,
+    Continue,
+    GameOver,
+    Settings,
+    Customize,
+    Challenge,
+}
+
+public enum GameMode
+{
+    Endless,
+    Challenge,
+    TrySkin
+}
+
 public class CanvasController : MonoBehaviour
 {
     [Header("UI Game States")]
@@ -17,6 +36,7 @@ public class CanvasController : MonoBehaviour
 
     [Header("Customize")]
     [SerializeField] private UICustomizeManager _uiCustomize;
+    public UICustomizeManager UICustomize { get => _uiCustomize; }
 
     [Header("Challenge")]
     [SerializeField] private UIChallengeManager _uiChallenge;
@@ -29,6 +49,7 @@ public class CanvasController : MonoBehaviour
 
     public static CanvasController Instance { get; private set; }
     public GameState State { get; private set; }
+    public GameMode Mode { get; set; }
 
     private void Awake()
     {
@@ -50,13 +71,22 @@ public class CanvasController : MonoBehaviour
         _uiChallenge.gameObject.SetActive(false);
 
         State = GameState.MainMenu;
+        Mode = GameMode.Endless;
+
+        ScoreManager.Instance.UIScore.Disable();
     }
 
     public void OnStartPlay()
     {
         _uiMainMenu.Disable();
         _uiGamePlay.Enable();
+
         State = GameState.GamePlay;
+
+        if (Mode == GameMode.Endless)
+        {
+            ScoreManager.Instance.UIScore.Show();
+        }
     }
 
     public void OnContinue()
@@ -98,21 +128,22 @@ public class CanvasController : MonoBehaviour
 
     public void OnBackHome()
     {
+        Observer.RenewScene?.Invoke();
         ObjectPool.Instance.RecallAll();
-        //DOTween.KillAll(); // dùng nếu ReloadScene
+        DOTween.KillAll(); // dùng nếu ReloadScene
 
         flashImage.DOFade(targetAlpha, fadeDuration).SetUpdate(true).OnComplete(() =>
         {
             if (State == GameState.Paused)
             {
-                _uiPaused.DisableImmediately();
+                _uiPaused.DisableImmediate();
             }
 
-            _uiGamePlay.DisableImmediately();
-            _uiGameOver.DisableImmediately();
-            _uiContinue.DisableImmediately();
+            _uiGamePlay.DisableImmediate();
+            _uiGameOver.DisableImmediate();
+            _uiContinue.DisableImmediate();
             _gameOver.SetActive(false);
-
+            ScoreManager.Instance.UIScore.Hide();
             _uiMainMenu.Enable();
 
             // renew scene
@@ -136,21 +167,25 @@ public class CanvasController : MonoBehaviour
 
     public void OpenCustomize()
     {
+        _uiMainMenu.Disable();
         _uiCustomize.Enable();
     }
 
     public void CloseCustomize()
     {
+        _uiMainMenu.Enable();
         _uiCustomize.Disable();
     }
 
     public void OpenChallenge()
     {
+        _uiMainMenu.Disable();
         _uiChallenge.Enable();
     }
 
     public void CloseChallenge()
     {
+        _uiMainMenu.Enable();
         _uiChallenge.Disable();
     }
 }

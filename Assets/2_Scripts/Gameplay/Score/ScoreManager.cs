@@ -9,12 +9,26 @@ public class ScoreManager : MonoBehaviour
     public bool IsPerfect { get; private set; }
 
     [SerializeField] private UIScore _uiScore;
+    public UIScore UIScore { get => _uiScore; }
+
     [SerializeField] private UIScoreNotify _notify;
+    public UIScoreNotify Notify { get => _notify; }
 
     private void Awake()
     {
         Instance = this;
-        Renew();
+        RegisterListener();
+    }
+
+    private void RegisterListener()
+    {
+        Observer.RenewScene += Renew;
+        Observer.BallCollideObstacle += CountBouncing;
+        Observer.BallCollideHoop += DisablePerfect;
+
+        Observer.BallInBasketHasPoint += AddScoreAndShow;
+        Observer.BallInBasketHasPointInChallenge += AddScoreAndShow;
+        Observer.BallInBasketHasNoPoint += ClearPerfectAndBounce;
     }
 
     public void Renew()
@@ -28,22 +42,6 @@ public class ScoreManager : MonoBehaviour
         _notify.Renew();
     }
 
-    private void OnEnable()
-    {
-        Observer.BallCollideObstacle += CountBouncing;
-        Observer.BallCollideHoop += DisablePerfect;
-        Observer.GetScore += AddScore;
-        Observer.BallInBasket += ClearPerfectAndBounce;
-    }
-
-    private void OnDisable()
-    {
-        Observer.BallCollideObstacle -= CountBouncing;
-        Observer.BallCollideHoop -= DisablePerfect;
-        Observer.GetScore -= AddScore;
-        Observer.BallInBasket -= ClearPerfectAndBounce;
-    }
-
     private void CountBouncing()
     {
         Bounce++;
@@ -55,7 +53,7 @@ public class ScoreManager : MonoBehaviour
         Perfect = 0;
     }
 
-    private void AddScore()
+    private void AddScoreAndShow()
     {
         // handle perfect
         if (IsPerfect)

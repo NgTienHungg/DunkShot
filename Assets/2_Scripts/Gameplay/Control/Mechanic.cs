@@ -20,12 +20,12 @@ public class Mechanic : MonoBehaviour
 
     private void OnEnable()
     {
-        Observer.BallInBasket += SetCanAim;
+        Observer.BallInBasketHasNoPoint += SetCanAim;
     }
 
     private void OnDisable()
     {
-        Observer.BallInBasket -= SetCanAim;
+        Observer.BallInBasketHasNoPoint -= SetCanAim;
     }
 
     public void Renew()
@@ -99,7 +99,6 @@ public class Mechanic : MonoBehaviour
         force = direction * distance * pushForce;
 
         if (force.magnitude < 4f) return;
-        Debug.Log(force.magnitude);
 
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(force, Vector3.up);

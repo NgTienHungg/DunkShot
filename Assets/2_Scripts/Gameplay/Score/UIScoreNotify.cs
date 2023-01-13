@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
@@ -10,7 +10,6 @@ public class UIScoreNotify : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _uiScoreAdd;
 
     private Transform _basket;
-    private bool _isShowing;
 
     private Vector3 startPos1 = new Vector3(0f, 60f);
     private Vector3 startPos2 = new Vector3(0, 100f);
@@ -19,15 +18,14 @@ public class UIScoreNotify : MonoBehaviour
 
     public void Renew()
     {
-        _basket = null;
-        _isShowing = false;
-
         SetInfo(0, 0, 0);
+        _basket = null;
+        gameObject.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
-        if (_isShowing)
+        if (gameObject.activeInHierarchy)
         {
             transform.position = _basket.position + Vector3.up * 0.5f;
         }
@@ -35,9 +33,8 @@ public class UIScoreNotify : MonoBehaviour
 
     public void Show(int comboPerfect, int comboBounce, int scoreAdd)
     {
-        _isShowing = true;
+        gameObject.SetActive(true);
         _basket = Controller.Instance.BasketSpawner.CurrentBasket.transform;
-        transform.position = _basket.position + Vector3.up * 0.7f;
 
         SetInfo(comboPerfect, comboBounce, scoreAdd);
         StartCoroutine(ShowDelay(comboPerfect > 0, comboBounce > 0));
@@ -100,7 +97,10 @@ public class UIScoreNotify : MonoBehaviour
             _uiScoreAdd.DOFade(1f, 0.3f);
             _uiScoreAdd.rectTransform.localPosition = Vector3.zero;
             _uiScoreAdd.rectTransform.DOLocalMoveY(60f, 1.2f).SetEase(Ease.OutQuad);
-            _uiScoreAdd.DOFade(0f, 0.3f).SetDelay(1f);
+            _uiScoreAdd.DOFade(0f, 0.3f).SetDelay(1f).OnComplete(() =>
+            {
+                Renew();
+            });
         });
     }
 }

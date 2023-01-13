@@ -24,7 +24,7 @@ public class UIPaused : UIGame
         });
     }
 
-    public override void DisableImmediately()
+    public override void DisableImmediate()
     {
         _canvasGroup.interactable = false;
         _canvasGroup.alpha = 0f;

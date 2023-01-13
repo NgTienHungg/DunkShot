@@ -25,11 +25,15 @@ public class UIChallengeManager : UIGame
         _selection.SetActive(false);
         _uiChallenge.gameObject.SetActive(true);
         _popupControl.ShowPopupPlay();
+
+        ObjectPool.Instance.RecallAll();
+        CanvasController.Instance.Mode = GameMode.Challenge;
     }
 
     public void PlayChallenge()
     {
         _popupControl.Disable();
+        Observer.OnPlayChallenge?.Invoke();
     }
 
     public void CloseChallenge()
