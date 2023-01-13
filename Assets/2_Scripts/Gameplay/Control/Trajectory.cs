@@ -138,13 +138,9 @@ public class Trajectory : MonoBehaviour
     private void ApplyTheme()
     {
         if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
-        {
             ApplyLightMode();
-        }
         else
-        {
             ApplyDarkMode();
-        }
     }
 
     private void ApplyLightMode()

@@ -98,5 +98,7 @@ public class Basket : MonoBehaviour
     public void SetGolden()
     {
         IsGolden = true;
+        Hoop.SetGolden();
+        Net.SetGolden();
     }
 }

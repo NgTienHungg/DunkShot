@@ -5,8 +5,8 @@ public class Mechanic : MonoBehaviour
     [SerializeField] private float pushForce, minForce;
     [SerializeField] private float maxDistance;
 
-    private Ball ball;
-    private Basket basket;
+    private Ball _ball;
+    private Basket _basket;
 
     [SerializeField]
     private Trajectory trajectory;
@@ -18,26 +18,38 @@ public class Mechanic : MonoBehaviour
     private Vector3 direction, force;
     private float distance;
 
-    private void OnEnable()
+    private void Awake()
     {
+        RegisterListener();
+    }
+
+    private void RegisterListener()
+    {
+        Observer.OnStartGame += SetupGame;
         Observer.BallInBasketHasNoPoint += SetCanAim;
     }
 
-    private void OnDisable()
+    //private void OnDisable()
+    //{
+    //    Observer.BallInBasketHasNoPoint -= SetCanAim;
+    //}
+
+    private void SetupGame()
     {
-        Observer.BallInBasketHasNoPoint -= SetCanAim;
+        _basket = Controller.Instance.BasketSpawner.CurrentBasket;
+        _ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
     }
 
     public void Renew()
     {
-        basket = Controller.Instance.BasketSpawner.CurrentBasket;
+        _basket = Controller.Instance.BasketSpawner.CurrentBasket;
 
-        if (ball != null)
-            ObjectPool.Instance.Recall(ball.gameObject);
+        if (_ball != null)
+            ObjectPool.Instance.Recall(_ball.gameObject);
 
-        ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
-        ball.transform.position = new Vector3(basket.transform.position.x, basket.transform.position.y + 2.5f);
-        ball.Appear();
+        _ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
+        _ball.transform.position = new Vector3(_basket.transform.position.x, _basket.transform.position.y + 2.5f);
+        _ball.Appear();
 
         CameraController.Instance.FollowBall();
 
@@ -51,7 +63,7 @@ public class Mechanic : MonoBehaviour
         if (!Controller.Instance.IsPlaying)
             return;
 
-        if (Controller.Instance.IsPlaying && ball.transform.position.y < basket.transform.position.y - 4f)
+        if (Controller.Instance.IsPlaying && _ball.transform.position.y < Controller.Instance.BasketSpawner.LastBasket.transform.position.y - 4f)
         {
             CameraController.Instance.UnfollowBall();
             Observer.BallDead?.Invoke();
@@ -77,12 +89,12 @@ public class Mechanic : MonoBehaviour
 
     public void SetBasket(Basket basket)
     {
-        this.basket = basket;
+        this._basket = basket;
     }
 
     public Ball GetBall()
     {
-        return ball;
+        return _ball;
     }
 
     private void StartAiming()
@@ -103,10 +115,10 @@ public class Mechanic : MonoBehaviour
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(force, Vector3.up);
         float sign = endPoint.x > startPoint.x ? 1 : -1;
-        basket.transform.eulerAngles = new Vector3(0f, 0f, sign * aimingAngle);
+        _basket.transform.eulerAngles = new Vector3(0f, 0f, sign * aimingAngle);
 
         // calculate net scale
-        basket.Net.ScaleY(distance);
+        _basket.Net.ScaleY(distance);
 
         canShoot = force.magnitude >= minForce;
 
@@ -114,7 +126,7 @@ public class Mechanic : MonoBehaviour
         if (canShoot)
         {
             trajectory.Show();
-            trajectory.Simulate(ball.transform.position, force);
+            trajectory.Simulate(_ball.transform.position, force);
         }
         else
         {
@@ -130,13 +142,13 @@ public class Mechanic : MonoBehaviour
 
         if (canShoot)
         {
-            ball.Push(force);
-            basket.ShootBall();
+            _ball.Push(force);
+            _basket.ShootBall();
             canAim = false;
         }
         else
         {
-            basket.CancelShoot();
+            _basket.CancelShoot();
         }
     }
 }

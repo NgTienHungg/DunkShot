@@ -24,14 +24,6 @@ public class BasketHoop : MonoBehaviour
         Observer.OnChangeTheme += LoadTheme;
     }
 
-    private void OnEnable()
-    {
-        if (transform.parent.GetComponent<Basket>().IsGolden)
-        {
-            _blikas.SetActive(true);
-        }
-    }
-
     private void LoadTheme()
     {
         _activeFrontSprite.sprite = DataManager.Instance.ThemeInUse.Data.Hoop.ActiveFront;
@@ -64,5 +56,10 @@ public class BasketHoop : MonoBehaviour
 
         _inactiveFrontSprite.gameObject.SetActive(true);
         _inactiveBackSprite.gameObject.SetActive(true);
+    }
+
+    public void SetGolden()
+    {
+        _blikas.SetActive(true);
     }
 }

@@ -22,7 +22,8 @@ public class ScoreManager : MonoBehaviour
 
     private void RegisterListener()
     {
-        Observer.RenewScene += Renew;
+        //Observer.RenewScene += Renew;
+        Observer.OnStartGame += Renew;
         Observer.BallCollideObstacle += CountBouncing;
         Observer.BallCollideHoop += DisablePerfect;
 
@@ -55,7 +56,6 @@ public class ScoreManager : MonoBehaviour
 
     private void AddScoreAndShow()
     {
-        // handle perfect
         if (IsPerfect)
             Perfect++;
 
@@ -67,7 +67,7 @@ public class ScoreManager : MonoBehaviour
         // calculate score add
         int scoreAdd = (Bounce == 0) ? (Perfect + 1) : (Perfect + 1) * 2;
         scoreAdd = Mathf.Min(scoreAdd, 20);
-        Debug.Log($" => Perfect x{IsPerfect} --- Bounce x{Bounce} --- Combo x{Perfect} --- Add: {scoreAdd}");
+        Debug.Log($" => IsPerfect = {IsPerfect} --- Bounce x{Bounce} --- Perfect x{Perfect} --- ScoreAdd: {scoreAdd}");
 
         // change score
         Score += scoreAdd;

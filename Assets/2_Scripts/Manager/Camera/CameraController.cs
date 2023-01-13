@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public static CameraController Instance { get; private set; }
+    //public static CameraController Instance { get; private set; }
 
     [SerializeField] private SpriteRenderer bound;
     [SerializeField] private GameObject cinemachinePrefab;
@@ -14,8 +14,13 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        //Instance = this;
         mainCamera = Camera.main;
+    }
+
+    private void RegisterListener()
+    {
+        Observer.
     }
 
     public void FollowBall()

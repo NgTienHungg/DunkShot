@@ -28,6 +28,8 @@ public class UIChallengeManager : UIGame
 
         ObjectPool.Instance.RecallAll();
         CanvasController.Instance.Mode = GameMode.Challenge;
+        GameManager.Instance.Flash.ShowTransition();
+        Observer.OnStartChallenge?.Invoke();
     }
 
     public void PlayChallenge()

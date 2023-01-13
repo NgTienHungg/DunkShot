@@ -10,8 +10,6 @@ public enum GameState
     Continue,
     GameOver,
     Settings,
-    Customize,
-    Challenge,
 }
 
 public enum GameMode
@@ -128,31 +126,28 @@ public class CanvasController : MonoBehaviour
 
     public void OnBackHome()
     {
-        Observer.RenewScene?.Invoke();
         ObjectPool.Instance.RecallAll();
         DOTween.KillAll(); // dùng nếu ReloadScene
+        Time.timeScale = 1f;
+        Observer.OnStartGame?.Invoke();
 
-        flashImage.DOFade(targetAlpha, fadeDuration).SetUpdate(true).OnComplete(() =>
+        GameManager.Instance.Flash.ShowTransition();
+
+        if (State == GameState.Paused)
         {
-            if (State == GameState.Paused)
-            {
-                _uiPaused.DisableImmediate();
-            }
+            _uiPaused.DisableImmediate();
+        }
 
-            _uiGamePlay.DisableImmediate();
-            _uiGameOver.DisableImmediate();
-            _uiContinue.DisableImmediate();
-            _gameOver.SetActive(false);
-            ScoreManager.Instance.UIScore.Hide();
-            _uiMainMenu.Enable();
+        _uiGamePlay.DisableImmediate();
+        _uiGameOver.DisableImmediate();
+        _uiContinue.DisableImmediate();
+        _gameOver.SetActive(false);
+        ScoreManager.Instance.UIScore.Hide();
+        _uiMainMenu.Enable();
 
-            // renew scene
-            Time.timeScale = 1f;
-            Controller.Instance.Renew();
-            State = GameState.MainMenu;
-
-            flashImage.DOFade(0f, fadeDuration);
-        });
+        // renew scene
+        Controller.Instance.Renew();
+        State = GameState.MainMenu;
     }
 
     public void OpenSettings()

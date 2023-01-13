@@ -1,13 +1,31 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
+using Sirenix.OdinInspector;
 
 public class Controller : MonoBehaviour
 {
     public static Controller Instance { get; private set; }
-    public Mechanic Mechanic { get; private set; }
-    public BasketSpawner BasketSpawner { get; private set; }
+    [ShowInInspector] public Mechanic Mechanic { get; private set; }
+    [ShowInInspector] public BasketSpawner BasketSpawner { get; private set; }
+    public Ball Ball { get; private set; }
     public bool IsPlaying { get; private set; }
     public bool HasSecondChance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+        RegisterListener();
+        //Mechanic = FindObjectOfType<Mechanic>();
+        //BasketSpawner = FindObjectOfType<BasketSpawner>();
+    }
+
+    private void RegisterListener()
+    {
+        Observer.BallDead += OnBallDead;
+        //Observer.OnStartChallenge += Renew;
+        Observer.OnPlayChallenge += Renew;
+    }
 
     public void Renew()
     {
@@ -15,24 +33,11 @@ public class Controller : MonoBehaviour
         Background.Instance.Renew();
         //ScoreManager.Instance.Renew();
 
-        BasketSpawner.Renew();
+        //BasketSpawner.Renew();
         Mechanic.Renew();
 
         this.IsPlaying = false;
         this.HasSecondChance = true;
-    }
-
-    private void Awake()
-    {
-        Instance = this;
-        Mechanic = FindObjectOfType<Mechanic>();
-        BasketSpawner = FindObjectOfType<BasketSpawner>();
-    }
-
-    private void OnEnable()
-    {
-        Observer.BallDead += OnBallDead;
-        Observer.OnPlayChallenge += Renew;
     }
 
     private void OnDisable()
@@ -43,7 +48,8 @@ public class Controller : MonoBehaviour
 
     private void Start()
     {
-        Observer.RenewScene?.Invoke();
+        Observer.OnStartGame?.Invoke();
+        //Observer.RenewScene?.Invoke();
         Renew();
     }
 
@@ -65,7 +71,7 @@ public class Controller : MonoBehaviour
     private void Restart()
     {
         Mechanic.Renew();
-        BasketSpawner.PreparePlay();
+        BasketSpawner.CurrentBasket.transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutExpo);
         IsPlaying = true;
     }
 

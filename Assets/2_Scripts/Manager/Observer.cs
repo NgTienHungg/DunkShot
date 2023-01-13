@@ -4,9 +4,9 @@ public static class Observer
 
     public delegate void GameEvent();
 
-
-    public static GameEvent RenewScene;
-
+    public static GameEvent OnSetupScene;
+    public static GameEvent OnStartGame;
+    //public static GameEvent RenewScene;
 
     public static GameEvent BallInBasketHasPoint;
     public static GameEvent BallInBasketHasPointInChallenge;
@@ -31,6 +31,7 @@ public static class Observer
     public static GameEvent OnUnlockSkin;
     public static GameEvent OnUnlockTheme;
 
+    public static GameEvent OnStartChallenge;
     public static GameEvent OnPlayChallenge;
     public static GameEvent OnPassChallenge;
 

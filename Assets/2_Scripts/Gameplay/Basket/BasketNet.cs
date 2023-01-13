@@ -24,11 +24,6 @@ public class BasketNet : MonoBehaviour
         _distance = _anchor.localPosition - _bottom.localPosition;
     }
 
-    public void OnEnable()
-    {
-        _renderer.sprite = GetComponentInParent<Basket>().IsGolden == true ? _goldenNet : _normalNet;
-    }
-
     public void Renew()
     {
         transform.localScale = Vector3.one;
@@ -85,5 +80,10 @@ public class BasketNet : MonoBehaviour
         {
             transform.DOScaleY(1f, 0.06f).SetEase(Ease.OutCirc);
         });
+    }
+
+    public void SetGolden()
+    {
+        _renderer.sprite = _goldenNet;
     }
 }

@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
+
+    [SerializeField] private Flash _flash;
+    public Flash Flash { get => _flash; }
 
     private void Awake()
     {
