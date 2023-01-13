@@ -26,8 +26,6 @@ public class UIChallengeManager : UIGame
         _uiChallenge.gameObject.SetActive(true);
         _popupControl.ShowPopupPlay();
 
-        ObjectPool.Instance.RecallAll();
-        CanvasController.Instance.Mode = GameMode.Challenge;
         GameManager.Instance.Flash.ShowTransition();
         Observer.OnStartChallenge?.Invoke();
     }

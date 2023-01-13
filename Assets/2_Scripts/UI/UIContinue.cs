@@ -54,7 +54,7 @@ public class UIContinue : UIGame
 
     public void OnVideoButton()
     {
-        Controller.Instance.SecondChance();
+        GameController.Instance.SecondChance();
     }
 
     public void OnContinueButton()

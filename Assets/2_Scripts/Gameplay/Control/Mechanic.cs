@@ -6,17 +6,19 @@ public class Mechanic : MonoBehaviour
     [SerializeField] private float maxDistance;
 
     private Ball _ball;
+    public Ball Ball { get => _ball; }
+
     private Basket _basket;
 
     [SerializeField]
     private Trajectory trajectory;
 
-    private bool isAiming;
-    private bool canAim, canShoot;
+    private bool _isAiming;
+    private bool _canAim, _canShoot;
 
-    private Vector3 startPoint, endPoint;
-    private Vector3 direction, force;
-    private float distance;
+    private Vector3 _startPoint, _endPoint;
+    private Vector3 _direction, _force;
+    private float _distance;
 
     private void Awake()
     {
@@ -25,126 +27,98 @@ public class Mechanic : MonoBehaviour
 
     private void RegisterListener()
     {
-        Observer.OnStartGame += SetupGame;
         Observer.BallInBasketHasNoPoint += SetCanAim;
     }
 
-    //private void OnDisable()
-    //{
-    //    Observer.BallInBasketHasNoPoint -= SetCanAim;
-    //}
-
-    private void SetupGame()
+    public void SetupBall()
     {
-        _basket = Controller.Instance.BasketSpawner.CurrentBasket;
         _ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
-    }
-
-    public void Renew()
-    {
-        _basket = Controller.Instance.BasketSpawner.CurrentBasket;
-
-        if (_ball != null)
-            ObjectPool.Instance.Recall(_ball.gameObject);
-
-        _ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
-        _ball.transform.position = new Vector3(_basket.transform.position.x, _basket.transform.position.y + 2.5f);
+        _ball.transform.position = GameController.Instance.BasketSpawner.CurrentBasket.transform.position + new Vector3(0f, 2.5f);
         _ball.Appear();
 
-        CameraController.Instance.FollowBall();
-
-        canAim = false;
-        isAiming = false;
-        canShoot = false;
+        _canAim = false;
+        _isAiming = false;
+        _canShoot = false;
     }
 
     private void Update()
     {
-        if (!Controller.Instance.IsPlaying)
+        if (!GameController.Instance.IsPlaying)
             return;
 
-        if (Controller.Instance.IsPlaying && _ball.transform.position.y < Controller.Instance.BasketSpawner.LastBasket.transform.position.y - 4f)
+        if (_ball.transform.position.y < GameController.Instance.BasketSpawner.LastBasket.transform.position.y - 4f)
         {
-            CameraController.Instance.UnfollowBall();
             Observer.BallDead?.Invoke();
+            return;
         }
 
-        if (canAim)
+        if (_canAim)
         {
-            if (Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject() && !isAiming)
+            if (Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject() && !_isAiming)
                 StartAiming();
 
-            if (Input.GetMouseButtonUp(0) && isAiming)
+            if (Input.GetMouseButtonUp(0) && _isAiming)
                 Shoot();
 
-            if (isAiming)
+            if (_isAiming)
                 Aiming();
         }
     }
 
     private void SetCanAim()
     {
-        canAim = true;
-    }
-
-    public void SetBasket(Basket basket)
-    {
-        this._basket = basket;
-    }
-
-    public Ball GetBall()
-    {
-        return _ball;
+        _basket = GameController.Instance.BasketSpawner.CurrentBasket;
+        _canAim = true;
     }
 
     private void StartAiming()
     {
-        isAiming = true;
-        startPoint = Util.GetMouseWorldPosition();
+        _isAiming = true;
+        _startPoint = Util.GetMouseWorldPosition();
     }
 
     private void Aiming()
     {
-        endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        distance = Mathf.Min(maxDistance, Vector3.Distance(startPoint, endPoint));
-        direction = (startPoint - endPoint).normalized;
-        force = direction * distance * pushForce;
+        _endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _distance = Mathf.Min(maxDistance, Vector3.Distance(_startPoint, _endPoint));
+        _direction = (_startPoint - _endPoint).normalized;
+        _force = _direction * _distance * pushForce;
 
-        if (force.magnitude < 4f) return;
+        if (_force.magnitude < 4f) return;
 
         // calculate angle of hoop
-        float aimingAngle = Vector3.Angle(force, Vector3.up);
-        float sign = endPoint.x > startPoint.x ? 1 : -1;
+        float aimingAngle = Vector3.Angle(_force, Vector3.up);
+        float sign = _endPoint.x > _startPoint.x ? 1 : -1;
         _basket.transform.eulerAngles = new Vector3(0f, 0f, sign * aimingAngle);
 
         // calculate net scale
-        _basket.Net.ScaleY(distance);
+        _basket.Net.ScaleY(_distance);
 
-        canShoot = force.magnitude >= minForce;
+        _canShoot = _force.magnitude >= minForce;
 
         // trajectory
-        if (canShoot)
+        if (_canShoot)
         {
             trajectory.Show();
-            trajectory.Simulate(_ball.transform.position, force);
+            trajectory.Simulate(_ball.transform.position, _force);
         }
         else
         {
             trajectory.Hide();
         }
-        Debug.DrawLine(startPoint, endPoint, Color.red);
+        Debug.DrawLine(_startPoint, _endPoint, Color.red);
     }
 
     private void Shoot()
     {
-        isAiming = false;
+        _isAiming = false;
         trajectory.Hide();
 
-        if (canShoot)
+        if (_canShoot)
         {
-            _ball.Push(force);
+            _ball.Push(_force);
             _basket.ShootBall();
-            canAim = false;
+            _canAim = false;
         }
         else
         {

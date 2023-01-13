@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5489324951427085290}
   - component: {fileID: 5489324951427085289}
   m_Layer: 0
-  m_Name: Cinemachine
+  m_Name: vCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

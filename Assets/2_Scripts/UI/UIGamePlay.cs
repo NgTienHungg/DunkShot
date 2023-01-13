@@ -26,6 +26,6 @@ public class UIGamePlay : UIGame
 
     public void OnPauseButton()
     {
-        Controller.Instance.Pause();
+        GameController.Instance.Pause();
     }
 }

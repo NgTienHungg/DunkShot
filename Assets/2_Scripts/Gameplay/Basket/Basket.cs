@@ -66,7 +66,7 @@ public class Basket : MonoBehaviour
 
     public void ReceiveBall(Ball ball)
     {
-        Controller.Instance.Mechanic.SetBasket(this);
+        //Controller.Instance.Mechanic.SetBasket(this);
         transform.DORotate(Vector3.zero, 0.3f).SetEase(Ease.OutBack);
         ball.Stop(transform);
 

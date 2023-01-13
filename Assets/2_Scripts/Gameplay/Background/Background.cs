@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    public static Background Instance { get; private set; }
-
     [SerializeField] private SpriteRenderer _background;
     [SerializeField] private SpriteRenderer _static;
     [SerializeField] private ParallaxScrollBG _wall;
@@ -12,28 +10,26 @@ public class Background : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-
         LoadTheme();
+        RegisterListener();
+    }
 
+    private void RegisterListener()
+    {
         Observer.OnChangeTheme += LoadTheme;
         Observer.OnLightMode += OnLightMode;
         Observer.OnDarkMode += OnDarkMode;
+
+        Observer.OnStartGame += Renew;
+        Observer.OnStartChallenge += Renew;
     }
 
     private void LoadTheme()
     {
         if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
-        {
             OnLightMode();
-        }
         else
-        {
             OnDarkMode();
-        }
     }
 
     private void OnLightMode()

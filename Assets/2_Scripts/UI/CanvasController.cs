@@ -146,7 +146,8 @@ public class CanvasController : MonoBehaviour
         _uiMainMenu.Enable();
 
         // renew scene
-        Controller.Instance.Renew();
+        //Controller.Instance.StartGame();
+        //Observer.OnStartGame.Invoke();
         State = GameState.MainMenu;
     }
 

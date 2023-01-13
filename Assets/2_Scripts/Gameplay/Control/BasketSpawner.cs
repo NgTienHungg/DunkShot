@@ -32,35 +32,33 @@ public class BasketSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        Observer.OnSetupScene += SpawnBasket;
-        Observer.OnStartGame += BasketAppear;
-        Observer.OnStartChallenge += SetupLevel;
+        //Observer.OnStartChallenge += SetupLevel;
         Observer.BallInBasketHasPoint += ChangeTargetBasket;
         Observer.BallInBasketHasPointInChallenge += ChangeTargetBasketInChallenge;
     }
 
-    private void SpawnBasket()
+    public void SpawnBasket()
     {
         _currentBasket = ObjectPool.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
         _currentBasket.transform.position = _firstBasketPos;
         _currentBasket.Point.HasPoint = false; // the first basket has no point
+        _currentBasket.Appear();
+
         _nextBasket = ObjectPool.Instance.Spawn(PoolTag.BASKET).GetComponent<Basket>();
         _nextBasket.transform.position = _secondBasketPos;
+        _nextBasket.Appear();
+
         _lastBasket = _currentBasket;
         _spawnInLeft = true;
     }
 
-    private void BasketAppear()
-    {
-
-    }
-
-    private void SetupLevel()
+    public void SetupLevel()
     {
         DestroyImmediate(_level);
         _level = Instantiate(_levelPrefab);
-        _listObject = new List<GameObject>();
+
         _listBasket = new List<Basket>();
+        _listObject = new List<GameObject>();
 
         foreach (Transform child in _level.transform)
         {
@@ -75,9 +73,13 @@ public class BasketSpawner : MonoBehaviour
         _currentBasket = _listBasket[0];
         _currentBasket.Hoop.Inactive();
         _currentBasket.Point.HasPoint = false;
-        _nextBasket = _listBasket[1];
         _lastBasket = _currentBasket;
         _listBasket[_listBasket.Count - 1].SetGolden();
+
+        foreach (var basket in _listBasket)
+        {
+            basket.Appear();
+        }
     }
 
     private void ChangeTargetBasket()
@@ -150,5 +152,10 @@ public class BasketSpawner : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void BasketReady()
+    {
+        _currentBasket.transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutExpo);
     }
 }

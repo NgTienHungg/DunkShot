@@ -53,6 +53,6 @@ public class UIPaused : UIGame
 
     public void OnResumeButton()
     {
-        Controller.Instance.Resume();
+        GameController.Instance.Resume();
     }
 }

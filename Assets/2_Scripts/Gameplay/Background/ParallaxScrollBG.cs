@@ -32,7 +32,11 @@ public class ParallaxScrollBG : MonoBehaviour
         }
 
         LoadTheme();
+        RegisterListener();
+    }
 
+    private void RegisterListener()
+    {
         Observer.OnChangeTheme += LoadTheme;
         Observer.OnLightMode += LightMode;
         Observer.OnDarkMode += DarkMode;
@@ -41,13 +45,9 @@ public class ParallaxScrollBG : MonoBehaviour
     private void LoadTheme()
     {
         if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
-        {
             LightMode();
-        }
         else
-        {
             DarkMode();
-        }
     }
 
     private void LightMode()
