@@ -26,13 +26,13 @@ public class UIChallengeController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _challengeName;
     [SerializeField] private TextMeshProUGUI _basketAmount;
 
-    private ChallengeData _challenge;
+    private Challenge _challenge;
 
     private int _basketPassed;
 
     public void LoadChallenge()
     {
-        _challenge = DataManager.Instance.CurrentChallenge;
+        _challenge = ChallengeManager.Instance.CurrentChallenge;
         _challengeName.text = $"CHALLENGE {_challenge.name}";
         _basketAmount.text = $"{_basketPassed}/{_challenge.NumberOfBaskets} HOOPS";
 
@@ -73,6 +73,6 @@ public class UIChallengeController : MonoBehaviour
 
     public void OnPauseButton()
     {
-        CanvasController.Instance.UIChallenge.Pause();
+        CanvasController.Instance.UIChallenge.PauseChallenge();
     }
 }

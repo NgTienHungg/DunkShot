@@ -8,50 +8,36 @@ public class UIChallengeSelection : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _progress;
     [SerializeField] private ChallengeType _type;
 
-    private int _total;
+    private int _currentLevel;
+    private int _numberOfLevels;
 
     private void Awake()
     {
-        foreach (ChallengeData challenge in DataManager.Instance.ChallengeDataSet)
+        foreach (Challenge challenge in ChallengeManager.Instance.Challenges)
         {
             if (challenge.Type == _type)
             {
-                _total += 1;
+                _numberOfLevels += 1;
             }
         }
     }
 
     private void OnEnable()
     {
-        int now = -1 + SaveSystem.GetInt(_type switch
-        {
-            ChallengeType.NewBall => SaveKey.NEW_BALL_CHALLENGE,
-            ChallengeType.Collect => SaveKey.COLLECT_CHALLENGE,
-            ChallengeType.Time => SaveKey.TIME_CHALLENGE,
-            ChallengeType.Score => SaveKey.SCORE_CHALLENGE,
-            ChallengeType.Bounce => SaveKey.BOUNCE_CHALLENGE,
-            ChallengeType.NoAim => SaveKey.NO_AIM_CHALLENGE,
-            _ => throw new System.NotImplementedException(),
-        });
+        _currentLevel = ChallengeManager.Instance.GetCurrentLevelOfChallenge(_type);
 
-        _fill.fillAmount = 1f * now / _total;
-        _progress.text = (100 * now / _total) + "%";
+        _fill.fillAmount = 1f * (_currentLevel - 1) / _numberOfLevels;
+        _progress.text = (100 * (_currentLevel - 1) / _numberOfLevels) + "%";
+
+        if (_currentLevel > _numberOfLevels)
+        {
+            GetComponent<Button>().interactable = false;
+        }
     }
 
     public void OnClick()
     {
-        ChallengeData challenge = _type switch
-        {
-            ChallengeType.NewBall => DataManager.Instance.NewBallChallenge,
-            ChallengeType.Collect => DataManager.Instance.CollectChallenge,
-            ChallengeType.Time => DataManager.Instance.TimeChallenge,
-            ChallengeType.Score => DataManager.Instance.ScoreChallenge,
-            ChallengeType.Bounce => DataManager.Instance.BounceChallenge,
-            ChallengeType.NoAim => DataManager.Instance.NoAimChallenge,
-            _ => throw new System.NotImplementedException(),
-        };
-
-        DataManager.Instance.CurrentChallenge = challenge;
+        ChallengeManager.Instance.SetCurrentChallenge(_type);
         CanvasController.Instance.UIChallenge.LoadChallenge();
     }
 }

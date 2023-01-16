@@ -21,11 +21,11 @@ public class PopupPauseChallenge : MonoBehaviour
     [SerializeField] private Image _reward;
     [SerializeField] private Image _restartButton;
 
-    private ChallengeData _challenge;
+    private Challenge _challenge;
 
     public void Load()
     {
-        _challenge = DataManager.Instance.CurrentChallenge;
+        _challenge = ChallengeManager.Instance.CurrentChallenge;
 
         switch (_challenge.Type)
         {
@@ -58,12 +58,12 @@ public class PopupPauseChallenge : MonoBehaviour
 
     public void OnRestartButton()
     {
-        Debug.Log("RESTART");
+        CanvasController.Instance.UIChallenge.RestartChallenge();
     }
 
     public void OnCancelButton()
     {
-        CanvasController.Instance.UIChallenge.Resume();
+        CanvasController.Instance.UIChallenge.ResumeChallenge();
     }
 
     public void OnGiveUpButton()

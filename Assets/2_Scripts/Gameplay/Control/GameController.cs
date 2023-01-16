@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private CameraControl _cameraControl;
     public CameraControl CameraControl { get => _cameraControl; }
 
-    [SerializeField] private GameObject _prefab;
     [SerializeField] private GameObject _level;
     public GameObject Level { get => _level; }
 
@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
 
         Observer.OnStartChallenge += StartChallenge;
         Observer.OnPlayChallenge += PlayChallenge;
+        Observer.OnRestartChallenge += RestartChallenge;
         Observer.OnCloseChallenge += CloseChallenge;
         Observer.BallDeadInChallenge += OnBallDeadInChallenge;
     }
@@ -131,8 +132,14 @@ public class GameController : MonoBehaviour
         GameManager.Instance.Mode = GameMode.Challenge;
         ObjectPool.Instance.RecallAll();
 
+        foreach (Transform child in _level.transform)
+        {
+            // giảm warning của DOTween thôi
+            child.transform.DOKill();
+        }
         DestroyImmediate(_level);
-        _level = Instantiate(_prefab, transform.parent);
+
+        _level = Instantiate(ChallengeManager.Instance.CurrentChallenge.Level, transform.parent);
         _basketControl.SetupLevel();
     }
 
@@ -141,6 +148,12 @@ public class GameController : MonoBehaviour
         _mechanic.SetupBall();
         _cameraControl.FollowBall();
         this.IsPlaying = true;
+    }
+
+    private void RestartChallenge()
+    {
+        StartChallenge();
+        PlayChallenge();
     }
 
     private void CloseChallenge()

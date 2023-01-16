@@ -42,7 +42,7 @@ public class PopupPlayChallenge : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private TextMeshProUGUI _description;
 
-    private ChallengeData _challenge;
+    private Challenge _challenge;
 
     private void OnEnable()
     {
@@ -60,7 +60,7 @@ public class PopupPlayChallenge : MonoBehaviour
 
     public void Load()
     {
-        _challenge = DataManager.Instance.CurrentChallenge;
+        _challenge = ChallengeManager.Instance.CurrentChallenge;
         _title.text = $"CHALLENGE {_challenge.name}";
 
         switch (_challenge.Type)

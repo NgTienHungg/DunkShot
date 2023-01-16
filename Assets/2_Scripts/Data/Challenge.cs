@@ -12,8 +12,10 @@ public enum ChallengeType
 }
 
 [CreateAssetMenu(menuName = "Data/Challenge")]
-public class ChallengeData : ScriptableObject
+public class Challenge : ScriptableObject
 {
+    public GameObject Level;
+
     public ChallengeType Type;
 
     public int NumberOfBaskets;

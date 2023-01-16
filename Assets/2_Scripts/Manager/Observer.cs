@@ -15,7 +15,7 @@ public static class Observer
 
     public static GameEvent OnStartChallenge;
     public static GameEvent OnPlayChallenge;
-    public static GameEvent OnPassChallenge;
+    public static GameEvent OnRestartChallenge;
     public static GameEvent OnCloseChallenge;
 
     public static GameEvent BallDeadInChallenge;
@@ -35,6 +35,6 @@ public static class Observer
     public delegate void ThemeEvent(Theme theme);
     public static ThemeEvent OnShowThemePopup;
 
-    public delegate void ChallengeEvent(ChallengeData challenge);
+    public delegate void ChallengeEvent(Challenge challenge);
     public static ChallengeEvent OnPauseChallenge;
 }

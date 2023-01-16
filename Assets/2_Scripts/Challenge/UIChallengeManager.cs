@@ -11,7 +11,6 @@ public class UIChallengeManager : UIGame
     {
         _selection.SetActive(true);
         _uiChallenge.gameObject.SetActive(false);
-        _popupControl.Disable();
     }
 
     public void LoadChallenge()
@@ -25,11 +24,7 @@ public class UIChallengeManager : UIGame
     {
         _selection.SetActive(false);
         _uiChallenge.gameObject.SetActive(true);
-        _popupControl.transform.DOScale(1f, 0f).SetDelay(0.4f).OnComplete(() =>
-        {
-            // chờ 1 lúc mới show popup play
-            _popupControl.ShowPopupPlay();
-        });
+        _popupControl.ShowPopupPlay();
 
         GameManager.Instance.Flash.ShowTransition();
         Observer.OnStartChallenge?.Invoke();
@@ -37,40 +32,52 @@ public class UIChallengeManager : UIGame
 
     public void PlayChallenge()
     {
-        _popupControl.Disable();
+        _popupControl.DisablePopupPlay();
         Observer.OnPlayChallenge?.Invoke();
     }
 
-    public void CloseChallenge()
-    {
-        Resume();
-        _selection.SetActive(true);
-        _uiChallenge.gameObject.SetActive(false);
-
-        GameManager.Instance.Flash.ShowTransition();
-        Observer.OnCloseChallenge?.Invoke();
-    }
-
-    public void ClosePopup()
-    {
-        _popupControl.Disable();
-    }
-
-    public void Pause()
+    public void PauseChallenge()
     {
         Time.timeScale = 0f;
         _popupControl.ShowPopupPause();
     }
 
-    public void Resume()
+    public void ResumeChallenge()
     {
         Time.timeScale = 1f;
-        _popupControl.Disable();
+        _popupControl.DisablePopupPause();
     }
 
-    public void Restart()
+    public void PassChallenge()
     {
-        Debug.Log("RESTART");
+        ChallengeManager.Instance.PassChallenge();
+
+        // chờ 1 lúc mới show popup
+        transform.DOScale(1f, 1f).OnComplete(() =>
+        {
+            _popupControl.ShowPopupPass();
+        });
+    }
+
+    public void RestartChallenge()
+    {
+        Time.timeScale = 1f;
+        _popupControl.DisablePopupPause();
+
+        GameManager.Instance.Flash.ShowTransition();
+        Observer.OnStartGame?.Invoke();
+        Observer.OnRestartChallenge?.Invoke();
+    }
+
+    public void CloseChallenge()
+    {
+        _popupControl.Disable();
+        _selection.SetActive(true);
+        _uiChallenge.gameObject.SetActive(false);
+
+        Time.timeScale = 1f;
+        GameManager.Instance.Flash.ShowTransition();
+        Observer.OnCloseChallenge?.Invoke();
     }
 
     public void OnBackButton()

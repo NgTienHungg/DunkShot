@@ -22,6 +22,7 @@ public class Background : MonoBehaviour
 
         Observer.OnStartGame += Renew;
         Observer.OnStartChallenge += Renew;
+        Observer.OnRestartChallenge += Renew;
     }
 
     private void LoadTheme()
