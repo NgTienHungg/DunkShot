@@ -46,15 +46,13 @@ public class PopupPlayChallenge : MonoBehaviour
 
     private void OnEnable()
     {
-        _cancelButton.gameObject.SetActive(false);
+        _cancelButton.enabled = false;
         transform.localScale = Vector3.zero;
-        transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack).SetDelay(0.1f).OnComplete(() =>
+        transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
         {
-            _cancelButton.gameObject.SetActive(true);
+            _cancelButton.enabled = true;
             _cancelButton.color = new Color(1, 1, 1, 0);
             _cancelButton.DOFade(1f, 0.5f);
-
-            _playButton.transform.DOScale(0.96f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         });
     }
 

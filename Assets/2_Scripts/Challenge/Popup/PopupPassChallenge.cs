@@ -15,7 +15,6 @@ public class PopupPassChallenge : MonoBehaviour
     [SerializeField] private Color _red;
 
     [Header("Reward")]
-    [SerializeField] private Sprite _ballReward;
     [SerializeField] private Sprite _tokenReward;
 
     [Header("Button")]
@@ -35,7 +34,8 @@ public class PopupPassChallenge : MonoBehaviour
     [SerializeField] private Image _cancelButton;
     [SerializeField] private TextMeshProUGUI _textButton;
 
-    Challenge _challenge;
+    private Challenge _challenge;
+    private int _idSkin;
 
     private void OnEnable()
     {
@@ -55,15 +55,13 @@ public class PopupPassChallenge : MonoBehaviour
         }
 
         transform.localScale = Vector3.zero;
-        transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack).SetDelay(0.1f).OnComplete(() =>
-        {
-            _equipButton.transform.DOScale(0.96f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
-        });
+        transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
     }
 
     public void Load()
     {
         _challenge = ChallengeManager.Instance.CurrentChallenge;
+        _idSkin = int.Parse(_challenge.name) - 1;
         _title.text = $"CHALLENGE {_challenge.name} COMPLETED!";
 
         switch (_challenge.Type)
@@ -71,7 +69,7 @@ public class PopupPassChallenge : MonoBehaviour
             case ChallengeType.NewBall:
                 _notify.text = "CHALLENGE BALL UNLOCKED!";
                 _notify.color = _orange;
-                _reward.sprite = DataManager.Instance.GetChallengeBall(_challenge.name).Data.Sprite;
+                _reward.sprite = DataManager.Instance.GetChallengeBall(_idSkin).Data.Sprite;
                 _equipButton.sprite = _orangeButton;
                 break;
             case ChallengeType.Collect:
@@ -109,7 +107,8 @@ public class PopupPassChallenge : MonoBehaviour
 
     public void OnEquipButton()
     {
-        Debug.Log("EQUIP");
+        DataManager.Instance.GetChallengeBall(_idSkin).Select();
+        Observer.OnChangeSkin?.Invoke();
         CanvasController.Instance.UIChallenge.CloseChallenge();
     }
 

@@ -32,7 +32,7 @@ public class UIChallengeManager : UIGame
 
     public void PlayChallenge()
     {
-        _popupControl.DisablePopupPlay();
+        _popupControl.Disable();
         Observer.OnPlayChallenge?.Invoke();
     }
 
@@ -45,7 +45,18 @@ public class UIChallengeManager : UIGame
     public void ResumeChallenge()
     {
         Time.timeScale = 1f;
-        _popupControl.DisablePopupPause();
+        _popupControl.Disable();
+    }
+
+    public void ContinueChallenge()
+    {
+        Debug.Log("CONTINUE");
+        Invoke(nameof(CloseChallenge), 1f);
+    }
+
+    public void FailChallenge()
+    {
+        _popupControl.ShowPopupFail();
     }
 
     public void PassChallenge()
@@ -62,7 +73,7 @@ public class UIChallengeManager : UIGame
     public void RestartChallenge()
     {
         Time.timeScale = 1f;
-        _popupControl.DisablePopupPause();
+        _popupControl.Disable();
 
         GameManager.Instance.Flash.ShowTransition();
         Observer.OnStartGame?.Invoke();

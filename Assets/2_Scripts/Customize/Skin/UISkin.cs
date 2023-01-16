@@ -22,6 +22,11 @@ public class UISkin : MonoBehaviour
 
     public virtual void Renew()
     {
+        if (_skin.Unlocked)
+        {
+            Unlock();
+        }
+
         _selected.gameObject.SetActive(false);
         _ball.transform.DOKill();
         _ball.transform.localScale = Vector3.one;

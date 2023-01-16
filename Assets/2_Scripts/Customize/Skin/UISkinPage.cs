@@ -37,6 +37,8 @@ public class UISkinPage : MonoBehaviour
         {
             _listUiSkin.Add(CreateUIBallSkin(skin));
         }
+
+        Observer.OnChangeSkin += ReloadPage;
     }
 
     private UISkin CreateUIBallSkin(Skin skin)
@@ -74,13 +76,6 @@ public class UISkinPage : MonoBehaviour
     private void OnEnable()
     {
         ReloadPage();
-
-        Observer.OnChangeSkin += ReloadPage;
-    }
-
-    private void OnDisable()
-    {
-        Observer.OnChangeSkin -= ReloadPage;
     }
 
     private void ReloadPage()

@@ -55,7 +55,7 @@ public class UICustomizeManager : UIGame
     public void OnSpinButton()
     {
         Debug.Log("SPIN");
-        MoneyManager.Instance.AddToken(25);
+        MoneyManager.Instance.AddToken(50);
     }
 
     public void OnSkinButton()

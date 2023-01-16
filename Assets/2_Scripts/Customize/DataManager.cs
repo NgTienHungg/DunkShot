@@ -84,9 +84,14 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public Skin GetChallengeBall(string id)
+    public Skin GetChallengeBall(int id)
     {
-        return Array.Find(Skins, skin => skin.Data.Type == SkinType.Challenge && skin.ID.ToString() == id);
+        return Array.Find(Skins, skin => skin.Data.Type == SkinType.Challenge && skin.ID == id);
+    }
+
+    public void UnlockChallengeBall(int id)
+    {
+        Array.Find(Skins, skin => skin.Data.Type == SkinType.Challenge && skin.ID == id).Unlock();
     }
 
     public Skin SkinInUse

@@ -132,12 +132,15 @@ public class GameController : MonoBehaviour
         GameManager.Instance.Mode = GameMode.Challenge;
         ObjectPool.Instance.RecallAll();
 
-        foreach (Transform child in _level.transform)
+        if (_level != null)
         {
-            // giảm warning của DOTween thôi
-            child.transform.DOKill();
+            foreach (Transform child in _level.transform)
+            {
+                // tránh Warning của DOTWeen
+                child.DOKill();
+            }
+            DestroyImmediate(_level);
         }
-        DestroyImmediate(_level);
 
         _level = Instantiate(ChallengeManager.Instance.CurrentChallenge.Level, transform.parent);
         _basketControl.SetupLevel();
@@ -148,6 +151,11 @@ public class GameController : MonoBehaviour
         _mechanic.SetupBall();
         _cameraControl.FollowBall();
         this.IsPlaying = true;
+    }
+
+    private void ContinueChallenge()
+    {
+        CanvasController.Instance.UIChallenge.ContinueChallenge();
     }
 
     private void RestartChallenge()
@@ -168,28 +176,29 @@ public class GameController : MonoBehaviour
         Debug.LogWarning("Ball dead in challenge");
         this.IsPlaying = false;
         _cameraControl.UnfollowBall();
-        StartCoroutine(WaitToHandleChallenge());
-    }
-
-    private IEnumerator WaitToHandleChallenge()
-    {
-        GameObject oldBall = _mechanic.Ball.gameObject;
-
-        //else if (this.HasSecondChance)
-        //    Continue();
+        StartCoroutine(RecallOldBall());
 
         if (ScoreManager.Instance.Score == 0)
         {
+            Debug.Log("RESTART Challenge");
             Restart();
         }
+        //else if (this.HasSecondChance)
+        //{
+        //    Debug.Log("CONTINUE challenge");
+        //    ContinueChallenge();
+        //}
         else
         {
-            yield return new WaitForSeconds(1f);
-            CanvasController.Instance.UIChallenge.CloseChallenge();
+            Debug.Log("FAIL");
+            CanvasController.Instance.UIChallenge.FailChallenge();
         }
+    }
 
-        // chờ 0.5s để cho bóng biến mất
-        yield return new WaitForSeconds(0.5f);
+    private IEnumerator RecallOldBall()
+    {
+        GameObject oldBall = _mechanic.Ball.gameObject;
+        yield return new WaitForSeconds(0.5f); // chờ 0.5s để cho bóng biến mất
         ObjectPool.Instance.Recall(oldBall);
     }
 }

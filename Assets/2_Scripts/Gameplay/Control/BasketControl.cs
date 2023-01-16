@@ -136,7 +136,7 @@ public class BasketControl : MonoBehaviour
             if (basket.transform.childCount == 6)
             {
                 _currentBasket = basket;
-                // chỉ cho phép rơi xuống tối thiểu 3 basket
+                // chỉ cho phép rơi xuống tối thiểu 2 basket
                 if (i >= 2)
                 {
                     _lastBasket = _listBasket[i - 2];

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 
@@ -71,11 +71,18 @@ public class Basket : MonoBehaviour
 
     public void ReceiveBall(Ball ball)
     {
+        transform.DOKill(); // kill anim xoay khi vừa bắn bóng (trong challenge)
         transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutBack);
         ball.Stop(transform);
 
         Net.OnReceiveBall(ball);
         Point.SetActiveCollider(false);
+    }
+
+    public void Aiming(float angle)
+    {
+        transform.DOKill();
+        transform.eulerAngles = new Vector3(0f, 0f, angle);
     }
 
     public void ShootBall()
@@ -87,7 +94,7 @@ public class Basket : MonoBehaviour
 
         if (GameManager.Instance.Mode == GameMode.Challenge)
         {
-            transform.DORotate(Vector3.zero, 0.5f).SetDelay(0.5f).SetEase(Ease.OutExpo);
+            transform.DORotate(Vector3.zero, 2f).SetEase(Ease.OutExpo);
         }
     }
 

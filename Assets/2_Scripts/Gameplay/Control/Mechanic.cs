@@ -92,7 +92,7 @@ public class Mechanic : MonoBehaviour
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(_force, Vector3.up);
         float sign = _endPoint.x > _startPoint.x ? 1 : -1;
-        _basket.transform.eulerAngles = new Vector3(0f, 0f, sign * aimingAngle);
+        _basket.Aiming(sign * aimingAngle);
 
         // calculate net scale
         _basket.Net.ScaleY(_distance);
