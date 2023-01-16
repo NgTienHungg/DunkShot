@@ -1,11 +1,12 @@
 using TMPro;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager Instance { get; private set; }
-    public int Star { get; private set; }
-    public int Token { get; private set; }
+    [ShowInInspector] public int Star { get; private set; }
+    [ShowInInspector] public int Token { get; private set; }
 
     [Header("Star")]
     [SerializeField] private TextMeshProUGUI _starCount;
@@ -43,7 +44,7 @@ public class MoneyManager : MonoBehaviour
         _starCount.text = Star.ToString();
         _starCountCustomize.text = Star.ToString();
 
-        _tokenCountCustomize.text  = Token.ToString();
+        _tokenCountCustomize.text = Token.ToString();
         _tokenCountChallenge.text = Token.ToString();
     }
 

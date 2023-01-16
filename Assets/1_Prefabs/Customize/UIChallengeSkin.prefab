@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7638382085804493041}
   - component: {fileID: 7638382085804493046}
   - component: {fileID: 7638382085804493040}
-  - component: {fileID: 5949313889463656965}
+  - component: {fileID: 8228480740312654433}
   m_Layer: 5
   m_Name: UIChallengeSkin
   m_TagString: Untagged
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5949313889463656965}
+      - m_Target: {fileID: 8228480740312654433}
         m_TargetAssemblyTypeName: UISkin, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -247,7 +247,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5949313889463656965
+--- !u!114 &8228480740312654433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7638382085804493042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 942cc2686bf53c54db7a86f470c84c04, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fcd1f524c3c5a44bbd1fec546d55147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _ball: {fileID: 7638382085755881915}

@@ -61,7 +61,7 @@ public class PopupPassChallenge : MonoBehaviour
     public void Load()
     {
         _challenge = ChallengeManager.Instance.CurrentChallenge;
-        _idSkin = int.Parse(_challenge.name) - 1;
+        _idSkin = int.Parse(_challenge.name);
         _title.text = $"CHALLENGE {_challenge.name} COMPLETED!";
 
         switch (_challenge.Type)
@@ -108,7 +108,6 @@ public class PopupPassChallenge : MonoBehaviour
     public void OnEquipButton()
     {
         DataManager.Instance.GetChallengeBall(_idSkin).Select();
-        Observer.OnChangeSkin?.Invoke();
         CanvasController.Instance.UIChallenge.CloseChallenge();
     }
 

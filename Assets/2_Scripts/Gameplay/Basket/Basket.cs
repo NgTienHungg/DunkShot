@@ -94,7 +94,7 @@ public class Basket : MonoBehaviour
 
         if (GameManager.Instance.Mode == GameMode.Challenge)
         {
-            transform.DORotate(Vector3.zero, 2f).SetEase(Ease.OutExpo);
+            transform.DORotate(Vector3.zero, 0.5f).SetDelay(0.2f).SetEase(Ease.OutExpo);
         }
     }
 

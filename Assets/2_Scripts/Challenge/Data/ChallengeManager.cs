@@ -39,7 +39,7 @@ public class ChallengeManager : MonoBehaviour
 
     public void PassChallenge()
     {
-        DataManager.Instance.UnlockChallengeBall(int.Parse(CurrentChallenge.name) - 1);
+        DataManager.Instance.UnlockChallengeBall(int.Parse(CurrentChallenge.name));
         SaveSystem.SetInt(CurrentKey, CurrentLevel + 1);
     }
 

@@ -7,6 +7,6 @@ public class PopupChallengeSkin : PopupSkin
 
     public override void Show(Skin skin)
     {
-        _description.text = "Complete\nNew Ball Challenge " + (skin.ID + 1).ToString();
+        _description.text = "Complete\nNew Ball Challenge " + (skin.ID).ToString();
     }
 }

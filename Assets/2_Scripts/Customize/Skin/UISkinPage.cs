@@ -38,6 +38,7 @@ public class UISkinPage : MonoBehaviour
             _listUiSkin.Add(CreateUIBallSkin(skin));
         }
 
+        Observer.OnUnlockSkin += ReloadPage;
         Observer.OnChangeSkin += ReloadPage;
     }
 

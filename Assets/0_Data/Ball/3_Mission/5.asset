@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: f938457989a53a04f8b1473e60d60d96, type: 3}
+  Sprite: {fileID: 21300000, guid: 4b45633391faf8f48a47f2494029fb71, type: 3}
   Tail:
     Sprite: {fileID: 0}
     Color:
@@ -48,5 +48,7 @@ MonoBehaviour:
   Price: 0
   NumberOfVideos: 0
   Mision:
-    Description: Collect $ stars
-    Target: 50
+    Description: Score with bounce x$
+    Target: 20
+  Secret:
+    Description: 

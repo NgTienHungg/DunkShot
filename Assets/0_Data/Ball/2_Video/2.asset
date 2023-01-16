@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: f675892fde445b747ab5ea6e2b77e073, type: 3}
+  Sprite: {fileID: 21300000, guid: 44a2d9a3f49b86f41869928e4411aaec, type: 3}
   Tail:
-    Sprite: {fileID: 21300000, guid: 2a8a43dd229ffd344964b9be0dfb276a, type: 3}
+    Sprite: {fileID: 21300000, guid: 89efbb217c9d0fe448a2c547db9bff69, type: 3}
     Color:
       serializedVersion: 2
-      key0: {r: 0.8113208, g: 0.746262, b: 0.746262, a: 1}
-      key1: {r: 0.6742506, g: 0, b: 0.8207547, a: 1}
-      key2: {r: 0.0039604935, g: 0.51513785, b: 0.8396226, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 0.96960413, b: 0.7018868, a: 1}
+      key1: {r: 1, g: 0.89918447, b: 0, a: 1}
+      key2: {r: 0, g: 1, b: 0.054832935, a: 0}
+      key3: {r: 0, g: 0.91373825, b: 1, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 193
-      ctime1: 26600
-      ctime2: 65535
-      ctime3: 0
+      ctime0: 0
+      ctime1: 13107
+      ctime2: 36237
+      ctime3: 58596
       ctime4: 0
       ctime5: 0
       ctime6: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 3
+      m_NumColorKeys: 4
       m_NumAlphaKeys: 2
   Type: 1
   Price: 100

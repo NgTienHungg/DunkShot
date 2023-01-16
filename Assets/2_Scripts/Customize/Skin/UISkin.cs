@@ -22,11 +22,6 @@ public class UISkin : MonoBehaviour
 
     public virtual void Renew()
     {
-        if (_skin.Unlocked)
-        {
-            Unlock();
-        }
-
         _selected.gameObject.SetActive(false);
         _ball.transform.DOKill();
         _ball.transform.localScale = Vector3.one;
@@ -61,16 +56,12 @@ public class UISkin : MonoBehaviour
     protected virtual void Select()
     {
         _skin.Select();
-
-        Observer.OnChangeSkin?.Invoke();
     }
 
     protected virtual void Unlock()
     {
         _skin.Unlock();
-
         _ball.gameObject.SetActive(true);
-
         _locked.DOFade(0f, 0.5f).SetUpdate(true).OnComplete(() =>
         {
             _locked.gameObject.SetActive(false);
@@ -86,12 +77,8 @@ public class UISkin : MonoBehaviour
         }
 
         if (_isSelecting)
-        {
             CanvasController.Instance.CloseCustomize();
-        }
         else
-        {
             Select();
-        }
     }
 }

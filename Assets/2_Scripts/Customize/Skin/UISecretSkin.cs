@@ -10,6 +10,6 @@ public class UISecretSkin : UISkin
     {
         base.SetSkin(skin);
 
-        _index.text = (_skin.ID + 1).ToString();
+        _index.text = (_skin.ID).ToString();
     }
 }

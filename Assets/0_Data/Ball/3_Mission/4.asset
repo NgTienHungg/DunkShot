@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 169a38f2f67a53f428f26def1a7ea6c5, type: 3}
+  Sprite: {fileID: 21300000, guid: e8af812760dc08941bc30d5d64df4079, type: 3}
   Tail:
     Sprite: {fileID: 0}
     Color:
@@ -48,5 +48,7 @@ MonoBehaviour:
   Price: 0
   NumberOfVideos: 0
   Mision:
-    Description: Score with bounce x$
-    Target: 20
+    Description: $point scored
+    Target: 300
+  Secret:
+    Description: 

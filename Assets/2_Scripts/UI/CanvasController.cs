@@ -127,8 +127,12 @@ public class CanvasController : MonoBehaviour
 
     public void CloseCustomize()
     {
-        _uiMainMenu.Enable();
         _uiCustomize.Disable();
+
+        if (GameManager.Instance.State == GameState.MainMenu)
+        {
+            _uiMainMenu.Enable();
+        }
     }
 
     public void OpenChallenge()

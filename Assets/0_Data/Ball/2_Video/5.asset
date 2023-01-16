@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: b81f65b67e36aaf448a3ca693da2d8e0, type: 3}
+  Sprite: {fileID: 21300000, guid: 9d4333f4cff8704408899dc557758573, type: 3}
   Tail:
-    Sprite: {fileID: 21300000, guid: 690c890886f0d8d4294444631aa5f0f0, type: 3}
+    Sprite: {fileID: 21300000, guid: 465b32001f91958468356e059bb4d497, type: 3}
     Color:
       serializedVersion: 2
-      key0: {r: 0.8571446, g: 1, b: 0, a: 1}
-      key1: {r: 0, g: 1, b: 0.7130654, a: 1}
+      key0: {r: 0, g: 1, b: 0.7149544, a: 1}
+      key1: {r: 0, g: 0.3789742, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 511bb7a299682b34a96573dc65d51f68, type: 3}
+  Sprite: {fileID: 21300000, guid: ef8d4ffeb3e9c204d8bb0dfaa7c581fc, type: 3}
   Tail:
     Sprite: {fileID: 0}
     Color:
@@ -48,5 +48,7 @@ MonoBehaviour:
   Price: 0
   NumberOfVideos: 0
   Mision:
-    Description: Score $ perfects in a row
-    Target: 10
+    Description: High score $
+    Target: 100
+  Secret:
+    Description: 

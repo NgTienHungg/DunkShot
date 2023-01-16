@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e88f93cc9d7942488fedf009c2d5244, type: 3}
   m_Name: 6
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 861fdb23b5219b0448c0c6e7b9a58d51, type: 3}
+  Sprite: {fileID: 21300000, guid: 1ba2c09e36509b343881d2e67d7a394f, type: 3}
   Tail:
     Sprite: {fileID: 0}
     Color:
@@ -48,5 +48,7 @@ MonoBehaviour:
   Price: 0
   NumberOfVideos: 0
   Mision:
-    Description: Play a game x$
-    Target: 30
+    Description: Collect $ stars
+    Target: 50
+  Secret:
+    Description: 
