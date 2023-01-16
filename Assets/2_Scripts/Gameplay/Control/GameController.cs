@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using ES3Types;
 
 public class GameController : MonoBehaviour
 {
@@ -9,11 +8,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private Mechanic _mechanic;
     public Mechanic Mechanic { get => _mechanic; }
 
-    [SerializeField] private BasketSpawner _basketSpawner;
-    public BasketSpawner BasketSpawner { get => _basketSpawner; }
+    [SerializeField] private BasketControl _basketControl;
+    public BasketControl BasketControl { get => _basketControl; }
 
-    [SerializeField] private CamControl _camControl;
-    public CamControl Camera { get => _camControl; }
+    [SerializeField] private CameraControl _cameraControl;
+    public CameraControl CameraControl { get => _cameraControl; }
+
+    [SerializeField] private GameObject _prefab;
+    [SerializeField] private GameObject _level;
+    public GameObject Level { get => _level; }
 
     public bool IsPlaying { get; private set; }
     public bool HasSecondChance { get; private set; }
@@ -24,73 +27,51 @@ public class GameController : MonoBehaviour
         RegisterListener();
     }
 
-    private void Start()
-    {
-        Observer.OnStartGame?.Invoke();
-    }
-
     private void RegisterListener()
     {
         Observer.OnStartGame += StartGame;
+        Observer.OnPlayGame += PlayGame;
+        Observer.BallDead += OnBallDead;
+
         Observer.OnStartChallenge += StartChallenge;
         Observer.OnPlayChallenge += PlayChallenge;
-        Observer.BallDead += OnBallDead;
+        Observer.OnCloseChallenge += CloseChallenge;
+        Observer.BallDeadInChallenge += OnBallDeadInChallenge;
     }
 
     private void StartGame()
     {
-        CanvasController.Instance.Mode = GameMode.Endless;
+        GameManager.Instance.Mode = GameMode.Endless;
 
-        _basketSpawner.SpawnBasket();
+        _basketControl.SpawnBasket();
         _mechanic.SetupBall();
-        _camControl.SetupCamera();
-        _camControl.FollowBall();
+        _cameraControl.SetupCamera();
+        _cameraControl.FollowBall();
 
-        PlayGame();
-    }
-
-    private void PlayGame()
-    {
         this.IsPlaying = false;
         this.HasSecondChance = true;
     }
 
-    private void StartChallenge()
+    private void PlayGame()
     {
-        CanvasController.Instance.Mode = GameMode.Challenge;
-        ObjectPool.Instance.RecallAll();
-
-        _basketSpawner.SetupLevel();
-    }
-
-    private void PlayChallenge()
-    {
-        _mechanic.SetupBall();
-        _camControl.FollowBall();
-    }
-
-    private void Update()
-    {
-        if (CanvasController.Instance.State == GameState.MainMenu && Input.GetMouseButtonDown(0) && !Util.IsPointerOverUIObject())
-        {
-            CanvasController.Instance.OnStartPlay();
-            this.IsPlaying = true;
-        }
+        this.IsPlaying = true;
+        GameManager.Instance.State = GameState.GamePlay;
+        ScoreManager.Instance.UIScore.Show();
+        CanvasController.Instance.StartPlay();
     }
 
     private void OnBallDead()
     {
-        Debug.Log("Controller: Ball Dead");
         this.IsPlaying = false;
-        _camControl.UnfollowBall();
+        _cameraControl.UnfollowBall();
         StartCoroutine(WaitToHandle());
     }
 
     private void Restart()
     {
         _mechanic.SetupBall();
-        _camControl.FollowBall();
-        _basketSpawner.BasketReady();
+        _cameraControl.FollowBall();
+        _basketControl.BasketReady();
         this.IsPlaying = true;
     }
 
@@ -110,6 +91,7 @@ public class GameController : MonoBehaviour
 
     public void Continue()
     {
+        GameManager.Instance.State = GameState.Continue;
         CanvasController.Instance.OnContinue();
     }
 
@@ -117,25 +99,84 @@ public class GameController : MonoBehaviour
     {
         Restart();
         this.HasSecondChance = false;
+        GameManager.Instance.State = GameState.GamePlay;
         CanvasController.Instance.OnSecondChance();
     }
 
     public void GameOver()
     {
+        GameManager.Instance.State = GameState.GameOver;
         CanvasController.Instance.GameOver();
     }
 
     public void Pause()
     {
         Time.timeScale = 0f;
-        IsPlaying = false;
+        this.IsPlaying = false;
+        GameManager.Instance.State = GameState.Paused;
         CanvasController.Instance.OnPause();
     }
 
     public void Resume()
     {
         Time.timeScale = 1f;
-        IsPlaying = true;
+        this.IsPlaying = true;
+        GameManager.Instance.State = GameState.GamePlay;
         CanvasController.Instance.OnResume();
+    }
+
+    /*---------------------------------------------*/
+    private void StartChallenge()
+    {
+        GameManager.Instance.Mode = GameMode.Challenge;
+        ObjectPool.Instance.RecallAll();
+
+        DestroyImmediate(_level);
+        _level = Instantiate(_prefab, transform.parent);
+        _basketControl.SetupLevel();
+    }
+
+    private void PlayChallenge()
+    {
+        _mechanic.SetupBall();
+        _cameraControl.FollowBall();
+        this.IsPlaying = true;
+    }
+
+    private void CloseChallenge()
+    {
+        ObjectPool.Instance.RecallAll();
+        DestroyImmediate(_level);
+        StartGame();
+    }
+
+    private void OnBallDeadInChallenge()
+    {
+        Debug.LogWarning("Ball dead in challenge");
+        this.IsPlaying = false;
+        _cameraControl.UnfollowBall();
+        StartCoroutine(WaitToHandleChallenge());
+    }
+
+    private IEnumerator WaitToHandleChallenge()
+    {
+        GameObject oldBall = _mechanic.Ball.gameObject;
+
+        //else if (this.HasSecondChance)
+        //    Continue();
+
+        if (ScoreManager.Instance.Score == 0)
+        {
+            Restart();
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+            CanvasController.Instance.UIChallenge.CloseChallenge();
+        }
+
+        // chờ 0.5s để cho bóng biến mất
+        yield return new WaitForSeconds(0.5f);
+        ObjectPool.Instance.Recall(oldBall);
     }
 }

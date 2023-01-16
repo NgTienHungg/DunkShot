@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -22,14 +22,18 @@ public class ScoreManager : MonoBehaviour
 
     private void RegisterListener()
     {
-        //Observer.RenewScene += Renew;
+        // tắt score notify khi về menu hoặc give up challenge 
         Observer.OnStartGame += Renew;
-        Observer.BallCollideObstacle += CountBouncing;
-        Observer.BallCollideHoop += DisablePerfect;
+        Observer.OnCloseChallenge += Renew;
 
+        Observer.BallCollideHoop += DisablePerfect;
+        Observer.BallCollideObstacle += CountBouncing;
+
+        Observer.BallInBasket += ClearPerfectAndBounce;
         Observer.BallInBasketHasPoint += AddScoreAndShow;
+
+        Observer.BallInBasketInChallenge += ClearPerfectAndBounce;
         Observer.BallInBasketHasPointInChallenge += AddScoreAndShow;
-        Observer.BallInBasketHasNoPoint += ClearPerfectAndBounce;
     }
 
     public void Renew()

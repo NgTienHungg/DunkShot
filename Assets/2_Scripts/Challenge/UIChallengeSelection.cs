@@ -51,6 +51,7 @@ public class UIChallengeSelection : MonoBehaviour
             _ => throw new System.NotImplementedException(),
         };
 
-        CanvasController.Instance.UIChallenge.LoadChallenge(challenge);
+        DataManager.Instance.CurrentChallenge = challenge;
+        CanvasController.Instance.UIChallenge.LoadChallenge();
     }
 }

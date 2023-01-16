@@ -27,13 +27,14 @@ public class Mechanic : MonoBehaviour
 
     private void RegisterListener()
     {
-        Observer.BallInBasketHasNoPoint += SetCanAim;
+        Observer.BallInBasket += SetCanAim;
+        Observer.BallInBasketInChallenge += SetCanAim;
     }
 
     public void SetupBall()
     {
         _ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
-        _ball.transform.position = GameController.Instance.BasketSpawner.CurrentBasket.transform.position + new Vector3(0f, 2.5f);
+        _ball.transform.position = GameController.Instance.BasketControl.CurrentBasket.transform.position + new Vector3(0f, 2.5f);
         _ball.Appear();
 
         _canAim = false;
@@ -46,10 +47,12 @@ public class Mechanic : MonoBehaviour
         if (!GameController.Instance.IsPlaying)
             return;
 
-        if (_ball.transform.position.y < GameController.Instance.BasketSpawner.LastBasket.transform.position.y - 4f)
+        if (_ball.transform.position.y < GameController.Instance.BasketControl.LastBasket.transform.position.y - 4f)
         {
-            Observer.BallDead?.Invoke();
-            return;
+            if (GameManager.Instance.Mode == GameMode.Endless)
+                Observer.BallDead?.Invoke();
+            else if (GameManager.Instance.Mode == GameMode.Challenge)
+                Observer.BallDeadInChallenge?.Invoke();
         }
 
         if (_canAim)
@@ -67,7 +70,7 @@ public class Mechanic : MonoBehaviour
 
     private void SetCanAim()
     {
-        _basket = GameController.Instance.BasketSpawner.CurrentBasket;
+        _basket = GameController.Instance.BasketControl.CurrentBasket;
         _canAim = true;
     }
 

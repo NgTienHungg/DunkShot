@@ -5,6 +5,7 @@ public class SaveSystem : MonoBehaviour
     private void Awake()
     {
         InitConfig();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void InitConfig()

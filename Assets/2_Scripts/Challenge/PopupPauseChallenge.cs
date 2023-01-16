@@ -23,9 +23,9 @@ public class PopupPauseChallenge : MonoBehaviour
 
     private ChallengeData _challenge;
 
-    public void Load(ChallengeData challenge)
+    public void Load()
     {
-        _challenge = challenge;
+        _challenge = DataManager.Instance.CurrentChallenge;
 
         switch (_challenge.Type)
         {

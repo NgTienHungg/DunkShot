@@ -6,7 +6,6 @@ public class DataManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] private SkinData[] _skinDataSet;
     [SerializeField] private ThemeData[] _themeDataSet;
-    [SerializeField] private ChallengeData[] _challengeDataSet;
 
     private Transform _skinHolder;
     private Transform _themeHolder;
@@ -14,7 +13,11 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get; private set; }
     public Skin[] Skins { get; private set; }
     public Theme[] Themes { get; private set; }
+
+    [Header("Challenge")]
+    [SerializeField] private ChallengeData[] _challengeDataSet;
     public ChallengeData[] ChallengeDataSet { get => _challengeDataSet; }
+    public ChallengeData CurrentChallenge { get; set; }
 
     private void Awake()
     {

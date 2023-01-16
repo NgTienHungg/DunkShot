@@ -41,18 +41,33 @@ public class BasketPoint : MonoBehaviour
 
             _basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
 
+            //if (_hasPoint)
+            //{
+            //    _hasPoint = false;
+            //    _basket.GetScore();
+
+            //    if (GameManager.Instance.Mode == GameMode.Endless)
+            //        Observer.BallInBasketHasPoint?.Invoke();
+            //    else if (GameManager.Instance.Mode == GameMode.Challenge)
+            //        Observer.BallInBasketHasPointInChallenge?.Invoke();
+            //}
+
             if (_hasPoint)
             {
                 _hasPoint = false;
                 _basket.GetScore();
 
-                if (CanvasController.Instance.Mode == GameMode.Endless)
+                if (GameManager.Instance.Mode == GameMode.Endless)
                     Observer.BallInBasketHasPoint?.Invoke();
-                else if (CanvasController.Instance.Mode == GameMode.Challenge)
+                else if (GameManager.Instance.Mode == GameMode.Challenge)
                     Observer.BallInBasketHasPointInChallenge?.Invoke();
             }
 
-            Observer.BallInBasketHasNoPoint?.Invoke();
+            if (GameManager.Instance.Mode == GameMode.Endless)
+                Observer.BallInBasket?.Invoke();
+            else if (GameManager.Instance.Mode == GameMode.Challenge)
+                Observer.BallInBasketInChallenge?.Invoke();
+            //Observer.BallInBasketHasNoPoint?.Invoke();
         }
     }
 }

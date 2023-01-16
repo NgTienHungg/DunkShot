@@ -6,10 +6,10 @@ public class PopupChallengeController : MonoBehaviour
     [SerializeField] private PopupPauseChallenge _popupPause;
     //[SerializeField] private PopupContinueChallenge _popupContinue;
 
-    public void LoadChallenge(ChallengeData challenge)
+    public void LoadChallenge()
     {
-        _popupPlay.Load(challenge);
-        _popupPause.Load(challenge);
+        _popupPlay.Load();
+        _popupPause.Load();
     }
 
     public void ShowPopupPlay()

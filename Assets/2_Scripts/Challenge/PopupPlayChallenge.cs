@@ -1,4 +1,5 @@
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,14 +38,29 @@ public class PopupPlayChallenge : MonoBehaviour
     [SerializeField] private Image _baner;
     [SerializeField] private Image _reward;
     [SerializeField] private Image _playButton;
+    [SerializeField] private Image _cancelButton;
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private TextMeshProUGUI _description;
 
     private ChallengeData _challenge;
 
-    public void Load(ChallengeData challenge)
+    private void OnEnable()
     {
-        _challenge = challenge;
+        _cancelButton.gameObject.SetActive(false);
+        transform.localScale = Vector3.zero;
+        transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack).SetDelay(0.1f).OnComplete(() =>
+        {
+            _cancelButton.gameObject.SetActive(true);
+            _cancelButton.color = new Color(1, 1, 1, 0);
+            _cancelButton.DOFade(1f, 0.5f);
+
+            _playButton.transform.DOScale(0.96f, 0.8f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+        });
+    }
+
+    public void Load()
+    {
+        _challenge = DataManager.Instance.CurrentChallenge;
         _title.text = $"CHALLENGE {_challenge.name}";
 
         switch (_challenge.Type)

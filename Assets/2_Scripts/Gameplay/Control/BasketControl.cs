@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class BasketSpawner : MonoBehaviour
+public class BasketControl : MonoBehaviour
 {
     [Header("Setup gameplay")]
     [SerializeField] private Vector2 _firstBasketPos = new Vector2(-2.7f, -2.8f);
@@ -14,8 +14,6 @@ public class BasketSpawner : MonoBehaviour
     [SerializeField] private Vector2 _rangeAngleZ = new Vector2(10f, 45f);
 
     [Header("Challenge")]
-    [SerializeField] private GameObject _levelPrefab;
-    [SerializeField] private GameObject _level;
     private List<Basket> _listBasket;
     private List<GameObject> _listObject;
 
@@ -30,11 +28,16 @@ public class BasketSpawner : MonoBehaviour
 
     private bool _spawnInLeft;
 
-    private void OnEnable()
+    private void Awake()
     {
-        //Observer.OnStartChallenge += SetupLevel;
-        Observer.BallInBasketHasPoint += ChangeTargetBasket;
-        Observer.BallInBasketHasPointInChallenge += ChangeTargetBasketInChallenge;
+        RegisterListener();
+    }
+
+    private void RegisterListener()
+    {
+        Observer.BallInBasketHasPoint += UpdateCurrentBasket;
+        Observer.BallInBasketHasPointInChallenge += UpdateCurrentBasketInChallenge;
+        Observer.BallInBasketInChallenge += UpdateCurrentBasketInChallenge;
     }
 
     public void SpawnBasket()
@@ -54,13 +57,10 @@ public class BasketSpawner : MonoBehaviour
 
     public void SetupLevel()
     {
-        DestroyImmediate(_level);
-        _level = Instantiate(_levelPrefab);
-
         _listBasket = new List<Basket>();
         _listObject = new List<GameObject>();
 
-        foreach (Transform child in _level.transform)
+        foreach (Transform child in GameController.Instance.Level.transform)
         {
             _listObject.Add(child.gameObject);
 
@@ -78,11 +78,11 @@ public class BasketSpawner : MonoBehaviour
 
         foreach (var basket in _listBasket)
         {
-            basket.Appear();
+            basket.AppearInChallenge();
         }
     }
 
-    private void ChangeTargetBasket()
+    private void UpdateCurrentBasket()
     {
         _currentBasket.Disappear();
         _currentBasket = _nextBasket;
@@ -90,12 +90,6 @@ public class BasketSpawner : MonoBehaviour
 
         SpawnNextBasket();
         _nextBasket.Appear();
-
-        int rnd = Random.Range(0, 100);
-        if (rnd <= 50)
-            ObstacleSpawner.Instance.Spawn(_nextBasket);
-        else if (rnd <= 70)
-            _nextBasket.Movement.Move();
     }
 
     private void SpawnNextBasket()
@@ -122,12 +116,16 @@ public class BasketSpawner : MonoBehaviour
 
         // swap side to spawn
         _spawnInLeft = !_spawnInLeft;
+
+        int rnd = Random.Range(0, 100);
+        if (rnd <= 50)
+            ObstacleSpawner.Instance.Spawn(_nextBasket);
+        else if (rnd <= 70)
+            _nextBasket.Movement.Move();
     }
 
-    private void ChangeTargetBasketInChallenge()
+    private void UpdateCurrentBasketInChallenge()
     {
-        _currentBasket.transform.DORotate(Vector3.zero, 0.4f).SetDelay(0.5f).SetEase(Ease.OutExpo);
-
         for (int i = 0; i < _listBasket.Count; i++)
         {
             Basket basket = _listBasket[i];
@@ -146,6 +144,7 @@ public class BasketSpawner : MonoBehaviour
                     {
                         if (!obj.activeInHierarchy)
                             continue;
+
                         if (obj.transform.position.y < _lastBasket.transform.position.y)
                             obj.SetActive(false);
                     }

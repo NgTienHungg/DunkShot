@@ -48,9 +48,9 @@ public class Flash : MonoBehaviour
     public void ShowTransition()
     {
         _sceneTransition.gameObject.SetActive(true);
-        _sceneTransition.DOFade(0f, _fadeDuration).OnComplete(() =>
+        _sceneTransition.DOFade(0f, _fadeDuration).SetUpdate(true).OnComplete(() =>
         {
-            _sceneTransition.DOFade(1f, 0f);
+            _sceneTransition.DOFade(1f, 0f).SetUpdate(true);
             _sceneTransition.gameObject.SetActive(false);
         });
     }

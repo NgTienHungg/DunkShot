@@ -30,9 +30,9 @@ public class UIChallengeController : MonoBehaviour
 
     private int _basketPassed;
 
-    public void LoadChallenge(ChallengeData challenge)
+    public void LoadChallenge()
     {
-        _challenge = challenge;
+        _challenge = DataManager.Instance.CurrentChallenge;
         _challengeName.text = $"CHALLENGE {_challenge.name}";
         _basketAmount.text = $"{_basketPassed}/{_challenge.NumberOfBaskets} HOOPS";
 

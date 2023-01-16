@@ -1,7 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 
-public class CamControl : MonoBehaviour
+public class CameraControl : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _bound;
     [SerializeField] private GameObject _vCamPrefab;

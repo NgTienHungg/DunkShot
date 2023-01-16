@@ -2,23 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GameState
-{
-    MainMenu,
-    GamePlay,
-    Paused,
-    Continue,
-    GameOver,
-    Settings,
-}
-
-public enum GameMode
-{
-    Endless,
-    Challenge,
-    TrySkin
-}
-
 public class CanvasController : MonoBehaviour
 {
     [Header("UI Game States")]
@@ -40,14 +23,7 @@ public class CanvasController : MonoBehaviour
     [SerializeField] private UIChallengeManager _uiChallenge;
     public UIChallengeManager UIChallenge { get => _uiChallenge; }
 
-    [Header("Flash")]
-    [SerializeField] private Image flashImage;
-    [SerializeField] private float targetAlpha;
-    [SerializeField] private float fadeDuration;
-
     public static CanvasController Instance { get; private set; }
-    public GameState State { get; private set; }
-    public GameMode Mode { get; set; }
 
     private void Awake()
     {
@@ -68,23 +44,13 @@ public class CanvasController : MonoBehaviour
         _uiCustomize.gameObject.SetActive(false);
         _uiChallenge.gameObject.SetActive(false);
 
-        State = GameState.MainMenu;
-        Mode = GameMode.Endless;
-
         ScoreManager.Instance.UIScore.Disable();
     }
 
-    public void OnStartPlay()
+    public void StartPlay()
     {
         _uiMainMenu.Disable();
         _uiGamePlay.Enable();
-
-        State = GameState.GamePlay;
-
-        if (Mode == GameMode.Endless)
-        {
-            ScoreManager.Instance.UIScore.Show();
-        }
     }
 
     public void OnContinue()
@@ -92,7 +58,6 @@ public class CanvasController : MonoBehaviour
         _gameOver.SetActive(true);
         _uiContinue.Enable();
         _uiGameOver.Disable();
-        State = GameState.Continue;
     }
 
     public void OnSecondChance()
@@ -100,7 +65,6 @@ public class CanvasController : MonoBehaviour
         _gameOver.SetActive(false);
         _uiContinue.Disable();
         _uiGamePlay.Enable();
-        State = GameState.GamePlay;
     }
 
     public void GameOver()
@@ -109,19 +73,16 @@ public class CanvasController : MonoBehaviour
         _gameOver.SetActive(true);
         _uiContinue.Disable();
         _uiGameOver.Enable();
-        State = GameState.GameOver;
     }
 
     public void OnPause()
     {
         _uiPaused.Enable();
-        State = GameState.Paused;
     }
 
     public void OnResume()
     {
         _uiPaused.Disable();
-        State = GameState.GamePlay;
     }
 
     public void OnBackHome()
@@ -133,7 +94,7 @@ public class CanvasController : MonoBehaviour
 
         GameManager.Instance.Flash.ShowTransition();
 
-        if (State == GameState.Paused)
+        if (GameManager.Instance.State == GameState.Paused)
         {
             _uiPaused.DisableImmediate();
         }
@@ -145,10 +106,7 @@ public class CanvasController : MonoBehaviour
         ScoreManager.Instance.UIScore.Hide();
         _uiMainMenu.Enable();
 
-        // renew scene
-        //Controller.Instance.StartGame();
-        //Observer.OnStartGame.Invoke();
-        State = GameState.MainMenu;
+        GameManager.Instance.State = GameState.MainMenu;
     }
 
     public void OpenSettings()
