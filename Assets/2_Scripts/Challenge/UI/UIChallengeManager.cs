@@ -5,7 +5,7 @@ public class UIChallengeManager : UIGame
 {
     [SerializeField] private GameObject _selection;
     [SerializeField] private UIChallengeController _uiChallenge;
-    [SerializeField] private PopupChallengeController _popupControl;
+    [SerializeField] private PopupChallengeControl _popupControl;
 
     private void OnEnable()
     {

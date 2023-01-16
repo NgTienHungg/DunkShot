@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopupChallengeController : MonoBehaviour
+public class PopupChallengeControl : MonoBehaviour
 {
     [SerializeField] private Image _panel;
     [SerializeField] private PopupPlayChallenge _popupPlay;

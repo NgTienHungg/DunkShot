@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PopupSkinController : MonoBehaviour
+public class PopupSkinControl : MonoBehaviour
 {
     [SerializeField] private GameObject _missionSkinPopup;
     [SerializeField] private GameObject _challengeSkinPopup;
