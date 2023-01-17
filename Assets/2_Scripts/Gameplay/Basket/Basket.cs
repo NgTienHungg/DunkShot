@@ -89,6 +89,7 @@ public class Basket : MonoBehaviour
         // wait 0.1f to enable collider (check event ball in basket)
         Invoke(nameof(ActivePoint), 0.1f);
 
+        Effect.Shoot();
         Net.OnShootBall();
 
         if (GameManager.Instance.Mode == GameMode.Challenge)
