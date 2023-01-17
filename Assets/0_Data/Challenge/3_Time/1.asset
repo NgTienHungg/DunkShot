@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64f97099fa9c1545a80bb829901c20b, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
+  Level: {fileID: 5657903505269880389, guid: 90bd35f2e61646a43a55a9d034a47fbe, type: 3}
   Type: 2
-  NumberOfBaskets: 10
-  NumberOfTokens: 0
-  Seconds: 15
+  NumberOfBasket: 9
+  NumberOfTokens: 20
+  TargetTime: 30
   TargetScore: 0
   TargetBounce: 0

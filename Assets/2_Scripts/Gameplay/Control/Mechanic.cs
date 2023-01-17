@@ -87,7 +87,7 @@ public class Mechanic : MonoBehaviour
         _direction = (_startPoint - _endPoint).normalized;
         _force = _direction * _distance * pushForce;
 
-        if (_force.magnitude < 4f) return;
+        if (_force.magnitude < 5f) return;
 
         // calculate angle of hoop
         float aimingAngle = Vector3.Angle(_force, Vector3.up);
@@ -99,7 +99,12 @@ public class Mechanic : MonoBehaviour
 
         _canShoot = _force.magnitude >= minForce;
 
-        // trajectory
+        if (GameManager.Instance.Mode == GameMode.Challenge && ChallengeManager.Instance.CurrentChallenge.Type == ChallengeType.NoAim)
+        {
+            // hide trajectory in challenge mode No Aim 
+            return;
+        }
+
         if (_canShoot)
         {
             trajectory.Show();
@@ -122,8 +127,9 @@ public class Mechanic : MonoBehaviour
             _ball.Push(_force);
             _basket.ShootBall();
             _canAim = false;
+            Observer.OnShootBall?.Invoke();
         }
-        else
+        else if (_force.magnitude >= 5f)
         {
             _basket.CancelShoot();
         }

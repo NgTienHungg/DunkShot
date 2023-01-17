@@ -7,6 +7,18 @@ public class UIChallengeManager : UIGame
     [SerializeField] private UIChallengeController _uiChallenge;
     [SerializeField] private PopupChallengeControl _popupControl;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        RegisterListener();
+    }
+
+    private void RegisterListener()
+    {
+        Observer.OnPassChallenge += PassChallenge;
+        Observer.OnFailChallenge += FailChallenge;
+    }
+
     private void OnEnable()
     {
         _selection.SetActive(true);
@@ -50,18 +62,19 @@ public class UIChallengeManager : UIGame
 
     public void ContinueChallenge()
     {
-        Debug.Log("CONTINUE");
-        Invoke(nameof(CloseChallenge), 1f);
+        //Debug.Log("CONTINUE");
+        //Invoke(nameof(CloseChallenge), 1f);
     }
 
-    public void FailChallenge()
+    private void FailChallenge()
     {
         _popupControl.ShowPopupFail();
     }
 
-    public void PassChallenge()
+    private void PassChallenge()
     {
         ChallengeManager.Instance.PassChallenge();
+        MoneyManager.Instance.AddToken(ChallengeManager.Instance.CurrentChallenge.NumberOfTokens);
 
         // chờ 1 lúc mới show popup
         transform.DOScale(1f, 1f).OnComplete(() =>

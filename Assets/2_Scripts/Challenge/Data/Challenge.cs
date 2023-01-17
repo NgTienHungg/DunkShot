@@ -18,13 +18,12 @@ public class Challenge : ScriptableObject
 
     public ChallengeType Type;
 
-    public int NumberOfBaskets;
+    public int NumberOfBasket;
 
-    [ShowIf("Type", ChallengeType.Collect)]
     public int NumberOfTokens;
 
     [ShowIf("Type", ChallengeType.Time)]
-    public float Seconds;
+    public float TargetTime;
 
     [ShowIf("Type", ChallengeType.Score)]
     public int TargetScore;

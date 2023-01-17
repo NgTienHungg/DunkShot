@@ -26,6 +26,7 @@ public class PopupChallengeControl : MonoBehaviour
         _popupPlay.Load();
         _popupPause.Load();
         _popupPass.Load();
+        _popupFail.Load();
     }
 
     public void ShowPopupPlay()

@@ -56,7 +56,7 @@ public class BasketPoint : MonoBehaviour
 
                     if (GetComponentInParent<Basket>().IsGolden)
                     {
-                        CanvasController.Instance.UIChallenge.PassChallenge();
+                        Observer.BallInGoldenBasket?.Invoke();
                     }
                 }
             }

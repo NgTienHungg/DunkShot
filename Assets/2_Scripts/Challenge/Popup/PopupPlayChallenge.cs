@@ -67,7 +67,7 @@ public class PopupPlayChallenge : MonoBehaviour
                 _baner.sprite = _orangeBanner;
                 _reward.sprite = _ballReward;
                 _playButton.sprite = _orangeButton;
-                _description.text = _newBallDescription.Replace("$", _challenge.NumberOfBaskets.ToString());
+                _description.text = _newBallDescription.Replace("$", _challenge.NumberOfBasket.ToString());
                 break;
             case ChallengeType.Collect:
                 _baner.sprite = _turquoiseBanner;
@@ -79,7 +79,7 @@ public class PopupPlayChallenge : MonoBehaviour
                 _baner.sprite = _blueBanner;
                 _reward.sprite = _tokenReward;
                 _playButton.sprite = _blueButton;
-                _description.text = _timeDescription.Replace("$", _challenge.Seconds.ToString());
+                _description.text = _timeDescription.Replace("$", _challenge.TargetTime.ToString());
                 break;
             case ChallengeType.Score:
                 _baner.sprite = _greenBanner;
@@ -97,7 +97,7 @@ public class PopupPlayChallenge : MonoBehaviour
                 _baner.sprite = _redBanner;
                 _reward.sprite = _tokenReward;
                 _playButton.sprite = _redButton;
-                _description.text = _noAimDescription.Replace("$", _challenge.NumberOfBaskets.ToString());
+                _description.text = _noAimDescription.Replace("$", _challenge.NumberOfBasket.ToString());
                 break;
         }
     }

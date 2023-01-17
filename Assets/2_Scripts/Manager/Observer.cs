@@ -5,6 +5,7 @@ public static class Observer
     public static GameEvent OnStartGame;
     public static GameEvent OnPlayGame;
 
+    public static GameEvent OnShootBall;
     public static GameEvent BallDead;
     public static GameEvent BallSmoke;
     public static GameEvent BallFlame;
@@ -17,10 +18,16 @@ public static class Observer
     public static GameEvent OnPlayChallenge;
     public static GameEvent OnRestartChallenge;
     public static GameEvent OnCloseChallenge;
+    public static GameEvent OnPassChallenge;
+    public static GameEvent OnFailChallenge;
 
-    public static GameEvent BallDeadInChallenge;
+    public static GameEvent TheFirstShootingBallInChallenge;
+    public static GameEvent BallInGoldenBasket;
     public static GameEvent BallInBasketInChallenge;
     public static GameEvent BallInBasketHasPointInChallenge;
+    public static GameEvent BallDeadInChallenge;
+    public static GameEvent BallRebornInChallenge;
+    public static GameEvent FreeBallRebornInChallenge;
 
     public static GameEvent OnLightMode;
     public static GameEvent OnDarkMode;

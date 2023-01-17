@@ -25,13 +25,11 @@ public class ScoreManager : MonoBehaviour
         // tắt score notify khi về menu hoặc give up challenge 
         Observer.OnStartGame += Renew;
         Observer.OnCloseChallenge += Renew;
-
         Observer.BallCollideHoop += DisablePerfect;
         Observer.BallCollideObstacle += CountBouncing;
 
         Observer.BallInBasket += ClearPerfectAndBounce;
         Observer.BallInBasketHasPoint += AddScoreAndShow;
-
         Observer.BallInBasketInChallenge += ClearPerfectAndBounce;
         Observer.BallInBasketHasPointInChallenge += AddScoreAndShow;
     }

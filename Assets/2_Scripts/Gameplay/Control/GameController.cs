@@ -37,7 +37,10 @@ public class GameController : MonoBehaviour
         Observer.OnPlayChallenge += PlayChallenge;
         Observer.OnRestartChallenge += RestartChallenge;
         Observer.OnCloseChallenge += CloseChallenge;
-        Observer.BallDeadInChallenge += OnBallDeadInChallenge;
+
+        Observer.BallDeadInChallenge += BallDeadInChallenge;
+        Observer.BallRebornInChallenge += BallRebornInChallenge;
+        Observer.FreeBallRebornInChallenge += Restart;
     }
 
     private void StartGame()
@@ -153,11 +156,6 @@ public class GameController : MonoBehaviour
         this.IsPlaying = true;
     }
 
-    private void ContinueChallenge()
-    {
-        CanvasController.Instance.UIChallenge.ContinueChallenge();
-    }
-
     private void RestartChallenge()
     {
         StartChallenge();
@@ -171,34 +169,18 @@ public class GameController : MonoBehaviour
         StartGame();
     }
 
-    private void OnBallDeadInChallenge()
+    private void BallDeadInChallenge()
     {
-        Debug.LogWarning("Ball dead in challenge");
         this.IsPlaying = false;
         _cameraControl.UnfollowBall();
-        StartCoroutine(RecallOldBall());
-
-        if (ScoreManager.Instance.Score == 0)
-        {
-            Debug.Log("RESTART Challenge");
-            Restart();
-        }
-        //else if (this.HasSecondChance)
-        //{
-        //    Debug.Log("CONTINUE challenge");
-        //    ContinueChallenge();
-        //}
-        else
-        {
-            Debug.Log("FAIL");
-            CanvasController.Instance.UIChallenge.FailChallenge();
-        }
+        ObjectPool.Instance.Recall(_mechanic.Ball.gameObject);
     }
 
-    private IEnumerator RecallOldBall()
+    private void BallRebornInChallenge()
     {
-        GameObject oldBall = _mechanic.Ball.gameObject;
-        yield return new WaitForSeconds(0.5f); // chờ 0.5s để cho bóng biến mất
-        ObjectPool.Instance.Recall(oldBall);
+        _mechanic.SetupBall();
+        _cameraControl.FollowBall();
+        _basketControl.BasketReady();
+        this.IsPlaying = true;
     }
 }
