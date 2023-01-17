@@ -1,7 +1,18 @@
 public static class Observer
 {
-    public delegate void GameEvent();
 
+    // achievement
+    public delegate void AchievementEvent();
+    public static AchievementEvent NewBestScore;
+    public static AchievementEvent Perfect;
+    public static AchievementEvent ContinueGame;
+    public static AchievementEvent PointScored;
+    public static AchievementEvent Bounce;
+    public static AchievementEvent CollectStar;
+    public static AchievementEvent PlayGame;
+    public static AchievementEvent MultiBounce;
+
+    public delegate void GameEvent();
     public static GameEvent OnStartGame;
     public static GameEvent OnPlayGame;
 
@@ -28,6 +39,7 @@ public static class Observer
     public static GameEvent BallDeadInChallenge;
     public static GameEvent BallRebornInChallenge;
     public static GameEvent FreeBallRebornInChallenge;
+    public static GameEvent OnCollectToken;
 
     public static GameEvent OnLightMode;
     public static GameEvent OnDarkMode;

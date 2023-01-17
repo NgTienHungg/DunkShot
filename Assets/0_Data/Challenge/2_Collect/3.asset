@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64f97099fa9c1545a80bb829901c20b, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  Level: {fileID: 5657903505269880389, guid: 90bd35f2e61646a43a55a9d034a47fbe, type: 3}
+  Level: {fileID: 3320455429082877218, guid: 988125e3541763345a63080ee37a7747, type: 3}
   Type: 1
-  NumberOfBasket: 9
+  NumberOfBasket: 8
   NumberOfTokens: 15
   TargetTime: 0
   TargetScore: 0

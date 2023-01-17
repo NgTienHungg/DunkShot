@@ -71,7 +71,6 @@ public class Basket : MonoBehaviour
 
     public void ReceiveBall(Ball ball)
     {
-        transform.DOKill(); // kill anim xoay khi vừa bắn bóng (trong challenge)
         transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutBack);
         ball.Stop(transform);
 

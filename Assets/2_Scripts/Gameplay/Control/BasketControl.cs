@@ -80,6 +80,13 @@ public class BasketControl : MonoBehaviour
         {
             basket.AppearInChallenge();
         }
+        foreach (var token in _listObject)
+        {
+            if (token.GetComponent<Token>() != null)
+            {
+                token.GetComponent<Token>().Appear();
+            }
+        }
     }
 
     private void UpdateCurrentBasket()
@@ -122,6 +129,8 @@ public class BasketControl : MonoBehaviour
             ObstacleSpawner.Instance.Spawn(_nextBasket);
         else if (rnd <= 70)
             _nextBasket.Movement.Move();
+        else if (rnd <= 80)
+            MoneyManager.Instance.SpawnStar();
     }
 
     private void UpdateCurrentBasketInChallenge()

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: 160c1a9d3cb36824eb218420a9c3f508, type: 3}
   Tail:
-    Sprite: {fileID: 0}
+    Sprite: {fileID: 21300000, guid: 913460a9083a8a34f9adbe60be03677f, type: 3}
     Color:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0, g: 1, b: 0.7149544, a: 1}
+      key1: {r: 0, g: 0.3789742, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

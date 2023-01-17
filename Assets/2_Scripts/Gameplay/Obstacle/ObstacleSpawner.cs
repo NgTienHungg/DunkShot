@@ -18,7 +18,7 @@ public class ObstacleSpawner : MonoBehaviour
         _basket = basket;
         _inTheRight = basket.transform.position.x > 0f;
 
-        int id = Random.Range(1, 10);
+        int id = Random.Range(0, 10);
 
         switch (id)
         {
@@ -31,9 +31,9 @@ public class ObstacleSpawner : MonoBehaviour
             case 3:
                 SpawnHorizontalBar();
                 break;
-            case 4:
-                SpawnRotateBar();
-                break;
+            //case 4:
+            //    SpawnRotateBar();
+            //break;
             case 5:
                 SpawnShield();
                 break;
@@ -42,6 +42,9 @@ public class ObstacleSpawner : MonoBehaviour
                 break;
             case 7:
                 SpawnSingleBesideBackboard();
+                break;
+            case 8:
+                MoneyManager.Instance.SpawnStar();
                 break;
             default:
                 break;
@@ -61,6 +64,11 @@ public class ObstacleSpawner : MonoBehaviour
 
         _basket.Obstacle.Add(obstacle);
         _basket.transform.rotation = Quaternion.identity;
+
+        if (Random.Range(0, 10) <= 6)
+        {
+            MoneyManager.Instance.SpawnStar();
+        }
     }
 
     private void SpawnTopBar()
@@ -88,24 +96,29 @@ public class ObstacleSpawner : MonoBehaviour
 
         _basket.Obstacle.Add(obstacle);
         _basket.transform.rotation = Quaternion.identity;
+
+        if (Random.Range(0, 10) <= 6)
+        {
+            MoneyManager.Instance.SpawnStar();
+        }
     }
 
-    private void SpawnRotateBar()
-    {
-        Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
+    //private void SpawnRotateBar()
+    //{
+    //    Obstacle obstacle = ObjectPool.Instance.Spawn(PoolTag.BAR_2).GetComponent<Obstacle>();
 
-        float x = Random.Range(3.2f, 3.5f);
-        float y = Random.Range(-0.5f, -0.2f);
-        float duration = Random.Range(2.6f, 3f);
-        float dir = _inTheRight ? -1 : 1;
+    //    float x = Random.Range(3.2f, 3.5f);
+    //    float y = Random.Range(-0.5f, -0.2f);
+    //    float duration = Random.Range(2.6f, 3f);
+    //    float dir = _inTheRight ? -1 : 1;
 
-        obstacle.transform.position = _basket.transform.position + new Vector3(dir * x, y);
-        obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
-        obstacle.Appear();
+    //    obstacle.transform.position = _basket.transform.position + new Vector3(dir * x, y);
+    //    obstacle.transform.DORotate(Vector3.forward * 360, duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+    //    obstacle.Appear();
 
-        _basket.Obstacle.Add(obstacle);
-        _basket.transform.rotation = Quaternion.identity;
-    }
+    //    _basket.Obstacle.Add(obstacle);
+    //    _basket.transform.rotation = Quaternion.identity;
+    //}
 
     private void SpawnShield()
     {
@@ -147,5 +160,10 @@ public class ObstacleSpawner : MonoBehaviour
 
         _basket.Obstacle.Add(obstacle);
         _basket.transform.rotation = Quaternion.identity;
+
+        if (Random.Range(0, 10) <= 6)
+        {
+            MoneyManager.Instance.SpawnStar();
+        }
     }
 }

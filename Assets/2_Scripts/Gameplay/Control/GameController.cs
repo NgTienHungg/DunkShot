@@ -62,6 +62,7 @@ public class GameController : MonoBehaviour
         GameManager.Instance.State = GameState.GamePlay;
         ScoreManager.Instance.UIScore.Show();
         CanvasController.Instance.StartPlay();
+        Observer.PlayGame?.Invoke();
     }
 
     private void OnBallDead()
@@ -105,6 +106,7 @@ public class GameController : MonoBehaviour
         this.HasSecondChance = false;
         GameManager.Instance.State = GameState.GamePlay;
         CanvasController.Instance.OnSecondChance();
+        Observer.ContinueGame?.Invoke();
     }
 
     public void GameOver()

@@ -55,6 +55,7 @@ public class UIChallengeController : MonoBehaviour
         Observer.OnCloseChallenge += ResetLevel;
         Observer.OnRestartChallenge += LoadChallenge;
         Observer.OnShootBall += CheckToStartCoundown;
+        Observer.OnCollectToken += CollectToken;
         Observer.BallInBasketHasPointInChallenge += BallInBasketHasPoint;
         Observer.BallDeadInChallenge += BallDead;
         Observer.BallInGoldenBasket += HandlePassFail;
@@ -147,6 +148,12 @@ public class UIChallengeController : MonoBehaviour
         _bounceProgress.text = $"{_bouncingCount}/{_challenge.TargetBounce}";
     }
 
+    private void CollectToken()
+    {
+        _tokenCollected++;
+        _tokenProgress.text = $"{_tokenCollected}/{_challenge.NumberOfTokens}";
+    }
+
     private void BallDead()
     {
         _isPlaying = false;
@@ -194,8 +201,10 @@ public class UIChallengeController : MonoBehaviour
         }
         else if (_challenge.Type == ChallengeType.Collect)
         {
-            Debug.LogWarning("CHUA LAM");
-            Observer.OnPassChallenge?.Invoke();
+            if (_tokenCollected >= _challenge.NumberOfTokens)
+                Observer.OnPassChallenge?.Invoke();
+            else
+                Observer.OnFailChallenge?.Invoke();
         }
         else if (_challenge.Type == ChallengeType.Time)
         {

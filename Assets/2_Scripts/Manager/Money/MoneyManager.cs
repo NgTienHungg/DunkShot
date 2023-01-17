@@ -1,12 +1,11 @@
 using TMPro;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager Instance { get; private set; }
-    [ShowInInspector] public int Star { get; private set; }
-    [ShowInInspector] public int Token { get; private set; }
+    public int Star { get; private set; }
+    public int Token { get; private set; }
 
     [Header("Star")]
     [SerializeField] private TextMeshProUGUI _starCount;
@@ -80,5 +79,22 @@ public class MoneyManager : MonoBehaviour
     {
         Token += amount;
         SaveSystem.SetInt(SaveKey.TOKEN, Token);
+    }
+
+    public void SpawnStar()
+    {
+        Vector3 basketPos = GameController.Instance.BasketControl.NextBasket.transform.position;
+        float basketAngle = GameController.Instance.BasketControl.NextBasket.transform.eulerAngles.z;
+        Star star = ObjectPool.Instance.Spawn(PoolTag.STAR).GetComponent<Star>();
+        star.transform.position = basketPos + new Vector3(0.8f * Mathf.Sin(-basketAngle * Mathf.Deg2Rad), 0.8f);
+        star.Appear();
+    }
+
+    public void SpawnToken()
+    {
+        Vector3 basketPos = GameController.Instance.BasketControl.NextBasket.transform.position;
+        Token token = ObjectPool.Instance.Spawn(PoolTag.TOKEN).GetComponent<Token>();
+        token.transform.position = basketPos + new Vector3(0f, 0.8f);
+        token.Appear();
     }
 }

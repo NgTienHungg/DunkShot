@@ -19,4 +19,12 @@ public class UIMissionSkin : UISkin
 
         _progress.fillAmount = 1f * _skin.MissionProgress / _skin.Data.Mision.Target;
     }
+
+    private void OnEnable()
+    {
+        if (_skin != null)
+        {
+            _progress.fillAmount = 1f * _skin.MissionProgress / _skin.Data.Mision.Target;
+        }
+    }
 }

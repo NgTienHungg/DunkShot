@@ -35,7 +35,7 @@ public class BasketMovement : MonoBehaviour
     {
         if (_isMoving)
         {
-            transform.DOKill();
+            transform.DOKill(); // kill anim move
             transform.parent = ObjectPool.Instance.transform;
 
             _trajectory.Disappear();

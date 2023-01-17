@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
+    public int BestScore { get; private set; }
     public int Score { get; private set; }
+    public int ScoreAdd { get; private set; }
     public int Bounce { get; private set; }
     public int Perfect { get; private set; }
     public bool IsPerfect { get; private set; }
@@ -14,9 +17,12 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private UIScoreNotify _notify;
     public UIScoreNotify Notify { get => _notify; }
 
+    [SerializeField] private TextMeshProUGUI _bestScore;
+
     private void Awake()
     {
         Instance = this;
+        BestScore = SaveSystem.GetInt(SaveKey.BEST_SCORE);
         RegisterListener();
     }
 
@@ -59,7 +65,15 @@ public class ScoreManager : MonoBehaviour
     private void AddScoreAndShow()
     {
         if (IsPerfect)
+        {
             Perfect++;
+            Observer.Perfect?.Invoke();
+        }
+
+        if (Bounce == 1)
+            Observer.Bounce?.Invoke();
+        else if (Bounce >= 2)
+            Observer.MultiBounce?.Invoke();
 
         if (Perfect == 2)
             Observer.BallSmoke?.Invoke();
@@ -67,16 +81,23 @@ public class ScoreManager : MonoBehaviour
             Observer.BallFlame?.Invoke();
 
         // calculate score add
-        int scoreAdd = (Bounce == 0) ? (Perfect + 1) : (Perfect + 1) * 2;
-        scoreAdd = Mathf.Min(scoreAdd, 20);
-        Debug.Log($" => IsPerfect = {IsPerfect} --- Bounce x{Bounce} --- Perfect x{Perfect} --- ScoreAdd: {scoreAdd}");
+        ScoreAdd = (Bounce == 0) ? (Perfect + 1) : (Perfect + 1) * 2;
+        ScoreAdd = Mathf.Min(ScoreAdd, 20);
+        Observer.PointScored?.Invoke();
 
         // change score
-        Score += scoreAdd;
+        Score += ScoreAdd;
+        if (Score > BestScore)
+        {
+            BestScore = Score;
+            _bestScore.text = BestScore.ToString();
+            SaveSystem.SetInt(SaveKey.BEST_SCORE, BestScore);
+            Observer.NewBestScore?.Invoke();
+        }
 
         // notify
         _uiScore.Change();
-        _notify.Show(Perfect, Bounce, scoreAdd);
+        _notify.Show(Perfect, Bounce, ScoreAdd);
     }
 
     private void ClearPerfectAndBounce()

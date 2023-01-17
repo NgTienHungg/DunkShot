@@ -8,6 +8,9 @@ public static class PoolTag
     public static string BASKET = "Basket";
     public static string BASKET_TRAJECTORY = "BasketTrajectory";
 
+    public static string STAR = "Star";
+    public static string TOKEN = "Token";
+
     public static string BAR_1 = "Bar1";
     public static string BAR_2 = "Bar2";
     public static string BAR_3 = "Bar3";

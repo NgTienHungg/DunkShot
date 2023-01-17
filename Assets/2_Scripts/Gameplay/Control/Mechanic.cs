@@ -11,7 +11,7 @@ public class Mechanic : MonoBehaviour
     private Basket _basket;
 
     [SerializeField]
-    private Trajectory trajectory;
+    private Trajectory _trajectory;
 
     private bool _isAiming;
     private bool _canAim, _canShoot;
@@ -40,6 +40,7 @@ public class Mechanic : MonoBehaviour
         _canAim = false;
         _isAiming = false;
         _canShoot = false;
+        _trajectory.Hide();
     }
 
     private void Update()
@@ -107,12 +108,12 @@ public class Mechanic : MonoBehaviour
 
         if (_canShoot)
         {
-            trajectory.Show();
-            trajectory.Simulate(_ball.transform.position, _force);
+            _trajectory.Show();
+            _trajectory.Simulate(_ball.transform.position, _force);
         }
         else
         {
-            trajectory.Hide();
+            _trajectory.Hide();
         }
         Debug.DrawLine(_startPoint, _endPoint, Color.red);
     }
@@ -120,7 +121,7 @@ public class Mechanic : MonoBehaviour
     private void Shoot()
     {
         _isAiming = false;
-        trajectory.Hide();
+        _trajectory.Hide();
 
         if (_canShoot)
         {

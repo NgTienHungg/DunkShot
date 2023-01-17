@@ -49,4 +49,25 @@ public class Skin : MonoBehaviour
         VideoWatched++;
         SaveSystem.SetInt(VIDEO_WATCHED + Key, VideoWatched);
     }
+
+    public void NewMilestone(int milestone)
+    {
+        if (milestone < MissionProgress)
+            return;
+
+        MissionProgress = milestone;
+        SaveSystem.SetInt(MISSION_PROGRESS + Key, MissionProgress);
+
+        if (MissionProgress >= Data.Mision.Target)
+            Unlock();
+    }
+
+    public void NewProgress(int progress)
+    {
+        MissionProgress += progress;
+        SaveSystem.SetInt(MISSION_PROGRESS + Key, MissionProgress);
+
+        if (MissionProgress >= Data.Mision.Target)
+            Unlock();
+    }
 }
