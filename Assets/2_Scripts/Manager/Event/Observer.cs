@@ -1,6 +1,5 @@
 public static class Observer
 {
-
     // achievement
     public delegate void AchievementEvent();
     public static AchievementEvent NewBestScore;

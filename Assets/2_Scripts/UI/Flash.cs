@@ -22,6 +22,7 @@ public class Flash : MonoBehaviour
     {
         Observer.OnLightMode += ApplyLightMode;
         Observer.OnDarkMode += ApplyDarkMode;
+        Observer.BallFlame += ShowFlash;
     }
 
     private void SetupImage()
@@ -38,11 +39,15 @@ public class Flash : MonoBehaviour
     private void ApplyLightMode()
     {
         _sceneTransition.color = _lightColor;
+        _flashEffect.color = _lightColor;
+        _flashEffect.DOFade(0f, 0f).SetUpdate(true);
     }
 
     private void ApplyDarkMode()
     {
         _sceneTransition.color = _darkColor;
+        _flashEffect.color = _darkColor;
+        _flashEffect.DOFade(0f, 0f).SetUpdate(true);
     }
 
     public void ShowTransition()
@@ -52,6 +57,18 @@ public class Flash : MonoBehaviour
         {
             _sceneTransition.DOFade(1f, 0f).SetUpdate(true);
             _sceneTransition.gameObject.SetActive(false);
+        });
+    }
+
+    private void ShowFlash()
+    {
+        _flashEffect.gameObject.SetActive(true);
+        _flashEffect.DOFade(0.6f, 0.15f).SetEase(Ease.InCubic).OnComplete(() =>
+        {
+            _flashEffect.DOFade(0f, 0.15f).SetEase(Ease.OutCubic).OnComplete(() =>
+            {
+                _flashEffect.gameObject.SetActive(false);
+            });
         });
     }
 }

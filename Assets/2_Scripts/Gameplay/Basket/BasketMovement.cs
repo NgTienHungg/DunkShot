@@ -37,6 +37,7 @@ public class BasketMovement : MonoBehaviour
         {
             transform.DOKill(); // kill anim move
             transform.parent = ObjectPool.Instance.transform;
+            transform.DORotate(Vector3.zero, 0.4f).SetEase(Ease.OutBack); // chạy lại anim receive ball ở basket
 
             _trajectory.Disappear();
             _isMoving = false;

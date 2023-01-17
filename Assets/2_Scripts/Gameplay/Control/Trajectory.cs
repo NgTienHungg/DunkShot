@@ -127,6 +127,10 @@ public class Trajectory : MonoBehaviour
 
     public void Show()
     {
+        // hide trajectory in challenge mode No Aim 
+        if (GameManager.Instance.Mode == GameMode.Challenge && ChallengeManager.Instance.CurrentChallenge.Type == ChallengeType.NoAim)
+            return;
+
         _dotParent.gameObject.SetActive(true);
     }
 

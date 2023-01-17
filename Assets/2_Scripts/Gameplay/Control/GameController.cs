@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 using DG.Tweening;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
-    [SerializeField] private Mechanic _mechanic;
-    public Mechanic Mechanic { get => _mechanic; }
+    [SerializeField] private BallShootingControl _ballShooting;
+    public BallShootingControl BallShooting { get => _ballShooting; }
 
-    [SerializeField] private BasketControl _basketControl;
-    public BasketControl BasketControl { get => _basketControl; }
+    [SerializeField] private BasketSpawnControl _basketSpawn;
+    public BasketSpawnControl BasketSpawn { get => _basketSpawn; }
 
     [SerializeField] private CameraControl _cameraControl;
     public CameraControl CameraControl { get => _cameraControl; }
@@ -47,8 +47,8 @@ public class GameController : MonoBehaviour
     {
         GameManager.Instance.Mode = GameMode.Endless;
 
-        _basketControl.SpawnBasket();
-        _mechanic.SetupBall();
+        _basketSpawn.SpawnBasket();
+        _ballShooting.SetupBall();
         _cameraControl.SetupCamera();
         _cameraControl.FollowBall();
 
@@ -74,9 +74,9 @@ public class GameController : MonoBehaviour
 
     private void Restart()
     {
-        _mechanic.SetupBall();
+        _ballShooting.SetupBall();
         _cameraControl.FollowBall();
-        _basketControl.BasketReady();
+        _basketSpawn.BasketReady();
         this.IsPlaying = true;
     }
 
@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour
     {
         // chờ 0.25s rồi hiện các UI gameover
         yield return new WaitForSeconds(0.25f);
-        ObjectPool.Instance.Recall(_mechanic.Ball.gameObject);
+        ObjectPool.Instance.Recall(_ballShooting.Ball.gameObject);
 
         if (ScoreManager.Instance.Score == 0)
             Restart();
@@ -148,12 +148,12 @@ public class GameController : MonoBehaviour
         }
 
         _level = Instantiate(ChallengeManager.Instance.CurrentChallenge.Level, transform.parent);
-        _basketControl.SetupLevel();
+        _basketSpawn.SetupLevel();
     }
 
     private void PlayChallenge()
     {
-        _mechanic.SetupBall();
+        _ballShooting.SetupBall();
         _cameraControl.FollowBall();
         this.IsPlaying = true;
     }
@@ -175,14 +175,14 @@ public class GameController : MonoBehaviour
     {
         this.IsPlaying = false;
         _cameraControl.UnfollowBall();
-        ObjectPool.Instance.Recall(_mechanic.Ball.gameObject);
+        ObjectPool.Instance.Recall(_ballShooting.Ball.gameObject);
     }
 
     private void BallRebornInChallenge()
     {
-        _mechanic.SetupBall();
+        _ballShooting.SetupBall();
         _cameraControl.FollowBall();
-        _basketControl.BasketReady();
+        _basketSpawn.BasketReady();
         this.IsPlaying = true;
     }
 }

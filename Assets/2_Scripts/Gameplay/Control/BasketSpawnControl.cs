@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class BasketControl : MonoBehaviour
+public class BasketSpawnControl : MonoBehaviour
 {
     [Header("Setup gameplay")]
     [SerializeField] private Vector2 _firstBasketPos = new Vector2(-2.7f, -2.8f);
@@ -62,12 +62,11 @@ public class BasketControl : MonoBehaviour
 
         foreach (Transform child in GameController.Instance.Level.transform)
         {
-            _listObject.Add(child.gameObject);
-
             if (child.GetComponent<MonoBehaviour>() is Basket)
             {
                 _listBasket.Add(child.GetComponent<Basket>());
             }
+            _listObject.Add(child.gameObject);
         }
 
         _currentBasket = _listBasket[0];
@@ -145,10 +144,10 @@ public class BasketControl : MonoBehaviour
             if (basket.transform.childCount == 6)
             {
                 _currentBasket = basket;
-                // chỉ cho phép rơi xuống tối thiểu 2 basket
+
                 if (i >= 2)
                 {
-                    _lastBasket = _listBasket[i - 2];
+                    _lastBasket = _listBasket[i - 2]; // chỉ cho phép rơi xuống tối thiểu 2 basket
                     foreach (var obj in _listObject)
                     {
                         if (!obj.activeInHierarchy)

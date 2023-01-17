@@ -34,7 +34,7 @@ public class UIScoreNotify : MonoBehaviour
     public void Show(int comboPerfect, int comboBounce, int scoreAdd)
     {
         gameObject.SetActive(true);
-        _basket = GameController.Instance.BasketControl.CurrentBasket.transform;
+        _basket = GameController.Instance.BasketSpawn.CurrentBasket.transform;
 
         SetInfo(comboPerfect, comboBounce, scoreAdd);
         StartCoroutine(ShowDelay(comboPerfect > 0, comboBounce > 0));

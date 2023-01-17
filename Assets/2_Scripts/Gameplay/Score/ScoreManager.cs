@@ -77,7 +77,7 @@ public class ScoreManager : MonoBehaviour
 
         if (Perfect == 2)
             Observer.BallSmoke?.Invoke();
-        else if (Perfect == 3)
+        else if (Perfect >= 3)
             Observer.BallFlame?.Invoke();
 
         // calculate score add

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Mechanic : MonoBehaviour
+public class BallShootingControl : MonoBehaviour
 {
     [SerializeField] private float pushForce, minForce;
     [SerializeField] private float maxDistance;
@@ -34,7 +34,7 @@ public class Mechanic : MonoBehaviour
     public void SetupBall()
     {
         _ball = ObjectPool.Instance.Spawn(PoolTag.BALL).GetComponent<Ball>();
-        _ball.transform.position = GameController.Instance.BasketControl.CurrentBasket.transform.position + new Vector3(0f, 2.5f);
+        _ball.transform.position = GameController.Instance.BasketSpawn.CurrentBasket.transform.position + new Vector3(0f, 2.5f);
         _ball.Appear();
 
         _canAim = false;
@@ -48,7 +48,7 @@ public class Mechanic : MonoBehaviour
         if (!GameController.Instance.IsPlaying)
             return;
 
-        if (_ball.transform.position.y < GameController.Instance.BasketControl.LastBasket.transform.position.y - 4f)
+        if (_ball.transform.position.y < GameController.Instance.BasketSpawn.LastBasket.transform.position.y - 4f)
         {
             if (GameManager.Instance.Mode == GameMode.Endless)
                 Observer.BallDead?.Invoke();
@@ -71,7 +71,7 @@ public class Mechanic : MonoBehaviour
 
     private void SetCanAim()
     {
-        _basket = GameController.Instance.BasketControl.CurrentBasket;
+        _basket = GameController.Instance.BasketSpawn.CurrentBasket;
         _canAim = true;
     }
 
@@ -99,12 +99,6 @@ public class Mechanic : MonoBehaviour
         _basket.Net.ScaleY(_distance);
 
         _canShoot = _force.magnitude >= minForce;
-
-        if (GameManager.Instance.Mode == GameMode.Challenge && ChallengeManager.Instance.CurrentChallenge.Type == ChallengeType.NoAim)
-        {
-            // hide trajectory in challenge mode No Aim 
-            return;
-        }
 
         if (_canShoot)
         {

@@ -83,8 +83,8 @@ public class MoneyManager : MonoBehaviour
 
     public void SpawnStar()
     {
-        Vector3 basketPos = GameController.Instance.BasketControl.NextBasket.transform.position;
-        float basketAngle = GameController.Instance.BasketControl.NextBasket.transform.eulerAngles.z;
+        Vector3 basketPos = GameController.Instance.BasketSpawn.NextBasket.transform.position;
+        float basketAngle = GameController.Instance.BasketSpawn.NextBasket.transform.eulerAngles.z;
         Star star = ObjectPool.Instance.Spawn(PoolTag.STAR).GetComponent<Star>();
         star.transform.position = basketPos + new Vector3(0.8f * Mathf.Sin(-basketAngle * Mathf.Deg2Rad), 0.8f);
         star.Appear();
@@ -92,7 +92,7 @@ public class MoneyManager : MonoBehaviour
 
     public void SpawnToken()
     {
-        Vector3 basketPos = GameController.Instance.BasketControl.NextBasket.transform.position;
+        Vector3 basketPos = GameController.Instance.BasketSpawn.NextBasket.transform.position;
         Token token = ObjectPool.Instance.Spawn(PoolTag.TOKEN).GetComponent<Token>();
         token.transform.position = basketPos + new Vector3(0f, 0.8f);
         token.Appear();
