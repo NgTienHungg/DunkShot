@@ -63,6 +63,7 @@ public class UITheme : MonoBehaviour
             if (!MoneyManager.Instance.CanBuyByToken(_theme.Data.Price))
             {
                 Debug.Log("NOT ENOUGH");
+                AudioManager.Instance.PlaySound(AudioKey.POPUP_APPEAR);
                 Observer.OnShowThemePopup?.Invoke(_theme);
                 return;
             }
@@ -73,17 +74,16 @@ public class UITheme : MonoBehaviour
 
     private void Unlock()
     {
+        AudioManager.Instance.PlaySound(AudioKey.SHOP_BUY);
         MoneyManager.Instance.BuyByToken(_theme.Data.Price);
-
         _theme.Unlock();
-
         _locked.SetActive(false);
     }
 
     private void Select()
     {
+        AudioManager.Instance.PlaySound(AudioKey.SHOP_SELECT);
         _theme.Select();
-
         Observer.OnChangeTheme?.Invoke();
     }
 }

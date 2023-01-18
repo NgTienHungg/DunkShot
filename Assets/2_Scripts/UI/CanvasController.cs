@@ -8,6 +8,8 @@ public class CanvasController : MonoBehaviour
     public UIMainMenu UIMainMenu { get => _uiMainMenu; }
 
     [SerializeField] private UIGamePlay _uiGamePlay;
+    public UIGamePlay UIGamePlay { get => _uiGamePlay; }
+
     [SerializeField] private UIPaused _uiPaused;
     [SerializeField] private UISettings _uiSettings;
 
@@ -23,6 +25,8 @@ public class CanvasController : MonoBehaviour
     [Header("Challenge")]
     [SerializeField] private UIChallengeManager _uiChallenge;
     public UIChallengeManager UIChallenge { get => _uiChallenge; }
+
+    [SerializeField] private GameObject _stuckButton;
 
     public static CanvasController Instance { get; private set; }
 
@@ -44,6 +48,8 @@ public class CanvasController : MonoBehaviour
 
         _uiCustomize.gameObject.SetActive(false);
         _uiChallenge.gameObject.SetActive(false);
+
+        _stuckButton.SetActive(false);
 
         ScoreManager.Instance.UIScore.Disable();
     }
@@ -146,5 +152,20 @@ public class CanvasController : MonoBehaviour
     {
         _uiMainMenu.Enable();
         _uiChallenge.Disable();
+    }
+
+    public void ShowStuck()
+    {
+        _stuckButton.SetActive(true);
+    }
+
+    public void OnStuckButton()
+    {
+        _stuckButton.gameObject.SetActive(false);
+
+        if (GameManager.Instance.Mode == GameMode.Endless)
+            OnBackHome();
+        else if (GameManager.Instance.Mode == GameMode.Challenge)
+            _uiChallenge.CloseChallenge();
     }
 }

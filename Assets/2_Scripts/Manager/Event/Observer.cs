@@ -15,6 +15,7 @@ public static class Observer
     public static GameEvent OnStartGame;
     public static GameEvent OnPlayGame;
 
+    public static GameEvent BallStuck;
     public static GameEvent OnShootBall;
     public static GameEvent BallDead;
     public static GameEvent BallSmoke;

@@ -29,6 +29,7 @@ public class Token : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            AudioManager.Instance.PlaySound(AudioKey.COLLECT_TOKEN);
             _collider.enabled = false;
             Disappear();
             Observer.OnCollectToken?.Invoke();

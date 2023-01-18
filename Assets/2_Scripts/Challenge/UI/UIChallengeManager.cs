@@ -68,6 +68,7 @@ public class UIChallengeManager : UIGame
 
     private void FailChallenge()
     {
+        AudioManager.Instance.PlaySound(AudioKey.GAMEOVER);
         _popupControl.ShowPopupFail();
     }
 

@@ -22,32 +22,6 @@ public class UISettings : UIGame
         CanvasController.Instance.CloseSettings();
     }
 
-    public void OnSoundButton()
-    {
-        Debug.Log("SOUND");
-    }
-
-    public void OnVibrationButton()
-    {
-        Debug.Log("VIBRATION");
-    }
-
-    public void OnDarkModeButton()
-    {
-        Debug.Log("MODE");
-
-        if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
-        {
-            SaveSystem.SetInt(SaveKey.ON_LIGHT_MODE, 0);
-            Observer.OnDarkMode?.Invoke();
-        }
-        else
-        {
-            SaveSystem.SetInt(SaveKey.ON_LIGHT_MODE, 1);
-            Observer.OnLightMode?.Invoke();
-        }
-    }
-
     public void OnRemoveAdsButton()
     {
         Debug.Log("REMOVE ADS");

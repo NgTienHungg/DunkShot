@@ -54,6 +54,28 @@ public class Ball : MonoBehaviour
 
     public void Push(Vector2 force)
     {
+        if (force.magnitude < 20)
+        {
+            if (_tail.IsFlaming)
+                AudioManager.Instance.PlaySound(AudioKey.RELEASE_FIRE_BALL_1);
+            else
+                AudioManager.Instance.PlaySound(AudioKey.RELEASE_BALL_1);
+        }
+        else if (force.magnitude < 25)
+        {
+            if (_tail.IsFlaming)
+                AudioManager.Instance.PlaySound(AudioKey.RELEASE_FIRE_BALL_2);
+            else
+                AudioManager.Instance.PlaySound(AudioKey.RELEASE_BALL_2);
+        }
+        else
+        {
+            if (_tail.IsFlaming)
+                AudioManager.Instance.PlaySound(AudioKey.RELEASE_FIRE_BALL_3);
+            else
+                AudioManager.Instance.PlaySound(AudioKey.RELEASE_BALL_3);
+        }
+
         transform.parent = null;
         _rigidbody.simulated = true;
         _rigidbody.angularVelocity = force.magnitude * Random.Range(25f, 35f);
@@ -64,10 +86,12 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            AudioManager.Instance.PlaySound(AudioKey.COLLISION_WALL);
             Observer.BallCollideObstacle?.Invoke();
         }
         else if (collision.gameObject.CompareTag("Hoop"))
         {
+            AudioManager.Instance.PlaySound(AudioKey.COLLISION_HOOP);
             Observer.BallCollideHoop?.Invoke();
             _tail.Renew();
         }

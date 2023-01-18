@@ -35,6 +35,7 @@ public class Star : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            AudioManager.Instance.PlaySound(AudioKey.COLLECT_STAR);
             _collider.enabled = false;
             Disappear();
             Observer.CollectStar?.Invoke();

@@ -48,6 +48,7 @@ public class UINormalSkin : UISkin
 
     protected override void Unlock()
     {
+        AudioManager.Instance.PlaySound(AudioKey.SHOP_BUY);
         MoneyManager.Instance.BuyByStar(_skin.Data.Price);
 
         base.Unlock();

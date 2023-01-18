@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
         Observer.OnStartGame += StartGame;
         Observer.OnPlayGame += PlayGame;
         Observer.BallDead += OnBallDead;
+        Observer.BallStuck += OnBallStuck;
 
         Observer.OnStartChallenge += StartChallenge;
         Observer.OnPlayChallenge += PlayChallenge;
@@ -91,6 +92,11 @@ public class GameController : MonoBehaviour
         StartCoroutine(WaitToHandle());
     }
 
+    private void OnBallStuck()
+    {
+        CanvasController.Instance.ShowStuck();
+    }
+
     private void Restart()
     {
         _ballShooting.SetupBall();
@@ -131,6 +137,7 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         GameManager.Instance.State = GameState.GameOver;
+        AudioManager.Instance.PlaySound(AudioKey.GAMEOVER);
         CanvasController.Instance.GameOver();
     }
 

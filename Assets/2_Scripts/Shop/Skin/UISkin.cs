@@ -61,6 +61,7 @@ public class UISkin : MonoBehaviour
 
     protected virtual void Select()
     {
+        AudioManager.Instance.PlaySound(AudioKey.SHOP_SELECT);
         _skin.Select();
     }
 

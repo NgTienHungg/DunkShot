@@ -49,6 +49,7 @@ public class CameraControl : MonoBehaviour
 
     private void ShakeCamera()
     {
+        AudioManager.Instance.PlayVibrate();
         _shakeTimer = _shakeDuration;
         _currentIntensity = _intensity;
         _cinemachineBasicMultiChannelPerlin = _vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

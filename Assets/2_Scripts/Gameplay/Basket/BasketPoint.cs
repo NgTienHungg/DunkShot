@@ -39,6 +39,7 @@ public class BasketPoint : MonoBehaviour
             // phát ra sự kiện để xử lý điểm trước
             // sau đó mới phát sự kiện BallInBasket để clear các điểm nhận được trong lượt này tại ScoreManager
 
+            AudioManager.Instance.PlaySound(AudioKey.COLLISION_NET);
             _basket.ReceiveBall(collision.gameObject.GetComponent<Ball>());
 
             if (_hasPoint)

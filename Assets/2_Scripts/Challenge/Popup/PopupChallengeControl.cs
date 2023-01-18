@@ -31,6 +31,7 @@ public class PopupChallengeControl : MonoBehaviour
 
     public void ShowPopupPlay()
     {
+        AudioManager.Instance.PlaySound(AudioKey.POPUP_APPEAR);
         _panel.enabled = true;
         _panel.DOFade(0.4f, 0.5f).OnComplete(() =>
         {
@@ -40,6 +41,7 @@ public class PopupChallengeControl : MonoBehaviour
 
     public void ShowPopupPause()
     {
+        AudioManager.Instance.PlaySound(AudioKey.POPUP_APPEAR);
         _panel.enabled = true;
         _panel.DOFade(0.4f, 0.5f).SetUpdate(true);
         _popupPause.gameObject.SetActive(true);
@@ -47,6 +49,7 @@ public class PopupChallengeControl : MonoBehaviour
 
     public void ShowPopupPass()
     {
+        AudioManager.Instance.PlaySound(AudioKey.POPUP_APPEAR);
         _panel.enabled = true;
         _panel.DOFade(0.4f, 0.5f).OnComplete(() =>
         {
@@ -56,6 +59,7 @@ public class PopupChallengeControl : MonoBehaviour
 
     public void ShowPopupFail()
     {
+        AudioManager.Instance.PlaySound(AudioKey.POPUP_APPEAR);
         _panel.enabled = true;
         _panel.DOFade(0.4f, 0.5f).OnComplete(() =>
         {

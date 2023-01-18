@@ -43,11 +43,13 @@ public class LightButton : MonoBehaviour
     {
         if (SaveSystem.GetInt(SaveKey.ON_LIGHT_MODE) == 1)
         {
+            AudioManager.Instance.PlaySound(AudioKey.BUTTON_OFF);
             TurnOff();
             Observer.OnDarkMode?.Invoke();
         }
         else
         {
+            AudioManager.Instance.PlaySound(AudioKey.BUTTON_ON);
             TurnOn();
             Observer.OnLightMode?.Invoke();
         }

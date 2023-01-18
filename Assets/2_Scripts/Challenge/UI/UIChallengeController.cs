@@ -172,6 +172,7 @@ public class UIChallengeController : MonoBehaviour
     private void RebornBall()
     {
         _remainingBalls--;
+        AudioManager.Instance.PlaySound(AudioKey.CHALLENGE_LOSE_LIFE);
 
         if (_remainingBalls == 2)
         {
@@ -246,6 +247,7 @@ public class UIChallengeController : MonoBehaviour
                 _tictac.text = "00";
 
                 _isPlaying = false;
+                AudioManager.Instance.PlaySound(AudioKey.TIME_OUT);
                 Observer.OnFailChallenge?.Invoke();
                 return;
             }

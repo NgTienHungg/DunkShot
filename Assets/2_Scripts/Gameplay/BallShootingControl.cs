@@ -20,6 +20,9 @@ public class BallShootingControl : MonoBehaviour
     private Vector3 _direction, _force;
     private float _distance;
 
+    private bool _ballShot = false;
+    private float _ballTimer = 0f;
+
     private void Awake()
     {
         RegisterListener();
@@ -27,6 +30,9 @@ public class BallShootingControl : MonoBehaviour
 
     private void RegisterListener()
     {
+        Observer.BallInBasket += NotStuck;
+        Observer.BallInBasketInChallenge += NotStuck;
+
         Observer.BallInBasket += SetCanAim;
         Observer.BallInBasketInChallenge += SetCanAim;
     }
@@ -66,6 +72,17 @@ public class BallShootingControl : MonoBehaviour
 
             if (_isAiming)
                 Aiming();
+        }
+
+        if (_ballShot)
+        {
+            _ballTimer += Time.deltaTime;
+            if (_ballTimer > 5f)
+            {
+                _ballShot = false;
+                _ballTimer = 0f;
+                Observer.BallStuck.Invoke();
+            }
         }
     }
 
@@ -121,11 +138,21 @@ public class BallShootingControl : MonoBehaviour
             _ball.Push(_force);
             _basket.ShootBall();
             _canAim = false;
+
+            _ballShot = true;
+            _ballTimer = 0f;
+
             Observer.OnShootBall?.Invoke();
         }
         else if (_force.magnitude >= 5f)
         {
             _basket.CancelShoot();
         }
+    }
+
+    private void NotStuck()
+    {
+        _ballShot = false;
+        _ballTimer = 0f;
     }
 }

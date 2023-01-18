@@ -22,6 +22,8 @@ public class PopupSkinControl : MonoBehaviour
 
     private void ShowPopup(Skin skin)
     {
+        AudioManager.Instance.PlaySound(AudioKey.POPUP_APPEAR);
+
         switch (skin.Data.Type)
         {
             case SkinType.Normal:

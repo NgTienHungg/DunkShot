@@ -6,6 +6,11 @@ public class BallTail : MonoBehaviour
     [SerializeField] private ParticleSystem _blackSmoke;
     [SerializeField] private ParticleSystem _specialTail;
 
+    public bool IsFlaming
+    {
+        get => _specialTail.isPlaying;
+    }
+
     public void Renew()
     {
         _whiteSmoke.Stop();

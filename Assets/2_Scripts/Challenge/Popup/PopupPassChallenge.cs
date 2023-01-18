@@ -55,7 +55,10 @@ public class PopupPassChallenge : MonoBehaviour
         }
 
         transform.localScale = Vector3.zero;
-        transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
+        transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack).OnComplete(() =>
+        {
+            AudioManager.Instance.PlaySound(AudioKey.RECEIVE_TOKEN);
+        });
     }
 
     public void Load()
