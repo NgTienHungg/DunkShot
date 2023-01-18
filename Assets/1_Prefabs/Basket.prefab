@@ -710,8 +710,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6378516231066753647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 1600808551502992411}
   m_RootOrder: 1
@@ -951,8 +951,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8512205748979009989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1600808551502992411}
   m_RootOrder: 2
@@ -1349,7 +1349,6 @@ GameObject:
   - component: {fileID: 411999574}
   - component: {fileID: 1681306710053070806}
   - component: {fileID: 687420728625481851}
-  - component: {fileID: 8903147059603622003}
   m_Layer: 0
   m_Name: Basket
   m_TagString: Untagged
@@ -1413,25 +1412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f57e4564c24f28498e9d0794822e142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &8903147059603622003
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8798219964249596288}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 11fae510ed17b13409cbc5eeebea0dc4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9170181570096400997
 GameObject:
   m_ObjectHideFlags: 0

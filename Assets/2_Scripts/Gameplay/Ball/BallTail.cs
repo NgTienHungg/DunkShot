@@ -30,8 +30,7 @@ public class BallTail : MonoBehaviour
         _whiteSmoke.Play();
     }
 
-    // private 
-    public void Flaming()
+    private void Flaming()
     {
         _whiteSmoke.Stop();
         _blackSmoke.Play();
@@ -43,7 +42,10 @@ public class BallTail : MonoBehaviour
         // load special tail
         _specialTail.textureSheetAnimation.SetSprite(0, DataManager.Instance.SkinInUse.Data.Tail.Sprite);
 
-        var color = _specialTail.colorOverLifetime;
-        color.color = DataManager.Instance.SkinInUse.Data.Tail.Color;
+        ParticleSystem.ColorOverLifetimeModule specialColorOverLifeTime = _specialTail.colorOverLifetime;
+        specialColorOverLifeTime.color = DataManager.Instance.SkinInUse.Data.Tail.Color;
+
+        ParticleSystem.MainModule blackMain = _blackSmoke.main;
+        blackMain.startColor = DataManager.Instance.SkinInUse.Data.Tail.FlashColor;
     }
 }

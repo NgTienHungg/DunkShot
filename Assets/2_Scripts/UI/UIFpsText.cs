@@ -3,29 +3,36 @@ using UnityEngine;
 
 public class UIFpsText : MonoBehaviour
 {
-    private TextMeshProUGUI fpsText;
-    private string prefix = "FPS: ";
-    private float cooldownTimer;
+    private TextMeshProUGUI _fpsText;
+    private float _timer;
+    private string _prefix = "FPS: ";
+    private int _fps;
 
     private void Awake()
     {
-        this.fpsText = GetComponent<TextMeshProUGUI>();
-        this.fpsText.text = prefix + ((int)(1f / Time.deltaTime)).ToString();
+        _fpsText = GetComponent<TextMeshProUGUI>();
+        _fps = Mathf.FloorToInt(1f / Time.deltaTime);
+        _fpsText.text = _prefix + _fps.ToString();
     }
 
     private void Update()
     {
         if (Time.timeScale == 0)
         {
-            fpsText.text = prefix + "--";
+            _fpsText.text = _prefix + "--";
             return;
         }
 
-        cooldownTimer += Time.deltaTime;
-        if (cooldownTimer >= 0.6f)
+        _timer += Time.deltaTime;
+        if (_timer >= 0.6f)
         {
-            cooldownTimer = 0f;
-            fpsText.text = prefix + ((int)(1f / Time.deltaTime)).ToString();
+            _timer = 0f;
+            _fps = Mathf.FloorToInt(1f / Time.deltaTime);
+            _fpsText.text = _prefix + _fps.ToString();
+
+            if (_fps <= 50) _fpsText.color = Color.red;
+            else if (_fps <= 90) _fpsText.color = Color.yellow;
+            else _fpsText.color = Color.green;
         }
     }
 }

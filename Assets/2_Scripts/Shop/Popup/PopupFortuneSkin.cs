@@ -10,9 +10,7 @@ public class PopupFortuneSkin : PopupSkin
     protected override void OnEnable()
     {
         base.OnEnable();
-
         StartCoroutine(SwitchLight());
-
         StartCoroutine(RotateWheel());
     }
 

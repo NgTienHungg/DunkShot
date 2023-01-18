@@ -43,6 +43,8 @@ public class TailData
     public Sprite Sprite;
 
     public Gradient Color;
+
+    public Color FlashColor;
 }
 
 [Serializable]

@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class BasketSpawnControl : MonoBehaviour
 {
     [Header("Setup gameplay")]
-    [SerializeField] private Vector2 _firstBasketPos = new Vector2(-2.7f, -2.8f);
-    [SerializeField] private Vector2 _secondBasketPos = new Vector2(2f, 0.3f);
+    [SerializeField] private Vector2 _firstBasketPos = new Vector2(-2.7f, -4.6f);
+    [SerializeField] private Vector2 _secondBasketPos = new Vector2(2f, -1f);
 
     [Header("Range Spawn")]
     [SerializeField] private Vector2 _rangePositionX = new Vector2(1.8f, 3f);

@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Observer.OnStartGame?.Invoke();
+        CanvasController.Instance.UIMainMenu.OpenApp();
     }
 
     private void Update()

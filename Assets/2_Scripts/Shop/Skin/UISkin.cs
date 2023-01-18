@@ -35,15 +35,14 @@ public class UISkin : MonoBehaviour
             {
                 _selected.transform.DOScale(1f, 0.3f).SetEase(Ease.OutCubic).SetUpdate(true);
             });
-
             _ball.transform.DOScale(0.94f, 0.45f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
         }
 
         if (_skin.Unlocked && _locked.gameObject.activeInHierarchy)
         {
             _ball.gameObject.SetActive(true);
-            _tag.gameObject.SetActive(false);
             _locked.gameObject.SetActive(false);
+            _tag.SetActive(false);
         }
     }
 
@@ -69,7 +68,7 @@ public class UISkin : MonoBehaviour
     {
         _skin.Unlock();
         _ball.gameObject.SetActive(true);
-        _tag.gameObject.SetActive(false);
+        _tag.SetActive(false);
         _locked.DOFade(0f, 0.5f).SetUpdate(true).OnComplete(() =>
         {
             _locked.gameObject.SetActive(false);

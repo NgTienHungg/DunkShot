@@ -17,7 +17,7 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: f62f404fed3105549a1125f30e1231c3, type: 3}
     Color:
       serializedVersion: 2
-      key0: {r: 0.38146016, g: 1, b: 0.3433962, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 0.15507579, g: 1, b: 0, a: 1}
       key2: {r: 0, g: 0.3610413, b: 1, a: 0}
       key3: {r: 0, g: 1, b: 0.7130654, a: 0}
@@ -44,6 +44,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 3
       m_NumAlphaKeys: 2
+    FlashColor: {r: 0.0368023, g: 0.6792453, b: 0.028195057, a: 0.84705883}
   Type: 3
   Price: 0
   NumberOfVideos: 0

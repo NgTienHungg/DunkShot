@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CustomizeButton : MonoBehaviour
+public class ShopButton : MonoBehaviour
 {
     [SerializeField] private Image _progress;
 

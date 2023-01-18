@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
+    public static DataManager Instance { get; private set; }
+    public Skin[] Skins { get; private set; }
+    public Theme[] Themes { get; private set; }
+
     [Header("Data")]
     [SerializeField] private SkinData[] _skinDataSet;
     [SerializeField] private ThemeData[] _themeDataSet;
 
     private Transform _skinHolder;
     private Transform _themeHolder;
-
-    public static DataManager Instance { get; private set; }
-    public Skin[] Skins { get; private set; }
-    public Theme[] Themes { get; private set; }
 
     private void Awake()
     {

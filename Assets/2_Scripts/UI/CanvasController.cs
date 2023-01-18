@@ -1,11 +1,12 @@
 ﻿using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
     [Header("UI Game States")]
     [SerializeField] private UIMainMenu _uiMainMenu;
+    public UIMainMenu UIMainMenu { get => _uiMainMenu; }
+
     [SerializeField] private UIGamePlay _uiGamePlay;
     [SerializeField] private UIPaused _uiPaused;
     [SerializeField] private UISettings _uiSettings;

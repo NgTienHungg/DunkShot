@@ -88,6 +88,7 @@ public class BallShootingControl : MonoBehaviour
         _direction = (_startPoint - _endPoint).normalized;
         _force = _direction * _distance * pushForce;
 
+        _canShoot = _force.magnitude >= minForce;
         if (_force.magnitude < 5f) return;
 
         // calculate angle of hoop
@@ -97,8 +98,6 @@ public class BallShootingControl : MonoBehaviour
 
         // calculate net scale
         _basket.Net.ScaleY(_distance);
-
-        _canShoot = _force.magnitude >= minForce;
 
         if (_canShoot)
         {

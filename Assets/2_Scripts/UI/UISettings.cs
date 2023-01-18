@@ -66,11 +66,13 @@ public class UISettings : UIGame
     public void OnAdsButton()
     {
         Debug.Log("ADS");
+        Application.OpenURL("https://play.google.com/store/apps/dev?id=7079675741327974212");
     }
 
     public void OnFacebookButton()
     {
         Debug.Log("FACEBOOK");
+        Application.OpenURL("https://www.facebook.com/NgTienHungg/");
     }
 
     public void OnInstagramButton()

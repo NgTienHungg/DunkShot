@@ -21,11 +21,11 @@ public class BasketEffect : MonoBehaviour
         _ring1.DOFade(0f, 0f).SetUpdate(true);
         _ring1.gameObject.SetActive(false);
 
-        _ring2.transform.localScale = Vector3.one * 0.75f;
+        _ring2.transform.localScale = Vector3.one * 0.7f;
         _ring2.DOFade(0f, 0f).SetUpdate(true);
         _ring2.gameObject.SetActive(false);
 
-        _ring3.transform.localScale = Vector3.one * 0.9f;
+        _ring3.transform.localScale = Vector3.one * 0.8f;
         _ring3.DOFade(0f, 0f).SetUpdate(true);
         _ring3.gameObject.SetActive(false);
 
@@ -41,8 +41,8 @@ public class BasketEffect : MonoBehaviour
         _ring1.gameObject.SetActive(true);
         _ring1.DOFade(0f, 0f).SetDelay(0.05f).OnComplete(() =>
         {
-            _ring1.DOFade(1f, 0.3f);
-            _ring1.transform.DOScale(0f, 0.6f).OnComplete(() =>
+            _ring1.DOFade(1f, 0.45f);
+            _ring1.transform.DOScale(0f, 0.5f).OnComplete(() =>
             {
                 _ring1.transform.localScale = Vector3.one * 0.6f;
                 _ring1.DOFade(0f, 0f).SetUpdate(true);
@@ -53,10 +53,10 @@ public class BasketEffect : MonoBehaviour
         _ring2.gameObject.SetActive(true);
         _ring2.DOFade(0f, 0f).SetDelay(0.1f).OnComplete(() =>
         {
-            _ring2.DOFade(1f, 0.3f);
-            _ring2.transform.DOScale(0f, 0.6f).OnComplete(() =>
+            _ring2.DOFade(1f, 0.45f);
+            _ring2.transform.DOScale(0f, 0.5f).OnComplete(() =>
             {
-                _ring2.transform.localScale = Vector3.one * 0.75f;
+                _ring2.transform.localScale = Vector3.one * 0.7f;
                 _ring2.DOFade(0f, 0f).SetUpdate(true);
                 _ring2.gameObject.SetActive(false);
             });
@@ -65,10 +65,10 @@ public class BasketEffect : MonoBehaviour
         _ring3.gameObject.SetActive(true);
         _ring3.DOFade(0f, 0f).SetDelay(0.2f).OnComplete(() =>
         {
-            _ring3.DOFade(1f, 0.3f);
-            _ring3.transform.DOScale(0f, 0.6f).OnComplete(() =>
+            _ring3.DOFade(1f, 0.45f);
+            _ring3.transform.DOScale(0f, 0.5f).OnComplete(() =>
             {
-                _ring3.transform.localScale = Vector3.one * 0.9f;
+                _ring3.transform.localScale = Vector3.one * 0.8f;
                 _ring3.DOFade(0f, 0f).SetUpdate(true);
                 _ring3.gameObject.SetActive(false);
             });

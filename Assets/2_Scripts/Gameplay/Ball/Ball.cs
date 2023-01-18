@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 public class Ball : MonoBehaviour
 {
@@ -37,21 +36,15 @@ public class Ball : MonoBehaviour
         _tail.Renew();
     }
 
-    [Button("FLame")]
-    public void Flame()
-    {
-        _tail.Flaming();
-    }
-
     public void Appear()
     {
         _renderer.color = new Color(1f, 1f, 1f, 0f);
         _renderer.DOFade(1f, 0.3f);
     }
 
-    public void Stop(Transform hoop)
+    public void Stop(Transform basket)
     {
-        transform.parent = hoop;
+        transform.parent = basket;
         transform.rotation = Quaternion.identity;
 
         _rigidbody.simulated = false;

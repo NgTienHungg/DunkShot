@@ -44,6 +44,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
+    FlashColor: {r: 0.735849, g: 0.32097673, b: 0, a: 1}
   Type: 0
   Price: 100
   NumberOfVideos: 0

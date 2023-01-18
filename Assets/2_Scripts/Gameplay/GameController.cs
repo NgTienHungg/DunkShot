@@ -43,6 +43,25 @@ public class GameController : MonoBehaviour
         Observer.FreeBallRebornInChallenge += Restart;
     }
 
+
+    //// làm vầy để sau khi chạy xong hiệu ứng mở app và sinh ra vCam không bị giật
+    private void Start()
+    {
+        _cameraControl.SetupCamera();
+    }
+
+    public void OpenApp()
+    {
+        GameManager.Instance.Mode = GameMode.Endless;
+
+        _basketSpawn.SpawnBasket();
+        _ballShooting.SetupBall();
+        _cameraControl.FollowBall();
+
+        this.IsPlaying = false;
+        this.HasSecondChance = true;
+    }
+
     private void StartGame()
     {
         GameManager.Instance.Mode = GameMode.Endless;
